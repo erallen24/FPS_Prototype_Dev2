@@ -463,9 +463,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4770028915138588509, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
+      propertyPath: m_Cameras.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770028915138588509, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
+      propertyPath: 'm_Cameras.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2015797676}
     - target: {fileID: 5627023998640886693, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366066667371301300, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 511
       objectReference: {fileID: 0}
     - target: {fileID: 7573123992235967000, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -516,6 +528,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
+--- !u!20 &2015797676 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6156678288798560213, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
+  m_PrefabInstance: {fileID: 2015797675}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
