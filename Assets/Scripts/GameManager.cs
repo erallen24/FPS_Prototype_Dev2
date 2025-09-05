@@ -201,6 +201,7 @@ public class GameManager : MonoBehaviour
         subMenuActive = subMenuAudio;
         subMenuActive.SetActive(true);
     }
+
     IEnumerator playerAddScoreUI(int amount)
     {
         playerScoreFeedbackText.text = amount.ToString("F0");
