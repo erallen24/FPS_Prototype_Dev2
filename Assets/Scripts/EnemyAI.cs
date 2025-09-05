@@ -21,6 +21,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         
     }
 
+    void OnDestroy()
+    {
+
+    }
+
     public void takeDamage(int damage)
     {
         if (HP > 0) {
