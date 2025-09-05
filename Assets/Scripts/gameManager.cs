@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text playerScoreUIText;
     [SerializeField] TMP_Text playScoreStat;
     [SerializeField] TMP_Text playerScoreFeedbackText;
+    [SerializeField] GameObject playerScoreUIFeedback;
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     public GameObject playerHealthScreen;
     public GameObject playerRageScreen;
-    public GameObject playerScoreUIFeedback;
+
 
     public GameObject player;
     public PlayerController playerScript;
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-     
+
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
