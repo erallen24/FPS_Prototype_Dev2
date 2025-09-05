@@ -53,7 +53,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   controller: {fileID: 261371845054209605}
-  speed: 5
+  movementSpeed: 15
   sprintMod: 2
   jumpSpeed: 5
   jumpMax: 2

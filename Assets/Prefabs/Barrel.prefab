@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262b183cf24793e479ec9b0c3a86333d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  model: {fileID: 0}
-  HP: 0
+  model: {fileID: 296356912290807679}
+  HP: 5
   colorFlash: {r: 0.9685534, g: 0.027411724, b: 0.027411724, a: 0}
 --- !u!33 &6388881810191182800
 MeshFilter:
