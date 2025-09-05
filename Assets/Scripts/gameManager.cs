@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuMain;
     [SerializeField] GameObject menuSettings;
 
     [SerializeField] GameObject subMenuGameplay;
@@ -35,14 +36,14 @@ public class gameManager : MonoBehaviour
     public Image playerRageBar;
     public Image playerStaminaBar;
     public GameObject playerAmmoCanvas;
-    // public Image playerAmmoBar;
+    public Image playerAmmoBar;
     public GameObject playerDamageScreen;
     public GameObject playerHealthScreen;
     public GameObject playerRageScreen;
     public GameObject playerScoreUIFeedback;
 
     public GameObject player;
-    // public playerController playerScript;
+    public playerController playerScript;
     public GameObject playerSpawnPos;
     public GameObject checkpointPopup;
     public bool isPaused;
@@ -62,8 +63,8 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
-        //playerScript = player.GetComponent<playerController>();
-        //playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+        playerScript = player.GetComponent<playerController>();
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
 
     }
 
@@ -105,6 +106,11 @@ public class gameManager : MonoBehaviour
         transform.GetComponent<AudioSource>().Play();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        if (subMenuActive != null)
+            subMenuActive.SetActive(false);
+        if (menuMain != null)
+            menuMain.SetActive(false);
+
         menuActive.SetActive(false);
         menuActive = null;
     }
@@ -158,16 +164,18 @@ public class gameManager : MonoBehaviour
 
     public void openSettings()
     {
-        if (subMenuActive != null)
+        if (subMenuActive != null && subMenuActive != subMenuGameplay)
             subMenuActive.SetActive(false);
 
-        if (menuActive != null)
+        if (menuActive != null && menuActive != menuSettings)
             menuActive.SetActive(false);
 
         menuActive = menuSettings;
         subMenuActive = subMenuGameplay;
+        menuMain.SetActive(true);
         subMenuGameplay.SetActive(true);
         menuActive.SetActive(true);
+
     }
 
     public void updatePlayerAmmo(int curr, int max)
@@ -197,8 +205,6 @@ public class gameManager : MonoBehaviour
         Color colorChange = Color.green;
 
         playerScoreUIFeedback.SetActive(true);
-        //yield return new WaitForSeconds(1.5f);
-        //playerScoreUIFeedback.SetActive(false);
 
         float duration = 0.7f;
         float elapsed = 0f;
