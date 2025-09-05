@@ -83,7 +83,6 @@ public class GameManager : MonoBehaviour
             else if (menuActive == menuPause)
             {
                 stateUnpause();
-
             }
         }
 
