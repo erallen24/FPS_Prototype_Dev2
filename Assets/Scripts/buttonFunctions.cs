@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class buttonFunctions : MonoBehaviour
+public class ButtonFunctions : MonoBehaviour
 {
     public void resume()
     {
-        gameManager.instance.stateUnpause();
+        GameManager.instance.stateUnpause();
     }
 
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameManager.instance.stateUnpause();
+        GameManager.instance.stateUnpause();
     }
 
     public void quit()
@@ -26,20 +26,20 @@ public class buttonFunctions : MonoBehaviour
     public void respawn()
     {
         //gameManager.instance.playerScript.spawnPlayer();
-        gameManager.instance.stateUnpause();
+        GameManager.instance.stateUnpause();
     }
 
     public void openSettings()
     {
-        gameManager.instance.openSettings();
+        GameManager.instance.openSettings();
     }
 
     public void openControllerSettings()
     {
-        gameManager.instance.openControllerSettings();
+        GameManager.instance.openControllerSettings();
     }
     public void openAudioSettings()
     {
-        gameManager.instance.openAudioSettings();
+        GameManager.instance.openAudioSettings();
     }
 }
