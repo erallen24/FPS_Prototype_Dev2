@@ -2890,8 +2890,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5870921142895283278}
-  - component: {fileID: 3217507797948649004}
   - component: {fileID: 1314884565857828478}
+  - component: {fileID: 7387610606013499967}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -2918,51 +2918,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3217507797948649004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123303957615321753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca73d67118aafb345b49af11a05266e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::gameManager
-  menuActive: {fileID: 0}
-  subMenuActive: {fileID: 0}
-  menuPause: {fileID: 1253624846307707171}
-  menuWin: {fileID: 842968424803574424}
-  menuLose: {fileID: 198614823480187451}
-  menuMain: {fileID: 7799857088343362750}
-  menuSettings: {fileID: 4801678788270905585}
-  subMenuGameplay: {fileID: 5779195838116961937}
-  subMenuControls: {fileID: 9152213832694832561}
-  subMenuAudio: {fileID: 6331016650436416394}
-  playerScoreUIText: {fileID: 2949495016120552236}
-  playScoreStat: {fileID: 0}
-  playerScoreFeedbackText: {fileID: 0}
-  playerAmmo: {fileID: 0}
-  gameGoalCountText: {fileID: 2373210819847058623}
-  gameGoalCountStat: {fileID: 0}
-  gameKillStats: {fileID: 0}
-  gameDeathStats: {fileID: 0}
-  playerRetical: {fileID: 8982098903705885682}
-  playerHPBar: {fileID: 532000645351796524}
-  playerRageBar: {fileID: 0}
-  playerStaminaBar: {fileID: 9012778124679337222}
-  playerAmmoCanvas: {fileID: 0}
-  playerAmmoBar: {fileID: 0}
-  playerDamageScreen: {fileID: 7079148458088180873}
-  playerHealthScreen: {fileID: 0}
-  playerRageScreen: {fileID: 0}
-  playerScoreUIFeedback: {fileID: 0}
-  player: {fileID: 5627023998640886693, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
-  playerScript: {fileID: 7129777726360691537, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
-  playerSpawnPos: {fileID: 0}
-  checkpointPopup: {fileID: 0}
-  isPaused: 0
 --- !u!82 &1314884565857828478
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3060,6 +3015,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7387610606013499967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123303957615321753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca73d67118aafb345b49af11a05266e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  menuActive: {fileID: 0}
+  subMenuActive: {fileID: 0}
+  menuPause: {fileID: 0}
+  menuWin: {fileID: 0}
+  menuLose: {fileID: 0}
+  menuMain: {fileID: 0}
+  menuSettings: {fileID: 0}
+  subMenuGameplay: {fileID: 0}
+  subMenuControls: {fileID: 0}
+  subMenuAudio: {fileID: 0}
+  playerScoreUIText: {fileID: 0}
+  playScoreStat: {fileID: 0}
+  playerScoreFeedbackText: {fileID: 0}
+  playerScoreUIFeedback: {fileID: 0}
+  playerAmmo: {fileID: 0}
+  gameGoalCountText: {fileID: 0}
+  gameGoalCountStat: {fileID: 0}
+  gameKillStats: {fileID: 0}
+  gameDeathStats: {fileID: 0}
+  playerRetical: {fileID: 0}
+  playerHPBar: {fileID: 0}
+  playerRageBar: {fileID: 0}
+  playerStaminaBar: {fileID: 0}
+  playerAmmoCanvas: {fileID: 0}
+  playerAmmoBar: {fileID: 0}
+  playerDamageScreen: {fileID: 0}
+  playerHealthScreen: {fileID: 0}
+  playerRageScreen: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  playerSpawnPos: {fileID: 0}
+  checkpointPopup: {fileID: 0}
+  isPaused: 0
 --- !u!1 &2197035727035598582
 GameObject:
   m_ObjectHideFlags: 0
