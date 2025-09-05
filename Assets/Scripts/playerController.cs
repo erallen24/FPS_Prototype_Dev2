@@ -5,7 +5,7 @@ public class playerController : MonoBehaviour
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] CharacterController controller;
 
-    [SerializeField] int speed;
+    [SerializeField] int movementSpeed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
@@ -19,25 +19,18 @@ public class playerController : MonoBehaviour
     Vector3 playerVel;
 
     float shootTimer;
-
     int jumpCount;
-
     bool isSprinting;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        movement();
-        sprint();
+        UpdateMovement();
+        UpdateSprint();
     }
 
-    void movement()
+    void UpdateMovement()
     {
         shootTimer += Time.deltaTime;
 
@@ -54,20 +47,20 @@ public class playerController : MonoBehaviour
         moveDir = (Input.GetAxis("Horizontal") * transform.right) +
                   (Input.GetAxis("Vertical") * transform.forward);
 
-        controller.Move(moveDir * speed * Time.deltaTime);
+        controller.Move(moveDir * movementSpeed * Time.deltaTime);
 
-        jump();
+        UpdateJump();
 
         controller.Move(playerVel * Time.deltaTime);
 
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
-            shoot();
+            UpdateShoot();
         }
 
     }
 
-    void jump()
+    void UpdateJump()
     {
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
@@ -76,21 +69,21 @@ public class playerController : MonoBehaviour
         }
     }
 
-    void sprint()
+    void UpdateSprint()
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            speed *= sprintMod;
+            movementSpeed *= sprintMod;
             isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            speed /= sprintMod;
+            movementSpeed /= sprintMod;
             isSprinting = false;
         }
     }
 
-    void shoot()
+    void UpdateShoot()
     {
         shootTimer = 0;
 
