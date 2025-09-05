@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public Image playerStaminaBar;
     public GameObject playerAmmoCanvas;
     public Image playerAmmoBar;
+    public Image playerBulletImage;
+
     public GameObject playerDamageScreen;
     public GameObject playerHealthScreen;
     public GameObject playerRageScreen;
@@ -183,7 +185,8 @@ public class GameManager : MonoBehaviour
         playerAmmo.text = curr.ToString("F0") + " / " + max.ToString("F0");
 
         // Tie amount to Ammo Bar fill amount
-        // playerAmmoBar.fillAmount = (float)curr / (float)max;
+        playerAmmoBar.fillAmount = (float)curr / (float)max;
+        playerBulletImage.fillAmount = (float)curr / (float)max;
     }
     public void openControllerSettings()
     {
