@@ -341,7 +341,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6720308712839352478, guid: 1cd4622b098c0334ea719f0ff446c87e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4647919232357466151, guid: 1cd4622b098c0334ea719f0ff446c87e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3640045999041700808, guid: 1cd4622b098c0334ea719f0ff446c87e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1cd4622b098c0334ea719f0ff446c87e, type: 3}
 --- !u!1 &935878598
 GameObject:
@@ -455,7 +464,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2015797675
+--- !u!1001 &1398796028
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -469,15 +478,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7573123992235967000, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.38136
       objectReference: {fileID: 0}
     - target: {fileID: 7573123992235967000, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7573123992235967000, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 8.26854
       objectReference: {fileID: 0}
     - target: {fileID: 7573123992235967000, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -507,10 +516,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7998788953275866943, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -522,5 +527,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 82421716}
   - {fileID: 858324944}
-  - {fileID: 2015797675}
   - {fileID: 935878602}
+  - {fileID: 1398796028}
