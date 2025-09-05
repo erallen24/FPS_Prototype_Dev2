@@ -5662,7 +5662,7 @@ GameObject:
   - component: {fileID: 9021250867822159836}
   - component: {fileID: 6607838489345277937}
   - component: {fileID: 5803274486624797996}
-  - component: {fileID: 4446099971886024855}
+  - component: {fileID: 4616747984186289946}
   m_Layer: 5
   m_Name: Minimap Inner BKG
   m_TagString: Untagged
@@ -5728,7 +5728,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4446099971886024855
+--- !u!114 &4616747984186289946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5737,20 +5737,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4647919232357466151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 385b7d1277b6c4007a84c065696e0f8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
-  m_ShowMaskGraphic: 0
-  m_MaskingMode: 0
-  m_AlphaHitTest: 0
-  m_SoftnessRange:
-    m_Min: 0
-    m_Max: 1
-  m_DownSamplingRate: 1
-  m_AntiAliasingThreshold: 0
-  m_Alpha: -1
-  m_Softness: -1
-  m_PartOfParent: 0
+  m_ShowMaskGraphic: 1
 --- !u!1 &4662929811013488946
 GameObject:
   m_ObjectHideFlags: 0
