@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerScoreUIFeedback;
 
     public GameObject player;
-    public playerController playerScript;
+    public PlayerController playerScript;
     public GameObject playerSpawnPos;
     public GameObject checkpointPopup;
     public bool isPaused;
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
-        playerScript = player.GetComponent<playerController>();
+        playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
 
     }
