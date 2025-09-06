@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text playerScoreUIText;
     [SerializeField] TMP_Text playScoreStat;
     [SerializeField] TMP_Text playerScoreFeedbackText;
+    [SerializeField] GameObject playerScoreUIFeedback;
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
@@ -37,10 +38,12 @@ public class GameManager : MonoBehaviour
     public Image playerStaminaBar;
     public GameObject playerAmmoCanvas;
     public Image playerAmmoBar;
+    public Image playerBulletImage;
+
     public GameObject playerDamageScreen;
     public GameObject playerHealthScreen;
     public GameObject playerRageScreen;
-    public GameObject playerScoreUIFeedback;
+
 
     public GameObject player;
     public PlayerController playerScript;
@@ -68,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
@@ -83,7 +86,6 @@ public class GameManager : MonoBehaviour
             else if (menuActive == menuPause)
             {
                 stateUnpause();
-
             }
         }
 
@@ -183,7 +185,8 @@ public class GameManager : MonoBehaviour
         playerAmmo.text = curr.ToString("F0") + " / " + max.ToString("F0");
 
         // Tie amount to Ammo Bar fill amount
-        // playerAmmoBar.fillAmount = (float)curr / (float)max;
+        playerAmmoBar.fillAmount = (float)curr / (float)max;
+        playerBulletImage.fillAmount = (float)curr / (float)max;
     }
     public void openControllerSettings()
     {
@@ -198,6 +201,7 @@ public class GameManager : MonoBehaviour
         subMenuActive = subMenuAudio;
         subMenuActive.SetActive(true);
     }
+
     IEnumerator playerAddScoreUI(int amount)
     {
         playerScoreFeedbackText.text = amount.ToString("F0");
