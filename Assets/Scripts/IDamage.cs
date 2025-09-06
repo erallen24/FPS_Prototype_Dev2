@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IDamage
 {
-   void takeDamage(int damage);
+   void TakeDamage(int damage);
 }
