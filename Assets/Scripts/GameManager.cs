@@ -29,20 +29,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text scoreHUDText;
     [SerializeField] GameObject scoreHUDFeedback;
     [SerializeField] TMP_Text scoreHUDFeedbackText;
-    [SerializeField] TMP_Text scoreMenuStat; // Score stat in the main/settings menu    
+
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
-    [SerializeField] TMP_Text gameGoalMenuStat;
-    [SerializeField] TMP_Text killStats;
-    [SerializeField] TMP_Text deathStats;
+
+
 
 
 
 
     public Transform playerRetical;
     public Image playerHPBar;
-    public Image playerRageBar;
+    // public Image playerRageBar;
     public Image playerStaminaBar;
     public GameObject playerAmmoCanvas;
     public Image playerAmmoBar;
@@ -50,22 +49,29 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerDamageScreen;
     public GameObject playerHealthScreen;
-    public GameObject playerRageScreen;
+    // public GameObject playerRageScreen;
 
 
     public GameObject player;
     public PlayerController playerScript;
     public GameObject playerSpawnPos;
     public GameObject checkpointPopup;
-    public bool isPaused;
 
-    float timeScaleOrig;
+    public TMP_Text gameGoalMenuStat;
+    public TMP_Text scoreMenuStat; // Score stat in the main/settings menu
+    public TMP_Text killStats;
+    public TMP_Text deathStats;
+
+
 
     int gameGoalCount;
     int gameKillCount;
     int gameDeathCount;
     int gameScore;
 
+    public bool isPaused;
+
+    float timeScaleOrig;
 
     void Start()
     {
