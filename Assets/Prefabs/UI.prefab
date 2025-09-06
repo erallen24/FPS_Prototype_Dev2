@@ -5662,7 +5662,7 @@ GameObject:
   - component: {fileID: 9021250867822159836}
   - component: {fileID: 6607838489345277937}
   - component: {fileID: 5803274486624797996}
-  - component: {fileID: 4446099971886024855}
+  - component: {fileID: 4616747984186289946}
   m_Layer: 5
   m_Name: Minimap Inner BKG
   m_TagString: Untagged
@@ -5728,7 +5728,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4446099971886024855
+--- !u!114 &4616747984186289946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
