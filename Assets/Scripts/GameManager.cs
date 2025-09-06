@@ -21,16 +21,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject subMenuControls;
     [SerializeField] GameObject subMenuAudio;
 
-    [SerializeField] TMP_Text playerScoreUIText;
-    [SerializeField] TMP_Text playScoreStat;
-    [SerializeField] TMP_Text playerScoreFeedbackText;
-    [SerializeField] GameObject playerScoreUIFeedback;
+    [SerializeField] TMP_Text playerScoreHUDText;
+    [SerializeField] GameObject playerScoreHUDFeedback;
+    [SerializeField] TMP_Text playerScoreHUDFeedbackText;
+    [SerializeField] TMP_Text playScoreMenuStat; // Score stat in the main/settings menu    
+
+    [SerializeField] GameObject warningHUD;
+    [SerializeField] TMP_Text warningHUDLabel;
+    [SerializeField] GameObject warningHUDTextBox;
+    [SerializeField] TMP_Text warningHUDText;
+
+
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
-    [SerializeField] TMP_Text gameGoalCountStat;
-    [SerializeField] TMP_Text gameKillStats;
-    [SerializeField] TMP_Text gameDeathStats;
+    [SerializeField] TMP_Text gameGoalMenuStat;
+    [SerializeField] TMP_Text playerKillStats;
+    [SerializeField] TMP_Text playerDeathStats;
+
+
+
 
     public Transform playerRetical;
     public Image playerHPBar;
@@ -121,7 +131,7 @@ public class GameManager : MonoBehaviour
     {
         gameGoalCount += amount;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
-        gameGoalCountStat.text = gameGoalCount.ToString("F0");
+        gameGoalMenuStat.text = gameGoalCount.ToString("F0");
 
         Debug.Log("Game Goal Count: " + gameGoalCount);
         if (gameGoalCount <= 0 && menuActive == null)
@@ -139,7 +149,7 @@ public class GameManager : MonoBehaviour
         if (menuActive == null)
         {
             gameDeathCount++;
-            gameDeathStats.text = gameDeathCount.ToString("F0");
+            playerDeathStats.text = gameDeathCount.ToString("F0");
             statePause();
             //soundManager.instance.playDeathSound();
             menuActive = menuLose;
@@ -152,16 +162,16 @@ public class GameManager : MonoBehaviour
     public void updateGameKillStat(int amount)
     {
         gameKillCount += amount;
-        gameKillStats.text = gameKillCount.ToString("F0");
+        playerKillStats.text = gameKillCount.ToString("F0");
         Debug.Log("Game Kill Count: " + gameKillCount);
     }
 
     public void updatePlayerScore(int amount)
     {
         gameScore += amount;
-        playerScoreUIText.text = gameScore.ToString("F0");
-        playScoreStat.text = gameScore.ToString("F0");
-        StartCoroutine(playerAddScoreUI(amount));
+        playerScoreHUDText.text = gameScore.ToString("F0");
+        playScoreMenuStat.text = gameScore.ToString("F0");
+        StartCoroutine(addScoreHUD(amount));
     }
 
     public void openSettings()
@@ -202,39 +212,98 @@ public class GameManager : MonoBehaviour
         subMenuActive.SetActive(true);
     }
 
-    IEnumerator playerAddScoreUI(int amount)
+    IEnumerator addScoreHUD(int amount)
     {
-        playerScoreFeedbackText.text = amount.ToString("F0");
-        Color colorOrig = playerScoreUIText.color;
+        playerScoreHUDFeedbackText.text = amount.ToString("F0");
+        Color colorOrig = playerScoreHUDText.color;
         Color colorChange = Color.green;
 
-        playerScoreUIFeedback.SetActive(true);
+        playerScoreHUDFeedback.SetActive(true);
 
         float duration = 0.7f;
         float elapsed = 0f;
         Vector3 startScale = Vector3.one * 1.5f;
         Vector3 endScale = Vector3.zero;
 
-        CanvasGroup cg = playerScoreUIFeedback.GetComponent<CanvasGroup>();
+        CanvasGroup cg = playerScoreHUDFeedback.GetComponent<CanvasGroup>();
         cg.alpha = 1f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            playerScoreUIText.color = Color.Lerp(colorOrig, colorChange, t);
-            playerScoreUIFeedback.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            playerScoreHUDText.color = Color.Lerp(colorOrig, colorChange, t);
+            playerScoreHUDFeedback.transform.localScale = Vector3.Lerp(startScale, endScale, t);
 
             cg.alpha = Mathf.Lerp(1f, 0f, t);
             yield return null;
         }
-        playerScoreUIText.color = colorOrig;
-        playerScoreUIFeedback.transform.localScale = endScale;
+        playerScoreHUDText.color = colorOrig;
+        playerScoreHUDFeedback.transform.localScale = endScale;
         cg.alpha = 0f;
-        playerScoreUIFeedback.SetActive(false);
+        playerScoreHUDFeedback.SetActive(false);
         cg.alpha = 1f; // reset alpha for next time
-        playerScoreUIFeedback.transform.localScale = startScale;
+        playerScoreHUDFeedback.transform.localScale = startScale;
 
     }
+
+    // Create coroutine for showing and masking warnings
+    public IEnumerator showWarning(string label, string text, float duration)
+    {
+        Transform transformOrig = warningHUD.transform;
+        Transform textBoxTransOrig = warningHUDTextBox.transform;
+
+        warningHUDLabel.text = label;
+        warningHUDText.text = text;
+        warningHUD.SetActive(true);
+        // Lerp in the warning box from the original y position to a difference of -39 on the Y axis
+        float elapsed = 0f;
+        float lerpDuration = 0.5f;
+        Vector3 endPos = new Vector3(transformOrig.position.x, transformOrig.position.y - 39, transformOrig.position.z);
+        while (elapsed < lerpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / lerpDuration);
+            warningHUD.transform.position = Vector3.Lerp(transformOrig.position, endPos, t);
+            yield return null;
+        }
+        // Lerp the text box in from the original x position to a difference of -39 on the Y axis
+        elapsed = 0f;
+        Vector3 textBoxEndPos = new Vector3(textBoxTransOrig.position.x, textBoxTransOrig.position.y - 128, textBoxTransOrig.position.z);
+        warningHUDTextBox.SetActive(true);
+        while (elapsed < lerpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / lerpDuration);
+            warningHUDTextBox.transform.position = Vector3.Lerp(textBoxTransOrig.position, textBoxEndPos, t);
+            yield return null;
+        }
+
+
+        yield return new WaitForSeconds(duration);
+
+        // Lerp out the text box back to the original position
+        elapsed = 0f;
+        while (elapsed < lerpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / lerpDuration);
+            warningHUDTextBox.transform.position = Vector3.Lerp(textBoxEndPos, textBoxTransOrig.position, t);
+            yield return null;
+        }
+        warningHUDTextBox.SetActive(false);
+
+        // Lerp out the warning box back to the original position
+        elapsed = 0f;
+        while (elapsed < lerpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / lerpDuration);
+            warningHUD.transform.position = Vector3.Lerp(endPos, transformOrig.position, t);
+            yield return null;
+        }
+        warningHUD.SetActive(false);
+    }
+
 
 }
