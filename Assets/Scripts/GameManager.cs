@@ -21,23 +21,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject subMenuControls;
     [SerializeField] GameObject subMenuAudio;
 
-    [SerializeField] TMP_Text playerScoreHUDText;
-    [SerializeField] GameObject playerScoreHUDFeedback;
-    [SerializeField] TMP_Text playerScoreHUDFeedbackText;
-    [SerializeField] TMP_Text playScoreMenuStat; // Score stat in the main/settings menu    
-
     [SerializeField] GameObject warningHUD;
     [SerializeField] TMP_Text warningHUDLabel;
     [SerializeField] GameObject warningHUDTextBox;
     [SerializeField] TMP_Text warningHUDText;
 
-
+    [SerializeField] TMP_Text scoreHUDText;
+    [SerializeField] GameObject scoreHUDFeedback;
+    [SerializeField] TMP_Text scoreHUDFeedbackText;
+    [SerializeField] TMP_Text scoreMenuStat; // Score stat in the main/settings menu    
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text gameGoalMenuStat;
-    [SerializeField] TMP_Text playerKillStats;
-    [SerializeField] TMP_Text playerDeathStats;
+    [SerializeField] TMP_Text killStats;
+    [SerializeField] TMP_Text deathStats;
 
 
 
@@ -149,7 +147,7 @@ public class GameManager : MonoBehaviour
         if (menuActive == null)
         {
             gameDeathCount++;
-            playerDeathStats.text = gameDeathCount.ToString("F0");
+            deathStats.text = gameDeathCount.ToString("F0");
             statePause();
             //soundManager.instance.playDeathSound();
             menuActive = menuLose;
@@ -162,15 +160,15 @@ public class GameManager : MonoBehaviour
     public void updateGameKillStat(int amount)
     {
         gameKillCount += amount;
-        playerKillStats.text = gameKillCount.ToString("F0");
+        killStats.text = gameKillCount.ToString("F0");
         Debug.Log("Game Kill Count: " + gameKillCount);
     }
 
     public void updatePlayerScore(int amount)
     {
         gameScore += amount;
-        playerScoreHUDText.text = gameScore.ToString("F0");
-        playScoreMenuStat.text = gameScore.ToString("F0");
+        scoreHUDText.text = gameScore.ToString("F0");
+        scoreMenuStat.text = gameScore.ToString("F0");
         StartCoroutine(addScoreHUD(amount));
     }
 
@@ -214,36 +212,36 @@ public class GameManager : MonoBehaviour
 
     IEnumerator addScoreHUD(int amount)
     {
-        playerScoreHUDFeedbackText.text = amount.ToString("F0");
-        Color colorOrig = playerScoreHUDText.color;
+        scoreHUDFeedbackText.text = amount.ToString("F0");
+        Color colorOrig = scoreHUDText.color;
         Color colorChange = Color.green;
 
-        playerScoreHUDFeedback.SetActive(true);
+        scoreHUDFeedback.SetActive(true);
 
         float duration = 0.7f;
         float elapsed = 0f;
         Vector3 startScale = Vector3.one * 1.5f;
         Vector3 endScale = Vector3.zero;
 
-        CanvasGroup cg = playerScoreHUDFeedback.GetComponent<CanvasGroup>();
+        CanvasGroup cg = scoreHUDFeedback.GetComponent<CanvasGroup>();
         cg.alpha = 1f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            playerScoreHUDText.color = Color.Lerp(colorOrig, colorChange, t);
-            playerScoreHUDFeedback.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            scoreHUDText.color = Color.Lerp(colorOrig, colorChange, t);
+            scoreHUDFeedback.transform.localScale = Vector3.Lerp(startScale, endScale, t);
 
             cg.alpha = Mathf.Lerp(1f, 0f, t);
             yield return null;
         }
-        playerScoreHUDText.color = colorOrig;
-        playerScoreHUDFeedback.transform.localScale = endScale;
+        scoreHUDText.color = colorOrig;
+        scoreHUDFeedback.transform.localScale = endScale;
         cg.alpha = 0f;
-        playerScoreHUDFeedback.SetActive(false);
+        scoreHUDFeedback.SetActive(false);
         cg.alpha = 1f; // reset alpha for next time
-        playerScoreHUDFeedback.transform.localScale = startScale;
+        scoreHUDFeedback.transform.localScale = startScale;
 
     }
 

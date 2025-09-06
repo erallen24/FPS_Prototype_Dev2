@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
     public bool isInventoryFull = false;
     public bool isItemSelected = false;
     public bool isUsingItem = false;
-    public bool isDroppingItem = false;
+    // public bool isDroppingItem = false;
     public bool isAddingItem = false;
     public bool isRemovingItem = false;
     public bool isEquippingItem = false;
@@ -47,7 +47,7 @@ public class InventoryManager : MonoBehaviour
     {
 
         instance = this;
-        resetAll();
+        ResetAll();
         DontDestroyOnLoad(this.gameObject);
 
         itemTypes = (ItemType[])System.Enum.GetValues(typeof(ItemType));
@@ -89,6 +89,32 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("No empty slot found, inventory is full!");
         return false;
     }
+    public void AddSelectedItem()
+    {
+        if (selectedItem != null)
+        {
+            isAddingItem = true;
+            AddItem(selectedItem);
+            isAddingItem = false;
+        }
+        else
+        {
+            Debug.Log("No item selected to add.");
+        }
+    }
+    public void RemoveSelectedItem()
+    {
+        if (selectedItem != null)
+        {
+            isRemovingItem = true;
+            RemoveItem(selectedItem);
+            isRemovingItem = false;
+        }
+        else
+        {
+            Debug.Log("No item selected to remove.");
+        }
+    }
     public bool RemoveItem(InventoryItem item)
     {
         for (int i = 0; i < inventoryItems.Length; i++)
@@ -123,7 +149,7 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("No item selected.");
         }
     }
-    public void UseSelectedItem()
+    public void UseItem()
     {
         if (isItemSelected && selectedItem != null)
         {
@@ -137,23 +163,23 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("No item selected to use.");
         }
     }
-    public void DropSelectedItem()
-    {
-        if (isItemSelected && selectedItem != null)
-        {
-            isDroppingItem = true;
-            Debug.Log($"Dropping {selectedItem.Name}.");
-            RemoveItem(selectedItem);
-            selectedItem = null;
-            selectedItemIndex = -1;
-            isItemSelected = false;
-            isDroppingItem = false;
-        }
-        else
-        {
-            Debug.Log("No item selected to drop.");
-        }
-    }
+    //public void DropSelectedItem()
+    //{
+    //    if (isItemSelected && selectedItem != null)
+    //    {
+    //        isDroppingItem = true;
+    //        Debug.Log($"Dropping {selectedItem.Name}.");
+    //        RemoveItem(selectedItem);
+    //        selectedItem = null;
+    //        selectedItemIndex = -1;
+    //        isItemSelected = false;
+    //        isDroppingItem = false;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("No item selected to drop.");
+    //    }
+    //}
     // Method to gain experience points and handle leveling up
     public void GainExperience(int amount)
     {
@@ -172,7 +198,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"Leveled up! New level: {level}. XP for next level: {experienceToNextLevel}");
         // Optionally, increase player stats here
     }
-    public void resetAll()
+    public void ResetAll()
     {
         inventoryItems = new InventoryItem[maxItems];
         itemCount = 0;

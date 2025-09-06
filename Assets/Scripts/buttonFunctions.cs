@@ -42,4 +42,29 @@ public class ButtonFunctions : MonoBehaviour
     {
         GameManager.instance.openAudioSettings();
     }
+    public void selectItem(int index)
+    {
+        InventoryManager.instance.SelectItem(index);
+    }
+    public void removeItem()
+    {
+        // Drop selected item
+        InventoryManager.instance.RemoveSelectedItem();
+    }
+    public void useItem()
+    {
+        // Use selected item
+        InventoryManager.instance.UseItem();
+    }
+
+    public void addItem()
+    {
+        // Add selected item to inventory
+        InventoryManager.instance.AddSelectedItem();
+    }
+
+    public void resetAll()
+    {
+        InventoryManager.instance.ResetAll();
+    }
 }
