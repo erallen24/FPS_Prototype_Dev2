@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         if (menuActive == null)
         {
             gameDeathCount++;
-            deathStats.text = gameDeathCount.ToString("F0");
+            //deathStats.text = gameDeathCount.ToString("F0");
             statePause();
             //soundManager.instance.playDeathSound();
             menuActive = menuLose;

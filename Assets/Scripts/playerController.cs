@@ -1,10 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] CharacterController controller;
 
+    [SerializeField] int HP;
     [SerializeField] int movementSpeed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
@@ -20,11 +22,14 @@ public class PlayerController : MonoBehaviour
 
     float shootTimer;
     int jumpCount;
+    int HPOrig;
     bool isSprinting;
 
     void Update()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+
+        HPOrig = HP;
 
         UpdateMovement();
         UpdateSprint();
@@ -101,4 +106,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+        UpdatePlayerUI();
+        StartCoroutine(DamageFlash());
+
+        if (HP <= 0)
+        {
+            GameManager.instance.youLose();
+        }
+    }
+
+    public void UpdatePlayerUI()
+    {
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    IEnumerator DamageFlash()
+    {
+        GameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        GameManager.instance.playerDamageScreen.SetActive(false);
+    }
 }
