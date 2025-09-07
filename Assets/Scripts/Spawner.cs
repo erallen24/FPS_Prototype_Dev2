@@ -31,7 +31,8 @@ public class Spawner : MonoBehaviour
     {
         spawnTimer = 0;
         currentObjects++;
-        Instantiate(Spawn, transform.position, transform.rotation);
+        Vector3 playerDir = GameManager.instance.transform.position - transform.position;
+        Instantiate(Spawn, transform.position, Quaternion.LookRotation(playerDir));
     }
 
 }
