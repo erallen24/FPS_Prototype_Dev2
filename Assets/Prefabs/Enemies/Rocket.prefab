@@ -84,12 +84,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   type: 3
   rb: {fileID: 82282291010386047}
-  forward: {fileID: 8456611592458823277}
   damageAmount: 1
   damageRate: 0
   speed: 2000
   lifespan: 5
-  turnSpeed: 1000
+  turnSpeed: 200
   spawnCloud: 1
   cloud: {fileID: 6570294427686184016, guid: d82c1ce52ba6bd34e817a55930b3b751, type: 3}
 --- !u!33 &6081442782088219922

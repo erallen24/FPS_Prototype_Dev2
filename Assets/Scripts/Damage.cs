@@ -1,6 +1,5 @@
-using UnityEngine;
 using System.Collections;
-using System.Drawing;
+using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
@@ -9,7 +8,6 @@ public class Damage : MonoBehaviour
 
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
-    public Transform forward;
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
@@ -33,10 +31,6 @@ public class Damage : MonoBehaviour
             {
                 rb.linearVelocity = transform.forward * speed;
             }
-            //if (damageType.homing == type)
-            //{
-            //    transform.rotation = Quaternion.identity;
-            //}
         }
     }
 
@@ -45,9 +39,10 @@ public class Damage : MonoBehaviour
     {
         if (damageType.homing == type)
         {
-            playerDir = GameManager.instance.transform.position - transform.position;
-            rb.linearVelocity = (playerDir - transform.position).normalized * speed * Time.deltaTime;
-            transform.rotation = Quaternion.LookRotation(transform.forward, playerDir);
+            playerDir = GameManager.instance.player.transform.position - transform.position;
+            rb.linearVelocity = playerDir.normalized * speed * Time.deltaTime;
+            Quaternion rot = Quaternion.LookRotation(transform.forward, playerDir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed * Time.deltaTime);
         }
     }
 
