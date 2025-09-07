@@ -13,13 +13,16 @@ public class Damage : MonoBehaviour
     [SerializeField] float damageRate;
     [SerializeField] int speed;
     [SerializeField] int lifespan;
+    [SerializeField] float turnSpeed;
+    [SerializeField] bool spawnCloud = false;
+    public GameObject cloud;
 
     bool isDamaging;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (damageType.moving == type || damageType.homing == type)
+        if (lifespan > 0)
         {
             Destroy(gameObject, lifespan);
 
@@ -35,7 +38,18 @@ public class Damage : MonoBehaviour
     {
         if (damageType.homing == type)
         {
+            transform.forward = transform.up;
             rb.linearVelocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
+            Quaternion rot = Quaternion.LookRotation(GameManager.instance.player.transform.position);
+            transform.rotation = rot; 
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (spawnCloud)
+        {
+            Instantiate(cloud, transform.position, transform.rotation);
         }
     }
 
