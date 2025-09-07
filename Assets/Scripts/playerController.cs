@@ -22,23 +22,24 @@ public class PlayerController : MonoBehaviour, IDamage
 
     float shootTimer;
     int jumpCount;
-    int HPOrig;
+    int initHP;
     bool isSprinting;
+
+    private void Start()
+    {
+        initHP = HP;
+    }
 
     void Update()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        HPOrig = HP;
-
         UpdateMovement();
-        UpdateSprint();
+        UpdateShoot();
     }
 
     void UpdateMovement()
     {
-        shootTimer += Time.deltaTime;
-
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -58,11 +59,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-        {
-            UpdateShoot();
-        }
-
+        UpdateSprint();
     }
 
     void UpdateJump()
@@ -90,6 +87,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void UpdateShoot()
     {
+        shootTimer += Time.deltaTime;
+
+        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        {
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
         shootTimer = 0;
 
         RaycastHit hit;
@@ -97,20 +104,25 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             Debug.Log(hit.collider.name);
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            IDamage target = hit.collider.GetComponent<IDamage>();
 
-            if (dmg != null)
+            if (target != null)
             {
-                dmg.TakeDamage(shootDamage);
+                target.TakeDamage(shootDamage);
             }
         }
     }
 
-    public void TakeDamage(int damage)
+    public void UpdatePlayerHealthBarUI()
     {
-        HP -= damage;
-        UpdatePlayerUI();
-        StartCoroutine(DamageFlash());
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / initHP;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        HP -= amount;
+        UpdatePlayerHealthBarUI();
+        StartCoroutine(FlashDamageScreen());
 
         if (HP <= 0)
         {
@@ -118,12 +130,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public void UpdatePlayerUI()
-    {
-        GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-    }
-
-    IEnumerator DamageFlash()
+    IEnumerator FlashDamageScreen()
     {
         GameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
