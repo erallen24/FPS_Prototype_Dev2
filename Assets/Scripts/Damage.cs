@@ -60,9 +60,10 @@ public class Damage : MonoBehaviour
 
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if (null == dmg || damageType.DOT == type) { return; }
-
-        dmg.TakeDamage(damageAmount);
+        if (null != dmg && damageType.DOT != type)
+        {
+            dmg.TakeDamage(damageAmount);
+        }
 
         if (damageType.stationary != type)
         {
