@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Drawing;
 
 public class Damage : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Damage : MonoBehaviour
 
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
+    public Transform forward;
 
     [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
@@ -18,6 +20,7 @@ public class Damage : MonoBehaviour
     public GameObject cloud;
 
     bool isDamaging;
+    Vector3 playerDir;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +33,10 @@ public class Damage : MonoBehaviour
             {
                 rb.linearVelocity = transform.forward * speed;
             }
+            //if (damageType.homing == type)
+            //{
+            //    transform.rotation = Quaternion.identity;
+            //}
         }
     }
 
@@ -38,10 +45,9 @@ public class Damage : MonoBehaviour
     {
         if (damageType.homing == type)
         {
-            transform.forward = transform.up;
-            rb.linearVelocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
-            Quaternion rot = Quaternion.LookRotation(GameManager.instance.player.transform.position);
-            transform.rotation = rot; 
+            playerDir = GameManager.instance.transform.position - transform.position;
+            rb.linearVelocity = (playerDir - transform.position).normalized * speed * Time.deltaTime;
+            transform.rotation = Quaternion.LookRotation(transform.forward, playerDir);
         }
     }
 
