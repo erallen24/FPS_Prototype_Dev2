@@ -3,56 +3,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
-    [Header("HEALTH SETTINGS")]
-    [Space(5)]
-    [SerializeField] int HP;
-    [Space(10)]
+    [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] CharacterController controller;
 
-    [Header("MOVEMENT SETTINGS")]
-    [Space(5)]
+    [SerializeField] int HP;
     [SerializeField] int movementSpeed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] int gravity;
-    [Space(10)]
 
-    [Header("SHOOT SETTINGS")]
-    [Space(5)]
-    [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
-    [SerializeField] int shootDistance;
+    [SerializeField] int shootDist;
 
-
-    CharacterController controller;
-
-    Vector3 moveDirection;
-    Vector3 playerVelocity;
+    Vector3 moveDir;
+    Vector3 playerVel;
 
     float shootTimer;
     int jumpCount;
-    int initialHP;
+    int initHP;
     bool isSprinting;
-
 
     private void Start()
     {
-        Initialize();
+        initHP = HP;
     }
 
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.red);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
         UpdateMovement();
         UpdateShoot();
-    }
-
-    void Initialize()
-    {
-        controller = GetComponent<CharacterController>();
-        initialHP = HP;
     }
 
     void UpdateMovement()
@@ -60,20 +43,21 @@ public class PlayerController : MonoBehaviour, IDamage
         if (controller.isGrounded)
         {
             jumpCount = 0;
-            playerVelocity = Vector3.zero;
+            playerVel = Vector3.zero;
         }
         else
         {
-            playerVelocity.y -= gravity * Time.deltaTime;
+            playerVel.y -= gravity * Time.deltaTime;
         }
 
-        moveDirection = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
+        moveDir = (Input.GetAxis("Horizontal") * transform.right) +
+                  (Input.GetAxis("Vertical") * transform.forward);
 
-        controller.Move(moveDirection * movementSpeed * Time.deltaTime);
+        controller.Move(moveDir * movementSpeed * Time.deltaTime);
 
         UpdateJump();
 
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move(playerVel * Time.deltaTime);
 
         UpdateSprint();
     }
@@ -83,7 +67,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             jumpCount++;
-            playerVelocity.y = jumpSpeed;
+            playerVel.y = jumpSpeed;
         }
     }
 
@@ -116,7 +100,7 @@ public class PlayerController : MonoBehaviour, IDamage
         shootTimer = 0;
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
 
@@ -131,7 +115,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpdatePlayerHealthBarUI()
     {
-        GameManager.instance.playerHPBar.fillAmount = (float)HP / initialHP;
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / initHP;
     }
 
     public void TakeDamage(int amount)
