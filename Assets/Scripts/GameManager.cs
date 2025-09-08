@@ -135,10 +135,10 @@ public class GameManager : MonoBehaviour
     {
         gameGoalCount += amount;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
-        gameGoalMenuStat.text = gameGoalCount.ToString("F0");
+        //gameGoalMenuStat.text = gameGoalCount.ToString("F0");
 
-        Debug.Log("Game Goal Count: " + gameGoalCount);
-        if (gameGoalCount <= 0 && menuActive == null)
+        //Debug.Log("Game Goal Count: " + gameGoalCount);
+        if (gameGoalCount <= 0/* && menuActive == null*/)
         {
             statePause();
             menuActive = menuWin;
