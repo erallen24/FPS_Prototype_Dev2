@@ -22,12 +22,12 @@ public class Spawner : MonoBehaviour
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnRate && currentObjects < maxObjects)
         {
-            SpawnObject();
+                SpawnObject();
         }
         if(Spawn.IsDestroyed()) { currentObjects--; }
     }
 
-    void SpawnObject()
+    public void SpawnObject()
     {
         spawnTimer = 0;
         currentObjects++;
@@ -35,4 +35,6 @@ public class Spawner : MonoBehaviour
         Instantiate(Spawn, transform.position, Quaternion.LookRotation(playerDir));
     }
 
+    
+  
 }

@@ -1,10 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] CharacterController controller;
 
+    [SerializeField] int HP;
     [SerializeField] int movementSpeed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpSpeed;
@@ -20,20 +22,24 @@ public class PlayerController : MonoBehaviour
 
     float shootTimer;
     int jumpCount;
+    int initHP;
     bool isSprinting;
+
+    private void Start()
+    {
+        initHP = HP;
+    }
 
     void Update()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
         UpdateMovement();
-        UpdateSprint();
+        UpdateShoot();
     }
 
     void UpdateMovement()
     {
-        shootTimer += Time.deltaTime;
-
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -53,11 +59,7 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(playerVel * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
-        {
-            UpdateShoot();
-        }
-
+        UpdateSprint();
     }
 
     void UpdateJump()
@@ -85,6 +87,16 @@ public class PlayerController : MonoBehaviour
 
     void UpdateShoot()
     {
+        shootTimer += Time.deltaTime;
+
+        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        {
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
         shootTimer = 0;
 
         RaycastHit hit;
@@ -92,13 +104,36 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log(hit.collider.name);
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            IDamage target = hit.collider.GetComponent<IDamage>();
 
-            if (dmg != null)
+            if (target != null)
             {
-                dmg.TakeDamage(shootDamage);
+                target.TakeDamage(shootDamage);
             }
         }
     }
 
+    public void UpdatePlayerHealthBarUI()
+    {
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / initHP;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        HP -= amount;
+        UpdatePlayerHealthBarUI();
+        StartCoroutine(FlashDamageScreen());
+
+        if (HP <= 0)
+        {
+            GameManager.instance.youLose();
+        }
+    }
+
+    IEnumerator FlashDamageScreen()
+    {
+        GameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        GameManager.instance.playerDamageScreen.SetActive(false);
+    }
 }
