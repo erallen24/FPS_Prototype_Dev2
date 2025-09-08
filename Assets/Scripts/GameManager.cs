@@ -17,10 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuMain;
     [SerializeField] GameObject menuSettings;
+    [SerializeField] GameObject menuInventory;
 
     [SerializeField] GameObject subMenuGameplay;
     [SerializeField] GameObject subMenuControls;
     [SerializeField] GameObject subMenuAudio;
+    [SerializeField] GameObject subMenuInventory;
 
     [SerializeField] GameObject warningHUD;
     [SerializeField] TMP_Text warningHUDLabel;
@@ -83,6 +85,12 @@ public class GameManager : MonoBehaviour
 
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+      
+        if (isPaused)
+        {
+            stateUnpause();
+        }
+        
 
     }
 
@@ -187,7 +195,10 @@ public class GameManager : MonoBehaviour
         if (menuActive != null && menuActive != menuSettings)
             menuActive.SetActive(false);
 
-        menuPrev = menuActive;
+        if (menuActive == menuPause || menuActive == menuWin ||  menuActive == menuLose)
+        {
+            menuPrev = menuActive;
+        }
         menuActive = menuSettings;
         subMenuActive = subMenuGameplay;
         menuMain.SetActive(true);
@@ -200,6 +211,18 @@ public class GameManager : MonoBehaviour
         menuActive = menuPrev;
         menuMain.SetActive(false);
         subMenuActive.SetActive(false);
+        menuActive.SetActive(true);
+    }
+    public void openInventory()
+    {
+        if (menuActive != null && menuActive != menuInventory)
+            menuActive.SetActive(false);
+        if (subMenuActive != null && subMenuActive != subMenuInventory)
+            subMenuActive.SetActive(false);
+        menuActive = menuInventory;
+        subMenuActive = subMenuInventory;
+        menuMain.SetActive(true);
+        subMenuActive.SetActive(true);
         menuActive.SetActive(true);
     }
 

@@ -38,6 +38,11 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.openSettings();
     }
 
+    public void openInventory()
+    {
+        GameManager.instance.openInventory();
+    }
+
     public void openControllerSettings()
     {
         GameManager.instance.openControllerSettings();
