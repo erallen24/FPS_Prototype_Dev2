@@ -64,29 +64,6 @@ public class PlayerController : MonoBehaviour, IDamage
     private float shootTimer;
 
 
-    private float TargetMovementSpeed
-    {
-        get 
-        {
-            if (stanceState == StanceState.Crouching)
-            {
-                return crouchMovementSpeed;
-            }
-            else
-            {
-                if (movementState == MovementState.Sprinting)
-                {
-                    return sprintMovementSpeed;
-                }
-                else
-                {
-                    return movementSpeed;
-                }
-            }
-        }
-    }
-
-
     private void Start()
     {
         Initialize();
@@ -105,13 +82,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
         characterController = GetComponent<CharacterController>();
         cameraController = GetComponentInChildren<CameraController>();
+
+        cameraController.SetCameraHeight(standingHeight, stanceSpeed);
+        cameraController.SetFieldOfView(defaultFieldOfView, fieldOfViewSpeed);
     }
 
     private void UpdateMovement()
     {
         movementDirection = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
-        characterController.Move(movementDirection * TargetMovementSpeed * Time.deltaTime);
+        characterController.Move(movementDirection * GetTargetMovementSpeed() * Time.deltaTime);
 
         UpdateSprint();
         UpdateJump();
@@ -235,5 +215,24 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         GameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    private float GetTargetMovementSpeed()
+    {
+        if (stanceState == StanceState.Crouching)
+        {
+            return crouchMovementSpeed;
+        }
+        else
+        {
+            if (movementState == MovementState.Sprinting)
+            {
+                return sprintMovementSpeed;
+            }
+            else
+            {
+                return movementSpeed;
+            }
+        }
     }
 }

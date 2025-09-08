@@ -33,8 +33,6 @@ public class CameraController : MonoBehaviour
 
     private void Initialize()
     {
-        targetFieldOfView = Camera.main.fieldOfView;
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
