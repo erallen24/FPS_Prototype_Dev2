@@ -267,19 +267,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3a74fe8e1d08f45a58a100920fe368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerController
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  controller: {fileID: 261371845054209605}
   HP: 100
   movementSpeed: 10
   sprintMod: 2
   jumpSpeed: 5
   jumpMax: 2
   gravity: 12
-  shootDamage: 1
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  shootDamage: 10
   shootRate: 0.5
-  shootDist: 15
+  shootDistance: 50
 --- !u!33 &261370542469670705
 MeshFilter:
   m_ObjectHideFlags: 0
