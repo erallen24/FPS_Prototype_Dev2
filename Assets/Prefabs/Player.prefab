@@ -229,7 +229,6 @@ GameObject:
   - component: {fileID: 7129777726360691537}
   - component: {fileID: 261370542469670705}
   - component: {fileID: 5791627966368443778}
-  - component: {fileID: 3541157676814131039}
   - component: {fileID: 261371845054209605}
   m_Layer: 3
   m_Name: Player
@@ -270,9 +269,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::playerController
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   controller: {fileID: 261371845054209605}
-  movementSpeed: 15
+  HP: 100
+  movementSpeed: 10
   sprintMod: 2
   jumpSpeed: 5
   jumpMax: 2
@@ -336,29 +336,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3541157676814131039
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5627023998640886693}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &261371845054209605
 CharacterController:
   m_ObjectHideFlags: 0
