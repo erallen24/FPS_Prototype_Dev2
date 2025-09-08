@@ -3,89 +3,186 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
+    enum StanceState { Standing, Crouching }
+    enum MovementState { Default, Sprinting }
+
+    [Header("HEALTH SETTINGS")]
+    [Space(10)]
+    [SerializeField] [Range(0, 100)] private int HP;
+    [Space(10)]
+
+    [Header("MOVEMENT SETTINGS")]
+    [Space(10)]
+    [SerializeField] private MovementState movementState;
+    [Space(5)]
+    [SerializeField] [Range(0, 25)] private int movementSpeed;
+    [Space(5)]
+    [SerializeField] [Range(0, 50)] private int sprintMovementSpeed;
+    [SerializeField] [Range(0, 25)] private int crouchMovementSpeed;
+    [Space(5)]
+    [SerializeField] [Range(0, 10)] private int jumpSpeed;
+    [SerializeField] [Range(0, 5)] private int jumpMax;
+    [Space(5)]
+    [SerializeField] [Range(0, 25)] private int gravity;
+    [Space(10)]
+
+    [Header("CAMERA SETTINGS")]
+    [Space(10)]
+    [SerializeField] [Range(40, 80)] private int defaultFieldOfView;
+    [SerializeField] [Range(40, 80)] private int sprintFieldOfView;
+    [Space(5)]
+    [SerializeField] [Range(0, 10)] private float fieldOfViewSpeed;
+    [Space(10)]
+
+    [Header("STANCE SETTINGS")]
+    [Space(10)]
+    [SerializeField] private StanceState stanceState;
+    [Space(5)]
+    [SerializeField] private float standingHeight;
+    [SerializeField] private float crouchingHeight;
+    [Space(5)]
+    [SerializeField] private float stanceSpeed;
+    [Space(10)]
+
+    [Header("SHOOT SETTINGS")]
+    [Space(10)]
+    [SerializeField] [Range(0, 100)] private int shootDamage;
+    [SerializeField] [Range(0, 100)] private int shootDistance;
+    [SerializeField] [Range(0, 1)] private float shootRate;
+    [Space(5)]
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] CharacterController controller;
 
-    [SerializeField] int HP;
-    [SerializeField] int movementSpeed;
-    [SerializeField] int sprintMod;
-    [SerializeField] int jumpSpeed;
-    [SerializeField] int jumpMax;
-    [SerializeField] int gravity;
 
-    [SerializeField] int shootDamage;
-    [SerializeField] float shootRate;
-    [SerializeField] int shootDist;
+    private CharacterController characterController;
+    private CameraController cameraController;
 
-    Vector3 moveDir;
-    Vector3 playerVel;
+    private Vector3 movementDirection;
+    private Vector3 playerVelocity;
 
-    float shootTimer;
-    int jumpCount;
-    int initHP;
-    bool isSprinting;
+    private int initialHP;
+    private int jumpCount;
+    private float shootTimer;
+
+
+    private float TargetMovementSpeed
+    {
+        get 
+        {
+            if (stanceState == StanceState.Crouching)
+            {
+                return crouchMovementSpeed;
+            }
+            else
+            {
+                if (movementState == MovementState.Sprinting)
+                {
+                    return sprintMovementSpeed;
+                }
+                else
+                {
+                    return movementSpeed;
+                }
+            }
+        }
+    }
+
 
     private void Start()
     {
-        initHP = HP;
+        Initialize();
     }
 
-    void Update()
+    private void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-
         UpdateMovement();
+        UpdateStance();
         UpdateShoot();
     }
 
-    void UpdateMovement()
+    private void Initialize()
     {
-        if (controller.isGrounded)
-        {
-            jumpCount = 0;
-            playerVel = Vector3.zero;
-        }
-        else
-        {
-            playerVel.y -= gravity * Time.deltaTime;
-        }
+        initialHP = HP;
 
-        moveDir = (Input.GetAxis("Horizontal") * transform.right) +
-                  (Input.GetAxis("Vertical") * transform.forward);
+        characterController = GetComponent<CharacterController>();
+        cameraController = GetComponentInChildren<CameraController>();
+    }
 
-        controller.Move(moveDir * movementSpeed * Time.deltaTime);
+    private void UpdateMovement()
+    {
+        movementDirection = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
-        UpdateJump();
-
-        controller.Move(playerVel * Time.deltaTime);
+        characterController.Move(movementDirection * TargetMovementSpeed * Time.deltaTime);
 
         UpdateSprint();
+        UpdateJump();
+        UpdateGravity();
     }
 
-    void UpdateJump()
+    private void UpdateSprint()
     {
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        if (Input.GetButtonDown("Sprint") && stanceState == StanceState.Standing)
         {
-            jumpCount++;
-            playerVel.y = jumpSpeed;
-        }
-    }
-
-    void UpdateSprint()
-    {
-        if (Input.GetButtonDown("Sprint"))
-        {
-            movementSpeed *= sprintMod;
-            isSprinting = true;
+            cameraController.SetFieldOfView(sprintFieldOfView, fieldOfViewSpeed);
+            movementState = MovementState.Sprinting;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            movementSpeed /= sprintMod;
-            isSprinting = false;
+            cameraController.SetFieldOfView(defaultFieldOfView, fieldOfViewSpeed);
+            movementState = MovementState.Default;
         }
     }
 
-    void UpdateShoot()
+    private void UpdateJump()
+    {
+        if (characterController.isGrounded)
+        {
+            jumpCount = 0;
+        }
+
+        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        {
+            jumpCount++;
+            playerVelocity.y = jumpSpeed;
+        }
+    }
+
+    private void UpdateGravity()
+    {
+        if (characterController.isGrounded)
+        {
+            playerVelocity = Vector3.zero;
+        }
+        else
+        {
+            playerVelocity.y -= gravity * Time.deltaTime;
+            characterController.Move(playerVelocity * Time.deltaTime);
+        }
+    }
+
+    private void UpdateStance()
+    {
+        if (Input.GetButtonDown("Stance"))
+        {
+            characterController.height = crouchingHeight;
+            characterController.center = new Vector3(0, crouchingHeight / 2, 0);
+
+            cameraController.SetCameraHeight(crouchingHeight, stanceSpeed);
+
+            stanceState = StanceState.Crouching;
+            movementState = MovementState.Default;
+        }
+        else if (Input.GetButtonUp("Stance"))
+        {
+            characterController.height = standingHeight;
+            characterController.center = new Vector3(0, standingHeight / 2, 0);
+
+            cameraController.SetCameraHeight(standingHeight, stanceSpeed);
+
+            stanceState = StanceState.Standing;
+        }
+    }
+
+    private void UpdateShoot()
     {
         shootTimer += Time.deltaTime;
 
@@ -95,32 +192,35 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void Shoot()
+    private void Shoot()
     {
+        // resetting the shoot timer //
         shootTimer = 0;
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        // performing shoot raycast //
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, shootDistance, ~ignoreLayer))
         {
+            // logging the collider the raycast hit //
             Debug.Log(hit.collider.name);
 
+            // if the collider has the IDamage interface, we store it in 'target'
             IDamage target = hit.collider.GetComponent<IDamage>();
 
-            if (target != null)
-            {
-                target.TakeDamage(shootDamage);
-            }
+            // null check on the target. if target is not null, we call 'TakeDamage'
+            target?.TakeDamage(shootDamage);
         }
     }
 
     public void UpdatePlayerHealthBarUI()
     {
-        GameManager.instance.playerHPBar.fillAmount = (float)HP / initHP;
+        // updating the player health bar fill to reflect the current HP //
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / initialHP;
     }
 
     public void TakeDamage(int amount)
     {
         HP -= amount;
+
         UpdatePlayerHealthBarUI();
         StartCoroutine(FlashDamageScreen());
 

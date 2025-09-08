@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] GameObject menuActive;
+    [SerializeField] GameObject menuPrev;
     [SerializeField] GameObject subMenuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -186,12 +187,20 @@ public class GameManager : MonoBehaviour
         if (menuActive != null && menuActive != menuSettings)
             menuActive.SetActive(false);
 
+        menuPrev = menuActive;
         menuActive = menuSettings;
         subMenuActive = subMenuGameplay;
         menuMain.SetActive(true);
         subMenuGameplay.SetActive(true);
         menuActive.SetActive(true);
 
+    }
+    public void closeSettings()
+    {
+        menuActive = menuPrev;
+        menuMain.SetActive(false);
+        subMenuActive.SetActive(false);
+        menuActive.SetActive(true);
     }
 
     public void updatePlayerAmmo(int curr, int max)
