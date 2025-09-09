@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class Damage : MonoBehaviour
     public GameObject cloud;
 
     bool isDamaging;
+    Vector3 playerDir;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,10 +39,10 @@ public class Damage : MonoBehaviour
     {
         if (damageType.homing == type)
         {
-            transform.forward = transform.up;
-            rb.linearVelocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
-            Quaternion rot = Quaternion.LookRotation(GameManager.instance.player.transform.position);
-            transform.rotation = rot; 
+            playerDir = GameManager.instance.player.transform.position - transform.position;
+            rb.linearVelocity = playerDir.normalized * speed * Time.deltaTime;
+            Quaternion rot = Quaternion.LookRotation(transform.forward, playerDir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, turnSpeed * Time.deltaTime);
         }
     }
 
@@ -59,11 +60,12 @@ public class Damage : MonoBehaviour
 
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if (null == dmg || damageType.DOT == type) { return; }
+        if (null != dmg && damageType.DOT != type)
+        {
+            dmg.TakeDamage(damageAmount);
+        }
 
-        dmg.TakeDamage(damageAmount);
-
-        if (damageType.stationary != type)
+        if (damageType.stationary != type && damageType.DOT != type)
         {
             Destroy(gameObject);
         }

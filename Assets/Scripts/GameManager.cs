@@ -10,16 +10,19 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] GameObject menuActive;
+    [SerializeField] GameObject menuPrev;
     [SerializeField] GameObject subMenuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuMain;
     [SerializeField] GameObject menuSettings;
+    [SerializeField] GameObject menuInventory;
 
     [SerializeField] GameObject subMenuGameplay;
     [SerializeField] GameObject subMenuControls;
     [SerializeField] GameObject subMenuAudio;
+    [SerializeField] GameObject subMenuInventory;
 
     [SerializeField] GameObject warningHUD;
     [SerializeField] TMP_Text warningHUDLabel;
@@ -82,6 +85,12 @@ public class GameManager : MonoBehaviour
 
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+      
+        if (isPaused)
+        {
+            stateUnpause();
+        }
+        
 
     }
 
@@ -135,10 +144,10 @@ public class GameManager : MonoBehaviour
     {
         gameGoalCount += amount;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
-        gameGoalMenuStat.text = gameGoalCount.ToString("F0");
+        //gameGoalMenuStat.text = gameGoalCount.ToString("F0"); //this line was making the win menu not show up
 
-        Debug.Log("Game Goal Count: " + gameGoalCount);
-        if (gameGoalCount <= 0 && menuActive == null)
+        //Debug.Log("Game Goal Count: " + gameGoalCount);
+        if (gameGoalCount <= 0/* && menuActive == null*/)
         {
             statePause();
             menuActive = menuWin;
@@ -153,7 +162,7 @@ public class GameManager : MonoBehaviour
         if (menuActive == null)
         {
             gameDeathCount++;
-            deathStats.text = gameDeathCount.ToString("F0");
+            //deathStats.text = gameDeathCount.ToString("F0");
             statePause();
             //soundManager.instance.playDeathSound();
             menuActive = menuLose;
@@ -186,12 +195,37 @@ public class GameManager : MonoBehaviour
         if (menuActive != null && menuActive != menuSettings)
             menuActive.SetActive(false);
 
+        if (menuActive == menuPause || menuActive == menuWin ||  menuActive == menuLose)
+        {
+            menuPrev = menuActive;
+        }
         menuActive = menuSettings;
         subMenuActive = subMenuGameplay;
         menuMain.SetActive(true);
         subMenuGameplay.SetActive(true);
         menuActive.SetActive(true);
 
+    }
+    public void closeSettings()
+    {
+        menuActive = menuPrev;
+        menuMain.SetActive(false);
+        subMenuActive.SetActive(false);
+        menuActive.SetActive(true);
+    }
+    public void openInventory()
+    {
+        //if (menuActive != null && menuActive != menuInventory)
+            //menuActive.SetActive(false);
+        //if (subMenuActive != null && subMenuActive != subMenuInventory)
+            //subMenuActive.SetActive(false);
+        subMenuActive.SetActive(false);
+        menuActive.SetActive(false);
+        menuActive = menuInventory;
+        subMenuActive = subMenuInventory;
+        menuMain.SetActive(true);
+        subMenuActive.SetActive(true);
+        menuActive.SetActive(true);
     }
 
     public void updatePlayerAmmo(int curr, int max)

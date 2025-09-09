@@ -28,10 +28,19 @@ public class ButtonFunctions : MonoBehaviour
         //gameManager.instance.playerScript.spawnPlayer();
         GameManager.instance.stateUnpause();
     }
+    public void back()
+    {
+        GameManager.instance.closeSettings();
+    }
 
     public void openSettings()
     {
         GameManager.instance.openSettings();
+    }
+
+    public void openInventory()
+    {
+        GameManager.instance.openInventory();
     }
 
     public void openControllerSettings()
