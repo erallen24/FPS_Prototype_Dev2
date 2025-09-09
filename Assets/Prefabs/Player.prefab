@@ -265,7 +265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3a74fe8e1d08f45a58a100920fe368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerController
-  HP: 100
+  HP: 50
+  Stamina: 25
+  staminaUsage: 10
+  staminaRegen: 10
   movementState: 0
   movementSpeed: 10
   sprintMovementSpeed: 20
@@ -286,6 +289,8 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  interactRange: 0
+  inventory: []
 --- !u!143 &261371845054209605
 CharacterController:
   m_ObjectHideFlags: 0

@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("Stamina USAGE")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(0, 100)] private float staminaUsage;
+    [SerializeField] [UnityEngine.Range(0, 10)] private float staminaUsage;
     [Space(10)]
 
     [Header("Stamina REGEN")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(0, 100)] private float staminaRegen;
+    [SerializeField] [UnityEngine.Range(0, 10)] private float staminaRegen;
     [Space(10)]
 
 
