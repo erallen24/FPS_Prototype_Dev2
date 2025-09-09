@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -8,50 +10,54 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("HEALTH SETTINGS")]
     [Space(10)]
-    [SerializeField] [Range(0, 100)] private int HP;
+    [SerializeField] [UnityEngine.Range(0, 100)] private int HP;
     [Space(10)]
 
     [Header("MOVEMENT SETTINGS")]
     [Space(10)]
     [SerializeField] private MovementState movementState;
     [Space(5)]
-    [SerializeField] [Range(0, 25)] private int movementSpeed;
+    [SerializeField] [UnityEngine.Range(0, 25)] private int movementSpeed;
     [Space(5)]
-    [SerializeField] [Range(0, 50)] private int sprintMovementSpeed;
-    [SerializeField] [Range(0, 25)] private int crouchMovementSpeed;
+    [SerializeField] [UnityEngine.Range(0, 50)] private int sprintMovementSpeed;
+    [SerializeField] [UnityEngine.Range(0, 25)] private int crouchMovementSpeed;
     [Space(5)]
-    [SerializeField] [Range(0, 10)] private int jumpSpeed;
-    [SerializeField] [Range(0, 5)] private int jumpMax;
+    [SerializeField] [UnityEngine.Range(0, 10)] private int jumpSpeed;
+    [SerializeField] [UnityEngine.Range(0, 5)] private int jumpMax;
     [Space(5)]
-    [SerializeField] [Range(0, 25)] private int gravity;
+    [SerializeField] [UnityEngine.Range(0, 25)] private int gravity;
     [Space(10)]
 
     [Header("CAMERA SETTINGS")]
     [Space(10)]
-    [SerializeField] [Range(40, 80)] private int defaultFieldOfView;
-    [SerializeField] [Range(40, 80)] private int sprintFieldOfView;
+    [SerializeField] [UnityEngine.Range(40, 80)] private int defaultFieldOfView;
+    [SerializeField] [UnityEngine.Range(40, 80)] private int sprintFieldOfView;
     [Space(5)]
-    [SerializeField] [Range(0, 10)] private float fieldOfViewSpeed;
+    [SerializeField] [UnityEngine.Range(0, 10)] private float fieldOfViewSpeed;
     [Space(10)]
 
     [Header("STANCE SETTINGS")]
     [Space(10)]
     [SerializeField] private StanceState stanceState;
     [Space(5)]
-    [SerializeField] [Range(1, 2)] private float standingHeight;
-    [SerializeField] [Range(1, 2)] private float crouchingHeight;
+    [SerializeField] [UnityEngine.Range(1, 2)] private float standingHeight;
+    [SerializeField] [UnityEngine.Range(1, 2)] private float crouchingHeight;
     [Space(5)]
-    [SerializeField] [Range(1, 10)] private float stanceSpeed;
+    [SerializeField] [UnityEngine.Range(1, 10)] private float stanceSpeed;
     [Space(10)]
 
     [Header("SHOOT SETTINGS")]
     [Space(10)]
-    [SerializeField] [Range(0, 100)] private int shootDamage;
-    [SerializeField] [Range(0, 100)] private int shootDistance;
-    [SerializeField] [Range(0, 1)] private float shootRate;
+    [SerializeField] [UnityEngine.Range(0, 100)] private int shootDamage;
+    [SerializeField] [UnityEngine.Range(0, 100)] private int shootDistance;
+    [SerializeField] [UnityEngine.Range(0, 1)] private float shootRate;
     [Space(5)]
     [SerializeField] LayerMask ignoreLayer;
 
+    [Header("INTERACTION SETTINGS")]
+    [SerializeField] [UnityEngine.Range(0, 10)] private float interactRange;
+
+    public List<inventoryItem> inventory = new List<inventoryItem>();
 
     private CharacterController characterController;
     private CameraController cameraController;
@@ -74,6 +80,7 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateMovement();
         UpdateStance();
         UpdateShoot();
+        UpdateInteract();
     }
 
     private void Initialize()
@@ -250,6 +257,38 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 return movementSpeed;
             }
+        }
+    }
+
+    public void UpdateInteract()
+    {
+        if(Input.GetButtonDown("Interact"))
+        {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange, ~ignoreLayer))
+            {
+                // logging the collider the raycast hit //
+                Debug.Log(hit.collider.name);
+
+                // if the collider has the IDamage interface, we store it in 'target'
+                IInteractable target = hit.collider.GetComponent<IInteractable>();
+
+                // null check on the target. if target is not null, we call 'TakeDamage'
+                target?.Interact();
+            }
+        }
+    }
+
+    public bool HasItem(inventoryItem item)
+    {
+        return inventory.Contains(item);
+    }
+
+    public void AddItem(inventoryItem item)
+    {
+        if (!inventory.Contains(item))
+        {
+            inventory.Add(item);
+            Debug.Log("Item added to inventory");
         }
     }
 }
