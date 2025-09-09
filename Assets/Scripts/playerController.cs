@@ -8,24 +8,27 @@ public class PlayerController : MonoBehaviour, IDamage
     enum StanceState { Standing, Crouching }
     enum MovementState { Default, Sprinting }
 
+    [SerializeField] CharacterController characterController;
+    [SerializeField] CameraController cameraController;
+
     [Header("HEALTH SETTINGS")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(0, 100)] private int HP;
+    [SerializeField][UnityEngine.Range(0, 100)] private int HP;
     [Space(10)]
 
     [Header("Stamina SETTINGS")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(0, 100)] private float Stamina;
+    [SerializeField][UnityEngine.Range(0, 100)] private float Stamina;
     [Space(10)]
 
     [Header("Stamina USAGE")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(0, 10)] private float staminaUsage;
+    [SerializeField][UnityEngine.Range(0, 10)] private float staminaUsage;
     [Space(10)]
 
     [Header("Stamina REGEN")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(0, 10)] private float staminaRegen;
+    [SerializeField][UnityEngine.Range(0, 10)] private float staminaRegen;
     [Space(10)]
 
 
@@ -33,50 +36,49 @@ public class PlayerController : MonoBehaviour, IDamage
     [Space(10)]
     [SerializeField] private MovementState movementState;
     [Space(5)]
-    [SerializeField] [UnityEngine.Range(0, 25)] private int movementSpeed;
+    [SerializeField][UnityEngine.Range(0, 25)] private int movementSpeed;
     [Space(5)]
-    [SerializeField] [UnityEngine.Range(0, 50)] private int sprintMovementSpeed;
-    [SerializeField] [UnityEngine.Range(0, 25)] private int crouchMovementSpeed;
+    [SerializeField][UnityEngine.Range(0, 50)] private int sprintMovementSpeed;
+    [SerializeField][UnityEngine.Range(0, 25)] private int crouchMovementSpeed;
     [Space(5)]
-    [SerializeField] [UnityEngine.Range(0, 10)] private int jumpSpeed;
-    [SerializeField] [UnityEngine.Range(0, 5)] private int jumpMax;
+    [SerializeField][UnityEngine.Range(0, 10)] private int jumpSpeed;
+    [SerializeField][UnityEngine.Range(0, 5)] private int jumpMax;
     [Space(5)]
-    [SerializeField] [UnityEngine.Range(0, 25)] private int gravity;
+    [SerializeField][UnityEngine.Range(0, 25)] private int gravity;
     [Space(10)]
 
     [Header("CAMERA SETTINGS")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(40, 80)] private int defaultFieldOfView;
-    [SerializeField] [UnityEngine.Range(40, 80)] private int sprintFieldOfView;
+    [SerializeField][UnityEngine.Range(40, 80)] private int defaultFieldOfView;
+    [SerializeField][UnityEngine.Range(40, 80)] private int sprintFieldOfView;
     [Space(5)]
-    [SerializeField] [UnityEngine.Range(0, 10)] private float fieldOfViewSpeed;
+    [SerializeField][UnityEngine.Range(0, 10)] private float fieldOfViewSpeed;
     [Space(10)]
 
     [Header("STANCE SETTINGS")]
     [Space(10)]
     [SerializeField] private StanceState stanceState;
     [Space(5)]
-    [SerializeField] [UnityEngine.Range(1, 2)] private float standingHeight;
-    [SerializeField] [UnityEngine.Range(1, 2)] private float crouchingHeight;
+    [SerializeField][UnityEngine.Range(1, 2)] private float standingHeight;
+    [SerializeField][UnityEngine.Range(1, 2)] private float crouchingHeight;
     [Space(5)]
-    [SerializeField] [UnityEngine.Range(1, 10)] private float stanceSpeed;
+    [SerializeField][UnityEngine.Range(1, 10)] private float stanceSpeed;
     [Space(10)]
 
     [Header("SHOOT SETTINGS")]
     [Space(10)]
-    [SerializeField] [UnityEngine.Range(0, 100)] private int shootDamage;
-    [SerializeField] [UnityEngine.Range(0, 100)] private int shootDistance;
-    [SerializeField] [UnityEngine.Range(0, 1)] private float shootRate;
+    [SerializeField][UnityEngine.Range(0, 100)] private int shootDamage;
+    [SerializeField][UnityEngine.Range(0, 100)] private int shootDistance;
+    [SerializeField][UnityEngine.Range(0, 1)] private float shootRate;
     [Space(5)]
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("INTERACTION SETTINGS")]
-    [SerializeField] [UnityEngine.Range(0, 10)] private float interactRange;
+    [SerializeField][UnityEngine.Range(0, 10)] private float interactRange;
 
     public List<inventoryItem> inventory = new List<inventoryItem>();
 
-    private CharacterController characterController;
-    private CameraController cameraController;
+
 
     private Vector3 movementDirection;
     private Vector3 playerVelocity;
@@ -176,7 +178,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             canSprint = true;
         }
-        else if(Stamina < 1)
+        else if (Stamina < 1)
         {
             canSprint = false;
         }
@@ -320,7 +322,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpdateInteract()
     {
-        if(Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Interact"))
         {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange, ~ignoreLayer))
             {

@@ -265,6 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3a74fe8e1d08f45a58a100920fe368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerController
+  characterController: {fileID: 261371845054209605}
+  cameraController: {fileID: 8081750746837319756}
   HP: 50
   Stamina: 25
   staminaUsage: 10
