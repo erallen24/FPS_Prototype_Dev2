@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(false);
         menuActive = menuInventory;
         subMenuActive = subMenuInventory;
-        menuMain.SetActive(true);
+        //menuMain.SetActive(true);
         subMenuActive.SetActive(true);
         menuActive.SetActive(true);
     }
