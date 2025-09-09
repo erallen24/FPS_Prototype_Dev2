@@ -38,10 +38,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [Space(10)]
     [SerializeField] private StanceState stanceState;
     [Space(5)]
-    [SerializeField] private float standingHeight;
-    [SerializeField] private float crouchingHeight;
+    [SerializeField] [Range(1, 2)] private float standingHeight;
+    [SerializeField] [Range(1, 2)] private float crouchingHeight;
     [Space(5)]
-    [SerializeField] private float stanceSpeed;
+    [SerializeField] [Range(1, 10)] private float stanceSpeed;
     [Space(10)]
 
     [Header("SHOOT SETTINGS")]
@@ -64,29 +64,6 @@ public class PlayerController : MonoBehaviour, IDamage
     private float shootTimer;
 
 
-    private float TargetMovementSpeed
-    {
-        get 
-        {
-            if (stanceState == StanceState.Crouching)
-            {
-                return crouchMovementSpeed;
-            }
-            else
-            {
-                if (movementState == MovementState.Sprinting)
-                {
-                    return sprintMovementSpeed;
-                }
-                else
-                {
-                    return movementSpeed;
-                }
-            }
-        }
-    }
-
-
     private void Start()
     {
         Initialize();
@@ -101,17 +78,25 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Initialize()
     {
+        // setting the initial HP for health bar processing //
         initialHP = HP;
 
+        // assigning component references //
         characterController = GetComponent<CharacterController>();
         cameraController = GetComponentInChildren<CameraController>();
+
+        // setting initial values for the camera height and FOV //
+        cameraController.SetCameraHeight(standingHeight, stanceSpeed);
+        cameraController.SetFieldOfView(defaultFieldOfView, fieldOfViewSpeed);
     }
 
     private void UpdateMovement()
     {
+        // calculating and storing the movement direction //
         movementDirection = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
-        characterController.Move(movementDirection * TargetMovementSpeed * Time.deltaTime);
+        // applying movement to the player //
+        characterController.Move(movementDirection * GetTargetMovementSpeed() * Time.deltaTime);
 
         UpdateSprint();
         UpdateJump();
@@ -150,11 +135,15 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (characterController.isGrounded)
         {
+            // resetting the gravity vector if the player is grounded //
             playerVelocity = Vector3.zero;
         }
         else
         {
+            // increasing gravitational force over time //
             playerVelocity.y -= gravity * Time.deltaTime;
+
+            // applying gravitational force to the player //
             characterController.Move(playerVelocity * Time.deltaTime);
         }
     }
@@ -163,21 +152,27 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (Input.GetButtonDown("Stance"))
         {
+            // setting character controller values for the crouch state //
             characterController.height = crouchingHeight;
             characterController.center = new Vector3(0, crouchingHeight / 2, 0);
 
+            // setting the camera height for the crouch state //
             cameraController.SetCameraHeight(crouchingHeight, stanceSpeed);
 
+            // updating the stance and movement states //
             stanceState = StanceState.Crouching;
             movementState = MovementState.Default;
         }
         else if (Input.GetButtonUp("Stance"))
         {
+            // setting character controller values for the stand state //
             characterController.height = standingHeight;
             characterController.center = new Vector3(0, standingHeight / 2, 0);
 
+            // setting the camera height for the stand state //
             cameraController.SetCameraHeight(standingHeight, stanceSpeed);
 
+            // updating the stance state
             stanceState = StanceState.Standing;
         }
     }
@@ -235,5 +230,26 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         GameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    private float GetTargetMovementSpeed()
+    {
+        // method to return the target movement speed based on current movement/stance state //
+
+        if (stanceState == StanceState.Crouching)
+        {
+            return crouchMovementSpeed;
+        }
+        else
+        {
+            if (movementState == MovementState.Sprinting)
+            {
+                return sprintMovementSpeed;
+            }
+            else
+            {
+                return movementSpeed;
+            }
+        }
     }
 }
