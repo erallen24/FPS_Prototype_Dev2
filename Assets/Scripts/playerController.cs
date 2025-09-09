@@ -13,6 +13,22 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] [UnityEngine.Range(0, 100)] private int HP;
     [Space(10)]
 
+    [Header("Stamina SETTINGS")]
+    [Space(10)]
+    [SerializeField] [UnityEngine.Range(0, 100)] private float Stamina;
+    [Space(10)]
+
+    [Header("Stamina USAGE")]
+    [Space(10)]
+    [SerializeField] [UnityEngine.Range(0, 100)] private float staminaUsage;
+    [Space(10)]
+
+    [Header("Stamina REGEN")]
+    [Space(10)]
+    [SerializeField] [UnityEngine.Range(0, 100)] private float staminaRegen;
+    [Space(10)]
+
+
     [Header("MOVEMENT SETTINGS")]
     [Space(10)]
     [SerializeField] private MovementState movementState;
@@ -66,8 +82,11 @@ public class PlayerController : MonoBehaviour, IDamage
     private Vector3 playerVelocity;
 
     private int initialHP;
+    private float initialStamina;
     private int jumpCount;
     private float shootTimer;
+
+    private bool canSprint;
 
 
     private void Start()
@@ -81,12 +100,15 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateStance();
         UpdateShoot();
         UpdateInteract();
+        UpdateCanSprint();
+        UpdateStamina();
     }
 
     private void Initialize()
     {
-        // setting the initial HP for health bar processing //
+        // setting the initial HP and stamina for bar processing //
         initialHP = HP;
+        initialStamina = Stamina;
 
         // assigning component references //
         characterController = GetComponent<CharacterController>();
@@ -112,15 +134,48 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void UpdateSprint()
     {
-        if (Input.GetButtonDown("Sprint") && stanceState == StanceState.Standing)
+        if (Input.GetButtonDown("Sprint") && stanceState == StanceState.Standing && canSprint)
         {
             cameraController.SetFieldOfView(sprintFieldOfView, fieldOfViewSpeed);
             movementState = MovementState.Sprinting;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint") || !canSprint)
         {
             cameraController.SetFieldOfView(defaultFieldOfView, fieldOfViewSpeed);
             movementState = MovementState.Default;
+        }
+    }
+
+    public void UpdatePlayerStaminaBarUI()
+    {
+        // updating the player stamina bar to show the current stamina at game start
+        GameManager.instance.playerStaminaBar.fillAmount = (float)Stamina / initialStamina;
+    }
+
+    public void UpdateStamina()
+    {
+        if (movementState == MovementState.Sprinting && Stamina > 0)
+        {
+            Stamina -= staminaUsage * Time.deltaTime;
+        }
+
+        if (movementState == MovementState.Default && Stamina < initialStamina)
+        {
+            Stamina += staminaRegen * Time.deltaTime;
+        }
+
+        UpdatePlayerStaminaBarUI();
+    }
+
+    private void UpdateCanSprint()
+    {
+        if (Stamina >= initialStamina)
+        {
+            canSprint = true;
+        }
+        else if(Stamina < 1)
+        {
+            canSprint = false;
         }
     }
 
