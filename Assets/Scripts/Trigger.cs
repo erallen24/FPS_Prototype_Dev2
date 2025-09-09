@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
-    [SerializeField] ObjectMover objectToMove;
+    [SerializeField] DoorMover objectToMove;
     [SerializeField] Renderer objectRenderer;
 
     [SerializeField] Material activeMaterial;
@@ -21,7 +21,7 @@ public class Trigger : MonoBehaviour
     {
         if (playerInRange && Input.GetButtonDown("Interact"))
         {
-            objectToMove.ToEndPos();
+            objectToMove.Open();
             if(objectRenderer != null && activeMaterial != null)
             {
                 objectRenderer.material = activeMaterial;
