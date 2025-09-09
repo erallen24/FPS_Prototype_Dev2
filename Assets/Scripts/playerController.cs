@@ -40,10 +40,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [Space(10)]
     [SerializeField] private StanceState stanceState;
     [Space(5)]
-    [SerializeField] [Range(1, 2)] private float standingHeight;
-    [SerializeField] [Range(1, 2)] private float crouchingHeight;
+    [SerializeField] [UnityEngine.Range(1, 2)] private float standingHeight;
+    [SerializeField] [UnityEngine.Range(1, 2)] private float crouchingHeight;
     [Space(5)]
-    [SerializeField] [Range(1, 10)] private float stanceSpeed;
+    [SerializeField] [UnityEngine.Range(1, 10)] private float stanceSpeed;
     [Space(10)]
 
     [Header("SHOOT SETTINGS")]
