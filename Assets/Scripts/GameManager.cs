@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text scoreHUDText;
     [SerializeField] GameObject scoreHUDFeedback;
     [SerializeField] TMP_Text scoreHUDFeedbackText;
-
+    
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text killStats;
     public TMP_Text deathStats;
 
-
+    public TMP_Text interactPromptText;
 
     int gameGoalCount;
     int gameKillCount;
@@ -280,6 +280,11 @@ public class GameManager : MonoBehaviour
         cg.alpha = 1f; // reset alpha for next time
         scoreHUDFeedback.transform.localScale = startScale;
 
+    }
+
+    public void UpdateInteractPrompt(string prompt)
+    {
+        interactPromptText.text = prompt;
     }
 
 

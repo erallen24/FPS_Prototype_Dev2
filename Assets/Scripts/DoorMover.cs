@@ -1,3 +1,5 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -8,14 +10,14 @@ public class DoorMover : MonoBehaviour, IInteractable
     [SerializeField] Vector3 moveDir;
 
     [SerializeField] Renderer objectRenderer;
-
     [SerializeField] Material activeMaterial;
-    [SerializeField] Material idleMaterial;
-
+    
     [SerializeField] inventoryItem key;
 
     private Vector3 closedPostion;
     private Vector3 openPostion;
+
+    private Material[] materials;
 
     private bool isOpening = false;
     private bool isLocked = true;
@@ -25,6 +27,9 @@ public class DoorMover : MonoBehaviour, IInteractable
     {
         closedPostion = transform.position;
         openPostion = closedPostion + moveDir * moveDist;
+        materials = objectRenderer.materials;
+        objectRenderer = GetComponent<Renderer>();
+        
     }
 
     // Update is called once per frame
@@ -39,13 +44,28 @@ public class DoorMover : MonoBehaviour, IInteractable
             transform.position = Vector3.MoveTowards(transform.position, closedPostion, moveSpeed * Time.deltaTime);
         }
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!isLocked)
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Press E to Open");
+            if (!isLocked)
+            {
+                GameManager.instance.UpdateInteractPrompt("Door Unlocked! Press 'E' to Open");
+            }
+            else if (isLocked && GameManager.instance.playerScript.HasItem(key))
+            {
+                GameManager.instance.UpdateInteractPrompt("Press 'E' to Unlock Door");
+            }
+            else if (isLocked)
+            {
+                GameManager.instance.UpdateInteractPrompt("Door Locked! Find " + key.name + " to Unlock.");
+            }
         }
-       
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        GameManager.instance.UpdateInteractPrompt("");
     }
 
     public void Open()
@@ -53,7 +73,8 @@ public class DoorMover : MonoBehaviour, IInteractable
         isOpening = true;
         if (objectRenderer != null && activeMaterial != null)
         {
-            objectRenderer.material = activeMaterial;
+            materials[2] = activeMaterial;
+            objectRenderer.materials = materials;
         }
     }
 
@@ -73,10 +94,10 @@ public class DoorMover : MonoBehaviour, IInteractable
         {
             if (GameManager.instance.playerScript.HasItem(key))
             {
-                Debug.Log("Door Unlocked");
+                GameManager.instance.UpdateInteractPrompt("Door Unlocked!");
                 Unlock();
+                Open();
             }
-            Debug.Log("Door is locked");
             return;
         }
         else
