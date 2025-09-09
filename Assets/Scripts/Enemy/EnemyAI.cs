@@ -6,15 +6,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
 
     [SerializeField] int HP;
-    [SerializeField] float shootRate;
-    [SerializeField] int turnSpeed;
-
+    [SerializeField] public float shootRate;
+    [SerializeField] public int turnSpeed;
    
     
     [SerializeField] Color colorFlash;
-    [SerializeField] Transform shootPos;
-    [SerializeField] GameObject bullet;
-    [SerializeField] NavMeshAgent agent;
+    [SerializeField] public Transform shootPos;
+    [SerializeField] public GameObject bullet;
+    public NavMeshAgent agent;
     [SerializeField] Renderer model;
 
     Color colorOrig;
@@ -34,13 +33,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Update()
     {
         shootTimer += Time.deltaTime;
-        playerDir = GameManager.instance.player.transform.position - transform.position;
 
-        if (playerInTrigger)
+        if (playerInTrigger && 0 != Time.timeScale)
         {
-            agent.SetDestination(GameManager.instance.player.transform.position);
-
-            if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(); }
+            Movement();
             if (shootTimer >= shootRate) { Shoot(); }
         }
     }
@@ -77,7 +73,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         model.material.color = colorOrig;
     }
 
-    void Shoot()
+    public virtual void Shoot()
     {
         shootTimer = 0;
         Instantiate(bullet, shootPos.position, transform.rotation);
@@ -87,5 +83,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * turnSpeed);
+    }
+
+    public virtual void Movement()
+    {
+        playerDir = GameManager.instance.player.transform.position - transform.position;
+        agent.SetDestination(GameManager.instance.player.transform.position);
+        if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(); }
     }
 }

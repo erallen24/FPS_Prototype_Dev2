@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2690790718687844574}
   - component: {fileID: 4955541346657980758}
   - component: {fileID: 8961739613368123791}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,9 @@ MonoBehaviour:
   damageRate: 0
   speed: 30
   lifespan: 3
+  turnSpeed: 0
+  spawnCloud: 0
+  cloud: {fileID: 0}
 --- !u!135 &2690790718687844574
 SphereCollider:
   m_ObjectHideFlags: 0

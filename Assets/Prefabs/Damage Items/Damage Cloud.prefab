@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5852724103219112174}
   - component: {fileID: 3524230740808295950}
   - component: {fileID: 6750656833589759836}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Damage Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
