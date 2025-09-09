@@ -110,6 +110,9 @@ public class PlayerController : MonoBehaviour, IDamage
         initialHP = HP;
         initialStamina = Stamina;
 
+        // Setting health bar to fill to the set amount at game start up
+        UpdatePlayerHealthBarUI();
+
         // assigning component references //
         characterController = GetComponent<CharacterController>();
         cameraController = GetComponentInChildren<CameraController>();
