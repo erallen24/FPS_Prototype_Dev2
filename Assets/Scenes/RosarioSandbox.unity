@@ -19167,6 +19167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IGuns
   weaponData: {fileID: 11400000, guid: 2e1c6d750ab38c94e9b23f76b176d521, type: 2}
   playerAmmo: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: 9e0e1c40f00512f4996d222576ec21aa, type: 3}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -19589,6 +19590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IGuns
   weaponData: {fileID: 11400000, guid: b99712eef550cd44da8fdd72b5435b81, type: 2}
   playerAmmo: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: 9e0e1c40f00512f4996d222576ec21aa, type: 3}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -19641,6 +19643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IGuns
   weaponData: {fileID: 11400000, guid: 4ed330267630deb44922ef5c3188de55, type: 2}
   playerAmmo: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: 9e0e1c40f00512f4996d222576ec21aa, type: 3}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8

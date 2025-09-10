@@ -7,6 +7,7 @@ public class IGuns : MonoBehaviour
 {
     [SerializeField] private WeaponData weaponData;
     [SerializeField] TMP_Text playerAmmo;
+    [SerializeField] AudioClip reloadSound;
     [SerializeField] public LayerMask ignoreLayer;
 
     private float shootTimer;
@@ -98,6 +99,12 @@ public class IGuns : MonoBehaviour
     private IEnumerator ReloadSequence()
     {
         isReloading = true;
+
+        if (reloadSound != null)
+        {
+            AudioSource.PlayClipAtPoint(reloadSound, transform.position);
+        }
+
         yield return new WaitForSeconds(weaponData.reloadTime);
         currBulletsInMag = weaponData.magazineSize;
         isReloading = false;
