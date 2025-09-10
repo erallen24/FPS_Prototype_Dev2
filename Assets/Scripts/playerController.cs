@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -6,62 +8,87 @@ public class PlayerController : MonoBehaviour, IDamage
     enum StanceState { Standing, Crouching }
     enum MovementState { Default, Sprinting }
 
+    [SerializeField] CharacterController characterController;
+    [SerializeField] CameraController cameraController;
+
     [Header("HEALTH SETTINGS")]
     [Space(10)]
-    [SerializeField] [Range(0, 100)] private int HP;
+    [SerializeField][UnityEngine.Range(0, 100)] private int HP;
     [Space(10)]
+
+    [Header("Stamina SETTINGS")]
+    [Space(10)]
+    [SerializeField][UnityEngine.Range(0, 100)] private float Stamina;
+    [Space(10)]
+
+    [Header("Stamina USAGE")]
+    [Space(10)]
+    [SerializeField][UnityEngine.Range(0, 10)] private float staminaUsage;
+    [Space(10)]
+
+    [Header("Stamina REGEN")]
+    [Space(10)]
+    [SerializeField][UnityEngine.Range(0, 10)] private float staminaRegen;
+    [Space(10)]
+
 
     [Header("MOVEMENT SETTINGS")]
     [Space(10)]
     [SerializeField] private MovementState movementState;
     [Space(5)]
-    [SerializeField] [Range(0, 25)] private int movementSpeed;
+    [SerializeField][UnityEngine.Range(0, 25)] private int movementSpeed;
     [Space(5)]
-    [SerializeField] [Range(0, 50)] private int sprintMovementSpeed;
-    [SerializeField] [Range(0, 25)] private int crouchMovementSpeed;
+    [SerializeField][UnityEngine.Range(0, 50)] private int sprintMovementSpeed;
+    [SerializeField][UnityEngine.Range(0, 25)] private int crouchMovementSpeed;
     [Space(5)]
-    [SerializeField] [Range(0, 10)] private int jumpSpeed;
-    [SerializeField] [Range(0, 5)] private int jumpMax;
+    [SerializeField][UnityEngine.Range(0, 10)] private int jumpSpeed;
+    [SerializeField][UnityEngine.Range(0, 5)] private int jumpMax;
     [Space(5)]
-    [SerializeField] [Range(0, 25)] private int gravity;
+    [SerializeField][UnityEngine.Range(0, 25)] private int gravity;
     [Space(10)]
 
     [Header("CAMERA SETTINGS")]
     [Space(10)]
-    [SerializeField] [Range(40, 80)] private int defaultFieldOfView;
-    [SerializeField] [Range(40, 80)] private int sprintFieldOfView;
+    [SerializeField][UnityEngine.Range(40, 80)] private int defaultFieldOfView;
+    [SerializeField][UnityEngine.Range(40, 80)] private int sprintFieldOfView;
     [Space(5)]
-    [SerializeField] [Range(0, 10)] private float fieldOfViewSpeed;
+    [SerializeField][UnityEngine.Range(0, 10)] private float fieldOfViewSpeed;
     [Space(10)]
 
     [Header("STANCE SETTINGS")]
     [Space(10)]
     [SerializeField] private StanceState stanceState;
     [Space(5)]
-    [SerializeField] [Range(1, 2)] private float standingHeight;
-    [SerializeField] [Range(1, 2)] private float crouchingHeight;
+    [SerializeField][UnityEngine.Range(1, 2)] private float standingHeight;
+    [SerializeField][UnityEngine.Range(1, 2)] private float crouchingHeight;
     [Space(5)]
-    [SerializeField] [Range(1, 10)] private float stanceSpeed;
+    [SerializeField][UnityEngine.Range(1, 10)] private float stanceSpeed;
     [Space(10)]
 
     [Header("SHOOT SETTINGS")]
     [Space(10)]
-    [SerializeField] [Range(0, 100)] private int shootDamage;
-    [SerializeField] [Range(0, 100)] private int shootDistance;
-    [SerializeField] [Range(0, 1)] private float shootRate;
+    [SerializeField][UnityEngine.Range(0, 100)] private int shootDamage;
+    [SerializeField][UnityEngine.Range(0, 100)] private int shootDistance;
+    [SerializeField][UnityEngine.Range(0, 1)] private float shootRate;
     [Space(5)]
     [SerializeField] LayerMask ignoreLayer;
 
+    [Header("INTERACTION SETTINGS")]
+    [SerializeField][UnityEngine.Range(0, 10)] private float interactRange;
 
-    private CharacterController characterController;
-    private CameraController cameraController;
+    public List<inventoryItem> inventory = new List<inventoryItem>();
+
+
 
     private Vector3 movementDirection;
     private Vector3 playerVelocity;
 
     private int initialHP;
+    private float initialStamina;
     private int jumpCount;
     private float shootTimer;
+
+    private bool canSprint;
 
 
     private void Start()
@@ -74,12 +101,19 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateMovement();
         UpdateStance();
         UpdateShoot();
+        UpdateInteract();
+        UpdateCanSprint();
+        UpdateStamina();
     }
 
     private void Initialize()
     {
-        // setting the initial HP for health bar processing //
+        // setting the initial HP and stamina for bar processing //
         initialHP = HP;
+        initialStamina = Stamina;
+
+        // Setting health bar to fill to the set amount at game start up
+        UpdatePlayerHealthBarUI();
 
         // assigning component references //
         characterController = GetComponent<CharacterController>();
@@ -105,15 +139,48 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void UpdateSprint()
     {
-        if (Input.GetButtonDown("Sprint") && stanceState == StanceState.Standing)
+        if (Input.GetButtonDown("Sprint") && stanceState == StanceState.Standing && canSprint)
         {
             cameraController.SetFieldOfView(sprintFieldOfView, fieldOfViewSpeed);
             movementState = MovementState.Sprinting;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint") || !canSprint)
         {
             cameraController.SetFieldOfView(defaultFieldOfView, fieldOfViewSpeed);
             movementState = MovementState.Default;
+        }
+    }
+
+    public void UpdatePlayerStaminaBarUI()
+    {
+        // updating the player stamina bar to show the current stamina at game start
+        GameManager.instance.playerStaminaBar.fillAmount = (float)Stamina / initialStamina;
+    }
+
+    public void UpdateStamina()
+    {
+        if (movementState == MovementState.Sprinting && Stamina > 0)
+        {
+            Stamina -= staminaUsage * Time.deltaTime;
+        }
+
+        if (movementState == MovementState.Default && Stamina < initialStamina)
+        {
+            Stamina += staminaRegen * Time.deltaTime;
+        }
+
+        UpdatePlayerStaminaBarUI();
+    }
+
+    private void UpdateCanSprint()
+    {
+        if (Stamina >= initialStamina)
+        {
+            canSprint = true;
+        }
+        else if (Stamina < 1)
+        {
+            canSprint = false;
         }
     }
 
@@ -250,6 +317,38 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 return movementSpeed;
             }
+        }
+    }
+
+    public void UpdateInteract()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange, ~ignoreLayer))
+            {
+                // logging the collider the raycast hit //
+                Debug.Log(hit.collider.name);
+
+                // if the collider has the IDamage interface, we store it in 'target'
+                IInteractable target = hit.collider.GetComponent<IInteractable>();
+
+                // null check on the target. if target is not null, we call 'TakeDamage'
+                target?.Interact();
+            }
+        }
+    }
+
+    public bool HasItem(inventoryItem item)
+    {
+        return inventory.Contains(item);
+    }
+
+    public void AddItem(inventoryItem item)
+    {
+        if (!inventory.Contains(item))
+        {
+            inventory.Add(item);
+            Debug.Log("Item added to inventory");
         }
     }
 }
