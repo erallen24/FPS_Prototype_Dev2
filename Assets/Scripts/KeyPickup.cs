@@ -22,8 +22,9 @@ public class KeyPickup : MonoBehaviour, IInteractable
     {
         Debug.Log("Key Found");
         GameManager.instance.playerScript.AddItem(key);
-        Destroy(gameObject);
+        GameManager.instance.UpdateKeyCountText();
         GameManager.instance.UpdateInteractPrompt("");
+        Destroy(gameObject);
     }
 
 }

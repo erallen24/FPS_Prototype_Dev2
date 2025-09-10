@@ -14,13 +14,14 @@ public class DoorMover : MonoBehaviour, IInteractable
     
     [SerializeField] inventoryItem key;
 
+    [SerializeField] bool isLocked;
+
     private Vector3 closedPosition;
     private Vector3 openPosition;
 
     private Material[] materials;
 
     private bool isOpening = false;
-    private bool isLocked = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

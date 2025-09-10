@@ -33,11 +33,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
-
-
-
-
-
+    [SerializeField] TMP_Text keyCountText;
 
     public Transform playerRetical;
     public Image playerHPBar;
@@ -68,6 +64,7 @@ public class GameManager : MonoBehaviour
     int gameKillCount;
     int gameDeathCount;
     int gameScore;
+    int keyCount;
 
     public bool isPaused;
 
@@ -88,7 +85,7 @@ public class GameManager : MonoBehaviour
             stateUnpause();
         }
 
-
+        
     }
 
 
@@ -287,7 +284,11 @@ public class GameManager : MonoBehaviour
         interactPromptText.text = prompt;
     }
 
-
-
+    public void UpdateKeyCountText()
+    {
+        keyCount++;
+        keyCountText.text = keyCount.ToString();
+        
+    }
 
 }
