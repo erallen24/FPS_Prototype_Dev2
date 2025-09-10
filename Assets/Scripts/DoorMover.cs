@@ -14,8 +14,8 @@ public class DoorMover : MonoBehaviour, IInteractable
     
     [SerializeField] inventoryItem key;
 
-    private Vector3 closedPostion;
-    private Vector3 openPostion;
+    private Vector3 closedPosition;
+    private Vector3 openPosition;
 
     private Material[] materials;
 
@@ -25,8 +25,8 @@ public class DoorMover : MonoBehaviour, IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        closedPostion = transform.position;
-        openPostion = closedPostion + moveDir * moveDist;
+        closedPosition = transform.position;
+        openPosition = closedPosition + moveDir * moveDist;
         materials = objectRenderer.materials;
         objectRenderer = GetComponent<Renderer>();
         
@@ -37,11 +37,11 @@ public class DoorMover : MonoBehaviour, IInteractable
     {
         if (isOpening)
         {
-            transform.position = Vector3.MoveTowards(transform.position, openPostion, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, openPosition, moveSpeed * Time.deltaTime);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, closedPostion, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, closedPosition, moveSpeed * Time.deltaTime);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -58,7 +58,7 @@ public class DoorMover : MonoBehaviour, IInteractable
             }
             else if (isLocked)
             {
-                GameManager.instance.UpdateInteractPrompt("Door Locked! Find " + key.name + " to Unlock.");
+                GameManager.instance.UpdateInteractPrompt("Door Locked! Find " + key.itemName + " to Unlock.");
             }
         }
     }
