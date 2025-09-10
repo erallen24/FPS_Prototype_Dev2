@@ -5,36 +5,26 @@ using TMPro;
 
 public class IGuns : MonoBehaviour
 {
-    enum gunType { Handgun, Shotgun, AutoRifle, Submachinegun, SniperRifle }
-
-    [SerializeField] private gunType currGunType;
-    [SerializeField] private int shootDamage;
-    [SerializeField] private int shootDistance;
-    [SerializeField] private float shootRate;
-    [SerializeField] private int magazineSize;
-    [SerializeField] private float reloadTime;
+    [SerializeField] private WeaponData weaponData;
     [SerializeField] TMP_Text playerAmmo;
-    [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] public LayerMask ignoreLayer;
 
     private float shootTimer;
     public int currBulletsInMag;
     private bool isReloading;
-    public GameObject impactEffect;
-
-    public float impactForce;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        currBulletsInMag = magazineSize;
+        currBulletsInMag = weaponData.magazineSize;
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateShoot();
-        GameManager.instance.updatePlayerAmmo(currBulletsInMag, magazineSize);
+        GameManager.instance.updatePlayerAmmo(currBulletsInMag, weaponData.magazineSize);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -46,7 +36,7 @@ public class IGuns : MonoBehaviour
     {
         shootTimer += Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && CheckIfGunCanShoot() && shootTimer >= shootRate)
+        if (Input.GetButton("Fire1") && CheckIfGunCanShoot() && shootTimer >= weaponData.shootRate)
         {
             Shoot();
 
@@ -62,6 +52,7 @@ public class IGuns : MonoBehaviour
         // resetting the shoot timer //
         shootTimer = 0;
         currBulletsInMag--;
+        Recoil();
         performShoot();
 
     }
@@ -69,7 +60,7 @@ public class IGuns : MonoBehaviour
     private void performShoot()
     {
         // performing shoot raycast //
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, shootDistance, ~ignoreLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, weaponData.shootDistance, ~ignoreLayer))
         {
             // logging the collider the raycast hit //
             Debug.Log(hit.collider.name);
@@ -78,17 +69,17 @@ public class IGuns : MonoBehaviour
             IDamage target = hit.collider.GetComponent<IDamage>();
 
             // null check on the target. if target is not null, we call 'TakeDamage'
-            target?.TakeDamage(shootDamage);
+            target?.TakeDamage(weaponData.shootDamage);
 
-            if (impactEffect != null) 
+            if (weaponData.impactEffect != null) 
             {
-            GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            GameObject impactGO = Instantiate(weaponData.impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(impactGO, 2f);
             }
             
             if (hit.rigidbody != null)
             {
-                hit.rigidbody.AddForce(-hit.normal * impactForce);
+                hit.rigidbody.AddForce(-hit.normal * weaponData.impactForce);
             }
         }
     }
@@ -107,17 +98,22 @@ public class IGuns : MonoBehaviour
     private IEnumerator ReloadSequence()
     {
         isReloading = true;
-        yield return new WaitForSeconds(reloadTime);
-        currBulletsInMag = magazineSize;
+        yield return new WaitForSeconds(weaponData.reloadTime);
+        currBulletsInMag = weaponData.magazineSize;
         isReloading = false;
     }
 
     private void AttemptReload()
     {
-        if (isReloading || currBulletsInMag >= magazineSize)
+        if (isReloading || currBulletsInMag >= weaponData.magazineSize)
             return;
 
         StartCoroutine(ReloadSequence());
+    }
+
+    private void Recoil()
+    {
+        int recoil = weaponData.recoil;
     }
 
 

@@ -18,8 +18,9 @@ public class DummyEnemy : MonoBehaviour, IDamage
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        Debug.Log($"Target hit! Took {damage} damage.");
 
-        if(HP < 0)
+        if (HP < 0)
         {
             Destroy(gameObject);
         }
