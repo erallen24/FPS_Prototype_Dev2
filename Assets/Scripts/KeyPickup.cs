@@ -4,11 +4,13 @@ public class KeyPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] inventoryItem key;
 
+    [SerializeField] int rotationSpeed;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + key.name);
+            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + key.itemName);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -20,6 +22,8 @@ public class KeyPickup : MonoBehaviour, IInteractable
     {
         Debug.Log("Key Found");
         GameManager.instance.playerScript.AddItem(key);
+        GameManager.instance.UpdateKeyCountText();
+        GameManager.instance.UpdateInteractPrompt("");
         Destroy(gameObject);
     }
 
