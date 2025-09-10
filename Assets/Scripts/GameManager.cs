@@ -24,23 +24,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject subMenuAudio;
     [SerializeField] GameObject subMenuInventory;
 
-    [SerializeField] GameObject warningHUD;
-    [SerializeField] TMP_Text warningHUDLabel;
-    [SerializeField] GameObject warningHUDTextBox;
-    [SerializeField] TMP_Text warningHUDText;
+
 
     [SerializeField] TMP_Text scoreHUDText;
     [SerializeField] GameObject scoreHUDFeedback;
     [SerializeField] TMP_Text scoreHUDFeedbackText;
-
+    
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
-
-
-
-
-
+    [SerializeField] TMP_Text keyCountText;
 
     public Transform playerRetical;
     public Image playerHPBar;
@@ -65,12 +58,13 @@ public class GameManager : MonoBehaviour
     public TMP_Text killStats;
     public TMP_Text deathStats;
 
-
+    public TMP_Text interactPromptText;
 
     int gameGoalCount;
     int gameKillCount;
     int gameDeathCount;
     int gameScore;
+    int keyCount;
 
     public bool isPaused;
 
@@ -85,13 +79,13 @@ public class GameManager : MonoBehaviour
 
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
-      
+
         if (isPaused)
         {
             stateUnpause();
         }
-        
 
+        
     }
 
 
@@ -195,7 +189,7 @@ public class GameManager : MonoBehaviour
         if (menuActive != null && menuActive != menuSettings)
             menuActive.SetActive(false);
 
-        if (menuActive == menuPause || menuActive == menuWin ||  menuActive == menuLose)
+        if (menuActive == menuPause || menuActive == menuWin || menuActive == menuLose)
         {
             menuPrev = menuActive;
         }
@@ -216,9 +210,9 @@ public class GameManager : MonoBehaviour
     public void openInventory()
     {
         //if (menuActive != null && menuActive != menuInventory)
-            //menuActive.SetActive(false);
+        //menuActive.SetActive(false);
         //if (subMenuActive != null && subMenuActive != subMenuInventory)
-            //subMenuActive.SetActive(false);
+        //subMenuActive.SetActive(false);
         subMenuActive.SetActive(false);
         menuActive.SetActive(false);
         menuActive = menuInventory;
@@ -285,63 +279,16 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Create coroutine for showing and masking warnings
-    public IEnumerator showWarning(string label, string text, float duration)
+    public void UpdateInteractPrompt(string prompt)
     {
-        Transform transformOrig = warningHUD.transform;
-        Transform textBoxTransOrig = warningHUDTextBox.transform;
-
-        warningHUDLabel.text = label;
-        warningHUDText.text = text;
-        warningHUD.SetActive(true);
-        // Lerp in the warning box from the original y position to a difference of -39 on the Y axis
-        float elapsed = 0f;
-        float lerpDuration = 0.5f;
-        Vector3 endPos = new Vector3(transformOrig.position.x, transformOrig.position.y - 39, transformOrig.position.z);
-        while (elapsed < lerpDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / lerpDuration);
-            warningHUD.transform.position = Vector3.Lerp(transformOrig.position, endPos, t);
-            yield return null;
-        }
-        // Lerp the text box in from the original x position to a difference of -39 on the Y axis
-        elapsed = 0f;
-        Vector3 textBoxEndPos = new Vector3(textBoxTransOrig.position.x, textBoxTransOrig.position.y - 128, textBoxTransOrig.position.z);
-        warningHUDTextBox.SetActive(true);
-        while (elapsed < lerpDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / lerpDuration);
-            warningHUDTextBox.transform.position = Vector3.Lerp(textBoxTransOrig.position, textBoxEndPos, t);
-            yield return null;
-        }
-
-
-        yield return new WaitForSeconds(duration);
-
-        // Lerp out the text box back to the original position
-        elapsed = 0f;
-        while (elapsed < lerpDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / lerpDuration);
-            warningHUDTextBox.transform.position = Vector3.Lerp(textBoxEndPos, textBoxTransOrig.position, t);
-            yield return null;
-        }
-        warningHUDTextBox.SetActive(false);
-
-        // Lerp out the warning box back to the original position
-        elapsed = 0f;
-        while (elapsed < lerpDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / lerpDuration);
-            warningHUD.transform.position = Vector3.Lerp(endPos, transformOrig.position, t);
-            yield return null;
-        }
-        warningHUD.SetActive(false);
+        interactPromptText.text = prompt;
     }
 
+    public void UpdateKeyCountText()
+    {
+        keyCount++;
+        keyCountText.text = keyCount.ToString();
+        
+    }
 
 }
