@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class KeyPickup : MonoBehaviour, IInteractable
@@ -5,6 +6,15 @@ public class KeyPickup : MonoBehaviour, IInteractable
     [SerializeField] inventoryItem key;
 
     [SerializeField] int rotationSpeed;
+    [SerializeField] float scaleSpeed;
+    [SerializeField] float scaleAmount;
+
+    private Vector3 origScale;
+
+    void Start()
+    {
+        origScale = transform.localScale;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,6 +28,16 @@ public class KeyPickup : MonoBehaviour, IInteractable
         GameManager.instance.UpdateInteractPrompt("");
     }
 
+    void Update()
+    {
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
+
+        float scaler = Mathf.PingPong(Time.time * scaleSpeed, 1f);
+        float scale = 1 + scaler * scaleAmount;
+        transform.localScale = origScale * scale;
+    }
+   
+
     public void Interact()
     {
         Debug.Log("Key Found");
@@ -27,4 +47,5 @@ public class KeyPickup : MonoBehaviour, IInteractable
         Destroy(gameObject);
     }
 
+    
 }

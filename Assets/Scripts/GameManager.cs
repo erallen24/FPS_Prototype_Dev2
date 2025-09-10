@@ -287,7 +287,7 @@ public class GameManager : MonoBehaviour
     public void UpdateKeyCountText()
     {
         keyCount++;
-        keyCountText.text = keyCount.ToString();
+        keyCountText.text = keyCount.ToString() + "/4";
         
     }
 
