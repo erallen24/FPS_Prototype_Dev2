@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     float timeScaleOrig;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         timeScaleOrig = Time.timeScale;
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = !isPaused;
         Time.timeScale = 0;
-        transform.GetComponent<AudioSource>().Pause();
+        //transform.GetComponent<AudioSource>().Pause();
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
