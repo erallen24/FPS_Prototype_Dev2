@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 3083710214130314841}
   - component: {fileID: 809987133426979774}
   m_Layer: 0
-  m_Name: InventorySlot (47)
+  m_Name: InventorySlot (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1291,7 +1291,7 @@ GameObject:
   - component: {fileID: 5740150869315122210}
   - component: {fileID: 5397162433224062894}
   m_Layer: 0
-  m_Name: InventorySlot (21)
+  m_Name: InventorySlot (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1517,7 +1517,7 @@ GameObject:
   - component: {fileID: 3966135299853101194}
   - component: {fileID: 7104261574669233405}
   m_Layer: 0
-  m_Name: InventorySlot (19)
+  m_Name: InventorySlot (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2088,7 +2088,7 @@ GameObject:
   - component: {fileID: 8440571711642490633}
   - component: {fileID: 8392059646936169674}
   m_Layer: 0
-  m_Name: InventorySlot (48)
+  m_Name: InventorySlot (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2164,7 +2164,7 @@ GameObject:
   - component: {fileID: 4380852640740659961}
   - component: {fileID: 4265563875974638314}
   m_Layer: 0
-  m_Name: InventorySlot (3)
+  m_Name: InventorySlot (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2693,7 +2693,7 @@ GameObject:
   - component: {fileID: 4275223292550204452}
   - component: {fileID: 2494964971440758168}
   m_Layer: 0
-  m_Name: InventorySlot (42)
+  m_Name: InventorySlot (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3285,7 +3285,7 @@ GameObject:
   - component: {fileID: 3935986927793043621}
   - component: {fileID: 6754343615645883627}
   m_Layer: 0
-  m_Name: InventorySlot (33)
+  m_Name: InventorySlot (54)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3361,7 +3361,7 @@ GameObject:
   - component: {fileID: 7677107439176860654}
   - component: {fileID: 6282169968980879748}
   m_Layer: 0
-  m_Name: InventorySlot (38)
+  m_Name: InventorySlot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3380,6 +3380,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2909514602388068316}
+  - {fileID: 2447121862830918763}
   m_Father: {fileID: 2981568432501735434}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3437,7 +3438,7 @@ GameObject:
   - component: {fileID: 5294058982767550644}
   - component: {fileID: 3808077530260771453}
   m_Layer: 0
-  m_Name: InventorySlot (26)
+  m_Name: InventorySlot (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4398,7 +4399,7 @@ GameObject:
   - component: {fileID: 2470030261359503833}
   - component: {fileID: 4632104553335319903}
   m_Layer: 0
-  m_Name: InventorySlot (24)
+  m_Name: InventorySlot (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4549,7 +4550,7 @@ GameObject:
   - component: {fileID: 8005152110040088237}
   - component: {fileID: 3411544329885076266}
   m_Layer: 0
-  m_Name: InventorySlot (18)
+  m_Name: InventorySlot (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4604,6 +4605,82 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: c5d2a14904043d44399525d44ff58d6c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1326285960499986128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7342046154986622283}
+  - component: {fileID: 3250113305876206937}
+  - component: {fileID: 3505347856625030727}
+  m_Layer: 0
+  m_Name: Icon (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7342046154986622283
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326285960499986128}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 853473645713630992}
+  m_Father: {fileID: 2447121862830918763}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 17.5, y: 7.5}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3250113305876206937
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326285960499986128}
+  m_CullTransparentMesh: 1
+--- !u!114 &3505347856625030727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326285960499986128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f6024001f8d50834c802676e0fb07d5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5112,7 +5189,7 @@ GameObject:
   - component: {fileID: 8539231076364401370}
   - component: {fileID: 555226362141986990}
   m_Layer: 0
-  m_Name: InventorySlot (57)
+  m_Name: InventorySlot (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5188,7 +5265,7 @@ GameObject:
   - component: {fileID: 5721725363633910738}
   - component: {fileID: 7101308598991353551}
   m_Layer: 0
-  m_Name: InventorySlot (30)
+  m_Name: InventorySlot (51)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5698,7 +5775,7 @@ GameObject:
   - component: {fileID: 3811035133993615401}
   - component: {fileID: 1329624487703543880}
   m_Layer: 0
-  m_Name: InventorySlot (7)
+  m_Name: InventorySlot (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5849,7 +5926,7 @@ GameObject:
   - component: {fileID: 2909256589423588025}
   - component: {fileID: 161838588017742819}
   m_Layer: 0
-  m_Name: InventorySlot (50)
+  m_Name: InventorySlot (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5925,7 +6002,7 @@ GameObject:
   - component: {fileID: 6770204741288068679}
   - component: {fileID: 6524604897000733023}
   m_Layer: 0
-  m_Name: InventorySlot (25)
+  m_Name: InventorySlot (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6001,7 +6078,7 @@ GameObject:
   - component: {fileID: 1310006848316769917}
   - component: {fileID: 5103901286367999830}
   m_Layer: 0
-  m_Name: InventorySlot (4)
+  m_Name: InventorySlot (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6285,7 +6362,7 @@ GameObject:
   - component: {fileID: 4418355040325045999}
   - component: {fileID: 3764115001450750817}
   m_Layer: 0
-  m_Name: InventorySlot (10)
+  m_Name: InventorySlot (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6349,6 +6426,144 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1824757715452330653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4998188519973416300}
+  - component: {fileID: 4221453557067633665}
+  - component: {fileID: 8407635634345994212}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4998188519973416300
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824757715452330653}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2484397016617727370}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -5.9}
+  m_SizeDelta: {x: 100, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4221453557067633665
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824757715452330653}
+  m_CullTransparentMesh: 1
+--- !u!114 &8407635634345994212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824757715452330653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Cloak
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: b29a4b265fa81924b9f4bc36344da023, type: 2}
+  m_sharedMaterial: {fileID: -5043563803067708824, guid: b29a4b265fa81924b9f4bc36344da023, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 16
+  m_fontSizeBase: 16
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1825392962886687281
 GameObject:
   m_ObjectHideFlags: 0
@@ -6361,7 +6576,7 @@ GameObject:
   - component: {fileID: 4450584235164526867}
   - component: {fileID: 1747249917388083305}
   m_Layer: 0
-  m_Name: InventorySlot (27)
+  m_Name: InventorySlot (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6437,7 +6652,7 @@ GameObject:
   - component: {fileID: 5544391483392379311}
   - component: {fileID: 2343928389826239581}
   m_Layer: 0
-  m_Name: InventorySlot
+  m_Name: 'InventorySlot (5) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7289,7 +7504,7 @@ GameObject:
   - component: {fileID: 3268639511404702807}
   - component: {fileID: 6260062981861481489}
   m_Layer: 0
-  m_Name: InventorySlot (51)
+  m_Name: InventorySlot (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7365,7 +7580,7 @@ GameObject:
   - component: {fileID: 8966685534607428524}
   - component: {fileID: 5544052586331836124}
   m_Layer: 0
-  m_Name: InventorySlot (54)
+  m_Name: InventorySlot (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7606,7 +7821,7 @@ GameObject:
   - component: {fileID: 7813451723005036430}
   - component: {fileID: 390827951009846256}
   m_Layer: 0
-  m_Name: InventorySlot (46)
+  m_Name: InventorySlot (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7757,7 +7972,7 @@ GameObject:
   - component: {fileID: 4036133308356666586}
   - component: {fileID: 869055284658749475}
   m_Layer: 0
-  m_Name: InventorySlot (32)
+  m_Name: InventorySlot (53)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8652,6 +8867,83 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2349404755712795414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2447121862830918763}
+  - component: {fileID: 1933215673624149622}
+  - component: {fileID: 1300456890939613912}
+  m_Layer: 0
+  m_Name: Item1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2447121862830918763
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349404755712795414}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1122385829697178687}
+  - {fileID: 7342046154986622283}
+  m_Father: {fileID: 2634789748303477286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -35, y: -15}
+  m_SizeDelta: {x: 132, y: 172}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1933215673624149622
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349404755712795414}
+  m_CullTransparentMesh: 1
+--- !u!114 &1300456890939613912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349404755712795414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6e1b60f8fd019d349babba30a0d7d658, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2386743747399695415
 GameObject:
   m_ObjectHideFlags: 0
@@ -9003,6 +9295,82 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2448333135722041332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5735243281171566758}
+  - component: {fileID: 6554793347988308247}
+  - component: {fileID: 5251645246701946461}
+  m_Layer: 0
+  m_Name: Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5735243281171566758
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448333135722041332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7551102269408145387}
+  m_Father: {fileID: 1122385829697178687}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6554793347988308247
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448333135722041332}
+  m_CullTransparentMesh: 1
+--- !u!114 &5251645246701946461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448333135722041332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f6024001f8d50834c802676e0fb07d5b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2466989184592537567
 GameObject:
   m_ObjectHideFlags: 0
@@ -9972,7 +10340,7 @@ GameObject:
   - component: {fileID: 377572788581483653}
   - component: {fileID: 7556719218944881625}
   m_Layer: 0
-  m_Name: InventorySlot (40)
+  m_Name: InventorySlot (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10105,7 +10473,7 @@ RectTransform:
   m_Father: {fileID: 998958500995130683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10932,7 +11300,7 @@ GameObject:
   - component: {fileID: 3762545689406271195}
   - component: {fileID: 2730372584485513808}
   m_Layer: 0
-  m_Name: InventorySlot (29)
+  m_Name: InventorySlot (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11219,7 +11587,7 @@ GameObject:
   - component: {fileID: 8136147691575941761}
   - component: {fileID: 5296748589097491991}
   m_Layer: 0
-  m_Name: InventorySlot (22)
+  m_Name: InventorySlot (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11370,7 +11738,7 @@ GameObject:
   - component: {fileID: 3094491980005326224}
   - component: {fileID: 62285118782588474}
   m_Layer: 0
-  m_Name: InventorySlot (9)
+  m_Name: InventorySlot (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11808,7 +12176,7 @@ GameObject:
   - component: {fileID: 3855698533425889223}
   - component: {fileID: 6510323538608435880}
   m_Layer: 0
-  m_Name: InventorySlot (16)
+  m_Name: InventorySlot (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12311,7 +12679,7 @@ GameObject:
   - component: {fileID: 3900800795012640018}
   - component: {fileID: 8412311591443284096}
   m_Layer: 0
-  m_Name: InventorySlot (34)
+  m_Name: InventorySlot (55)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13652,7 +14020,7 @@ GameObject:
   - component: {fileID: 5139727608831076694}
   - component: {fileID: 419146455904586366}
   m_Layer: 0
-  m_Name: InventorySlot (53)
+  m_Name: InventorySlot (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13956,7 +14324,7 @@ GameObject:
   - component: {fileID: 3330329698163703231}
   - component: {fileID: 8427600091589076702}
   m_Layer: 0
-  m_Name: InventorySlot (56)
+  m_Name: InventorySlot (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15221,7 +15589,7 @@ GameObject:
   - component: {fileID: 1175656668238512876}
   - component: {fileID: 6056347729547848186}
   m_Layer: 0
-  m_Name: InventorySlot (14)
+  m_Name: InventorySlot (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16128,7 +16496,7 @@ GameObject:
   - component: {fileID: 6722103467869346587}
   - component: {fileID: 5418888858844845970}
   m_Layer: 0
-  m_Name: InventorySlot (13)
+  m_Name: InventorySlot (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16417,7 +16785,7 @@ GameObject:
   - component: {fileID: 6619571066767175669}
   - component: {fileID: 588516500110087326}
   m_Layer: 0
-  m_Name: InventorySlot (6)
+  m_Name: InventorySlot (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16493,7 +16861,7 @@ GameObject:
   - component: {fileID: 1738523885635752971}
   - component: {fileID: 3637931637691880873}
   m_Layer: 0
-  m_Name: InventorySlot (35)
+  m_Name: InventorySlot (56)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16569,7 +16937,7 @@ GameObject:
   - component: {fileID: 6097404031068020872}
   - component: {fileID: 4767497866479495770}
   m_Layer: 0
-  m_Name: InventorySlot (43)
+  m_Name: InventorySlot (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17161,7 +17529,7 @@ GameObject:
   - component: {fileID: 2049020970203121281}
   - component: {fileID: 7490937929772987998}
   m_Layer: 0
-  m_Name: InventorySlot (44)
+  m_Name: InventorySlot (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18263,7 +18631,7 @@ GameObject:
   - component: {fileID: 1271767974895179300}
   - component: {fileID: 4734728930382282506}
   m_Layer: 0
-  m_Name: InventorySlot (8)
+  m_Name: InventorySlot (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18690,6 +19058,144 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5254298346920374171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 853473645713630992}
+  - component: {fileID: 6175829523912145313}
+  - component: {fileID: 7826128682389637046}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &853473645713630992
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254298346920374171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7342046154986622283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -5.9}
+  m_SizeDelta: {x: 100, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6175829523912145313
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254298346920374171}
+  m_CullTransparentMesh: 1
+--- !u!114 &7826128682389637046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254298346920374171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Cloak
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: b29a4b265fa81924b9f4bc36344da023, type: 2}
+  m_sharedMaterial: {fileID: -5043563803067708824, guid: b29a4b265fa81924b9f4bc36344da023, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 16
+  m_fontSizeBase: 16
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5264463234791741740
 GameObject:
   m_ObjectHideFlags: 0
@@ -19720,7 +20226,7 @@ GameObject:
   - component: {fileID: 546460805804879099}
   - component: {fileID: 3940487477112585241}
   m_Layer: 0
-  m_Name: InventorySlot (17)
+  m_Name: InventorySlot (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19871,7 +20377,7 @@ GameObject:
   - component: {fileID: 2391674938886855853}
   - component: {fileID: 4994080362079768150}
   m_Layer: 0
-  m_Name: InventorySlot (31)
+  m_Name: InventorySlot (52)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20107,6 +20613,82 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &5552588788130751436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1122385829697178687}
+  - component: {fileID: 1381828012787088171}
+  - component: {fileID: 3549989605686629151}
+  m_Layer: 0
+  m_Name: Foreground Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1122385829697178687
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552588788130751436}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5735243281171566758}
+  m_Father: {fileID: 2447121862830918763}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 17.5, y: 7.5}
+  m_SizeDelta: {x: 95, y: 108}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1381828012787088171
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552588788130751436}
+  m_CullTransparentMesh: 1
+--- !u!114 &3549989605686629151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552588788130751436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: df1a815e7aa982d45ab7ed5888e96a03, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5618513980787672001
 GameObject:
   m_ObjectHideFlags: 0
@@ -20996,7 +21578,7 @@ GameObject:
   - component: {fileID: 1756070422019094260}
   - component: {fileID: 3768872928733040917}
   m_Layer: 0
-  m_Name: InventorySlot (5)
+  m_Name: InventorySlot (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21202,6 +21784,82 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: b62ff3812615fc643af2fe0cb8ee1d4e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5864557621863982203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2484397016617727370}
+  - component: {fileID: 3557889055922451349}
+  - component: {fileID: 19247297481880247}
+  m_Layer: 0
+  m_Name: Icon (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2484397016617727370
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864557621863982203}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4998188519973416300}
+  m_Father: {fileID: 2823439773949274918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3557889055922451349
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864557621863982203}
+  m_CullTransparentMesh: 1
+--- !u!114 &19247297481880247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5864557621863982203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f6024001f8d50834c802676e0fb07d5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22057,7 +22715,7 @@ MonoBehaviour:
   menuLose: {fileID: 7223756970843601909}
   menuMain: {fileID: 4974653304472314361}
   menuSettings: {fileID: 6161730681658595891}
-  menuInventory: {fileID: 6758582729381192416}
+  menuInventory: {fileID: 1337795692853090892}
   subMenuGameplay: {fileID: 1120603270427257175}
   subMenuControls: {fileID: 5706211731204591442}
   subMenuAudio: {fileID: 7382945976758594257}
@@ -22286,11 +22944,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8041033375761007641}
-  - {fileID: 2224103193086999691}
-  - {fileID: 7527992092135919531}
-  - {fileID: 5053279604353294572}
   - {fileID: 7592863465098433708}
+  - {fileID: 5053279604353294572}
+  - {fileID: 7527992092135919531}
+  - {fileID: 2224103193086999691}
+  - {fileID: 8041033375761007641}
   m_Father: {fileID: 5480988878381182429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5907696666615585529
@@ -23177,7 +23835,7 @@ GameObject:
   - component: {fileID: 7296151453031338283}
   - component: {fileID: 6096618542639443063}
   m_Layer: 0
-  m_Name: InventorySlot (15)
+  m_Name: InventorySlot (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23253,7 +23911,7 @@ GameObject:
   - component: {fileID: 3773420290035848937}
   - component: {fileID: 3795018554293386535}
   m_Layer: 0
-  m_Name: InventorySlot (36)
+  m_Name: InventorySlot (57)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23482,13 +24140,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2823439773949274918}
+  - {fileID: 1149775382265960866}
+  - {fileID: 1518675418118282602}
+  - {fileID: 6936223321096794010}
   - {fileID: 8534499366972014120}
   - {fileID: 6662900149628117057}
   - {fileID: 7345026677091132436}
-  - {fileID: 6936223321096794010}
-  - {fileID: 1518675418118282602}
-  - {fileID: 1149775382265960866}
-  - {fileID: 2823439773949274918}
   - {fileID: 6219174715860299573}
   m_Father: {fileID: 6122394291258004199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24616,6 +25274,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9089043843667427141}
+  - {fileID: 2634789748303477286}
+  - {fileID: 2824435323896078681}
+  - {fileID: 1955378199411044266}
+  - {fileID: 8101582725411913159}
   - {fileID: 7637759103777330362}
   - {fileID: 3689348691281201976}
   - {fileID: 1486710753811684132}
@@ -24624,6 +25286,10 @@ RectTransform:
   - {fileID: 28067163900692446}
   - {fileID: 3751924988453696090}
   - {fileID: 5967152300659387583}
+  - {fileID: 4052574626598550595}
+  - {fileID: 9188138514095890475}
+  - {fileID: 8478331096934233335}
+  - {fileID: 2507242961471855769}
   - {fileID: 399977858777061677}
   - {fileID: 314987729255314334}
   - {fileID: 7221484669765516508}
@@ -24631,6 +25297,10 @@ RectTransform:
   - {fileID: 5668499093909407288}
   - {fileID: 2722965652090938372}
   - {fileID: 8398375593498504682}
+  - {fileID: 5013202548544804131}
+  - {fileID: 7336992796750794406}
+  - {fileID: 5911372520338103568}
+  - {fileID: 4599049030855437362}
   - {fileID: 5499792293192065892}
   - {fileID: 2112269339989589799}
   - {fileID: 2013421437290004296}
@@ -24639,6 +25309,10 @@ RectTransform:
   - {fileID: 5393913248931270430}
   - {fileID: 3417950315516802061}
   - {fileID: 7194994397587714955}
+  - {fileID: 7180033532411656840}
+  - {fileID: 7002248509301246538}
+  - {fileID: 1630482135693221809}
+  - {fileID: 7356532334896619241}
   - {fileID: 1293971200749916303}
   - {fileID: 2431711116993073672}
   - {fileID: 5914280229913141283}
@@ -24646,6 +25320,10 @@ RectTransform:
   - {fileID: 6055928796231426742}
   - {fileID: 4642114609916439651}
   - {fileID: 7285848527836891109}
+  - {fileID: 7632028019497414710}
+  - {fileID: 1247082841538408307}
+  - {fileID: 1466610296885520063}
+  - {fileID: 3552460912543798889}
   - {fileID: 1029815898235331526}
   - {fileID: 2014801930062877111}
   - {fileID: 4789606453233278402}
@@ -24654,26 +25332,6 @@ RectTransform:
   - {fileID: 6995190957956782242}
   - {fileID: 3543277856226154526}
   - {fileID: 3083560407287768064}
-  - {fileID: 2634789748303477286}
-  - {fileID: 2824435323896078681}
-  - {fileID: 1955378199411044266}
-  - {fileID: 8101582725411913159}
-  - {fileID: 4052574626598550595}
-  - {fileID: 9188138514095890475}
-  - {fileID: 8478331096934233335}
-  - {fileID: 2507242961471855769}
-  - {fileID: 5013202548544804131}
-  - {fileID: 7336992796750794406}
-  - {fileID: 5911372520338103568}
-  - {fileID: 4599049030855437362}
-  - {fileID: 7180033532411656840}
-  - {fileID: 7002248509301246538}
-  - {fileID: 1630482135693221809}
-  - {fileID: 7356532334896619241}
-  - {fileID: 7632028019497414710}
-  - {fileID: 1247082841538408307}
-  - {fileID: 1466610296885520063}
-  - {fileID: 3552460912543798889}
   - {fileID: 2631303223599752445}
   m_Father: {fileID: 6647828658281703487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25061,7 +25719,7 @@ GameObject:
   - component: {fileID: 5199607241197767383}
   - component: {fileID: 1024557109472624802}
   m_Layer: 0
-  m_Name: InventorySlot (23)
+  m_Name: InventorySlot (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25288,7 +25946,7 @@ GameObject:
   - component: {fileID: 6816087387172580243}
   - component: {fileID: 4229046572158326677}
   m_Layer: 0
-  m_Name: InventorySlot (39)
+  m_Name: InventorySlot (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25477,7 +26135,7 @@ GameObject:
   - component: {fileID: 7265697453973174440}
   - component: {fileID: 2888480008419793157}
   m_Layer: 0
-  m_Name: InventorySlot (55)
+  m_Name: InventorySlot (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25553,7 +26211,7 @@ GameObject:
   - component: {fileID: 2766531538714820504}
   - component: {fileID: 5473892331507687629}
   m_Layer: 0
-  m_Name: InventorySlot (20)
+  m_Name: InventorySlot (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27051,7 +27709,7 @@ GameObject:
   - component: {fileID: 3493207658739308719}
   - component: {fileID: 7738204087602241110}
   m_Layer: 0
-  m_Name: InventorySlot (37)
+  m_Name: InventorySlot (58)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27371,7 +28029,7 @@ GameObject:
   - component: {fileID: 2471780751871248695}
   - component: {fileID: 7625055966349937912}
   m_Layer: 0
-  m_Name: InventorySlot (41)
+  m_Name: InventorySlot (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27933,6 +28591,144 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &7561688167604228131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7551102269408145387}
+  - component: {fileID: 4805634878661449992}
+  - component: {fileID: 5304922311605332179}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7551102269408145387
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561688167604228131}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5735243281171566758}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -5.9}
+  m_SizeDelta: {x: 100, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4805634878661449992
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561688167604228131}
+  m_CullTransparentMesh: 1
+--- !u!114 &5304922311605332179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561688167604228131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Cloak
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: b29a4b265fa81924b9f4bc36344da023, type: 2}
+  m_sharedMaterial: {fileID: -5043563803067708824, guid: b29a4b265fa81924b9f4bc36344da023, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 16
+  m_fontSizeBase: 16
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7595913732413229581
 GameObject:
   m_ObjectHideFlags: 0
@@ -28020,7 +28816,7 @@ GameObject:
   - component: {fileID: 3969425368711629179}
   - component: {fileID: 2910059740202545649}
   m_Layer: 0
-  m_Name: InventorySlot (28)
+  m_Name: InventorySlot (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28260,7 +29056,7 @@ GameObject:
   - component: {fileID: 1262396659496408472}
   - component: {fileID: 6145638682593139741}
   m_Layer: 0
-  m_Name: InventorySlot (52)
+  m_Name: InventorySlot (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29544,7 +30340,7 @@ GameObject:
   - component: {fileID: 8299625815122612324}
   - component: {fileID: 384191131034518680}
   m_Layer: 0
-  m_Name: InventorySlot (12)
+  m_Name: InventorySlot (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30229,7 +31025,7 @@ GameObject:
   - component: {fileID: 3365965116028937605}
   - component: {fileID: 7036070484913727544}
   m_Layer: 0
-  m_Name: InventorySlot (2)
+  m_Name: InventorySlot (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30919,7 +31715,7 @@ GameObject:
   - component: {fileID: 1053872358885208498}
   - component: {fileID: 1113952171280568516}
   m_Layer: 0
-  m_Name: InventorySlot (1)
+  m_Name: InventorySlot (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31070,7 +31866,7 @@ GameObject:
   - component: {fileID: 548220949652892869}
   - component: {fileID: 7811511965900000702}
   m_Layer: 0
-  m_Name: InventorySlot (45)
+  m_Name: InventorySlot (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31353,7 +32149,7 @@ RectTransform:
   m_Father: {fileID: 3014148638805196990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -31634,7 +32430,7 @@ GameObject:
   - component: {fileID: 3171354847997835590}
   - component: {fileID: 3083348134462654917}
   m_Layer: 0
-  m_Name: InventorySlot (11)
+  m_Name: InventorySlot (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32795,7 +33591,7 @@ GameObject:
   - component: {fileID: 2205770375023068122}
   - component: {fileID: 933734688153352400}
   m_Layer: 0
-  m_Name: InventorySlot (49)
+  m_Name: InventorySlot (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33346,7 +34142,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647423511637437722, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (5)
+      value: InventorySlot (R)
       objectReference: {fileID: 0}
     - target: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Pivot.x
@@ -33451,7 +34247,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647423511637437722, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Name
-      value: InventorySlot
+      value: InventorySlot (5)
       objectReference: {fileID: 0}
     - target: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Pivot.x
@@ -33559,7 +34355,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647423511637437722, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (1)
+      value: InventorySlot (4)
       objectReference: {fileID: 0}
     - target: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Pivot.x
@@ -33667,7 +34463,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647423511637437722, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (6)
+      value: InventorySlot (L)
       objectReference: {fileID: 0}
     - target: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Pivot.x
@@ -33772,7 +34568,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647423511637437722, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (2)
+      value: InventorySlot (3)
       objectReference: {fileID: 0}
     - target: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Pivot.x
@@ -33880,7 +34676,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647423511637437722, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (3)
+      value: InventorySlot (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Pivot.x
@@ -33988,7 +34784,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647423511637437722, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (4)
+      value: InventorySlot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       propertyPath: m_Pivot.x
@@ -34079,6 +34875,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
       insertIndex: 1
       addedObject: {fileID: 7335900941682609590}
+    - targetCorrespondingSourceObject: {fileID: 6536907137575975420, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2484397016617727370}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8caefe5e15a4c14986ae0f53ce0d691, type: 3}
 --- !u!224 &2823439773949274918 stripped
