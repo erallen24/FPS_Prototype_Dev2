@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     float timeScaleOrig;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         timeScaleOrig = Time.timeScale;
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = !isPaused;
         Time.timeScale = 0;
-        transform.GetComponent<AudioSource>().Pause();
+        //transform.GetComponent<AudioSource>().Pause();
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -209,15 +209,15 @@ public class GameManager : MonoBehaviour
     }
     public void openInventory()
     {
-        //if (menuActive != null && menuActive != menuInventory)
-        //menuActive.SetActive(false);
-        //if (subMenuActive != null && subMenuActive != subMenuInventory)
-        //subMenuActive.SetActive(false);
+        if (menuActive != null && menuActive != menuInventory)
+            menuActive.SetActive(false);
+        if (subMenuActive != null && subMenuActive != subMenuInventory)
+            subMenuActive.SetActive(false);
         subMenuActive.SetActive(false);
         menuActive.SetActive(false);
-        menuActive = menuInventory;
-        subMenuActive = subMenuInventory;
-        //menuMain.SetActive(true);
+        menuActive = menuMain;
+        subMenuActive = menuInventory;
+        menuMain.SetActive(true);
         subMenuActive.SetActive(true);
         menuActive.SetActive(true);
     }
