@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Drone : EnemyAI
 {
-    Vector3 playerDir;
+    //private Vector3 playerDir;
 
-    public override void Movement()
+    public override void Movement(Vector3 playerDir)
     {
-        
-        playerDir = GameManager.instance.player.transform.position - transform.position;
+        //playerDir = GameManager.instance.player.transform.position - transform.position;
         agent.SetDestination(GameManager.instance.player.transform.position);
-        if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(); }
+        if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(playerDir); }
     }
 
-    void FaceTarget()
+
+    void FaceTarget(Vector3 playerDir)
     {
-        Quaternion rot = Quaternion.LookRotation(playerDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * turnSpeed);
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(transform.rotation.x, rot.y, transform.rotation.z, transform.rotation.w), Time.deltaTime * turnSpeed);
     }
 }

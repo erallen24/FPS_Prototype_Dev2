@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [SerializeField] bool isBoss = false;
     public GameObject dropItem;
+    public Vector3 dropItemOffset = new Vector3(0,0,0);
 
     Color colorOrig;
     float shootTimer;
@@ -45,20 +46,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             if (CanSeePlayer() && 0 != Time.timeScale)
             {
-                Movement();
+                playerDir = GameManager.instance.player.transform.position - transform.position;
+                Movement(playerDir);
                 if (shootTimer >= shootRate) { Shoot(); }
             }
         }
     }
 
-    void OnDestroy()
-    {
-        GameManager.instance.updateGameGoal(-1);
-        if (isBoss)
-        {
-            Instantiate(dropItem,transform.position, transform.rotation);
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -76,7 +70,15 @@ public class EnemyAI : MonoBehaviour, IDamage
             HP -= damage;
             StartCoroutine(flash());
         }
-        if (HP <= 0 ) { Destroy(gameObject); }
+        if (HP <= 0 ) 
+        {
+            GameManager.instance.updateGameGoal(-1);
+            if (isBoss)
+            {
+                Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
+            }
+            Destroy(gameObject); 
+        }
         
     }
 
@@ -85,6 +87,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         RaycastHit see;
         playerDir = GameManager.instance.player.transform.position - lookPos.position;
         angleToPlayer = Vector3.Angle(transform.forward, playerDir);
+
+        Debug.DrawRay(lookPos.transform.position, playerDir, Color.red);
 
         if(Physics.Raycast(lookPos.position, playerDir, out see))
         {
@@ -107,6 +111,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public virtual void Shoot()
     {
         shootTimer = 0;
+        //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
         Instantiate(bullet, shootPos.position, transform.rotation);
     }
 
@@ -116,10 +121,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * turnSpeed);
     }
 
-    public virtual void Movement()
+    public virtual void Movement(Vector3 playerDir)
     {
-        playerDir = GameManager.instance.player.transform.position - transform.position;
-        agent.SetDestination(GameManager.instance.player.transform.position);
+       agent.SetDestination(GameManager.instance.player.transform.position);
         if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(); }
     }
 }
