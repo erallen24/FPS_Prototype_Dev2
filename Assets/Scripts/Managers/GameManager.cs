@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text scoreHUDText;
     [SerializeField] GameObject scoreHUDFeedback;
     [SerializeField] TMP_Text scoreHUDFeedbackText;
-    
+
 
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
             stateUnpause();
         }
 
-        
+
     }
 
 
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         gameGoalCountText.text = gameGoalCount.ToString("F0");
         //gameGoalMenuStat.text = gameGoalCount.ToString("F0"); //this line was making the win menu not show up
 
-       // Debug.Log("Game Goal Count: " + gameGoalCount);
+        // Debug.Log("Game Goal Count: " + gameGoalCount);
         //if (gameGoalCount <= 0 && menuActive == null)
         //{
         //    statePause();
@@ -299,7 +299,16 @@ public class GameManager : MonoBehaviour
     {
         keyCount++;
         keyCountText.text = keyCount.ToString() + "/4";
-        
+
+    }
+    public void ActivateAmmoUI()
+    {
+        playerAmmoCanvas.SetActive(true);
+    }
+
+    public void DeactivateAmmoUI()
+    {
+        playerAmmoCanvas.SetActive(false);
     }
 
 }

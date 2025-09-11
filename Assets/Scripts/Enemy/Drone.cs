@@ -14,7 +14,8 @@ public class Drone : EnemyAI
 
     void FaceTarget(Vector3 playerDir)
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        //Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(transform.rotation.x, rot.y, transform.rotation.z, transform.rotation.w), Time.deltaTime * turnSpeed);
     }
 }

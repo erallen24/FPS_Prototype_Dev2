@@ -961,6 +961,7 @@ MonoBehaviour:
   shootRate: 0.25
   turnSpeed: 20
   FOV: 90
+  expValue: 25
   colorFlash: {r: 0, g: 0, b: 0, a: 0}
   shootPos: {fileID: 1274086604976986036}
   bullet: {fileID: 7606571981220202077, guid: c9ab66404a6a38145b417dcae9284761, type: 3}

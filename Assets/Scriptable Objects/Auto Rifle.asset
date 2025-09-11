@@ -22,8 +22,8 @@ MonoBehaviour:
   shootDamage: 4
   shootDistance: 50
   shootRate: 0.5
-  ammoCur: 5
-  ammoMax: 5
+  ammoCur: 50
+  ammoMax: 50
   reloadTime: 2
   impactEffect: {fileID: 0}
   impactForce: 5

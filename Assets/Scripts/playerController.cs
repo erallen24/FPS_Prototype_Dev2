@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     private void Start()
     {
         Initialize();
+        ammoCur = ammoMax;
+
     }
 
     private void Update()
@@ -126,6 +128,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             AttemptReload();
         }
 
+        if (gunList.Count > 0)
+            GameManager.instance.ActivateAmmoUI();
+        else
+            GameManager.instance.DeactivateAmmoUI();
+        UpdatePlayerUI();
         SelectGun();
     }
 
@@ -457,7 +464,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     {
         startingEXP += amount;
 
-        if(startingEXP > maxEXP)
+        if (startingEXP > maxEXP)
         {
             startingEXP = startingEXP - maxEXP;
         }
