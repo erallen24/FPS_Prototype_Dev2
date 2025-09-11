@@ -49,6 +49,12 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
+
+                Vector3 playerPos = GameManager.instance.player.transform.position;
+                Vector3 lookAtPos = new Vector3(playerPos.x, playerPos.y + 1f, playerPos.z);
+
+                shootPos.LookAt(lookAtPos);
+
                 if (shootTimer >= shootRate) { Shoot(); }
             }
         }
