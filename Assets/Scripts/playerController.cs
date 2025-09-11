@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage, IPickup
 {
     enum StanceState { Standing, Crouching }
     enum MovementState { Default, Sprinting }
+    [SerializeField] GameObject gunModel;
 
     [SerializeField] CharacterController characterController;
     [SerializeField] CameraController cameraController;
-    [SerializeField] List<WeaponData> gunList = new List<WeaponData>();
+
 
     [Header("HEALTH SETTINGS")]
     [Space(10)]
@@ -66,19 +67,20 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][UnityEngine.Range(1, 10)] private float stanceSpeed;
     [Space(10)]
 
-    [Header("SHOOT SETTINGS")]
+    [Header("GUN SETTINGS")]
     [Space(10)]
     [SerializeField][UnityEngine.Range(0, 100)] private int shootDamage;
     [SerializeField][UnityEngine.Range(0, 100)] private int shootDistance;
     [SerializeField][UnityEngine.Range(0, 1)] private float shootRate;
     [Space(5)]
     [SerializeField] LayerMask ignoreLayer;
-
+    public int ammoCur = 5;
+    [SerializeField] int ammoMax = 30; // Maximum ammo capacity
     [Header("INTERACTION SETTINGS")]
     [SerializeField][UnityEngine.Range(0, 10)] private float interactRange;
 
     public List<inventoryItem> inventory = new List<inventoryItem>();
-
+    public List<WeaponData> gunList = new List<WeaponData>();
 
 
     private Vector3 movementDirection;
@@ -88,9 +90,9 @@ public class PlayerController : MonoBehaviour, IDamage
     private float initialStamina;
     private int jumpCount;
     private float shootTimer;
-
+    private int gunListPos;
     private bool canSprint;
-
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -107,6 +109,11 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateStamina();
     }
 
+    public void UpdatePlayerUI()
+    {
+        UpdatePlayerHealthBarUI();
+        UpdatePlayerStaminaBarUI();
+    }
     private void Initialize()
     {
         // setting the initial HP and stamina for bar processing //
@@ -114,7 +121,7 @@ public class PlayerController : MonoBehaviour, IDamage
         initialStamina = Stamina;
 
         // Setting health bar to fill to the set amount at game start up
-        UpdatePlayerHealthBarUI();
+        UpdatePlayerUI();
 
         // assigning component references //
         characterController = GetComponent<CharacterController>();
@@ -136,6 +143,7 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateSprint();
         UpdateJump();
         UpdateGravity();
+        SelectGun();
     }
 
     private void UpdateSprint()
@@ -170,7 +178,7 @@ public class PlayerController : MonoBehaviour, IDamage
             Stamina += staminaRegen * Time.deltaTime;
         }
 
-        UpdatePlayerStaminaBarUI();
+        UpdatePlayerUI();
     }
 
     private void UpdateCanSprint()
@@ -284,7 +292,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HP -= amount;
 
-        UpdatePlayerHealthBarUI();
+        UpdatePlayerUI();
         StartCoroutine(FlashDamageScreen());
 
         if (HP <= 0)
@@ -336,11 +344,47 @@ public class PlayerController : MonoBehaviour, IDamage
                 // null check on the target. if target is not null, we call 'TakeDamage'
                 target?.Interact();
 
-
             }
         }
+
     }
 
+    public void GetGunStats(WeaponData gun)
+    {
+        gunList.Add(gun);
+        gunListPos = gunList.Count - 1;
+        ChangeGun();
+    }
+
+    void ChangeGun()
+    {
+        shootDamage = gunList[gunListPos].shootDamage;
+        shootDistance = gunList[gunListPos].shootDistance;
+        shootRate = gunList[gunListPos].shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        audioSource.PlayOneShot(gunList[gunListPos].pickUpSound);
+        UpdatePlayerUI();
+
+
+    }
+
+    void SelectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+        {
+            gunListPos++;
+            ChangeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+        {
+            gunListPos--;
+            ChangeGun();
+        }
+
+    }
     public bool HasItem(inventoryItem item)
     {
         return inventory.Contains(item);
