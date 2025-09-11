@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   model: {fileID: 5494625650325380441, guid: 944f765b84e4c4012876d61f4dfc7b5a, type: 3}
   pickUpSound: {fileID: 8300000, guid: 6c1105ffc94662c4b8faa9193ec4e118, type: 3}
+  emptyClipSound: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: 9e0e1c40f00512f4996d222576ec21aa, type: 3}
   shootSounds: []
+  shootVolume: 0.5
   gunType: 2
   shootDamage: 4
   shootDistance: 50
   shootRate: 0.5
-  magazineSize: 25
+  ammoCur: 5
+  ammoMax: 5
   reloadTime: 2
   impactEffect: {fileID: 0}
   impactForce: 5

@@ -326,7 +326,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     {
         isReloading = true;
 
-        yield return new WaitForSeconds(gunList[gunListPos].reloadTime);
+        yield return new WaitForSeconds(0.5f);
         ammoCur = ammoMax;
         isReloading = false;
     }
@@ -414,7 +414,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        audioSource.PlayOneShot(gunList[gunListPos].pickUpSound);
+        //audioSource.PlayOneShot(gunList[gunListPos].pickUpSound);
         UpdatePlayerUI();
 
 
