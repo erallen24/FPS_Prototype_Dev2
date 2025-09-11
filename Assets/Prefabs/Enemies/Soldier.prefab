@@ -960,11 +960,13 @@ MonoBehaviour:
   HP: 5
   shootRate: 0.25
   turnSpeed: 20
+  FOV: 0
   colorFlash: {r: 0, g: 0, b: 0, a: 0}
   shootPos: {fileID: 1274086604976986036}
   bullet: {fileID: 7606571981220202077, guid: c9ab66404a6a38145b417dcae9284761, type: 3}
   agent: {fileID: 9018555672938558459}
   model: {fileID: 3397280553159661115}
+  lookPos: {fileID: 9028894201727836953}
 --- !u!195 &9018555672938558459
 NavMeshAgent:
   m_ObjectHideFlags: 0

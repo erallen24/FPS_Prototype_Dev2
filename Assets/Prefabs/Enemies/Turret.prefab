@@ -197,11 +197,13 @@ MonoBehaviour:
   HP: 10
   shootRate: 10
   turnSpeed: 200
+  FOV: 0
   colorFlash: {r: 0, g: 0, b: 0, a: 0}
   shootPos: {fileID: 6888747218591113480}
   bullet: {fileID: 5860973264298822383, guid: 4c5e8a6cb04c761438dcc8f1b2fc816e, type: 3}
   agent: {fileID: 0}
   model: {fileID: 8753147207244133210}
+  lookPos: {fileID: 6888747218591113480}
 --- !u!33 &1050119210769520895
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -298,5 +300,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}

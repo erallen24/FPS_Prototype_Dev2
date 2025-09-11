@@ -646,12 +646,13 @@ MonoBehaviour:
   HP: 10
   shootRate: 1
   turnSpeed: 200
+  FOV: 0
   colorFlash: {r: 0.8553459, g: 0.8361963, b: 0.094141744, a: 0}
   shootPos: {fileID: 4433879180305926509}
   bullet: {fileID: 7606571981220202077, guid: c9ab66404a6a38145b417dcae9284761, type: 3}
   agent: {fileID: 4113462824730705717}
   model: {fileID: 7453397530943559008}
-  yOffset: 0
+  lookPos: {fileID: 4433879180305926509}
 --- !u!33 &1555834232003240562
 MeshFilter:
   m_ObjectHideFlags: 0

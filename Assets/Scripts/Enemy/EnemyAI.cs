@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] public float shootRate;
     [SerializeField] public int turnSpeed;
+    [SerializeField] float FOV;
    
     
     [SerializeField] Color colorFlash;
@@ -15,10 +16,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] public GameObject bullet;
     public NavMeshAgent agent;
     [SerializeField] Renderer model;
+    [SerializeField] Transform lookPos;
 
     Color colorOrig;
     float shootTimer;
     bool playerInTrigger;
+    float angleToPlayer;
 
     Vector3 playerDir;
 
@@ -32,12 +35,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        shootTimer += Time.deltaTime;
-
-        if (playerInTrigger && 0 != Time.timeScale)
+        if ( shootTimer < shootRate + 1) { shootTimer += Time.deltaTime; }
+        if (playerInTrigger)
         {
-            Movement();
-            if (shootTimer >= shootRate) { Shoot(); }
+            
+
+            if (CanSeePlayer() && 0 != Time.timeScale)
+            {
+                Movement();
+                if (shootTimer >= shootRate) { Shoot(); }
+            }
         }
     }
 
@@ -66,6 +73,23 @@ public class EnemyAI : MonoBehaviour, IDamage
         
     }
 
+    bool CanSeePlayer()
+    {
+        RaycastHit see;
+        playerDir = GameManager.instance.player.transform.position - lookPos.position;
+        angleToPlayer = Vector3.Angle(transform.forward, playerDir);
+
+        if(Physics.Raycast(lookPos.position, playerDir, out see))
+        {
+            if(angleToPlayer <= FOV && see.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     IEnumerator flash()
     {
         model.material.color = colorFlash;
@@ -81,7 +105,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void FaceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(playerDir);
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * turnSpeed);
     }
 
