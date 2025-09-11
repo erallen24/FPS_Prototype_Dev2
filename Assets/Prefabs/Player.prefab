@@ -360,7 +360,7 @@ MonoBehaviour:
   gunModel: {fileID: 3983449946716837181}
   characterController: {fileID: 261371845054209605}
   cameraController: {fileID: 8081750746837319756}
-  HP: 50
+  HP: 100
   Stamina: 25
   staminaUsage: 10
   staminaRegen: 10
