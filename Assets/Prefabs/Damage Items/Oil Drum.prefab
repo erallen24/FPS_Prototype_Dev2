@@ -7766,7 +7766,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4410
+  m_VersionIndex: 4431
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -7890,7 +7890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a7bd4383dce8046b62dce0400296a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Explosives
-  HP: 3
+  HP: 5
   DOTitem: {fileID: 1510352054043230604, guid: 303933b7eb9955c4a98b2b0a93b8d2e5, type: 3}
-  damageAmount: 0
-  burnEffect: {fileID: 0}
+  damageAmount: 1
+  burnEffect: {fileID: 8748658497851827591}
