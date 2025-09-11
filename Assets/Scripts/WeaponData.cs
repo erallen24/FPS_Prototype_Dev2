@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public enum GunType { Handgun, Shotgun, AutoRifle, Submachinegun, SniperRifle }
-
+    [SerializeField] AudioClip[] shootSounds;
     public GunType gunType;
     public int shootDamage;
     public int shootDistance;
@@ -14,7 +14,7 @@ public class WeaponData : ScriptableObject
     public float reloadTime;
     public GameObject impactEffect;
     public float impactForce;
-   
+
 
     public int recoil;
 

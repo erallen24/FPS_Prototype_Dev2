@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [SerializeField] CharacterController characterController;
     [SerializeField] CameraController cameraController;
+    [SerializeField] List<WeaponData> gunList = new List<WeaponData>();
 
     [Header("HEALTH SETTINGS")]
     [Space(10)]
@@ -334,6 +335,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
                 // null check on the target. if target is not null, we call 'TakeDamage'
                 target?.Interact();
+
+
             }
         }
     }
