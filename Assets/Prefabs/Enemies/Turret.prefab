@@ -198,6 +198,7 @@ MonoBehaviour:
   shootRate: 0.5
   turnSpeed: 200
   FOV: 90
+  expValue: 10
   colorFlash: {r: 0, g: 0, b: 0, a: 0}
   shootPos: {fileID: 6888747218591113480}
   bullet: {fileID: 5860973264298822383, guid: 4c5e8a6cb04c761438dcc8f1b2fc816e, type: 3}
@@ -303,5 +304,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 7.5
   m_Center: {x: 0, y: 0, z: 0}

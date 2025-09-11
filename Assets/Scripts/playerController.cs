@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     [Header("HEALTH SETTINGS")]
     [Space(10)]
-    [SerializeField][UnityEngine.Range(0, 100)] private int HP;
+    [SerializeField][UnityEngine.Range(0, 300)] private int HP;
     [Space(10)]
 
     [Header("Stamina SETTINGS")]
@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [Header("Stamina REGEN")]
     [Space(10)]
     [SerializeField][UnityEngine.Range(0, 10)] private float staminaRegen;
+    [Space(10)]
+
+    [Header("Starting EXP")]
+    [Space(10)]
+    [SerializeField][UnityEngine.Range(0, 499)] private int startingEXP;
     [Space(10)]
 
 
@@ -74,6 +79,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [SerializeField][UnityEngine.Range(0, 1)] private float shootRate;
     [Space(5)]
     [SerializeField] LayerMask ignoreLayer;
+
+
     public int ammoCur = 5;
     [SerializeField] int ammoMax = 30; // Maximum ammo capacity
     [Header("INTERACTION SETTINGS")]
@@ -88,15 +95,19 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     private int initialHP;
     private float initialStamina;
+    private int maxEXP;
     private int jumpCount;
     private float shootTimer;
     private int gunListPos;
     private bool canSprint;
+    private bool isReloading;
     private AudioSource audioSource;
 
     private void Start()
     {
         Initialize();
+        ammoCur = ammoMax;
+
     }
 
     private void Update()
@@ -107,21 +118,39 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         UpdateInteract();
         UpdateCanSprint();
         UpdateStamina();
+        UpdatePlayerEXPBarUI();
+        UpdatePlayerStaminaBarUI();
+
+        GameManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AttemptReload();
+        }
+
+        if (gunList.Count > 0)
+            GameManager.instance.ActivateAmmoUI();
+        else
+            GameManager.instance.DeactivateAmmoUI();
+        UpdatePlayerUI();
+        SelectGun();
     }
 
     public void UpdatePlayerUI()
     {
         UpdatePlayerHealthBarUI();
-        UpdatePlayerStaminaBarUI();
+        //UpdatePlayerStaminaBarUI();
     }
     private void Initialize()
     {
         // setting the initial HP and stamina for bar processing //
         initialHP = HP;
         initialStamina = Stamina;
+        maxEXP = 500;
 
         // Setting health bar to fill to the set amount at game start up
         UpdatePlayerUI();
+        UpdatePlayerEXPBarUI();
 
         // assigning component references //
         characterController = GetComponent<CharacterController>();
@@ -257,16 +286,26 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     {
         shootTimer += Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        if (Input.GetButton("Fire1") && CanShoot() && shootTimer >= shootRate)
         {
             Shoot();
         }
+        else if (ammoCur <= 0 && !isReloading)
+        {
+            AttemptReload();
+        }
+    }
+
+    private bool CanShoot()
+    {
+        return ammoCur > 0 && !isReloading;
     }
 
     private void Shoot()
     {
         // resetting the shoot timer //
         shootTimer = 0;
+        ammoCur--;
 
         // performing shoot raycast //
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, shootDistance, ~ignoreLayer))
@@ -280,6 +319,23 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             // null check on the target. if target is not null, we call 'TakeDamage'
             target?.TakeDamage(shootDamage);
         }
+    }
+
+    private void AttemptReload()
+    {
+        if (isReloading || ammoCur >= ammoMax)
+            return;
+
+        StartCoroutine(ReloadSequence());
+    }
+
+    private IEnumerator ReloadSequence()
+    {
+        isReloading = true;
+
+        yield return new WaitForSeconds(0.5f);
+        ammoCur = ammoMax;
+        isReloading = false;
     }
 
     public void UpdatePlayerHealthBarUI()
@@ -365,7 +421,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        audioSource.PlayOneShot(gunList[gunListPos].pickUpSound);
+        //audioSource.PlayOneShot(gunList[gunListPos].pickUpSound);
         UpdatePlayerUI();
 
 
@@ -396,6 +452,21 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         {
             inventory.Add(item);
             Debug.Log("Item added to inventory");
+        }
+    }
+
+    public void UpdatePlayerEXPBarUI()
+    {
+        GameManager.instance.playerEXPBar.fillAmount = (float)startingEXP / maxEXP;
+    }
+
+    public void addEXP(int amount)
+    {
+        startingEXP += amount;
+
+        if (startingEXP > maxEXP)
+        {
+            startingEXP = startingEXP - maxEXP;
         }
     }
 }

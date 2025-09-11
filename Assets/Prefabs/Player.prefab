@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 3983449946716837181}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0200005, y: 1.279999, z: 1.7299995}
+  m_LocalPosition: {x: 0.33, y: 1.279999, z: 1.7299995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -360,10 +360,11 @@ MonoBehaviour:
   gunModel: {fileID: 3983449946716837181}
   characterController: {fileID: 261371845054209605}
   cameraController: {fileID: 8081750746837319756}
-  HP: 50
+  HP: 100
   Stamina: 25
   staminaUsage: 10
   staminaRegen: 10
+  startingEXP: 0
   movementState: 0
   movementSpeed: 10
   sprintMovementSpeed: 20
@@ -384,7 +385,7 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  ammoCur: 5
+  ammoCur: 30
   ammoMax: 30
   interactRange: 0
   inventory: []
@@ -577,7 +578,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 100
-  field of view: 60
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

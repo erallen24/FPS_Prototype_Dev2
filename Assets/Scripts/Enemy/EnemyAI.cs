@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] public float shootRate;
     [SerializeField] public int turnSpeed;
     [SerializeField] float FOV;
+    [SerializeField] int expValue;
    
     
     [SerializeField] Color colorFlash;
@@ -17,6 +18,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform lookPos;
+    
 
     [SerializeField] bool isBoss = false;
     public GameObject dropItem;
@@ -26,6 +28,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float shootTimer;
     bool playerInTrigger;
     float angleToPlayer;
+    bool canSeePlayer;
 
     Vector3 playerDir;
 
@@ -48,6 +51,12 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
+
+                Vector3 playerPos = GameManager.instance.player.transform.position;
+                Vector3 lookAtPos = new Vector3(playerPos.x, playerPos.y + 1.0f, playerPos.z);
+
+                shootPos.LookAt(lookAtPos);
+
                 if (shootTimer >= shootRate) { Shoot(); }
             }
         }
@@ -77,27 +86,28 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
             }
-            Destroy(gameObject); 
+            Destroy(gameObject);
+            GameManager.instance.playerScript.addEXP(expValue);
         }
         
     }
 
     bool CanSeePlayer()
     {
-        RaycastHit see;
+        
         playerDir = GameManager.instance.player.transform.position - lookPos.position;
         angleToPlayer = Vector3.Angle(transform.forward, playerDir);
 
+        RaycastHit see;
         Debug.DrawRay(lookPos.transform.position, playerDir, Color.red);
 
-        if(Physics.Raycast(lookPos.position, playerDir, out see))
+        if(Physics.Raycast(lookPos.position, playerDir + Vector3.up, out see))
         {
             if(angleToPlayer <= FOV && see.collider.CompareTag("Player"))
             {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -112,7 +122,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         shootTimer = 0;
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, shootPos.rotation);
     }
 
     void FaceTarget()

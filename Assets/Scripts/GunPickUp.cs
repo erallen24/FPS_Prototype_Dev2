@@ -43,6 +43,7 @@ public class GunPickUp : MonoBehaviour
         {
             if (gun != null)
             {
+
                 //if (pickupable.hasGun(gun)))
                 //    return; // Player already has this gun, do not pick up again
                 pickupable.GetGunStats(gun);
