@@ -116,7 +116,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         UpdateInteract();
         UpdateCanSprint();
         UpdateStamina();
-<<<<<<< Updated upstream
+        UpdatePlayerEXPBarUI();
+        UpdatePlayerStaminaBarUI();
 
         GameManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
 
@@ -126,10 +127,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
 
         SelectGun();
-=======
-        UpdatePlayerEXPBarUI();
-        UpdatePlayerStaminaBarUI();
->>>>>>> Stashed changes
     }
 
     public void UpdatePlayerUI()
