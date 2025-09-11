@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     // public Image playerRageBar;
     public Image playerStaminaBar;
+    public Image playerEXPBar;
     public GameObject playerAmmoCanvas;
     public Image playerAmmoBar;
     public Image playerBulletImage;

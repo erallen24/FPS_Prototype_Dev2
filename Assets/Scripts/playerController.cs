@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [SerializeField][UnityEngine.Range(0, 10)] private float staminaRegen;
     [Space(10)]
 
+    [Header("Starting EXP")]
+    [Space(10)]
+    [SerializeField][UnityEngine.Range(0, 499)] private int startingEXP;
+    [Space(10)]
+
 
     [Header("MOVEMENT SETTINGS")]
     [Space(10)]
@@ -90,6 +95,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     private int initialHP;
     private float initialStamina;
+    private int maxEXP;
     private int jumpCount;
     private float shootTimer;
     private int gunListPos;
@@ -110,6 +116,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         UpdateInteract();
         UpdateCanSprint();
         UpdateStamina();
+<<<<<<< Updated upstream
 
         GameManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
 
@@ -119,21 +126,27 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
 
         SelectGun();
+=======
+        UpdatePlayerEXPBarUI();
+        UpdatePlayerStaminaBarUI();
+>>>>>>> Stashed changes
     }
 
     public void UpdatePlayerUI()
     {
         UpdatePlayerHealthBarUI();
-        UpdatePlayerStaminaBarUI();
+        //UpdatePlayerStaminaBarUI();
     }
     private void Initialize()
     {
         // setting the initial HP and stamina for bar processing //
         initialHP = HP;
         initialStamina = Stamina;
+        maxEXP = 500;
 
         // Setting health bar to fill to the set amount at game start up
         UpdatePlayerUI();
+        UpdatePlayerEXPBarUI();
 
         // assigning component references //
         characterController = GetComponent<CharacterController>();
@@ -435,6 +448,21 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         {
             inventory.Add(item);
             Debug.Log("Item added to inventory");
+        }
+    }
+
+    public void UpdatePlayerEXPBarUI()
+    {
+        GameManager.instance.playerEXPBar.fillAmount = (float)startingEXP / maxEXP;
+    }
+
+    public void addEXP(int amount)
+    {
+        startingEXP += amount;
+
+        if(startingEXP > maxEXP)
+        {
+            startingEXP = startingEXP - maxEXP;
         }
     }
 }

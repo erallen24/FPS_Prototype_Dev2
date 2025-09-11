@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] public float shootRate;
     [SerializeField] public int turnSpeed;
     [SerializeField] float FOV;
+    [SerializeField] int expValue;
    
     
     [SerializeField] Color colorFlash;
@@ -78,7 +79,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
             }
-            Destroy(gameObject); 
+            Destroy(gameObject);
+            GameManager.instance.playerScript.addEXP(expValue);
         }
         
     }
