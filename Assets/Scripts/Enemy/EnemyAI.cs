@@ -28,6 +28,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float shootTimer;
     bool playerInTrigger;
     float angleToPlayer;
+    bool canSeePlayer;
 
     Vector3 playerDir;
 
@@ -52,7 +53,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 Movement(playerDir);
 
                 Vector3 playerPos = GameManager.instance.player.transform.position;
-                Vector3 lookAtPos = new Vector3(playerPos.x, playerPos.y + 1f, playerPos.z);
+                Vector3 lookAtPos = new Vector3(playerPos.x, playerPos.y + 1.0f, playerPos.z);
 
                 shootPos.LookAt(lookAtPos);
 
@@ -107,7 +108,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                 return true;
             }
         }
-
         return false;
     }
 
@@ -122,7 +122,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         shootTimer = 0;
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, shootPos.rotation);
     }
 
     void FaceTarget()
