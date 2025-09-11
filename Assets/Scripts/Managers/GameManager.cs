@@ -141,14 +141,14 @@ public class GameManager : MonoBehaviour
         //gameGoalMenuStat.text = gameGoalCount.ToString("F0"); //this line was making the win menu not show up
 
        // Debug.Log("Game Goal Count: " + gameGoalCount);
-        if (gameGoalCount <= 0 && menuActive == null)
-        {
-            statePause();
-            menuActive = menuWin;
-            // gameScore += 500;
-            menuActive.SetActive(true);
-            // soundManager.instance.playVictorySound();
-        }
+        //if (gameGoalCount <= 0 && menuActive == null)
+        //{
+        //    statePause();
+        //    menuActive = menuWin;
+        //    // gameScore += 500;
+        //    menuActive.SetActive(true);
+        //    // soundManager.instance.playVictorySound();
+        //}
     }
 
     public void youLose()
