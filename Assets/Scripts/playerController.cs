@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     [Header("HEALTH SETTINGS")]
     [Space(10)]
-    [SerializeField][UnityEngine.Range(0, 100)] private int HP;
+    [SerializeField][UnityEngine.Range(0, 300)] private int HP;
     [Space(10)]
 
     [Header("Stamina SETTINGS")]
