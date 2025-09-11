@@ -188,7 +188,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3983449946716837181}
-  m_Mesh: {fileID: -6642371431653917376, guid: e23ab8f095718425c967ae1e8ad24cf5, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &35509063685550633
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a3f8898e8f9af43a3b665c72458d32e9, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -357,11 +357,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4278510062329790396}
-  - {fileID: 9203769780832663550}
   - {fileID: 7998788953275866943}
   - {fileID: 68672907967764417}
   - {fileID: 1743675206200840126}
+  - {fileID: 4278510062329790396}
+  - {fileID: 9203769780832663550}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7129777726360691537
@@ -378,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::playerController
   characterController: {fileID: 261371845054209605}
   cameraController: {fileID: 8081750746837319756}
+  gunList: []
   HP: 50
   Stamina: 25
   staminaUsage: 10
@@ -439,7 +440,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9203769780832663550}
   - component: {fileID: 7804540893238447957}
-  - component: {fileID: 3870055577721572548}
   - component: {fileID: 3828296921342586962}
   m_Layer: 0
   m_Name: GunCam
@@ -502,7 +502,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -514,14 +514,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3870055577721572548
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8827468473653221634}
-  m_Enabled: 1
 --- !u!114 &3828296921342586962
 MonoBehaviour:
   m_ObjectHideFlags: 0
