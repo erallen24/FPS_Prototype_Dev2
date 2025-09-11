@@ -137,11 +137,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4278510062329790396}
-  - component: {fileID: 5103180869652636908}
   - component: {fileID: 3026011425234772935}
   - component: {fileID: 35509063685550633}
-  m_Layer: 11
-  m_Name: GunPosition
+  m_Layer: 10
+  m_Name: Gun Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,25 +161,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7573123992235967000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5103180869652636908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3983449946716837181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96378156165528640837436b1cdabb46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IGuns
-  weaponData: {fileID: 0}
-  playerAmmo: {fileID: 0}
-  reloadSound: {fileID: 0}
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  currBulletsInMag: 0
 --- !u!33 &3026011425234772935
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -337,6 +317,7 @@ GameObject:
   - component: {fileID: 7573123992235967000}
   - component: {fileID: 7129777726360691537}
   - component: {fileID: 261371845054209605}
+  - component: {fileID: 4653605347361355914}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -358,9 +339,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7998788953275866943}
+  - {fileID: 4278510062329790396}
   - {fileID: 68672907967764417}
   - {fileID: 1743675206200840126}
-  - {fileID: 4278510062329790396}
   - {fileID: 9203769780832663550}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -376,9 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3a74fe8e1d08f45a58a100920fe368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerController
+  gunModel: {fileID: 3983449946716837181}
   characterController: {fileID: 261371845054209605}
   cameraController: {fileID: 8081750746837319756}
-  gunList: []
   HP: 50
   Stamina: 25
   staminaUsage: 10
@@ -403,8 +384,11 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  ammoCur: 5
+  ammoMax: 30
   interactRange: 0
   inventory: []
+  gunList: []
 --- !u!143 &261371845054209605
 CharacterController:
   m_ObjectHideFlags: 0
@@ -430,6 +414,103 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!82 &4653605347361355914
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627023998640886693}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8827468473653221634
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +583,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 1024
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
