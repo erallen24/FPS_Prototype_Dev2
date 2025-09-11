@@ -65,7 +65,7 @@ public class Damage : MonoBehaviour
             dmg.TakeDamage(damageAmount);
         }
 
-        if (damageType.stationary != type && damageType.DOT != type)
+        if (damageType.moving == type || damageType.homing == type)
         {
             Destroy(gameObject);
         }
