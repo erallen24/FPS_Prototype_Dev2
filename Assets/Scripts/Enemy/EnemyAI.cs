@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [SerializeField] bool isBoss = false;
     public GameObject dropItem;
+    public Vector3 dropItemOffset = Vector3(0,0,0);
 
     Color colorOrig;
     float shootTimer;
@@ -56,7 +57,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         GameManager.instance.updateGameGoal(-1);
         if (isBoss)
         {
-            Instantiate(dropItem,transform.position, transform.rotation);
+            Instantiate(dropItem,transform.position + dropItemOffset, transform.rotation);
         }
     }
 
