@@ -18,6 +18,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] Transform lookPos;
 
+    [SerializeField] bool isBoss = false;
+    public GameObject dropItem;
+
     Color colorOrig;
     float shootTimer;
     bool playerInTrigger;
@@ -51,6 +54,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     void OnDestroy()
     {
         GameManager.instance.updateGameGoal(-1);
+        if (isBoss)
+        {
+            Instantiate(dropItem,transform.position, transform.rotation);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
