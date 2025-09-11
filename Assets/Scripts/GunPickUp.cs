@@ -47,7 +47,7 @@ public class GunPickUp : MonoBehaviour
                 //    return; // Player already has this gun, do not pick up again
                 pickupable.GetGunStats(gun);
                 gun.ammoCur = gun.ammoMax; // Refill ammo when picked up
-                Destroy(gameObject); // Destroy the pickup object after it has been picked up
+
             }
 
             //else if (playerUpgrade != null)
@@ -57,5 +57,6 @@ public class GunPickUp : MonoBehaviour
 
 
         }
+        Destroy(gameObject); // Destroy the pickup object after being picked up
     }
 }
