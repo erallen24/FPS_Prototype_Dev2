@@ -166,6 +166,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void youWin()
+    {
+        if (menuActive == null)
+        {
+            statePause();
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+        }
+    }
+
     public void updateGameKillStat(int amount)
     {
         gameKillCount += amount;
