@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [SerializeField] bool isBoss = false;
     public GameObject dropItem;
-    public Vector3 dropItemOffset = Vector3(0,0,0);
+    public Vector3 dropItemOffset = new Vector3(0,0,0);
 
     Color colorOrig;
     float shootTimer;
