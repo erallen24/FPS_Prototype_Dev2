@@ -74,6 +74,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [SerializeField][UnityEngine.Range(0, 1)] private float shootRate;
     [Space(5)]
     [SerializeField] LayerMask ignoreLayer;
+
+
     public int ammoCur = 5;
     [SerializeField] int ammoMax = 30; // Maximum ammo capacity
     [Header("INTERACTION SETTINGS")]
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     private float shootTimer;
     private int gunListPos;
     private bool canSprint;
+    private bool isReloading;
     private AudioSource audioSource;
 
     private void Start()
@@ -107,6 +110,15 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         UpdateInteract();
         UpdateCanSprint();
         UpdateStamina();
+
+        GameManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AttemptReload();
+        }
+
+        SelectGun();
     }
 
     public void UpdatePlayerUI()
@@ -257,16 +269,26 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     {
         shootTimer += Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        if (Input.GetButton("Fire1") && CanShoot() && shootTimer >= shootRate)
         {
             Shoot();
         }
+        else if (ammoCur <= 0 && !isReloading)
+        {
+            AttemptReload();
+        }
+    }
+
+    private bool CanShoot()
+    {
+        return ammoCur > 0 && !isReloading;
     }
 
     private void Shoot()
     {
         // resetting the shoot timer //
         shootTimer = 0;
+        ammoCur--;
 
         // performing shoot raycast //
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, shootDistance, ~ignoreLayer))
@@ -280,6 +302,23 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             // null check on the target. if target is not null, we call 'TakeDamage'
             target?.TakeDamage(shootDamage);
         }
+    }
+
+    private void AttemptReload()
+    {
+        if (isReloading || ammoCur >= ammoMax)
+            return;
+
+        StartCoroutine(ReloadSequence());
+    }
+
+    private IEnumerator ReloadSequence()
+    {
+        isReloading = true;
+
+        yield return new WaitForSeconds(gunList[gunListPos].reloadTime);
+        ammoCur = ammoMax;
+        isReloading = false;
     }
 
     public void UpdatePlayerHealthBarUI()
