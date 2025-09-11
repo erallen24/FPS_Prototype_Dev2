@@ -7,7 +7,7 @@ public class Drone : EnemyAI
     public override void Movement(Vector3 playerDir)
     {
         //playerDir = GameManager.instance.player.transform.position - transform.position;
-        agent.SetDestination(GameManager.instance.player.transform.position);
+        agent.SetDestination(GameManager.instance.player.transform.position + Vector3.up);
         if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(playerDir); }
     }
 

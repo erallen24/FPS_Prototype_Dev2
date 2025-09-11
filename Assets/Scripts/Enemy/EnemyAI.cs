@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform lookPos;
+    
 
     [SerializeField] bool isBoss = false;
     public GameObject dropItem;
@@ -84,13 +85,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        RaycastHit see;
+        
         playerDir = GameManager.instance.player.transform.position - lookPos.position;
         angleToPlayer = Vector3.Angle(transform.forward, playerDir);
 
+        RaycastHit see;
         Debug.DrawRay(lookPos.transform.position, playerDir, Color.red);
 
-        if(Physics.Raycast(lookPos.position, playerDir, out see))
+        if(Physics.Raycast(lookPos.position, playerDir + Vector3.up, out see))
         {
             if(angleToPlayer <= FOV && see.collider.CompareTag("Player"))
             {
