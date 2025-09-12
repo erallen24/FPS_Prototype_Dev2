@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 7504108110862419655}
   - component: {fileID: 3289968970883989802}
   m_Layer: 5
-  m_Name: Score Feedback Text
+  m_Name: Level Feedback Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10173,7 +10173,7 @@ GameObject:
   - component: {fileID: 8872381297714115139}
   - component: {fileID: 4224634012960682110}
   m_Layer: 5
-  m_Name: Score HUD Feedback
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21714,7 +21714,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -10, y: 4}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 110.1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1119709677537295128
 CanvasRenderer:
@@ -21744,7 +21744,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score:'
+  m_text: "XP LVL: \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6c94400abcfdf27498b8c2a789bd3794, type: 2}
   m_sharedMaterial: {fileID: -6918112913404781705, guid: 6c94400abcfdf27498b8c2a789bd3794, type: 2}
@@ -30529,7 +30529,7 @@ GameObject:
   - component: {fileID: 7057354180704497137}
   - component: {fileID: 7489709366819486250}
   m_Layer: 5
-  m_Name: Player Score UI
+  m_Name: Player Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30704,7 +30704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105, y: 0}
+  m_AnchoredPosition: {x: 112.6, y: 0}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &126493507414579452

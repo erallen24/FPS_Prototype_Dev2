@@ -25,10 +25,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject subMenuInventory;
 
 
-
-    [SerializeField] TMP_Text scoreHUDText;
-    [SerializeField] GameObject scoreHUDFeedback;
-    [SerializeField] TMP_Text scoreHUDFeedbackText;
+    public int playerLevel = 0;
+    [SerializeField] TMP_Text levelHUDText;
+    [SerializeField] GameObject levelHUDFeedback;
+    [SerializeField] TMP_Text levelHUDFeedbackText;
 
 
     [SerializeField] TMP_Text playerAmmo;
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
     public void updatePlayerScore(int amount)
     {
         gameScore += amount;
-        scoreHUDText.text = gameScore.ToString("F0");
+        levelHUDText.text = gameScore.ToString("F0");
         scoreMenuStat.text = gameScore.ToString("F0");
         StartCoroutine(addScoreHUD(amount));
     }
@@ -257,36 +257,36 @@ public class GameManager : MonoBehaviour
 
     IEnumerator addScoreHUD(int amount)
     {
-        scoreHUDFeedbackText.text = amount.ToString("F0");
-        Color colorOrig = scoreHUDText.color;
+        levelHUDFeedbackText.text = amount.ToString("F0");
+        Color colorOrig = levelHUDText.color;
         Color colorChange = Color.green;
 
-        scoreHUDFeedback.SetActive(true);
+        levelHUDFeedback.SetActive(true);
 
         float duration = 0.7f;
         float elapsed = 0f;
         Vector3 startScale = Vector3.one * 1.5f;
         Vector3 endScale = Vector3.zero;
 
-        CanvasGroup cg = scoreHUDFeedback.GetComponent<CanvasGroup>();
+        CanvasGroup cg = levelHUDFeedback.GetComponent<CanvasGroup>();
         cg.alpha = 1f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            scoreHUDText.color = Color.Lerp(colorOrig, colorChange, t);
-            scoreHUDFeedback.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            levelHUDText.color = Color.Lerp(colorOrig, colorChange, t);
+            levelHUDFeedback.transform.localScale = Vector3.Lerp(startScale, endScale, t);
 
             cg.alpha = Mathf.Lerp(1f, 0f, t);
             yield return null;
         }
-        scoreHUDText.color = colorOrig;
-        scoreHUDFeedback.transform.localScale = endScale;
+        levelHUDText.color = colorOrig;
+        levelHUDFeedback.transform.localScale = endScale;
         cg.alpha = 0f;
-        scoreHUDFeedback.SetActive(false);
+        levelHUDFeedback.SetActive(false);
         cg.alpha = 1f; // reset alpha for next time
-        scoreHUDFeedback.transform.localScale = startScale;
+        levelHUDFeedback.transform.localScale = startScale;
 
     }
 
@@ -311,4 +311,34 @@ public class GameManager : MonoBehaviour
         playerAmmoCanvas.SetActive(false);
     }
 
+    public void LevelUp()
+    {
+        levelHUDFeedbackText.text = "Level Up!";
+        levelHUDFeedback.SetActive(true);
+        StartCoroutine(LevelUpRoutine());
+        playerLevel++;
+        levelHUDText.text = playerLevel.ToString();
+    }
+    IEnumerator LevelUpRoutine()
+    {
+        float duration = 1.5f;
+        float elapsed = 0f;
+        Vector3 startScale = Vector3.one * 1.5f;
+        Vector3 endScale = Vector3.zero;
+        CanvasGroup cg = levelHUDFeedback.GetComponent<CanvasGroup>();
+        cg.alpha = 1f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            levelHUDFeedback.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            cg.alpha = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+        levelHUDFeedback.transform.localScale = endScale;
+        cg.alpha = 0f;
+        levelHUDFeedback.SetActive(false);
+        cg.alpha = 1f; // reset alpha for next time
+        levelHUDFeedback.transform.localScale = startScale;
+    }
 }
