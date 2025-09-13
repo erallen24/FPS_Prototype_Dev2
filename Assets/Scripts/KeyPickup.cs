@@ -30,13 +30,13 @@ public class KeyPickup : MonoBehaviour, IInteractable
 
     void Update()
     {
-        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
 
         float scaler = Mathf.PingPong(Time.time * scaleSpeed, 1f);
         float scale = 1 + scaler * scaleAmount;
         transform.localScale = origScale * scale;
     }
-   
+
 
     public void Interact()
     {
@@ -47,5 +47,5 @@ public class KeyPickup : MonoBehaviour, IInteractable
         Destroy(gameObject);
     }
 
-    
+
 }
