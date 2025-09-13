@@ -23181,9 +23181,10 @@ MonoBehaviour:
   subMenuControls: {fileID: 5706211731204591442}
   subMenuAudio: {fileID: 7382945976758594257}
   subMenuInventory: {fileID: 6796247872754498732}
-  scoreHUDText: {fileID: 8355343052157141347}
-  scoreHUDFeedback: {fileID: 2675546810065034068}
-  scoreHUDFeedbackText: {fileID: 3289968970883989802}
+  playerLevel: 0
+  levelHUDText: {fileID: 0}
+  levelHUDFeedback: {fileID: 0}
+  levelHUDFeedbackText: {fileID: 0}
   playerAmmo: {fileID: 4911369976875990465}
   gameGoalCountText: {fileID: 8636743951761693657}
   keyCountText: {fileID: 3377240690252081175}
@@ -33357,7 +33358,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1700, y: 40}
+  m_SizeDelta: {x: 1700, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &816772709559004402
 CanvasRenderer:
@@ -33392,7 +33393,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.557
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
