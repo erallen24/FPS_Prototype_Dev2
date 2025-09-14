@@ -12,21 +12,28 @@ public class Pickup : ScriptableObject
         Health,
         Damage,
         Ammo,
+        Rage,
         FireRate,
-        ExtendedMag
+        ExtendedMag,
+        SoulSteal,
     }
 
     //[SerializeField] gunStats gun;
-    public UpgradeType type; // Type of upgrade
+
     public GameObject model;
     public bool isEquippable; // Indicates if the pickup can be equipped (e.g., a gun)
+    public UpgradeType type;
+    public UpgradeType type2;
+    public UpgradeType type3;
     // Upgrade type array
-    //public UpgradeType[] Types;
+    // public UpgradeType[] Types;
 
     [Range(1, 10)] public int level = 1; // Level of the upgrade
-                                         //[Range(1, 100)] public int cost = 10; // Cost of the upgrade
-                                         //[Range(1, 5)] public int expValue;
-
+    //[Range(1, 100)] public int cost = 10; // Cost of the upgrade
+    //[Range(1, 5)] public int expValue;
+    public string description; // Description of the upgrade
+    public string upgradeName; // Name of the upgrade
+    public Sprite icon; // Icon of the upgrade
     public AudioClip pickupSound; // Sound played when the upgrade is picked up
     public AudioClip useSound; // Sound played when the upgrade is used
     public AudioClip dropSound; // Sound played when the upgrade is dropped
