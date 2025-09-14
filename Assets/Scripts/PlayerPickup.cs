@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class PlayerPickup : MonoBehaviour, IInteractable
+public class playerPickup : MonoBehaviour, IInteractable
 {
     public inventoryItem item;
-
+    public Pickup pickup;
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
     public float pulseMagnitude = 0.1f; // Magnitude of the pulsing effect
@@ -64,11 +64,6 @@ public class PlayerPickup : MonoBehaviour, IInteractable
         Destroy(gameObject);
         GameManager.instance.UpdateInteractPrompt("");
     }
-        rotation = Quaternion.Euler(initialRotation);
-        pulseTimer += Time.deltaTime * pulseSpeed;
-        float scaleFactor = 1 + Mathf.Sin(pulseTimer) * pulseMagnitude;
-        transform.localScale = initialScale * scaleFactor;
-        transform.position = originalPosition + new Vector3(0, Mathf.Sin(pulseTimer) * pulseMagnitude, 0); // Adjust the Y position for pulsing effect
 
 
 

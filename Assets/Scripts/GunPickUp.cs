@@ -35,29 +35,5 @@ public class GunPickUp : MonoBehaviour
 
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        IPickup pickupable = other.GetComponent<IPickup>();
 
-        if (pickupable != null)
-        {
-            if (gun != null)
-            {
-
-                //if (pickupable.hasGun(gun)))
-                //    return; // Player already has this gun, do not pick up again
-                pickupable.GetGunStats(gun);
-                gun.ammoCur = gun.ammoMax; // Refill ammo when picked up
-
-            }
-
-            //else if (playerUpgrade != null)
-            //{
-            //    pickupable.GetPickUp(playerUpgrade); // Call the getPickUp method on the pickupable object
-            //}
-
-
-        }
-        Destroy(gameObject); // Destroy the pickup object after being picked up
-    }
 }
