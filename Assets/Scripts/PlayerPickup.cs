@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerPickup : MonoBehaviour, IInteractable
 {
     public inventoryItem item;
+
     public PickupData pickup;
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
@@ -15,7 +16,7 @@ public class PlayerPickup : MonoBehaviour, IInteractable
     private Vector3 initialRotation;
     private Quaternion rotation;
 
-
+    private inventoryItem.ItemType itemType;
     private void Start()
     {
         //gun = gameObject.GetComponent<inventoryItem>();
@@ -23,6 +24,7 @@ public class PlayerPickup : MonoBehaviour, IInteractable
         initialScale = transform.localScale;
         initialRotation = transform.eulerAngles;
         rotation = Quaternion.Euler(initialRotation);
+        itemType = item.itemType;
     }
 
     private void Update()
@@ -40,9 +42,6 @@ public class PlayerPickup : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        //if (GameManager.instance.playerScript.HasItem(gun))
-        //    return; // Player already has this gun, do not pick up again
-
         Debug.Log("Should be picking up");
 
         // Wait for enter key press to apply upgrade
@@ -60,7 +59,7 @@ public class PlayerPickup : MonoBehaviour, IInteractable
 
         //else if (GameManager.instance.playerScript.HasItem(item))
         //    GameManager.instance.UpdateInteractPrompt("You already own the " + item.name);
-        GameManager.instance.playerScript.ApplyUpgradeNow(pickup);
+        GameManager.instance.playerScript.ApplyUpgradeNow(pickup, itemType);
         Destroy(gameObject);
         GameManager.instance.UpdateInteractPrompt("");
     }

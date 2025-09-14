@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b5f3ad67a0dbb42a6498397769bf46, type: 3}
+  m_Script: {fileID: 11500000, guid: 99c46d5c12285cb4abc07fbb960d1a39, type: 3}
   m_Name: Adrenaline_Pickup
   m_EditorClassIdentifier: Assembly-CSharp::Pickup
-  model: {fileID: 0}
-  isEquippable: 0
-  Types: 
+  model: {fileID: 7209111790770355595, guid: e28d41b7e62652f47b27d4dd4c256850, type: 3}
+  isEquippable: 1
   level: 1
   pickupSound: {fileID: 0}
   useSound: {fileID: 0}
   dropSound: {fileID: 0}
-  speed: 0
+  speed: 5
   sprintMod: 0
   health: 0
   damage: 0

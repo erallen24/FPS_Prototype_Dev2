@@ -497,37 +497,43 @@ public class PlayerController : MonoBehaviour, IDamage
             startingEXP = startingEXP - maxEXP;
         }
     }
-    public void ApplyUpgradeNow(PickupData pickup)
+    public void ApplyUpgradeNow(PickupData pickup, inventoryItem.ItemType itemType)
     {
-        var type = pickup.type;
-        switch (type)
+
+        switch (itemType)
         {
-            case PickupData.UpgradeType.Speed:
+            case inventoryItem.ItemType.AdrenalineShot:
                 movementSpeed += pickup.speed;
                 if (movementSpeed > 20)
                     movementSpeed = 20; // Cap speed to a maximum value
                 break;
-            case PickupData.UpgradeType.Health:
+            case inventoryItem.ItemType.Shield:
                 HP += pickup.health;
-                if (HP > initialHP) HP = initialHP; // Cap health to original max health
+                if (HP > initialHP)
+                    HP = initialHP; // Cap health to initial value
                 UpdatePlayerHealthBarUI();
                 break;
-            case PickupData.UpgradeType.Damage:
-                gunList[gunListPos].shootDamage += pickup.damage;
+            case inventoryItem.ItemType.EMP:
+                // Implement EMP effect here
                 break;
-            case PickupData.UpgradeType.FireRate:
-                gunList[gunListPos].shootRate = Mathf.Max(0.1f, shootRate - pickup.shootRate); // Decrease shoot rate but not below 0.1 seconds
+            case inventoryItem.ItemType.CloakingDevice:
+                // Implement Cloaking effect here
                 break;
-            case PickupData.UpgradeType.Ammo:
-                gunList[gunListPos].ammoCur = Mathf.Min(gunList[gunListPos].ammoCur + pickup.ammoAdd, gunList[gunListPos].ammoMax); // Ensure current ammo does not exceed max
+            case inventoryItem.ItemType.StunGrenade:
+                // Implement Stun Grenade effect here
+
                 break;
-            case PickupData.UpgradeType.ExtendedMag:
-                gunList[gunListPos].ammoMax += pickup.ammoMax; // Increase ammo capacity
-                gunList[gunListPos].ammoCur = Mathf.Min(gunList[gunListPos].ammoCur + pickup.ammoAdd, gunList[gunListPos].ammoMax); // Ensure current ammo does not exceed max
+            case inventoryItem.ItemType.Bomb:
+            // Implement Bomb effect here
+
+            case inventoryItem.ItemType.Armor:
                 break;
-            default:
-                Debug.LogWarning("Unknown pickup type: " + type);
+            case inventoryItem.ItemType.Accessory:
                 break;
+            case inventoryItem.ItemType.Misc:
+                break;
+
+
         }
     }
 

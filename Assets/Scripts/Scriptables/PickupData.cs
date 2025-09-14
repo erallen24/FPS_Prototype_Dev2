@@ -4,23 +4,24 @@ using UnityEngine;
 public class PickupData : ScriptableObject
 {
     // Enum of player upgrades
-    public enum UpgradeType
-    {
-        None,
-        Speed,
-        Health,
-        Damage,
-        Ammo,
-        FireRate,
-        ExtendedMag
-    }
+    //public enum UpgradeType
+    //{
+    //    None,
+    //    Speed,
+    //    Health,
+    //    Damage,
+    //    Ammo,
+    //    FireRate,
+    //    ExtendedMag
+    //}
 
     //[SerializeField] gunStats gun;
-    public UpgradeType type; // Type of upgrade
+    //public inventoryItem.ItemType item;
+    //public UpgradeType type; // Type of upgrade
     public GameObject model;
     public bool isEquippable; // Indicates if the pickup can be equipped (e.g., a gun)
-    // Upgrade type array
-    //public UpgradeType[] Types;
+                              // Upgrade type array
+
 
     [Range(1, 10)] public int level = 1; // Level of the upgrade
                                          //[Range(1, 100)] public int cost = 10; // Cost of the upgrade

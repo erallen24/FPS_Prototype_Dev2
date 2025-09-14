@@ -6493,11 +6493,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7931474825064240168}
+  - component: {fileID: 5887590129085484508}
   - component: {fileID: 2242568829034564666}
   - component: {fileID: 1910918582291381311}
   - component: {fileID: 1905448435718215145}
   - component: {fileID: 100695787973783582}
   - component: {fileID: 3959742444196081263}
+  - component: {fileID: 7881814355864127399}
   m_Layer: 0
   m_Name: Adrenaline_Syringe
   m_TagString: Untagged
@@ -6524,6 +6526,23 @@ Transform:
   - {fileID: 7992568224726103119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5887590129085484508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209111790770355595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b2441745c1e3f4db8e9d0447049729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
+  item: {fileID: 11400000, guid: d8b8c117ac5d9364ba3377e313fd4e17, type: 2}
+  pickup: {fileID: 11400000, guid: 794ad2d58e9bc5949ac773495b2e2e0b, type: 2}
+  rotateSpeed: 50
+  pulseSpeed: 2
+  pulseMagnitude: 0.1
 --- !u!114 &2242568829034564666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7164,6 +7183,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!135 &7881814355864127399
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7209111790770355595}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.96
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8984520415719950899
 GameObject:
   m_ObjectHideFlags: 0
