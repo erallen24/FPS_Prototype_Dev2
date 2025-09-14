@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playerPickup : MonoBehaviour, IInteractable
+public class PlayerPickup : MonoBehaviour, IInteractable
 {
     public inventoryItem item;
     public Pickup pickup;
@@ -78,5 +78,4 @@ public class playerPickup : MonoBehaviour, IInteractable
         }
 
     }
-
 }

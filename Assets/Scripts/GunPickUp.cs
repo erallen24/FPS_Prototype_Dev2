@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class GunPickUp : MonoBehaviour
+public class GunPickUp : MonoBehaviour, IInteractable
 {
-    public WeaponData gun;
+    public WeaponData gunStat;
+    [SerializeField] inventoryItem gun;
 
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
@@ -35,5 +36,32 @@ public class GunPickUp : MonoBehaviour
 
 
     }
+
+    public void Interact()
+    {
+        //if (GameManager.instance.playerScript.HasItem(gun))
+        //    return; // Player already has this gun, do not pick up again
+
+        Debug.Log("Should be picking up");
+        GameManager.instance.playerScript.GetGunStats(gunStat, gun);
+        gunStat.ammoCur = gunStat.ammoMax;
+
+
+        Destroy(gameObject);
+        GameManager.instance.UpdateInteractPrompt("");
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + gun.itemName);
+            GameManager.instance.interactPromptText.color = Color.white;
+        }
+
+    }
+
 
 }
