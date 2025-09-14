@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b5f3ad67a0dbb42a6498397769bf46, type: 3}
+  m_Name: Adrenaline_Pickup
+  m_EditorClassIdentifier: Assembly-CSharp::Pickup
+  model: {fileID: 0}
+  isEquippable: 0
+  Types: 
+  level: 1
+  pickupSound: {fileID: 0}
+  useSound: {fileID: 0}
+  dropSound: {fileID: 0}
+  speed: 0
+  sprintMod: 0
+  health: 0
+  damage: 0
+  shootDamage: 10
+  shootDist: 10
+  shootRate: 0.1
+  ammoAdd: 5
+  ammoMax: 5
+  hitEffect: {fileID: 0}
+  upgradeClips: []
