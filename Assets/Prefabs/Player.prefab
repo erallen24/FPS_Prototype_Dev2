@@ -362,7 +362,7 @@ MonoBehaviour:
   characterController: {fileID: 261371845054209605}
   cameraController: {fileID: 8081750746837319756}
   HP: 100
-  healthRegen: 0.2
+  healthRegen: 1
   Stamina: 25
   staminaUsage: 10
   staminaRegen: 10
