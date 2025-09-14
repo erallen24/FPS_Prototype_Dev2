@@ -66,8 +66,6 @@ public class HealthStation : MonoBehaviour, IInteractable
         GameManager.instance.playerScript.FillPlayerHPBar(healAmount);
         yield return new WaitForSeconds(1f);
 
-        objectRenderer.material = origMaterial;
-        isHealing = false;
     }
 
 

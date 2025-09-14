@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         Initialize();
         ammoCur = ammoMax;
+        InfoManager.instance.ShowWarning("ESCAPE!", "Use WASD to move, Shift to sprint, Space to jump, Ctrl to crouch, Left Click to shoot, R to reload, E to interact, Mouse Wheel to switch weapons.", 10);
 
     }
 
