@@ -67,6 +67,11 @@ public class EnemyAI : MonoBehaviour, IDamage
                 if (shootTimer >= shootRate) { Shoot(); }
             }
         }
+        //if (isBoss && HP > 0)
+        //{
+        //    GameManager.instance.bossHPBar.gameObject.SetActive(true);
+        //    StartCoroutine(DisplayHPBar(0));
+        //}
     }
 
 
@@ -94,6 +99,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             if (isBoss)
             {
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
+                GameManager.instance.bossHPBar.gameObject.SetActive(false);
             }
             Destroy(gameObject);
             GameManager.instance.playerScript.addEXP(expValue);
@@ -149,13 +155,24 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator DisplayHPBar(int amount)
     {
-        healthBar.gameObject.SetActive(true);
-        healthBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
-        // change color of health bar based on % of health left as a gradient from green to red
-        healthBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
+        if (!isBoss)
+        {
+            healthBar.gameObject.SetActive(true);
+            healthBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
+            // change color of health bar based on % of health left as a gradient from green to red
+            healthBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
 
 
-        yield return new WaitForSeconds(1f);
-        healthBar.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1f);
+            healthBar.gameObject.SetActive(false);
+        }
+        else if (isBoss)
+        {
+            GameManager.instance.bossHPBar.gameObject.SetActive(true);
+            GameManager.instance.bossHPBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
+            GameManager.instance.bossHPBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
+            yield return new WaitForSeconds(1f);
+
+        }
     }
 }

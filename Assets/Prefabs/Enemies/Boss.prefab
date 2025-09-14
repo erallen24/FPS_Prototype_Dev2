@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262b183cf24793e479ec9b0c3a86333d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  HP: 10
+  HP: 50
   shootRate: 0.75
   turnSpeed: 20
   FOV: 90

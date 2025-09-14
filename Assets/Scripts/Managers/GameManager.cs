@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerAmmoCanvas;
     public Image playerAmmoBar;
     public Image playerBulletImage;
+    public GameObject bossHPBar;
+    public Image bossHPBarFill;
 
     public GameObject playerDamageScreen;
     public GameObject playerHealthScreen;
