@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     [Header("HEALTH SETTINGS")]
     [Space(10)]
-    [SerializeField][UnityEngine.Range(0, 300)] private int HP;
+    [SerializeField][UnityEngine.Range(5, 300)] private int HP;
+    [Space(10)]
+    [SerializeField][UnityEngine.Range(1, 10)] private int healthRegen;
     [Space(10)]
 
     [Header("Stamina SETTINGS")]
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [Space(10)]
     [SerializeField][UnityEngine.Range(0, 10)] private float staminaRegen;
     [Space(10)]
+
+
 
     [Header("Starting EXP")]
     [Space(10)]
@@ -189,6 +193,29 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             movementState = MovementState.Default;
         }
     }
+    public void UpdatePlayerHealthBarUI()
+    {
+        // updating the player health bar fill to reflect the current HP //
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / initialHP;
+    }
+
+    public void FillPlayerHPBar(int healAmount)
+    {
+
+        HP += healAmount * healthRegen;
+        UpdatePlayerHealthBarUI();
+
+
+        // Lerp the health bar fill amount to the new HP value
+
+
+        if (HP > initialHP)
+        {
+            HP = initialHP;
+            UpdatePlayerHealthBarUI();
+        }
+
+    }
 
     public void UpdatePlayerStaminaBarUI()
     {
@@ -338,31 +365,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         isReloading = false;
     }
 
-    public void UpdatePlayerHealthBarUI()
-    {
-        // updating the player health bar fill to reflect the current HP //
-        GameManager.instance.playerHPBar.fillAmount = (float)HP / initialHP;
-    }
 
-    public void FillPlayerHPBar(int healFactor)
-    {
-        // fill health overtime with lerp
-
-        while (HP < initialHP)
-        {
-            HP += 1 * healFactor;
-            UpdatePlayerHealthBarUI();
-            if (HP > initialHP)
-            {
-                HP = initialHP;
-            }
-        }
-
-        UpdatePlayerHealthBarUI();
-
-
-
-    }
 
     public void TakeDamage(int amount)
     {

@@ -1,20 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealthStation : MonoBehaviour
 {
     [SerializeField] Renderer objectRenderer;
+
     [SerializeField] Material activeMaterial;
-
-    [SerializeField] int healFactor = 5;
-
+    [SerializeField] int healAmount = 1;
     private bool isHealing = false;
-    private Material[] materials;
-    private Color originalColor;
+    private Material origMaterial;
+    //private Color originalColor;
 
     void Start()
     {
-        originalColor = objectRenderer.material.color;
-        materials = objectRenderer.materials;
+        origMaterial = objectRenderer.material;
         objectRenderer = GetComponent<Renderer>();
     }
 
@@ -23,8 +22,8 @@ public class HealthStation : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Hold still to Heal");
-            GameManager.instance.interactPromptText.color = Color.green;
+            GameManager.instance.UpdateInteractPrompt("Hold still to Heal...");
+            GameManager.instance.interactPromptText.color = Color.red;
         }
     }
 
@@ -32,27 +31,24 @@ public class HealthStation : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (GameManager.instance.playerScript.isFullyHealed)
-            {
-                isHealing = false;
-                materials[0] = null;
-                objectRenderer.materials = materials;
-                GameManager.instance.UpdateInteractPrompt("Health Full");
-                GameManager.instance.interactPromptText.color = Color.white;
-            }
 
-            while (!GameManager.instance.playerScript.isFullyHealed)
+            if (!GameManager.instance.playerScript.isFullyHealed)
             {
 
                 isHealing = true;
-                materials[0] = activeMaterial;
-                objectRenderer.materials = materials;
-
-                GameManager.instance.playerScript.FillPlayerHPBar(healFactor);
+                StartCoroutine(HealOverTime());
 
 
             }
-            isHealing = false;
+
+            if (GameManager.instance.playerScript.isFullyHealed)
+            {
+                isHealing = false;
+                GameManager.instance.UpdateInteractPrompt("Fully Healed!");
+                GameManager.instance.interactPromptText.color = Color.green;
+                objectRenderer.material = origMaterial;
+            }
+
 
 
         }
@@ -66,8 +62,21 @@ public class HealthStation : MonoBehaviour
         GameManager.instance.interactPromptText.color = Color.white;
 
         isHealing = false;
-        materials[0] = null;
-        objectRenderer.materials = materials;
 
+        objectRenderer.material = origMaterial;
+
+    }
+
+    private IEnumerator HealOverTime()
+    {
+        while (isHealing && !GameManager.instance.playerScript.isFullyHealed)
+        {
+            objectRenderer.material = activeMaterial;
+            GameManager.instance.playerScript.FillPlayerHPBar(healAmount);
+            yield return new WaitForSeconds(1f);
+        }
+
+        objectRenderer.material = origMaterial;
+        isHealing = false;
     }
 }
