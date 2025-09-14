@@ -11,7 +11,7 @@ public class DoorMover : MonoBehaviour, IInteractable
 
     [SerializeField] Renderer objectRenderer;
     [SerializeField] Material activeMaterial;
-    
+
     [SerializeField] inventoryItem key;
 
     [SerializeField] bool isLocked;
@@ -30,7 +30,7 @@ public class DoorMover : MonoBehaviour, IInteractable
         openPosition = closedPosition + moveDir * moveDist;
         materials = objectRenderer.materials;
         objectRenderer = GetComponent<Renderer>();
-        
+
     }
 
     // Update is called once per frame
@@ -105,6 +105,6 @@ public class DoorMover : MonoBehaviour, IInteractable
         {
             Open();
         }
-            
+
     }
 }

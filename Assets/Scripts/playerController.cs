@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     private bool isReloading;
     private AudioSource audioSource;
 
+    public bool isFullyHealed => HP >= initialHP;
+
     private void Start()
     {
         Initialize();
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         UpdateStamina();
         UpdatePlayerEXPBarUI();
         UpdatePlayerStaminaBarUI();
+        UpdatePlayerHealthBarUI();
 
         GameManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
 
@@ -134,15 +137,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             GameManager.instance.ActivateAmmoUI();
         else
             GameManager.instance.DeactivateAmmoUI();
-        UpdatePlayerUI();
+
         SelectGun();
     }
 
-    public void UpdatePlayerUI()
-    {
-        UpdatePlayerHealthBarUI();
-        //UpdatePlayerStaminaBarUI();
-    }
+
     private void Initialize()
     {
         // setting the initial HP and stamina for bar processing //
@@ -151,7 +150,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         maxEXP = 500;
 
         // Setting health bar to fill to the set amount at game start up
-        UpdatePlayerUI();
+        UpdatePlayerHealthBarUI();
         UpdatePlayerEXPBarUI();
 
         // assigning component references //
@@ -209,7 +208,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             Stamina += staminaRegen * Time.deltaTime;
         }
 
-        UpdatePlayerUI();
     }
 
     private void UpdateCanSprint()
@@ -346,11 +344,31 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         GameManager.instance.playerHPBar.fillAmount = (float)HP / initialHP;
     }
 
+    public void FillPlayerHPBar(int healFactor)
+    {
+        // fill health overtime with lerp
+
+        while (HP < initialHP)
+        {
+            HP += 1 * healFactor;
+            UpdatePlayerHealthBarUI();
+            if (HP > initialHP)
+            {
+                HP = initialHP;
+            }
+        }
+
+        UpdatePlayerHealthBarUI();
+
+
+
+    }
+
     public void TakeDamage(int amount)
     {
         HP -= amount;
 
-        UpdatePlayerUI();
+        UpdatePlayerHealthBarUI();
         StartCoroutine(FlashDamageScreen());
 
         if (HP <= 0)
@@ -424,7 +442,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
         //audioSource.PlayOneShot(gunList[gunListPos].pickUpSound);
-        UpdatePlayerUI();
+        UpdatePlayerHealthBarUI();
 
 
     }
@@ -488,7 +506,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         ApplyUpgradeNow(upgrade); // Apply the upgrade effects
 
         //}
-        UpdatePlayerUI();
+        UpdatePlayerHealthBarUI();
     }
 
     void ApplyUpgradeNow(Pickup upgrade)
@@ -504,7 +522,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             case Pickup.UpgradeType.Health:
                 HP += upgrade.health;
                 if (HP > initialHP) HP = initialHP; // Cap health to original max health
-                UpdatePlayerUI();
+                UpdatePlayerHealthBarUI();
                 break;
             case Pickup.UpgradeType.Damage:
                 gunList[gunListPos].shootDamage += upgrade.damage;
