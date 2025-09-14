@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 282789834555943985}
   - component: {fileID: 2993213081307220016}
   - component: {fileID: 3893999130346134663}
+  - component: {fileID: 1954490981269626105}
   - component: {fileID: 2215268053347017313}
   m_Layer: 0
   m_Name: Rifle
@@ -138,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec5a24a443de634d916ca25d7d39b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunPickUp
-  gun: {fileID: 11400000, guid: fae7dc7b4b87c2b4cb3ebae025c93e92, type: 2}
+  gunStat: {fileID: 11400000, guid: fae7dc7b4b87c2b4cb3ebae025c93e92, type: 2}
+  gun: {fileID: 11400000, guid: 6e1dd22c7094d3f4db59d5d1be335e57, type: 2}
   rotateSpeed: 50
   pulseSpeed: 2
   pulseMagnitude: 0.1
@@ -198,6 +200,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1954490981269626105
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644428181523386065}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.29459885, y: 1.046652, z: 2.3059063}
+  m_Center: {x: -0.0012764346, y: -0.1993529, z: -0.18658137}
 --- !u!135 &2215268053347017313
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -217,5 +240,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.1529531
-  m_Center: {x: -0.0012764346, y: -0.1993529, z: -0.18658137}
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
