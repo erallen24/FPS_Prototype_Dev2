@@ -1,8 +1,7 @@
-using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Pickup : ScriptableObject
+public class PickupData : ScriptableObject
 {
     // Enum of player upgrades
     public enum UpgradeType
@@ -48,5 +47,4 @@ public class Pickup : ScriptableObject
     // public int extendedMagAmmoMax = 50; // Maximum ammo with extended mag
     public ParticleSystem hitEffect;
     public AudioClip[] upgradeClips;
-
 }

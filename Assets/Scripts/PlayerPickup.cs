@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerPickup : MonoBehaviour, IInteractable
 {
     public inventoryItem item;
-    public Pickup pickup;
+    public PickupData pickup;
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
     public float pulseMagnitude = 0.1f; // Magnitude of the pulsing effect
