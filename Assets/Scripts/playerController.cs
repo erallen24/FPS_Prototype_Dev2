@@ -410,7 +410,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     public void UpdateInteract()
     {
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButton("Interact"))
         {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange, ~ignoreLayer))
             {

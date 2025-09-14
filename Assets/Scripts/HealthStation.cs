@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HealthStation : MonoBehaviour
+public class HealthStation : MonoBehaviour, IInteractable
 {
     [SerializeField] Renderer objectRenderer;
 
@@ -22,39 +22,32 @@ public class HealthStation : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Hold still to Heal...");
+            GameManager.instance.UpdateInteractPrompt("Hold E to Heal...");
             GameManager.instance.interactPromptText.color = Color.red;
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public void Interact()
     {
-        if (other.CompareTag("Player"))
+        if (!GameManager.instance.playerScript.isFullyHealed)
         {
 
-            if (!GameManager.instance.playerScript.isFullyHealed)
-            {
-
-                isHealing = true;
-                StartCoroutine(HealOverTime());
-
-
-            }
-
-            if (GameManager.instance.playerScript.isFullyHealed)
-            {
-                isHealing = false;
-                GameManager.instance.UpdateInteractPrompt("Fully Healed!");
-                GameManager.instance.interactPromptText.color = Color.green;
-                objectRenderer.material = origMaterial;
-            }
-
+            isHealing = true;
+            StartCoroutine(HealOverTime());
 
 
         }
 
-
+        if (GameManager.instance.playerScript.isFullyHealed)
+        {
+            isHealing = false;
+            GameManager.instance.UpdateInteractPrompt("Fully Healed!");
+            GameManager.instance.interactPromptText.color = Color.green;
+            objectRenderer.material = origMaterial;
+        }
     }
+
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -69,14 +62,13 @@ public class HealthStation : MonoBehaviour
 
     private IEnumerator HealOverTime()
     {
-        while (isHealing && !GameManager.instance.playerScript.isFullyHealed)
-        {
-            objectRenderer.material = activeMaterial;
-            GameManager.instance.playerScript.FillPlayerHPBar(healAmount);
-            yield return new WaitForSeconds(1f);
-        }
+        objectRenderer.material = activeMaterial;
+        GameManager.instance.playerScript.FillPlayerHPBar(healAmount);
+        yield return new WaitForSeconds(1f);
 
         objectRenderer.material = origMaterial;
         isHealing = false;
     }
+
+
 }
