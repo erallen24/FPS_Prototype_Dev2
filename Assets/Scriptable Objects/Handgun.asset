@@ -12,19 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8dd587fcbb0e647bf1200fe158c578, type: 3}
   m_Name: Handgun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  model: {fileID: 0}
-  pickUpSound: {fileID: 0}
-  emptyClipSound: {fileID: 0}
-  reloadSound: {fileID: 0}
-  shootSounds: []
-  shootVolume: 0.5
   gunType: 0
   shootDamage: 5
   shootDistance: 10
   shootRate: 0.5
-  ammoCur: 0
-  ammoMax: 5
+  magazineSize: 10
   reloadTime: 0.5
   impactEffect: {fileID: 0}
   impactForce: 40
-  recoil: 0
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0

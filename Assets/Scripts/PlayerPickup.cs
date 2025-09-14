@@ -1,9 +1,6 @@
-using NUnit.Framework.Interfaces;
 using UnityEngine;
 
-public class PlayerPickup : MonoBehaviour, IInteractable
 {
-    public Pickup playerPickup;
     public inventoryItem item;
 
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
@@ -62,10 +59,33 @@ public class PlayerPickup : MonoBehaviour, IInteractable
 
         //else if (GameManager.instance.playerScript.HasItem(item))
         //    GameManager.instance.UpdateInteractPrompt("You already own the " + item.name);
-        GameManager.instance.playerScript.ApplyUpgradeNow(playerPickup);
+        GameManager.instance.playerScript.ApplyUpgradeNow(pickup);
         Destroy(gameObject);
         GameManager.instance.UpdateInteractPrompt("");
     }
+    private void Start()
+    {
+        //gun = gameObject.GetComponent<inventoryItem>();
+        originalPosition = transform.position;
+        initialScale = transform.localScale;
+        initialRotation = transform.eulerAngles;
+        rotation = Quaternion.Euler(initialRotation);
+    }
+
+    private void Update()
+    {
+        // Optional: Add any rotation or animation to the pickup object for visual effect
+        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime); // Rotate around the Y-axis
+        // Pulsing effect with up and down movement
+        pulseTimer += Time.deltaTime * pulseSpeed;
+        float scaleFactor = 1 + Mathf.Sin(pulseTimer) * pulseMagnitude;
+        transform.localScale = initialScale * scaleFactor;
+        transform.position = originalPosition + new Vector3(0, Mathf.Sin(pulseTimer) * pulseMagnitude, 0); // Adjust the Y position for pulsing effect
+
+
+    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
