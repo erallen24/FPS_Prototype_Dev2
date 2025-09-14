@@ -110,12 +110,14 @@ public class PlayerController : MonoBehaviour, IDamage
     private AudioSource audioSource;
 
     public bool isFullyHealed => HP >= initialHP;
+    public bool isLowHealth => HP <= initialHP * 0.3f;
+
 
     private void Start()
     {
         Initialize();
         ammoCur = ammoMax;
-        InfoManager.instance.ShowWarning("ESCAPE!", "Use WASD to move, Shift to sprint, Space to jump, Ctrl to crouch, Left Click to shoot, R to reload, E to interact, Mouse Wheel to switch weapons.", 10);
+        InfoManager.instance.ShowMessage("ESCAPE!", "Use WASD to move, Shift to sprint, Space to jump, Ctrl to crouch, Left Click to shoot, R to reload, E to interact, Mouse Wheel to switch weapons.", Color.lightBlue, 10);
 
     }
 
@@ -371,6 +373,12 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         HP -= amount;
+
+        if (isLowHealth && !InfoManager.instance.IsInfoShowing())
+        {
+
+            InfoManager.instance.ShowMessage("WARNING!", "Health Critical!", Color.red, 2);
+        }
 
         UpdatePlayerHealthBarUI();
         StartCoroutine(FlashDamageScreen());
