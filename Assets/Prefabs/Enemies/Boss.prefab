@@ -1060,6 +1060,8 @@ MonoBehaviour:
   agent: {fileID: 7768174520856253768}
   model: {fileID: 2744295106452693610}
   lookPos: {fileID: 5429590394000627058}
+  healthBar: {fileID: 0}
+  healthBarFill: {fileID: 0}
   isBoss: 0
   dropItem: {fileID: 0}
   dropItemOffset: {x: 0, y: 0, z: 0}
