@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamage, IPickup
+public class PlayerController : MonoBehaviour, IDamage
 {
     enum StanceState { Standing, Crouching }
     enum MovementState { Default, Sprinting }
@@ -428,10 +428,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     }
 
-    public void GetGunStats(WeaponData gun)
+    public void GetGunStats(WeaponData gunStat, inventoryItem gun)
     {
-        gunList.Add(gun);
+        if (HasItem(gun))
+            return; // Player already has this gun, do not pick up again
+        gunList.Add(gunStat);
         gunListPos = gunList.Count - 1;
+        AddItem(gun);
+
         ChangeGun();
     }
 
@@ -493,56 +497,38 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             startingEXP = startingEXP - maxEXP;
         }
     }
+    //void ApplyUpgradeNow(Pickup upgrade)
+    //{
+    //    var type = upgrade.type;
+    //    switch (type)
+    //    {
+    //        case Pickup.UpgradeType.Speed:
+    //            movementSpeed += upgrade.speed;
+    //            if (movementSpeed > 20)
+    //                movementSpeed = 20; // Cap speed to a maximum value
+    //            break;
+    //        case Pickup.UpgradeType.Health:
+    //            HP += upgrade.health;
+    //            if (HP > initialHP) HP = initialHP; // Cap health to original max health
+    //            UpdatePlayerHealthBarUI();
+    //            break;
+    //        case Pickup.UpgradeType.Damage:
+    //            gunList[gunListPos].shootDamage += upgrade.damage;
+    //            break;
+    //        case Pickup.UpgradeType.FireRate:
+    //            gunList[gunListPos].shootRate = Mathf.Max(0.1f, shootRate - upgrade.shootRate); // Decrease shoot rate but not below 0.1 seconds
+    //            break;
+    //        case Pickup.UpgradeType.Ammo:
+    //            gunList[gunListPos].ammoCur = Mathf.Min(gunList[gunListPos].ammoCur + upgrade.ammoAdd, gunList[gunListPos].ammoMax); // Ensure current ammo does not exceed max
+    //            break;
+    //        case Pickup.UpgradeType.ExtendedMag:
+    //            gunList[gunListPos].ammoMax += upgrade.ammoMax; // Increase ammo capacity
+    //            gunList[gunListPos].ammoCur = Mathf.Min(gunList[gunListPos].ammoCur + upgrade.ammoAdd, gunList[gunListPos].ammoMax); // Ensure current ammo does not exceed max
+    //            break;
+    //        default:
+    //            Debug.LogWarning("Unknown upgrade type: " + type);
+    //            break;
+    //    }
+    //}
 
-    public void GetPickUp(Pickup upgrade)
-    {
-        audioSource.PlayOneShot(upgrade.pickupSound);
-
-        //if (upgrade.isEquippable)
-        //{
-        //    inventory.Add(upgrade); // Add the new pickup to the pickup list
-        //}
-
-
-        //else if (!upgrade.isEquippable)
-        //{
-        ApplyUpgradeNow(upgrade); // Apply the upgrade effects
-
-        //}
-        UpdatePlayerHealthBarUI();
-    }
-
-    void ApplyUpgradeNow(Pickup upgrade)
-    {
-        var type = upgrade.type;
-        switch (type)
-        {
-            case Pickup.UpgradeType.Speed:
-                movementSpeed += upgrade.speed;
-                if (movementSpeed > 20)
-                    movementSpeed = 20; // Cap speed to a maximum value
-                break;
-            case Pickup.UpgradeType.Health:
-                HP += upgrade.health;
-                if (HP > initialHP) HP = initialHP; // Cap health to original max health
-                UpdatePlayerHealthBarUI();
-                break;
-            case Pickup.UpgradeType.Damage:
-                gunList[gunListPos].shootDamage += upgrade.damage;
-                break;
-            case Pickup.UpgradeType.FireRate:
-                gunList[gunListPos].shootRate = Mathf.Max(0.1f, shootRate - upgrade.shootRate); // Decrease shoot rate but not below 0.1 seconds
-                break;
-            case Pickup.UpgradeType.Ammo:
-                gunList[gunListPos].ammoCur = Mathf.Min(gunList[gunListPos].ammoCur + upgrade.ammoAdd, gunList[gunListPos].ammoMax); // Ensure current ammo does not exceed max
-                break;
-            case Pickup.UpgradeType.ExtendedMag:
-                gunList[gunListPos].ammoMax += upgrade.ammoMax; // Increase ammo capacity
-                gunList[gunListPos].ammoCur = Mathf.Min(gunList[gunListPos].ammoCur + upgrade.ammoAdd, gunList[gunListPos].ammoMax); // Ensure current ammo does not exceed max
-                break;
-            default:
-                Debug.LogWarning("Unknown upgrade type: " + type);
-                break;
-        }
-    }
 }

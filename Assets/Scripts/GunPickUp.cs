@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class GunPickUp : MonoBehaviour
+public class GunPickUp : MonoBehaviour, IInteractable
 {
-    public WeaponData gun;
+    public WeaponData gunStat;
 
+    [SerializeField] inventoryItem gun;
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
     public float pulseMagnitude = 0.1f; // Magnitude of the pulsing effect
@@ -15,8 +16,10 @@ public class GunPickUp : MonoBehaviour
     private Vector3 initialRotation;
     private Quaternion rotation;
 
+
     private void Start()
     {
+        //gun = gameObject.GetComponent<inventoryItem>();
         originalPosition = transform.position;
         initialScale = transform.localScale;
         initialRotation = transform.eulerAngles;
@@ -35,29 +38,31 @@ public class GunPickUp : MonoBehaviour
 
 
     }
+
+    public void Interact()
+    {
+        //if (GameManager.instance.playerScript.HasItem(gun))
+        //    return; // Player already has this gun, do not pick up again
+
+        Debug.Log("Should be picking up");
+        GameManager.instance.playerScript.GetGunStats(gunStat, gun);
+        gunStat.ammoCur = gunStat.ammoMax;
+
+        Destroy(gameObject);
+        GameManager.instance.UpdateInteractPrompt("");
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        IPickup pickupable = other.GetComponent<IPickup>();
 
-        if (pickupable != null)
+        if (other.CompareTag("Player"))
         {
-            if (gun != null)
-            {
-
-                //if (pickupable.hasGun(gun)))
-                //    return; // Player already has this gun, do not pick up again
-                pickupable.GetGunStats(gun);
-                gun.ammoCur = gun.ammoMax; // Refill ammo when picked up
-
-            }
-
-            //else if (playerUpgrade != null)
-            //{
-            //    pickupable.GetPickUp(playerUpgrade); // Call the getPickUp method on the pickupable object
-            //}
-
-
+            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + gun.itemName);
+            GameManager.instance.interactPromptText.color = Color.white;
         }
-        Destroy(gameObject); // Destroy the pickup object after being picked up
+
     }
+
+
 }
