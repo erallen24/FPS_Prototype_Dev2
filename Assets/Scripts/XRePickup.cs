@@ -38,15 +38,21 @@ public class XRePickup : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        HUDManager.instance.UpdateInteractPrompt("");
         //Debug.Log("Should be picking up");
         if (HUDManager.instance.collectedModules.Contains(moduleData))
         {
             // Already collected this module
-            HUDManager.instance.UpdateInteractPrompt(moduleData.name + " already collected.");
+            HUDManager.instance.ShowPromptTemporary(moduleData.name + " already collected.", 3);
             return;
         }
+
         HUDManager.instance.ActivateModule(moduleData);
         Destroy(gameObject);
+
+
+
+
 
 
     }
@@ -56,8 +62,9 @@ public class XRePickup : MonoBehaviour, IInteractable
 
         if (other.CompareTag("Player"))
         {
-            HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + moduleData.name);
             HUDManager.instance.interactPromptText.color = Color.white;
+            HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + moduleData.name);
+
         }
 
     }
