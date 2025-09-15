@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text keyCountText;
 
-    public Transform playerRetical;
+    public Image playerRetical;
     public Image playerHPBar;
     // public Image playerRageBar;
     public Image playerStaminaBar;
@@ -306,11 +306,14 @@ public class GameManager : MonoBehaviour
     public void ActivateAmmoUI()
     {
         playerAmmoCanvas.SetActive(true);
+        playerRetical.enabled = true;
     }
 
     public void DeactivateAmmoUI()
     {
         playerAmmoCanvas.SetActive(false);
+        playerRetical.enabled = false;
+
     }
 
     public void LevelUp()

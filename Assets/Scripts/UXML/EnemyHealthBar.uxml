@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/UXML/EnemyBarSS.uss?fileID=7433441132597879392&amp;guid=c7f7d079d49fc8741b6d898ed57be003&amp;type=3#EnemyBarSS" />
+    <ui:VisualElement name="VisualElement" style="align-self: center; align-content: center; width: 500px; height: 36px; align-items: auto; justify-content: space-between; flex-direction: row; translate: -13px 10px; position: absolute; border-top-left-radius: 0; opacity: 1; top: 39px; left: 40px; transform-origin: center;" />
+</ui:UXML>

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c33bf07ef2ebd47beea6f4eb0ec223, type: 3}
+  m_Name: XRE-3K
+  m_EditorClassIdentifier: Assembly-CSharp::XReModule
+  moduleName: "XR\xE9-3K"
+  description: Activates tactical HUD and minimap overlays.
+  icon: {fileID: 21300000, guid: e80ce491c090bce479ac614b2e0839ad, type: 3}
+  layersToEnable:
+  - '"Enemy Minimap"'
+  - '"Terrain"'
+  overlayObjects: []
+  activationMessage: "XR\xE9-3K online. Tactical HUD activated.\u201D"
+  activationSound: {fileID: 8300000, guid: 7f3ed365822e922468d856c266019140, type: 3}
