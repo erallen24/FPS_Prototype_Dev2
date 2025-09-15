@@ -22,8 +22,8 @@ public class HealthStation : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Hold E to Heal...");
-            GameManager.instance.interactPromptText.color = Color.red;
+            HUDManager.instance.UpdateInteractPrompt("Hold E to Heal...");
+            HUDManager.instance.interactPromptText.color = Color.red;
         }
     }
 
@@ -41,8 +41,8 @@ public class HealthStation : MonoBehaviour, IInteractable
         if (GameManager.instance.playerScript.isFullyHealed)
         {
             isHealing = false;
-            GameManager.instance.UpdateInteractPrompt("Fully Healed!");
-            GameManager.instance.interactPromptText.color = Color.green;
+            HUDManager.instance.UpdateInteractPrompt("Fully Healed!");
+            HUDManager.instance.interactPromptText.color = Color.green;
             objectRenderer.material = origMaterial;
         }
     }
@@ -51,8 +51,8 @@ public class HealthStation : MonoBehaviour, IInteractable
 
     private void OnTriggerExit(Collider other)
     {
-        GameManager.instance.UpdateInteractPrompt("");
-        GameManager.instance.interactPromptText.color = Color.white;
+        HUDManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.interactPromptText.color = Color.white;
 
         isHealing = false;
 

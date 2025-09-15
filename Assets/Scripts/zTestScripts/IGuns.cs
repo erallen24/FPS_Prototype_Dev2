@@ -25,7 +25,7 @@ public class IGuns : MonoBehaviour
     void Update()
     {
         UpdateShoot();
-        GameManager.instance.updatePlayerAmmo(currBulletsInMag, WeaponData.ammoMax);
+        HUDManager.instance.updatePlayerAmmo(currBulletsInMag, WeaponData.ammoMax);
 
         if (Input.GetKeyDown(KeyCode.R))
         {

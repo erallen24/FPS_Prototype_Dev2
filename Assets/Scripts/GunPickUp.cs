@@ -48,7 +48,7 @@ public class GunPickUp : MonoBehaviour, IInteractable
 
 
         Destroy(gameObject);
-        GameManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.UpdateInteractPrompt("");
 
     }
 
@@ -57,8 +57,8 @@ public class GunPickUp : MonoBehaviour, IInteractable
 
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + gun.itemName);
-            GameManager.instance.interactPromptText.color = Color.white;
+            HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + gun.itemName);
+            HUDManager.instance.interactPromptText.color = Color.white;
         }
 
     }

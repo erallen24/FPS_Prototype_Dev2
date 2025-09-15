@@ -1607,17 +1607,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585191011110358241}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6122394291258004199}
+  m_Father: {fileID: 8751478612380774843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8218443072190568394
 CanvasRenderer:
@@ -1682,12 +1682,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675648146046167718}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6122394291258004199}
+  m_Father: {fileID: 8751478612380774843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14035,6 +14035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8751478612380774843}
+  - component: {fileID: 3113994985758995600}
   m_Layer: 5
   m_Name: HUDManager
   m_TagString: Untagged
@@ -14054,7 +14055,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 391933795851812896}
   - {fileID: 2384085546159921266}
+  - {fileID: 5792185700494319185}
+  - {fileID: 2932499009983612357}
   - {fileID: 932328893365472128}
   - {fileID: 5467095532044799797}
   - {fileID: 9188272057903957933}
@@ -14070,6 +14074,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3113994985758995600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440826304646433909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719afb0d1d631054ea8c4364213631ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HUDManager
+  hudCanvas: {fileID: 3440826304646433909}
+  retical: {fileID: 838160679708710226}
+  reticalImage: {fileID: 6447815890435977206}
+  playerUIBars: {fileID: 6973351953298249586}
+  playerHPBar: {fileID: 7159085250941582730}
+  playerStaminaBar: {fileID: 2002193869933263546}
+  playerEXPBar: {fileID: 6674872915767907468}
+  playerAmmoCanvas: {fileID: 9163317302121323596}
+  playerAmmoBar: {fileID: 7834423807004750542}
+  playerBulletImage: {fileID: 5647772087386777730}
+  bossHPBar: {fileID: 3206192702489415647}
+  bossHPBarFill: {fileID: 1616555187475933158}
+  bossNameText: {fileID: 1091647554592013787}
+  playerLevel: 0
+  levelHUDText: {fileID: 8355343052157141347}
+  levelHUDFeedback: {fileID: 2675546810065034068}
+  levelHUDFeedbackText: {fileID: 3289968970883989802}
+  playerAmmo: {fileID: 4911369976875990465}
+  gameGoalCountText: {fileID: 8636743951761693657}
+  keyCountText: {fileID: 3377240690252081175}
+  interactPromptText: {fileID: 2187816353717635658}
+  playerDamageScreen: {fileID: 5500335764307271276}
+  playerHealthScreen: {fileID: 585191011110358241}
+  gameGoalMenuStat: {fileID: 0}
+  scoreMenuStat: {fileID: 0}
+  killStats: {fileID: 0}
+  deathStats: {fileID: 0}
 --- !u!1 &3452853299405743598
 GameObject:
   m_ObjectHideFlags: 0
@@ -14556,12 +14599,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 391933795851812896}
   - {fileID: 4347752757837643474}
   - {fileID: 7633185032847377819}
   - {fileID: 36093134682370947}
-  - {fileID: 5792185700494319185}
-  - {fileID: 2932499009983612357}
   - {fileID: 5283750949284933365}
   - {fileID: 5727639899818944705}
   - {fileID: 7452943052795402000}
@@ -21100,17 +21140,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5500335764307271276}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6122394291258004199}
+  m_Father: {fileID: 8751478612380774843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3120956549314378825
 CanvasRenderer:
@@ -23411,7 +23451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347752757837643474}
   - component: {fileID: 3791321668554733027}
-  - component: {fileID: 7906743208660964293}
+  - component: {fileID: 2685096397842727707}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -23535,7 +23575,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7906743208660964293
+--- !u!114 &2685096397842727707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23554,39 +23594,16 @@ MonoBehaviour:
   menuWin: {fileID: 2684172811196100361}
   menuLose: {fileID: 7223756970843601909}
   menuMain: {fileID: 4974653304472314361}
-  menuSettings: {fileID: 6161730681658595891}
+  menuSettings: {fileID: 8212206430579526002}
   menuInventory: {fileID: 1337795692853090892}
   subMenuGameplay: {fileID: 1120603270427257175}
   subMenuControls: {fileID: 5706211731204591442}
   subMenuAudio: {fileID: 7382945976758594257}
-  subMenuInventory: {fileID: 6796247872754498732}
-  playerLevel: 0
-  levelHUDText: {fileID: 0}
-  levelHUDFeedback: {fileID: 0}
-  levelHUDFeedbackText: {fileID: 0}
-  playerAmmo: {fileID: 4911369976875990465}
-  gameGoalCountText: {fileID: 8636743951761693657}
-  keyCountText: {fileID: 3377240690252081175}
-  playerRetical: {fileID: 6447815890435977206}
-  playerHPBar: {fileID: 7159085250941582730}
-  playerStaminaBar: {fileID: 2002193869933263546}
-  playerEXPBar: {fileID: 6674872915767907468}
-  playerAmmoCanvas: {fileID: 6838281989689049361}
-  playerAmmoBar: {fileID: 7834423807004750542}
-  playerBulletImage: {fileID: 5647772087386777730}
-  bossHPBar: {fileID: 3206192702489415647}
-  bossHPBarFill: {fileID: 1616555187475933158}
-  playerDamageScreen: {fileID: 5500335764307271276}
-  playerHealthScreen: {fileID: 585191011110358241}
-  player: {fileID: 5627023998640886693, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
-  playerScript: {fileID: 7129777726360691537, guid: 08318a87a21b7b54aad7badaa116f5ed, type: 3}
+  subMenuInventory: {fileID: 1337795692853090892}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
   playerSpawnPos: {fileID: 0}
   checkpointPopup: {fileID: 0}
-  gameGoalMenuStat: {fileID: 0}
-  scoreMenuStat: {fileID: 0}
-  killStats: {fileID: 0}
-  deathStats: {fileID: 0}
-  interactPromptText: {fileID: 2187816353717635658}
   isPaused: 0
 --- !u!1 &6312539118572584258
 GameObject:
@@ -31144,7 +31161,7 @@ GameObject:
   - component: {fileID: 126493507414579452}
   - component: {fileID: 8355343052157141347}
   m_Layer: 5
-  m_Name: Game Score Count Text
+  m_Name: Level Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

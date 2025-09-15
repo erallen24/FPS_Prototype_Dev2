@@ -51,22 +51,22 @@ public class DoorMover : MonoBehaviour, IInteractable
         {
             if (!isLocked)
             {
-                GameManager.instance.UpdateInteractPrompt("Door Unlocked! Press 'E' to Open");
+                HUDManager.instance.UpdateInteractPrompt("Door Unlocked! Press 'E' to Open");
             }
             else if (isLocked && GameManager.instance.playerScript.HasItem(key))
             {
-                GameManager.instance.UpdateInteractPrompt("Press 'E' to Unlock Door");
+                HUDManager.instance.UpdateInteractPrompt("Press 'E' to Unlock Door");
             }
             else if (isLocked)
             {
-                GameManager.instance.UpdateInteractPrompt("Door Locked! Find " + key.itemName + " to Unlock.");
+                HUDManager.instance.UpdateInteractPrompt("Door Locked! Find " + key.itemName + " to Unlock.");
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.UpdateInteractPrompt("");
     }
 
     public void Open()
@@ -95,7 +95,7 @@ public class DoorMover : MonoBehaviour, IInteractable
         {
             if (GameManager.instance.playerScript.HasItem(key))
             {
-                GameManager.instance.UpdateInteractPrompt("Door Unlocked!");
+                HUDManager.instance.UpdateInteractPrompt("Door Unlocked!");
                 Unlock();
                 Open();
             }

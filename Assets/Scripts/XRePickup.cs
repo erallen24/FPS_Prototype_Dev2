@@ -46,7 +46,7 @@ public class XRePickup : MonoBehaviour
 
 
         Destroy(gameObject);
-        GameManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.UpdateInteractPrompt("");
 
     }
 
@@ -55,8 +55,8 @@ public class XRePickup : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + moduleData.name);
-            GameManager.instance.interactPromptText.color = Color.white;
+            HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + moduleData.name);
+            HUDManager.instance.interactPromptText.color = Color.white;
         }
 
     }

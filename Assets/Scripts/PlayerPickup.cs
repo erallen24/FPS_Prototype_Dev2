@@ -61,7 +61,7 @@ public class PlayerPickup : MonoBehaviour, IInteractable
         //    GameManager.instance.UpdateInteractPrompt("You already own the " + item.name);
         GameManager.instance.playerScript.ApplyUpgradeNow(pickup, itemType);
         Destroy(gameObject);
-        GameManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.UpdateInteractPrompt("");
     }
 
 
@@ -72,8 +72,8 @@ public class PlayerPickup : MonoBehaviour, IInteractable
 
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Press 'E' to use " + item.itemName);
-            GameManager.instance.interactPromptText.color = Color.white;
+            HUDManager.instance.UpdateInteractPrompt("Press 'E' to use " + item.itemName);
+            HUDManager.instance.interactPromptText.color = Color.white;
         }
 
     }

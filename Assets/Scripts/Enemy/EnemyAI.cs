@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
-        GameManager.instance.updateGameGoal(1);
+        HUDManager.instance.updateGameGoal(1);
         HPOrig = HP;
         StartCoroutine(DisplayHPBar(0));
     }
@@ -95,11 +95,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         if (HP <= 0)
         {
-            GameManager.instance.updateGameGoal(-1);
+            HUDManager.instance.updateGameGoal(-1);
             if (isBoss)
             {
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
-                GameManager.instance.bossHPBar.gameObject.SetActive(false);
+                HUDManager.instance.bossHPBar.gameObject.SetActive(false);
             }
             Destroy(gameObject);
             GameManager.instance.playerScript.addEXP(expValue);
@@ -168,9 +168,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         else if (isBoss)
         {
-            GameManager.instance.bossHPBar.gameObject.SetActive(true);
-            GameManager.instance.bossHPBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
-            GameManager.instance.bossHPBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
+            HUDManager.instance.bossHPBar.gameObject.SetActive(true);
+            HUDManager.instance.bossHPBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
+            HUDManager.instance.bossHPBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
             yield return new WaitForSeconds(1f);
 
         }

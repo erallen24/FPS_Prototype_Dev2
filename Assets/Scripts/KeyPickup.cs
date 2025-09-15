@@ -20,12 +20,12 @@ public class KeyPickup : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + key.itemName);
+            HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + key.itemName);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        GameManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.UpdateInteractPrompt("");
     }
 
     void Update()
@@ -42,8 +42,8 @@ public class KeyPickup : MonoBehaviour, IInteractable
     {
         Debug.Log("Key Found");
         GameManager.instance.playerScript.AddItem(key);
-        GameManager.instance.UpdateKeyCountText();
-        GameManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.UpdateKeyCountText();
+        HUDManager.instance.UpdateInteractPrompt("");
         Destroy(gameObject);
     }
 

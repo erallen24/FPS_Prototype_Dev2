@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerStaminaBarUI();
         UpdatePlayerHealthBarUI();
 
-        GameManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
+        HUDManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -141,9 +141,9 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         if (gunList.Count > 0)
-            GameManager.instance.ActivateAmmoUI();
+            HUDManager.instance.ActivateAmmoUI();
         else
-            GameManager.instance.DeactivateAmmoUI();
+            HUDManager.instance.DeactivateAmmoUI();
 
         SelectGun();
     }
@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerHealthBarUI()
     {
         // updating the player health bar fill to reflect the current HP //
-        GameManager.instance.playerHPBar.fillAmount = (float)HP / initialHP;
+        HUDManager.instance.playerHPBar.fillAmount = (float)HP / initialHP;
     }
 
     public void FillPlayerHPBar(int healAmount)
@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerStaminaBarUI()
     {
         // updating the player stamina bar to show the current stamina at game start
-        GameManager.instance.playerStaminaBar.fillAmount = (float)Stamina / initialStamina;
+        HUDManager.instance.playerStaminaBar.fillAmount = (float)Stamina / initialStamina;
     }
 
     public void UpdateStamina()
@@ -391,9 +391,9 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator FlashDamageScreen()
     {
-        GameManager.instance.playerDamageScreen.SetActive(true);
+        HUDManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        GameManager.instance.playerDamageScreen.SetActive(false);
+        HUDManager.instance.playerDamageScreen.SetActive(false);
     }
 
     private float GetTargetMovementSpeed()
@@ -493,7 +493,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpdatePlayerEXPBarUI()
     {
-        GameManager.instance.playerEXPBar.fillAmount = (float)startingEXP / maxEXP;
+        HUDManager.instance.playerEXPBar.fillAmount = (float)startingEXP / maxEXP;
     }
 
     public void addEXP(int amount)
@@ -502,7 +502,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (startingEXP > maxEXP)
         {
-            GameManager.instance.LevelUp();
+            HUDManager.instance.LevelUp();
             startingEXP = startingEXP - maxEXP;
         }
     }
