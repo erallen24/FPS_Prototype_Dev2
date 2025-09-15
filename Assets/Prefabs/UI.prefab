@@ -14093,7 +14093,7 @@ MonoBehaviour:
   playerHPBar: {fileID: 7159085250941582730}
   playerStaminaBar: {fileID: 2002193869933263546}
   playerEXPBar: {fileID: 6674872915767907468}
-  playerAmmoCanvas: {fileID: 9163317302121323596}
+  playerAmmoCanvas: {fileID: 6838281989689049361}
   playerAmmoBar: {fileID: 7834423807004750542}
   playerBulletImage: {fileID: 5647772087386777730}
   bossHPBar: {fileID: 3206192702489415647}
@@ -26503,7 +26503,7 @@ GameObject:
   - component: {fileID: 6875686812181372111}
   - component: {fileID: 8407592887356253421}
   m_Layer: 5
-  m_Name: WP BKG
+  m_Name: Ammo Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
