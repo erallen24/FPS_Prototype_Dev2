@@ -167,7 +167,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             yield return new WaitForSeconds(1f);
             healthBar.gameObject.SetActive(false);
         }
-        else if (isBoss && HUDManager.instance.collectedModules.Count != 0)
+        else if (isBoss)
         {
             HUDManager.instance.bossHPBar.gameObject.SetActive(true);
             HUDManager.instance.bossHPBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
