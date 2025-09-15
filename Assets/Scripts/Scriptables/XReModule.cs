@@ -23,12 +23,10 @@ public class XReModule : ScriptableObject
     public string moduleName;
     public string description;
     public Sprite icon;
+    public Sprite reticalImage;
 
-    [Header("Minimap Layer Activation")]
-    public string[] layersToEnable;
 
-    [Header("Overlay Modules")]
-    public GameObject[] overlayObjects;
+
 
     [Header("Lore Feedback")]
     [TextArea]

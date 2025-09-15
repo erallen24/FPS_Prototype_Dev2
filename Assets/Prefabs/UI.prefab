@@ -22183,8 +22183,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinimapManager
   minimapCanvas: {fileID: 6942807015925407680}
   minimapCam: {fileID: 213875919992337330, guid: 4293dd70e16e92345a45fdf281139fa7, type: 3}
-  collectedModules: []
   reticalImage: {fileID: 6447815890435977206}
+  tacticalOveralys:
+  - {fileID: 3199139929914582215}
+  - {fileID: 6415020838490707429}
+  environmentalOverlays: []
+  supportOverlays: []
+  offensiveOverlays: []
+  defensiveOverlays: []
+  reconOverlays: []
+  temporalOverlays: []
+  stabilizationOverlays: []
+  experimentalOverlays: []
+  tacticalLayers:
+  - Enemy Minimap
+  - Terrain Minimap
+  environmentalLayers:
+  - Env Hazards Minimap
+  - Terrain Minimap
+  supportLayers: []
+  offensiveLayers:
+  - Enemy Minimap
+  defensiveLayers: []
+  reconLayers: []
+  temporalLayers: []
+  stabilizationLayers: []
+  experimentalLayers: []
+  collectedModules: []
 --- !u!1 &6236029794285732208
 GameObject:
   m_ObjectHideFlags: 0
@@ -34049,6 +34074,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3122338852048037654, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122338852048037654, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122338852048037654, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122338852048037654, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122338852048037654, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 334.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122338852048037654, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280014972710405559, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702489485718135014, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34057,6 +34114,11 @@ PrefabInstance:
 --- !u!224 &2636263782821319265 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1691072966337783650, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+  m_PrefabInstance: {fileID: 3738557333616112899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3199139929914582215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2271967912133464516, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
   m_PrefabInstance: {fileID: 3738557333616112899}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3377240690252081175 stripped
@@ -34070,6 +34132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &6415020838490707429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7702489485718135014, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
+  m_PrefabInstance: {fileID: 3738557333616112899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8636743951761693657 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4916214228045328090, guid: 3e832f323469c6844b5c7c5ae25fb5b9, type: 3}
