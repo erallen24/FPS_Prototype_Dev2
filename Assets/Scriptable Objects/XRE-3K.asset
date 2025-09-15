@@ -25,4 +25,4 @@ MonoBehaviour:
   - {fileID: 3175114391872382538, guid: 3469614cebefdfd41ac28f1b9ff8c0a4, type: 3}
   - {fileID: 5101678201416697042, guid: 160c39226fb420a47bfc86c1cc53aa12, type: 3}
   activationMessage: "XRE-3K online. Tactical HUD activated.\u201D"
-  activationSound: {fileID: 8300000, guid: 7f3ed365822e922468d856c266019140, type: 3}
+  activationSound: {fileID: 8300000, guid: 621035627fa733d4aa21b6bfc889664c, type: 3}

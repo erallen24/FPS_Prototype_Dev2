@@ -4751,8 +4751,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2184337020705867886}
-  - component: {fileID: 7733029287344104008}
   - component: {fileID: 2969323171233676888}
+  - component: {fileID: 1816595998238633875}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -4775,7 +4775,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6122394291258004199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &7733029287344104008
+--- !u!114 &2969323171233676888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344908606748415735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94475756571eb84eaf03f23a63553fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  soundSource: {fileID: 1816595998238633875}
+  victorySounds: []
+  victoryVolume: 0.5
+  loseSounds: []
+  loseVolume: 0.5
+  UI3D: 0
+  enemyShootSounds:
+  - {fileID: 8300000, guid: 7606a0a1d12ca9a47a2d057e59f95133, type: 3}
+  - {fileID: 8300000, guid: dd1f41705a86f674dbc4c291133eb6cb, type: 3}
+  - {fileID: 8300000, guid: 680d65e73b7307143b072789af1e687f, type: 3}
+  enemyHitSounds: []
+  enemyHitVolume: 0.5
+  enemyHit3D: 0
+  priorityEHit: 128
+  enemyDeathSounds: []
+  enemyDeathVolume: 0.25
+  enemyDeath3D: 0
+  priorityEDeath: 128
+  bossEntranceSound: []
+  bossEntranceVolume: 0.5
+  bossEntrance3D: 0
+  priorityBEntrance: 128
+  bossHitSounds: []
+  bossHitVolume: 0.5
+  bossHit3D: 0
+  priorityBHit: 128
+  bossDeathSounds: []
+  bossDeathVolume: 0.5
+  bossDeath3D: 0
+  priorityBDeath: 128
+  wallHitSounds: []
+  wallHitVolume: 0.5
+  wallHit3D: 0
+  priorityWHit: 128
+  wallDestroySounds: []
+  wallDestroyVolume: 0.5
+  wallDestroy3D: 0
+  priorityWDestroy: 128
+  isPlaying: 0
+--- !u!82 &1816595998238633875
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4872,54 +4923,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2969323171233676888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344908606748415735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94475756571eb84eaf03f23a63553fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  soundSource: {fileID: 7733029287344104008}
-  victorySounds: []
-  victoryVolume: 0.5
-  loseSounds: []
-  loseVolume: 0.5
-  UI3D: 0
-  enemyShootSounds: []
-  enemyHitSounds: []
-  enemyHitVolume: 0.5
-  enemyHit3D: 0
-  priorityEHit: 128
-  enemyDeathSounds: []
-  enemyDeathVolume: 0.25
-  enemyDeath3D: 0
-  priorityEDeath: 128
-  bossEntranceSound: []
-  bossEntranceVolume: 0.5
-  bossEntrance3D: 0
-  priorityBEntrance: 128
-  bossHitSounds: []
-  bossHitVolume: 0.5
-  bossHit3D: 0
-  priorityBHit: 128
-  bossDeathSounds: []
-  bossDeathVolume: 0.5
-  bossDeath3D: 0
-  priorityBDeath: 128
-  wallHitSounds: []
-  wallHitVolume: 0.5
-  wallHit3D: 0
-  priorityWHit: 128
-  wallDestroySounds: []
-  wallDestroyVolume: 0.5
-  wallDestroy3D: 0
-  priorityWDestroy: 128
-  isPlaying: 0
 --- !u!1 &1349856928847702990
 GameObject:
   m_ObjectHideFlags: 0
