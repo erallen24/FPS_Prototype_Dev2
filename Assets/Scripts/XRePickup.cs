@@ -40,14 +40,14 @@ public class XRePickup : MonoBehaviour, IInteractable
     {
         HUDManager.instance.UpdateInteractPrompt("");
         //Debug.Log("Should be picking up");
-        if (HUDManager.instance.collectedModules.Contains(moduleData))
+        if (MinimapManager.instance.collectedModules.Contains(moduleData))
         {
             // Already collected this module
             HUDManager.instance.ShowPromptTemporary(moduleData.name + " already collected.", 3);
             return;
         }
 
-        HUDManager.instance.ActivateModule(moduleData);
+        MinimapManager.instance.ActivateModule(moduleData);
         Destroy(gameObject);
 
 
