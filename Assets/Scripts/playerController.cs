@@ -457,7 +457,7 @@ public class PlayerController : MonoBehaviour, IDamage
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        //audioSource.PlayOneShot(gunList[gunListPos].pickUpSound);
+        SoundManager.instance.soundSource.PlayOneShot(gunList[gunListPos].pickUpSound);
         UpdatePlayerHealthBarUI();
 
 

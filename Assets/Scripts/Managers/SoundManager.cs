@@ -87,7 +87,7 @@ public class SoundManager : MonoBehaviour
     public void playEnemyShootSound(Transform objectPosition)
     {
 
-        playSFX(objectPosition, enemyShootSounds, enemyHitVolume, enemyHit3D, priorityEHit);
+        playRandOneShot(objectPosition, enemyShootSounds, enemyHitVolume, enemyHit3D, priorityEHit);
     }
 
     public void playEnemyHitSound(Transform objectPosition)
@@ -184,5 +184,38 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning("No audio clips assigned!");
         }
 
+    }
+
+    // Play one shot sound method with transform parameter
+    public void playOneShot(Transform objectPosition, AudioClip clip, float volume, float sound3D, int priority)
+    {
+        AudioSource audioSource = Instantiate(soundSource, objectPosition.position, Quaternion.identity);
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.spatialBlend = sound3D;
+        audioSource.priority = priority;
+        audioSource.PlayOneShot(clip);
+    }
+
+    public void playRandOneShot(Transform objectPosition, AudioClip[] clips, float volume, float sound3D, int priority)
+    {
+        AudioSource audioSource = Instantiate(soundSource, objectPosition.position, Quaternion.identity);
+        if (clips.Length > 0)
+        {
+            int randomIndex = Random.Range(0, clips.Length);
+            AudioClip clip = clips[randomIndex];
+            audioSource.clip = clip;
+            Debug.Log("Playing sound: " + clip.name);
+            audioSource.volume = volume;
+            audioSource.spatialBlend = sound3D;
+            audioSource.priority = priority;
+            audioSource.PlayOneShot(clip);
+            float clipLength = audioSource.clip.length;
+            Destroy(audioSource.gameObject, clipLength);
+        }
+        else
+        {
+            Debug.LogWarning("No audio clips assigned!");
+        }
     }
 }

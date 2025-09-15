@@ -138,6 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
         Instantiate(bullet, shootPos.position, shootPos.rotation);
+        // SoundManager.instance.playEnemyShootSound(shootPos);
     }
 
     void FaceTarget()
