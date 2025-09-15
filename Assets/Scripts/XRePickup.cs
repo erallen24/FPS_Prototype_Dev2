@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class XRePickup : MonoBehaviour
 {
-    public GameObject modelPrefab; // Reference to the 3D model prefab
+
     public XReModule moduleData; // Reference to the PickupData ScriptableObject
     public Camera minimapCam;
 
