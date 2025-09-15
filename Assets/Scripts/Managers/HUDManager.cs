@@ -63,6 +63,7 @@ public class HUDManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        bossHPBar.SetActive(false);
 
     }
 
