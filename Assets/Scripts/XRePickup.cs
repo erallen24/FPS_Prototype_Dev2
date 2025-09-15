@@ -1,7 +1,6 @@
-using System.Diagnostics;
 using UnityEngine;
 
-public class XRePickup : MonoBehaviour
+public class XRePickup : MonoBehaviour, IInteractable
 {
 
     public XReModule moduleData; // Reference to the PickupData ScriptableObject

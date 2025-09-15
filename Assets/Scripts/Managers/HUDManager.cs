@@ -1,4 +1,4 @@
-using NUnit.Framework;
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -66,7 +66,7 @@ public class HUDManager : MonoBehaviour
     {
         instance = this;
 
-        minimapCam.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -75,11 +75,11 @@ public class HUDManager : MonoBehaviour
         // Check if collected modules is empty and hide minimap if so
         if (collectedModules.Count == 0)
         {
-            minimapCam.gameObject.SetActive(false);
+            minimapCanvas.SetActive(false);
         }
         else
         {
-            minimapCam.gameObject.SetActive(true);
+            minimapCanvas.SetActive(true);
         }
 
     }
