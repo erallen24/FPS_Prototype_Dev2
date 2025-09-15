@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c33bf07ef2ebd47beea6f4eb0ec223, type: 3}
   m_Name: XRE-3K
   m_EditorClassIdentifier: Assembly-CSharp::XReModule
+  modelPrefab: {fileID: 0}
   moduleName: "XR\xE9-3K"
   description: Activates tactical HUD and minimap overlays.
   icon: {fileID: 21300000, guid: e80ce491c090bce479ac614b2e0839ad, type: 3}
   layersToEnable:
   - '"Enemy Minimap"'
   - '"Terrain"'
-  overlayObjects: []
+  overlayObjects:
+  - {fileID: 3175114391872382538, guid: 3469614cebefdfd41ac28f1b9ff8c0a4, type: 3}
+  - {fileID: 5101678201416697042, guid: 160c39226fb420a47bfc86c1cc53aa12, type: 3}
   activationMessage: "XR\xE9-3K online. Tactical HUD activated.\u201D"
   activationSound: {fileID: 8300000, guid: 7f3ed365822e922468d856c266019140, type: 3}

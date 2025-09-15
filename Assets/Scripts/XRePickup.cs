@@ -5,6 +5,7 @@ public class XRePickup : MonoBehaviour
 {
 
     public XReModule moduleData; // Reference to the PickupData ScriptableObject
+
     public Camera minimapCam;
 
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
@@ -42,11 +43,15 @@ public class XRePickup : MonoBehaviour
     public void Interact()
     {
         //Debug.Log("Should be picking up");
-
-
-
+        if (HUDManager.instance.collectedModules.Contains(moduleData))
+        {
+            // Already collected this module
+            HUDManager.instance.UpdateInteractPrompt(moduleData.name + " already collected.");
+            return;
+        }
+        HUDManager.instance.ActivateModule(moduleData, minimapCam);
         Destroy(gameObject);
-        HUDManager.instance.UpdateInteractPrompt("");
+
 
     }
 
@@ -60,4 +65,5 @@ public class XRePickup : MonoBehaviour
         }
 
     }
+
 }

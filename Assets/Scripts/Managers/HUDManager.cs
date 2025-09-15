@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,6 +51,10 @@ public class HUDManager : MonoBehaviour
     public TMP_Text scoreMenuStat; // Score stat in the main/settings menu
     public TMP_Text killStats;
     public TMP_Text deathStats;
+
+    // List of XRE Modules collected
+    public List<XReModule> collectedModules = new List<XReModule>();
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -157,6 +163,75 @@ public class HUDManager : MonoBehaviour
         playerAmmoCanvas.SetActive(false);
         reticalImage.enabled = false;
 
+    }
+    public void ActivateModule(XReModule moduleData, Camera minimapCam)
+    {
+        // Check if the module has already been collected
+        if (collectedModules.Contains(moduleData))
+        {
+            Debug.Log("Module " + moduleData.moduleName + " has already been collected.");
+            foreach (string layer in moduleData.layersToEnable)
+            {
+
+                minimapCam.cullingMask |= LayerMask.GetMask(layer);
+            }
+
+            foreach (GameObject overlay in moduleData.overlayObjects)
+            {
+                if (overlay != null) overlay.SetActive(true);
+            }
+
+            if (!string.IsNullOrEmpty(moduleData.activationMessage))
+                UpdateInteractPrompt(moduleData.activationMessage);
+
+            if (moduleData.activationSound != null)
+                AudioSource.PlayClipAtPoint(moduleData.activationSound, transform.position);
+
+        }
+        else if (!collectedModules.Contains(moduleData))
+        {
+            collectedModules.Add(moduleData);
+
+            foreach (string layer in moduleData.layersToEnable)
+            {
+                // Enable the specified layer in the minimap camera's culling mask
+                minimapCam.cullingMask &= ~LayerMask.GetMask(layer); // Unset the bit to show the layer
+
+                // moduleData.Camera.minimapCam.cullingMask |= LayerMask.GetMask(layer);
+            }
+
+            foreach (GameObject overlay in moduleData.overlayObjects)
+            {
+                if (overlay != null) overlay.SetActive(true);
+            }
+
+            if (!string.IsNullOrEmpty(moduleData.activationMessage))
+                Debug.Log(moduleData.activationMessage);
+
+            if (moduleData.activationSound != null)
+                AudioSource.PlayClipAtPoint(moduleData.activationSound, transform.position);
+        }
+
+    }
+
+    public void DeactivateModule(XReModule moduleData, Camera minimapCam)
+    {
+        // Check if the module has already been collected
+        if (collectedModules.Contains(moduleData))
+        {
+            foreach (string layer in moduleData.layersToEnable)
+            {
+                // Enable the specified layer in the minimap camera's culling mask
+                minimapCam.cullingMask &= ~LayerMask.GetMask(layer);
+
+            }
+
+            foreach (GameObject overlay in moduleData.overlayObjects)
+            {
+                if (overlay != null) overlay.SetActive(false);
+            }
+
+        }
     }
 
     public void LevelUp()
