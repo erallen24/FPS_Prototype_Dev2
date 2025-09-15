@@ -26,6 +26,10 @@ public class HUDManager : MonoBehaviour
     public Image bossHPBarFill;
     public TMP_Text bossNameText;
 
+    [SerializeField] private GameObject minimapCanvas;
+    [SerializeField] private Camera minimapCam;
+
+
     public int playerLevel = 0;
     [SerializeField] TMP_Text levelHUDText;
     [SerializeField] GameObject levelHUDFeedback;
@@ -52,6 +56,7 @@ public class HUDManager : MonoBehaviour
     public TMP_Text killStats;
     public TMP_Text deathStats;
 
+
     // List of XRE Modules collected
     public List<XReModule> collectedModules = new List<XReModule>();
 
@@ -60,11 +65,22 @@ public class HUDManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        minimapCam.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Check if collected modules is empty and hide minimap if so
+        if (collectedModules.Count == 0)
+        {
+            minimapCam.gameObject.SetActive(false);
+        }
+        else
+        {
+            minimapCam.gameObject.SetActive(true);
+        }
 
     }
     public void updateGameGoal(int amount)
@@ -164,7 +180,7 @@ public class HUDManager : MonoBehaviour
         reticalImage.enabled = false;
 
     }
-    public void ActivateModule(XReModule moduleData, Camera minimapCam)
+    public void ActivateModule(XReModule moduleData)
     {
         // Check if the module has already been collected
         if (collectedModules.Contains(moduleData))

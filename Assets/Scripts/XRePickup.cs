@@ -5,9 +5,6 @@ public class XRePickup : MonoBehaviour
 {
 
     public XReModule moduleData; // Reference to the PickupData ScriptableObject
-
-    public Camera minimapCam;
-
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
     public float pulseMagnitude = 0.1f; // Magnitude of the pulsing effect
@@ -49,7 +46,7 @@ public class XRePickup : MonoBehaviour
             HUDManager.instance.UpdateInteractPrompt(moduleData.name + " already collected.");
             return;
         }
-        HUDManager.instance.ActivateModule(moduleData, minimapCam);
+        HUDManager.instance.ActivateModule(moduleData);
         Destroy(gameObject);
 
 
