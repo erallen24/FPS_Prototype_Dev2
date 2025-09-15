@@ -13050,7 +13050,7 @@ MonoBehaviour:
   bossHPBar: {fileID: 3206192702489415647}
   bossHPBarFill: {fileID: 1616555187475933158}
   bossNameText: {fileID: 1091647554592013787}
-  minimapCanvas: {fileID: 0}
+  minimapCanvas: {fileID: 6942807015925407680}
   minimapCam: {fileID: 213875919992337330, guid: 4293dd70e16e92345a45fdf281139fa7, type: 3}
   playerLevel: 0
   levelHUDText: {fileID: 8355343052157141347}
