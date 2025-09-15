@@ -41,8 +41,8 @@ public class XRePickup : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("Should be picking up");
-       
+        //Debug.Log("Should be picking up");
+
 
 
         Destroy(gameObject);
@@ -55,7 +55,7 @@ public class XRePickup : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + moduleData.Name);
+            GameManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + moduleData.name);
             GameManager.instance.interactPromptText.color = Color.white;
         }
 
