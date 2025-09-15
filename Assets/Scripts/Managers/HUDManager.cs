@@ -65,7 +65,7 @@ public class HUDManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-
+        minimapCanvas.SetActive(false);
 
     }
 
@@ -73,14 +73,6 @@ public class HUDManager : MonoBehaviour
     void Update()
     {
         // Check if collected modules is empty and hide minimap if so
-        if (collectedModules.Count == 0)
-        {
-            minimapCanvas.SetActive(false);
-        }
-        else
-        {
-            minimapCanvas.SetActive(true);
-        }
 
     }
     public void updateGameGoal(int amount)
@@ -182,6 +174,7 @@ public class HUDManager : MonoBehaviour
     }
     public void ActivateModule(XReModule moduleData)
     {
+        minimapCanvas.SetActive(true);
         // Check if the module has already been collected
         if (collectedModules.Contains(moduleData))
         {
@@ -211,9 +204,9 @@ public class HUDManager : MonoBehaviour
             foreach (string layer in moduleData.layersToEnable)
             {
                 // Enable the specified layer in the minimap camera's culling mask
-                minimapCam.cullingMask &= ~LayerMask.GetMask(layer); // Unset the bit to show the layer
+                minimapCam.cullingMask |= LayerMask.GetMask(layer); // Unset the bit to show the layer
 
-                // moduleData.Camera.minimapCam.cullingMask |= LayerMask.GetMask(layer);
+
             }
 
             foreach (GameObject overlay in moduleData.overlayObjects)
@@ -222,10 +215,10 @@ public class HUDManager : MonoBehaviour
             }
 
             if (!string.IsNullOrEmpty(moduleData.activationMessage))
-                Debug.Log(moduleData.activationMessage);
+                ShowPromptTemporary(moduleData.activationMessage, 3);
 
             if (moduleData.activationSound != null)
-                AudioSource.PlayClipAtPoint(moduleData.activationSound, transform.position);
+                SoundManager.instance.soundSource.PlayOneShot(moduleData.activationSound);
         }
 
     }
@@ -280,5 +273,15 @@ public class HUDManager : MonoBehaviour
         levelHUDFeedback.SetActive(false);
         cg.alpha = 1f; // reset alpha for next time
         levelHUDFeedback.transform.localScale = startScale;
+    }
+    public void ShowPromptTemporary(string prompt, int duration)
+    {
+        UpdateInteractPrompt(prompt);
+        StartCoroutine(ClearPrompt(duration));
+    }
+    private IEnumerator ClearPrompt(int waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        interactPromptText.text = "";
     }
 }
