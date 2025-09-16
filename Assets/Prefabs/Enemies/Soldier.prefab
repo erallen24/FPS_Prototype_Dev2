@@ -1130,7 +1130,7 @@ MonoBehaviour:
   shield: 10
   shieldRegenTime: 5
   shieldRegenRate: 4
-  shootRate: 100
+  shootRate: 0.25
   turnSpeed: 20
   FOV: 90
   expValue: 25
