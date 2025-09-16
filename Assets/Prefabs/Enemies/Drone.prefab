@@ -792,11 +792,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Drone
   HP: 5
+  shield: 10
+  shieldRegenTime: 5
+  shieldRegenRate: 5
   shootRate: 0.25
   turnSpeed: 2000
   FOV: 90
   expValue: 20
-  colorFlash: {r: 0.8553459, g: 0.8361963, b: 0.094141744, a: 0}
+  HPDamageFlash: {r: 0.76862746, g: 0.07450981, b: 0.07450981, a: 0}
+  shieldDamageFlash: {r: 0.07058824, g: 0.6392157, b: 0.7294118, a: 0}
   shootPos: {fileID: 4433879180305926509}
   bullet: {fileID: 7606571981220202077, guid: c9ab66404a6a38145b417dcae9284761, type: 3}
   agent: {fileID: 4113462824730705717}
@@ -804,6 +808,7 @@ MonoBehaviour:
   lookPos: {fileID: 4433879180305926509}
   healthBar: {fileID: 616597981160145254}
   healthBarFill: {fileID: 3028087468658762297}
+  shieldBar: {fileID: 3661262474081171530}
   isBoss: 0
   dropItem: {fileID: 0}
   dropItemOffset: {x: 0, y: 0, z: 0}
@@ -924,7 +929,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 5
+  m_BaseOffset: 3.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1001 &4107102340851482746
@@ -1036,6 +1041,17 @@ Canvas:
 --- !u!114 &3028087468658762297 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1367605907891380803, guid: 80bf93a31b0a25b469c0588e8b03a5fd, type: 3}
+  m_PrefabInstance: {fileID: 4107102340851482746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &3661262474081171530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 734140632506021936, guid: 80bf93a31b0a25b469c0588e8b03a5fd, type: 3}
   m_PrefabInstance: {fileID: 4107102340851482746}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

@@ -287,11 +287,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turret
   HP: 10
+  shield: 10
+  shieldRegenTime: 2
+  shieldRegenRate: 6
   shootRate: 0.5
   turnSpeed: 200
   FOV: 90
   expValue: 10
-  colorFlash: {r: 0, g: 0, b: 0, a: 0}
+  HPDamageFlash: {r: 0.76862746, g: 0.07450981, b: 0.07450981, a: 0}
+  shieldDamageFlash: {r: 0.07058824, g: 0.6392157, b: 0.7294118, a: 0}
   shootPos: {fileID: 6888747218591113480}
   bullet: {fileID: 5860973264298822383, guid: 4c5e8a6cb04c761438dcc8f1b2fc816e, type: 3}
   agent: {fileID: 0}
@@ -299,6 +303,7 @@ MonoBehaviour:
   lookPos: {fileID: 6888747218591113480}
   healthBar: {fileID: 2536360136553683193}
   healthBarFill: {fileID: 124274507930139558}
+  shieldBar: {fileID: 1833814221774332373}
   isBoss: 0
   dropItem: {fileID: 0}
   dropItemOffset: {x: 0, y: 0, z: 0}
@@ -500,6 +505,17 @@ PrefabInstance:
 --- !u!114 &124274507930139558 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1367605907891380803, guid: 80bf93a31b0a25b469c0588e8b03a5fd, type: 3}
+  m_PrefabInstance: {fileID: 1388011738197694949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &1833814221774332373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 734140632506021936, guid: 80bf93a31b0a25b469c0588e8b03a5fd, type: 3}
   m_PrefabInstance: {fileID: 1388011738197694949}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

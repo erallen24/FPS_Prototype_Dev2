@@ -7,21 +7,26 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
 
     [SerializeField] int HP;
+    [SerializeField] float shield;
+    [SerializeField] float shieldRegenTime;
+    [SerializeField] float shieldRegenRate;
     [SerializeField] public float shootRate;
     [SerializeField] public int turnSpeed;
     [SerializeField] float FOV;
     [SerializeField] int expValue;
 
 
-    [SerializeField] Color colorFlash;
+    [SerializeField] Color HPDamageFlash;
+    [SerializeField] Color shieldDamageFlash;
     [SerializeField] public Transform shootPos;
     [SerializeField] public GameObject bullet;
     public NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform lookPos;
 
-    [SerializeField] Canvas healthBar;
-    [SerializeField] Image healthBarFill;
+    public Canvas healthBar;
+    public Image healthBarFill;
+    public Image shieldBar;
 
     [SerializeField] bool isBoss = false;
     public GameObject dropItem;
@@ -34,6 +39,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool canSeePlayer;
 
     int HPOrig;
+    float shieldOrig;
+    float shieldTimer;
 
     Vector3 playerDir;
 
@@ -43,18 +50,28 @@ public class EnemyAI : MonoBehaviour, IDamage
         colorOrig = model.material.color;
         HUDManager.instance.updateGameGoal(1);
         HPOrig = HP;
+        shieldOrig = shield;
+        healthBarFill.fillAmount = 1;
+        healthBarFill.color = Color.green;
         StartCoroutine(DisplayHPBar(0));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (shootTimer < shootRate + 1) { shootTimer += Time.deltaTime; }
+        if (shootTimer < shootRate + 1f) { shootTimer += Time.deltaTime; }
+        if (shieldTimer < shieldRegenTime + 1f) { shieldTimer += Time.deltaTime; }
+        if (shieldTimer > shieldRegenTime && shield < shieldOrig) 
+        { 
+            shield += Time.deltaTime * shieldRegenRate;
+            if(shield > shieldOrig) { shield = shieldOrig; }
+        }
+
         if (playerInTrigger)
         {
 
 
-            if (CanSeePlayer() && 0 != Time.timeScale)
+            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale)
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
@@ -87,12 +104,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void TakeDamage(int damage)
     {
-        if (HP > 0)
-        {
-            HP -= damage;
-            StartCoroutine(flash());
-            StartCoroutine(DisplayHPBar(damage));
+        shieldTimer = 0;
+
+        if (0 < shield) { 
+            shield -= damage;
         }
+        else { HP -= damage; }
+        StartCoroutine(flash());
+        StartCoroutine(DisplayHPBar(damage));
         if (HP <= 0)
         {
             HUDManager.instance.updateGameGoal(-1);
@@ -104,6 +123,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             Destroy(gameObject);
             GameManager.instance.playerScript.addEXP(expValue);
         }
+        FaceTarget();
+        agent.SetDestination(GameManager.instance.player.transform.position);
 
     }
 
@@ -120,15 +141,18 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if (angleToPlayer <= FOV && see.collider.CompareTag("Player"))
             {
+                //canSeePlayer = true;
                 return true;
             }
         }
+        //canSeePlayer = false;
         return false;
     }
 
     IEnumerator flash()
     {
-        model.material.color = colorFlash;
+        if (0 < shield) { model.material.color = shieldDamageFlash; }
+        else { model.material.color = HPDamageFlash; }
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
     }
@@ -158,10 +182,19 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         if (!isBoss)
         {
+            healthBar.gameObject.transform.rotation = Quaternion.LookRotation(playerDir);
+            healthBarFill.gameObject.transform.rotation = Quaternion.LookRotation(playerDir);
+            shieldBar.gameObject.transform.rotation = Quaternion.LookRotation(playerDir);
+
             healthBar.gameObject.SetActive(true);
+
+            if (0 < shield) { shieldBar.fillAmount = Mathf.Lerp(((float)shield + amount) / shieldOrig, (float)shield / shieldOrig, 1f); }
+            
+            else {
             healthBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
             // change color of health bar based on % of health left as a gradient from green to red
             healthBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
+            }
 
 
             yield return new WaitForSeconds(1f);
