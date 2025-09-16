@@ -40,8 +40,6 @@ public class InfoManager : MonoBehaviour
         textBoxHidPos = new Vector3(textBoxOrigPos.x, textBoxOrigPos.y + 130, textBoxOrigPos.z);
         infoLabelWindow.transform.position = labelHidPos;
         infoMessageWindow.transform.position = textBoxHidPos;
-
-
     }
 
     // Update is called once per frame
