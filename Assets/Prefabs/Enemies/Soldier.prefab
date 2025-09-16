@@ -1127,11 +1127,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   HP: 7
-  shootRate: 0.25
+  shield: 10
+  shieldRegenTime: 5
+  shieldRegenRate: 4
+  shootRate: 100
   turnSpeed: 20
   FOV: 90
   expValue: 25
-  colorFlash: {r: 0, g: 0, b: 0, a: 0}
+  HPDamageFlash: {r: 0.76729554, g: 0.07479912, b: 0.07479912, a: 1}
+  shieldDamageFlash: {r: 0.07112048, g: 0.63802487, b: 0.72955966, a: 0.6}
   shootPos: {fileID: 1274086604976986036}
   bullet: {fileID: 7606571981220202077, guid: c9ab66404a6a38145b417dcae9284761, type: 3}
   agent: {fileID: 9018555672938558459}
@@ -1139,6 +1143,7 @@ MonoBehaviour:
   lookPos: {fileID: 9028894201727836953}
   healthBar: {fileID: 1633581484782211153}
   healthBarFill: {fileID: 3756231535412966158}
+  shieldBar: {fileID: 3236496031345289597}
   isBoss: 0
   dropItem: {fileID: 0}
   dropItemOffset: {x: 0, y: 0, z: 0}
@@ -2410,6 +2415,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 3490785905678401820, guid: 80bf93a31b0a25b469c0588e8b03a5fd, type: 3}
   m_PrefabInstance: {fileID: 2799663358784016717}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3236496031345289597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 734140632506021936, guid: 80bf93a31b0a25b469c0588e8b03a5fd, type: 3}
+  m_PrefabInstance: {fileID: 2799663358784016717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &3756231535412966158 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1367605907891380803, guid: 80bf93a31b0a25b469c0588e8b03a5fd, type: 3}

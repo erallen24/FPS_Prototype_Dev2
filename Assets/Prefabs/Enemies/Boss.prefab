@@ -1050,11 +1050,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   HP: 50
+  shield: 20
+  shieldRegenTime: 10
+  shieldRegenRate: 10
   shootRate: 0.75
   turnSpeed: 20
   FOV: 90
   expValue: 150
-  colorFlash: {r: 1, g: 0, b: 0, a: 0}
+  HPDamageFlash: {r: 0.76862746, g: 0.07450981, b: 0.07450981, a: 0}
+  shieldDamageFlash: {r: 0.07058824, g: 0.6392157, b: 0.7294118, a: 0}
   shootPos: {fileID: 4049199666153798290}
   bullet: {fileID: 7606571981220202077, guid: 842bcb57bdfe705429bf348769f8bd84, type: 3}
   agent: {fileID: 7768174520856253768}
@@ -1062,6 +1066,7 @@ MonoBehaviour:
   lookPos: {fileID: 5429590394000627058}
   healthBar: {fileID: 0}
   healthBarFill: {fileID: 0}
+  shieldBar: {fileID: 0}
   isBoss: 0
   dropItem: {fileID: 0}
   dropItemOffset: {x: 0, y: 0, z: 0}

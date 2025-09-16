@@ -1320,6 +1320,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9237099998113434, guid: 24598e5ce35682349829ad12c8a922b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5548429014390796503, guid: 24598e5ce35682349829ad12c8a922b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 24598e5ce35682349829ad12c8a922b7, type: 3}
 --- !u!1001 &527558806
 PrefabInstance:
@@ -1369,9 +1372,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2759811839300787062, guid: e850e2ba850fc21479e828c60e06a11e, type: 3}
+      propertyPath: shield
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759811839300787062, guid: e850e2ba850fc21479e828c60e06a11e, type: 3}
+      propertyPath: shootRate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9158097827013172978, guid: e850e2ba850fc21479e828c60e06a11e, type: 3}
       propertyPath: m_Name
       value: Drone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158097827013172978, guid: e850e2ba850fc21479e828c60e06a11e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3367,6 +3382,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shield
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldBar
+      value: 
+      objectReference: {fileID: 1092167488}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shootRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.b
+      value: 0.07479912
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.g
+      value: 0.07479912
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.r
+      value: 0.76729554
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldRegenRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldRegenTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.a
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.b
+      value: 0.72955966
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.g
+      value: 0.63802487
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.r
+      value: 0.07112048
+      objectReference: {fileID: 0}
     - target: {fileID: 4147149932465396712, guid: 60310996e7d520045bdd257d6419debb, type: 3}
       propertyPath: m_Name
       value: Soldier
@@ -3987,6 +4054,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &1092167488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3236496031345289597, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 999305417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1125225663
 GameObject:
   m_ObjectHideFlags: 0
@@ -4251,6 +4329,10 @@ PrefabInstance:
     - target: {fileID: 6625255117049526444, guid: 75073d602676e69498ce0640ea3faf12, type: 3}
       propertyPath: m_Name
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625255117049526444, guid: 75073d602676e69498ce0640ea3faf12, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7440498599067404892, guid: 75073d602676e69498ce0640ea3faf12, type: 3}
       propertyPath: m_LocalPosition.x
