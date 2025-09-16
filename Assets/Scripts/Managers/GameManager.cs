@@ -105,7 +105,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     public void youLose()
     {
         if (menuActive == null)
