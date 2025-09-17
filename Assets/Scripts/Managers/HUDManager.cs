@@ -38,6 +38,8 @@ public class HUDManager : MonoBehaviour
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text keyCountText;
     [SerializeField] TMP_Text playerLevelEXP;
+    [SerializeField] TMP_Text playerHealthValue;
+    [SerializeField] TMP_Text playerStaminaValue;
 
     public TMP_Text interactPromptText;
 
@@ -218,5 +220,15 @@ public class HUDManager : MonoBehaviour
     public void updatePlayerEXP(int curr, int max)
     {
         playerLevelEXP.text = curr.ToString("F0") + "/" + max.ToString("F0");
+    }
+
+    public void updateHealthValue(int current)
+    {
+        playerHealthValue.text = current.ToString("F0");
+    }
+
+    public void updateStaminaValue(int current)
+    {
+        playerStaminaValue.text = current.ToString("F0");
     }
 }

@@ -12465,6 +12465,8 @@ MonoBehaviour:
   gameGoalCountText: {fileID: 8636743951761693657}
   keyCountText: {fileID: 3377240690252081175}
   playerLevelEXP: {fileID: 2049332344379881212}
+  playerHealthValue: {fileID: 1539941980229028716}
+  playerStaminaValue: {fileID: 6010978340620687405}
   interactPromptText: {fileID: 2187816353717635658}
   playerDamageScreen: {fileID: 5500335764307271276}
   playerHealthScreen: {fileID: 585191011110358241}

@@ -133,6 +133,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         HUDManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
         HUDManager.instance.updatePlayerEXP(startingEXP, maxEXP);
+        HUDManager.instance.updateHealthValue(HP);
+        HUDManager.instance.updateStaminaValue((int)Stamina);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
