@@ -261,7 +261,7 @@ MonoBehaviour:
     m_Bits: 8
   ammoCur: 30
   ammoMax: 30
-  interactRange: 0
+  interactRange: 5
   inventory: []
   gunList: []
 --- !u!143 &261371845054209605
