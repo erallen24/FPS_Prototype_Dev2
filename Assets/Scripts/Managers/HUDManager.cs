@@ -37,6 +37,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text keyCountText;
+    [SerializeField] TMP_Text playerLevelEXP;
 
     public TMP_Text interactPromptText;
 
@@ -212,5 +213,10 @@ public class HUDManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         interactPromptText.text = "";
+    }
+
+    public void updatePlayerEXP(int curr, int max)
+    {
+        playerLevelEXP.text = curr.ToString("F0") + "/" + max.ToString("F0");
     }
 }
