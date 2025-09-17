@@ -51,8 +51,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         HUDManager.instance.updateGameGoal(1);
         HPOrig = HP;
         shieldOrig = shield;
-        healthBarFill.fillAmount = 1;
-        healthBarFill.color = Color.green;
+        if (!isBoss)
+        {
+            healthBarFill.fillAmount = 1;
+            healthBarFill.color = Color.green;
+        }
         StartCoroutine(DisplayHPBar(0));
     }
 
@@ -105,6 +108,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void TakeDamage(int damage)
     {
         shieldTimer = 0;
+        playerDir = GameManager.instance.player.transform.position - transform.position;
 
         if (0 < shield) { 
             shield -= damage;
@@ -123,9 +127,11 @@ public class EnemyAI : MonoBehaviour, IDamage
             Destroy(gameObject);
             GameManager.instance.playerScript.addEXP(expValue);
         }
-        FaceTarget();
-        agent.SetDestination(GameManager.instance.player.transform.position);
-
+        else
+        {
+            FaceTarget();
+            agent.SetDestination(GameManager.instance.player.transform.position);
+        }
     }
 
     bool CanSeePlayer()
