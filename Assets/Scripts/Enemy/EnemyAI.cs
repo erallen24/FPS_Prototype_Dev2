@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float FOV;
     [SerializeField] int expValue;
 
+    [SerializeField] Animator animator;
 
     [SerializeField] Color HPDamageFlash;
     [SerializeField] Color shieldDamageFlash;
@@ -57,6 +58,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             healthBarFill.color = Color.green;
         }
         StartCoroutine(DisplayHPBar(0));
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -181,6 +184,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         agent.SetDestination(GameManager.instance.player.transform.position);
         if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(); }
+        animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 
 
