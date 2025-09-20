@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int expValue;
 
     [SerializeField] Animator animator;
+    [SerializeField] int animTransSpeed;
 
     [SerializeField] Color HPDamageFlash;
     [SerializeField] Color shieldDamageFlash;
@@ -82,10 +83,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
 
-                float speed = agent.velocity.magnitude;
-                float normalizdSpeed = speed / agent.speed;
-                animator.SetFloat("Speed", normalizdSpeed);
-
                 Vector3 playerPos = GameManager.instance.player.transform.position;
                 Vector3 lookAtPos = new Vector3(playerPos.x, playerPos.y + 1.0f, playerPos.z);
 
@@ -95,11 +92,21 @@ public class EnemyAI : MonoBehaviour, IDamage
             }
            
         }
+
+        SetAnimLocomotion();
         //if (isBoss && HP > 0)
         //{
         //    GameManager.instance.bossHPBar.gameObject.SetActive(true);
         //    StartCoroutine(DisplayHPBar(0));
         //}
+    }
+
+    void SetAnimLocomotion()
+    {
+        float agentSpeedCurr = agent.velocity.magnitude;
+        float animSpeedCur = animator.GetFloat("Speed");
+
+        animator.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCurr, Time.deltaTime * animTransSpeed));
     }
 
 
@@ -156,13 +163,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if (angleToPlayer <= FOV && see.collider.CompareTag("Player"))
             {
-                animator.SetBool("isShooting", true);
                 //canSeePlayer = true;
                 return true;
             }
         }
         //canSeePlayer = false;
-        animator.SetBool("isShooting", false);
+       
         return false;
     }
 
@@ -177,9 +183,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     public virtual void Shoot()
     {
         shootTimer = 0;
+
+        animator.SetTrigger("Shoot");
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
-        Instantiate(bullet, shootPos.position, shootPos.rotation);
+        
         // SoundManager.instance.playEnemyShootSound(shootPos);
+    }
+
+    public void CreateBullet()
+    {
+        Instantiate(bullet, shootPos.position, shootPos.rotation);
     }
 
     void FaceTarget()
