@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [SerializeField] Animator animator;
     [SerializeField] int animTransSpeed;
+    [SerializeField] int destroyDelay;
 
     [SerializeField] Color HPDamageFlash;
     [SerializeField] Color shieldDamageFlash;
@@ -44,6 +45,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     float shieldOrig;
     float shieldTimer;
 
+    bool isDead;
+
     Vector3 playerDir;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,6 +64,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         StartCoroutine(DisplayHPBar(0));
 
         animator = GetComponent<Animator>();
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -78,7 +82,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
 
 
-            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale)
+            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale && !isDead)
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
@@ -110,6 +114,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
 
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) { playerInTrigger = true; }
@@ -139,8 +145,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
                 HUDManager.instance.bossHPBar.gameObject.SetActive(false);
             }
-            StartCoroutine(DeathAnimation());
-          
+            animator.SetTrigger("Dead");
             GameManager.instance.playerScript.addEXP(expValue);
         }
         else
@@ -241,14 +246,15 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
+    public void DestroyThisObject()
+    {
+        StartCoroutine(DeathAnimation());
+    }
+
     IEnumerator DeathAnimation()
     {
-        animator.SetBool("isDead", true);
-        animator.SetBool("isShooting", false);
-        playerInTrigger = false;
-        canSeePlayer = false;
-        
-        yield return new WaitForSeconds(10);
+        isDead = true;
+        yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
     }
 }
