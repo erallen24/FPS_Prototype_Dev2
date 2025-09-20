@@ -77,8 +77,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             if(shield > shieldOrig) { shield = shieldOrig; }
         }
 
-      
-
         if (playerInTrigger)
         {
             if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale)
@@ -254,7 +252,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator DeathAnimation()
     {
         isDead = true;
-        agent.enabled = false;
+        agent.SetDestination(transform.position);
         playerInTrigger = false;
         canSeePlayer = false;
         
