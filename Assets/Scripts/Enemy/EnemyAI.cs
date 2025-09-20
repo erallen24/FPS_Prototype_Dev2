@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float shieldOrig;
     float shieldTimer;
 
-    bool isDead;
+    bool isDead = false;
 
     Vector3 playerDir;
 
@@ -64,7 +64,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         StartCoroutine(DisplayHPBar(0));
 
         animator = GetComponent<Animator>();
-        isDead = false;
     }
 
     // Update is called once per frame
@@ -78,11 +77,11 @@ public class EnemyAI : MonoBehaviour, IDamage
             if(shield > shieldOrig) { shield = shieldOrig; }
         }
 
+      
+
         if (playerInTrigger)
         {
-
-
-            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale && !isDead)
+            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale)
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
@@ -94,10 +93,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                 if (shootTimer >= shootRate) { Shoot(); }
             }
-           
         }
 
-        SetAnimLocomotion();
+            SetAnimLocomotion();
         //if (isBoss && HP > 0)
         //{
         //    GameManager.instance.bossHPBar.gameObject.SetActive(true);
@@ -128,6 +126,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void TakeDamage(int damage)
     {
+        if (isDead) {  return; }
+
         shieldTimer = 0;
         playerDir = GameManager.instance.player.transform.position - transform.position;
 
@@ -148,7 +148,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             animator.SetTrigger("Dead");
             GameManager.instance.playerScript.addEXP(expValue);
         }
-        else
+        else 
         {
             FaceTarget();
             agent.SetDestination(GameManager.instance.player.transform.position);
@@ -254,6 +254,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator DeathAnimation()
     {
         isDead = true;
+        agent.enabled = false;
+        playerInTrigger = false;
+        canSeePlayer = false;
+        
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
     }

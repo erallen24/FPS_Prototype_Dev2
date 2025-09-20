@@ -8,12 +8,15 @@ public class Explosives : MonoBehaviour, IDamage
     [SerializeField] GameObject DOTitem;
     [SerializeField] int damageAmount;
     [SerializeField] ParticleSystem burnEffect;
+    [SerializeField] int explosionForce;
+    [SerializeField] int explosionRadius;
+    [SerializeField] int delay;
 
     private Renderer objRenderer;
 
     private int maxHP;
 
-    private bool isBurning = false;
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,38 +29,49 @@ public class Explosives : MonoBehaviour, IDamage
     void Update()
     {
 
-        if (!isBurning && HP < maxHP)
-        {
-            burnEffect.gameObject.SetActive(true);
-            StartCoroutine(Burn(damageAmount));
-        }
+     
         if ( HP <= 0)
         {
-            Instantiate(DOTitem, new Vector3(transform.position.x, .01f, transform.position.z), Quaternion.identity);
-            Destroy(gameObject);
+            
         }
     }
 
     public void TakeDamage(int damage)
     {
         HP -= damage;
-
+        
+        if(HP <= 0)
+        {
+            StartCoroutine(Explode());
+        }
     }
 
-  
 
-    IEnumerator Burn(int damage)
+
+    IEnumerator Explode()
     {
-        isBurning = true;
+        burnEffect.gameObject.SetActive(true);
 
-        while (HP > 0)
+        yield return new WaitForSeconds(delay);
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        foreach (Collider collider in colliders)
         {
-            HP -= damage;
-
-            yield return new WaitForSeconds(1f);
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+            if(rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1f, ForceMode.Impulse);
+                if (DOTitem != null)
+                {
+                    Instantiate(DOTitem, new Vector3(transform.position.x, .01f, transform.position.z), Quaternion.identity);
+                }
+                yield return new WaitForSeconds(2);
+                rb.isKinematic = true;
+            }
         }
+        Destroy(gameObject);
 
-        isBurning = false;
     }
     
 }
