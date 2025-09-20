@@ -82,6 +82,10 @@ public class EnemyAI : MonoBehaviour, IDamage
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
 
+                float speed = agent.velocity.magnitude;
+                float normalizdSpeed = speed / agent.speed;
+                animator.SetFloat("Speed", normalizdSpeed);
+
                 Vector3 playerPos = GameManager.instance.player.transform.position;
                 Vector3 lookAtPos = new Vector3(playerPos.x, playerPos.y + 1.0f, playerPos.z);
 
@@ -89,6 +93,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                 if (shootTimer >= shootRate) { Shoot(); }
             }
+           
         }
         //if (isBoss && HP > 0)
         //{
@@ -127,7 +132,8 @@ public class EnemyAI : MonoBehaviour, IDamage
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
                 HUDManager.instance.bossHPBar.gameObject.SetActive(false);
             }
-            Destroy(gameObject);
+            StartCoroutine(DeathAnimation());
+          
             GameManager.instance.playerScript.addEXP(expValue);
         }
         else
@@ -150,11 +156,13 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if (angleToPlayer <= FOV && see.collider.CompareTag("Player"))
             {
+                animator.SetBool("isShooting", true);
                 //canSeePlayer = true;
                 return true;
             }
         }
         //canSeePlayer = false;
+        animator.SetBool("isShooting", false);
         return false;
     }
 
@@ -184,7 +192,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         agent.SetDestination(GameManager.instance.player.transform.position);
         if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(); }
-        animator.SetFloat("Speed", agent.velocity.magnitude);
+        
     }
 
 
@@ -218,5 +226,16 @@ public class EnemyAI : MonoBehaviour, IDamage
             yield return new WaitForSeconds(1f);
 
         }
+    }
+
+    IEnumerator DeathAnimation()
+    {
+        animator.SetBool("isDead", true);
+        animator.SetBool("isShooting", false);
+        playerInTrigger = false;
+        canSeePlayer = false;
+        
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
     }
 }
