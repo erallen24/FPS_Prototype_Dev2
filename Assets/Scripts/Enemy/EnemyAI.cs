@@ -79,7 +79,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (playerInTrigger)
         {
-            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale)
+            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale && isDead)
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
