@@ -83292,6 +83292,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
       propertyPath: destroyDelay
       value: 5
       objectReference: {fileID: 0}
@@ -97650,7 +97654,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937534821}
   serializedVersion: 5
-  m_Mass: 50
+  m_Mass: 80
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -97665,7 +97669,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -108154,11 +108158,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1486232157442067941, guid: 32ece2fb5772ddb4d94cdfcacdb83d3a, type: 3}
       propertyPath: explosionForce
-      value: 500
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1486232157442067941, guid: 32ece2fb5772ddb4d94cdfcacdb83d3a, type: 3}
       propertyPath: explosionRadius
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486232157442067941, guid: 32ece2fb5772ddb4d94cdfcacdb83d3a, type: 3}
+      propertyPath: explosiveDamage
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2689858198393833177, guid: 32ece2fb5772ddb4d94cdfcacdb83d3a, type: 3}
       propertyPath: m_Mesh
@@ -108166,7 +108174,7 @@ PrefabInstance:
       objectReference: {fileID: 1272365254}
     - target: {fileID: 2689858198393833177, guid: 32ece2fb5772ddb4d94cdfcacdb83d3a, type: 3}
       propertyPath: m_VersionIndex
-      value: 4419
+      value: 4422
       objectReference: {fileID: 0}
     - target: {fileID: 4024112592016898279, guid: 32ece2fb5772ddb4d94cdfcacdb83d3a, type: 3}
       propertyPath: m_IsActive

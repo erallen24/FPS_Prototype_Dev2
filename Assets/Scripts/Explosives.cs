@@ -6,7 +6,7 @@ public class Explosives : MonoBehaviour, IDamage
 {
     [SerializeField] int HP;
     [SerializeField] GameObject DOTitem;
-    [SerializeField] int damageAmount;
+    [SerializeField] int explosiveDamage;
     [SerializeField] ParticleSystem burnEffect;
     [SerializeField] int explosionForce;
     [SerializeField] int explosionRadius;
@@ -59,9 +59,17 @@ public class Explosives : MonoBehaviour, IDamage
         foreach (Collider collider in colliders)
         {
             Rigidbody rb = collider.GetComponent<Rigidbody>();
+
+            IDamage damagabale = collider.GetComponent<IDamage>();
+            
             if(rb != null)
             {
+                rb.isKinematic = false;
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1f, ForceMode.Impulse);
+                if (damagabale != null)
+                {
+                    damagabale.TakeDamage(explosiveDamage);
+                }
                 if (DOTitem != null)
                 {
                     Instantiate(DOTitem, new Vector3(transform.position.x, .01f, transform.position.z), Quaternion.identity);
@@ -69,6 +77,8 @@ public class Explosives : MonoBehaviour, IDamage
                 yield return new WaitForSeconds(2);
                 rb.isKinematic = true;
             }
+
+           
         }
         Destroy(gameObject);
 
