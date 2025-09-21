@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &103836292368599770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shield
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldBar
+      value: 
+      objectReference: {fileID: 3286133976474887079}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shootRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.b
+      value: 0.07479912
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.g
+      value: 0.07479912
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: HPDamageFlash.r
+      value: 0.76729554
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldRegenRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldRegenTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.a
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.b
+      value: 0.72955966
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.g
+      value: 0.63802487
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: shieldDamageFlash.r
+      value: 0.07112048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147149932465396712, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_Name
+      value: SoldierUpdate
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.295448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.23955
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3394536368694108935, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4147149932465396712, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2536182367357751626}
+  m_SourcePrefab: {fileID: 100100000, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+--- !u!4 &1215568973606690158 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1274086604976986036, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1719041600660036235 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1633581484782211153, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3286133976474887079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3236496031345289597, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!137 &3338704608976444641 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3397280553159661115, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3841629996754172372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3756231535412966158, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &4106513660838285618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4147149932465396712, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2536182367357751626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106513660838285618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e007cac0080294e89fb86f666a280f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Soldier
+  HP: 7
+  shield: 10
+  shieldRegenTime: 5
+  shieldRegenRate: 4
+  shootRate: 0.25
+  turnSpeed: 20
+  FOV: 90
+  expValue: 25
+  HPDamageFlash: {r: 0.76862746, g: 0.07450981, b: 0.07450981, a: 1}
+  shieldDamageFlash: {r: 0.07058824, g: 0.6392157, b: 0.7294118, a: 1}
+  shootPos: {fileID: 1215568973606690158}
+  bullet: {fileID: 7606571981220202077, guid: c9ab66404a6a38145b417dcae9284761, type: 3}
+  agent: {fileID: 8960120455553530145}
+  model: {fileID: 3338704608976444641}
+  lookPos: {fileID: 8952582108539185603}
+  healthBar: {fileID: 1719041600660036235}
+  healthBarFill: {fileID: 3841629996754172372}
+  shieldBar: {fileID: 3286133976474887079}
+  isBoss: 0
+  dropItem: {fileID: 0}
+  dropItemOffset: {x: 0, y: 0, z: 0}
+  shootTimer: 0
+  canSeePlayer: 0
+  isDead: 0
+  playerDir: {x: 0, y: 0, z: 0}
+  roamRate: 3
+  roamDist: 5
+  animator: {fileID: 6343924636639979967}
+  animTransSpeed: 7
+  destroyDelay: 5
+--- !u!95 &6343924636639979967 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6447680593783874405, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8952582108539185603 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9028894201727836953, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &8960120455553530145 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 9018555672938558459, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+  m_PrefabInstance: {fileID: 103836292368599770}
+  m_PrefabAsset: {fileID: 0}

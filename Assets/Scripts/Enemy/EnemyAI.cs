@@ -15,10 +15,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float FOV;
     [SerializeField] int expValue;
 
-    [SerializeField] Animator animator;
-    [SerializeField] int animTransSpeed;
-    [SerializeField] int destroyDelay;
-
     [SerializeField] Color HPDamageFlash;
     [SerializeField] Color shieldDamageFlash;
     [SerializeField] public Transform shootPos;
@@ -36,18 +32,20 @@ public class EnemyAI : MonoBehaviour, IDamage
     public Vector3 dropItemOffset = new Vector3(0, 0, 0);
 
     Color colorOrig;
-    float shootTimer;
+    [HideInInspector] public float shootTimer;
     bool playerInTrigger;
     float angleToPlayer;
-    bool canSeePlayer;
+    
 
     int HPOrig;
     float shieldOrig;
     float shieldTimer;
 
-    bool isDead = false;
+    [HideInInspector] public bool canSeePlayer;
 
-    Vector3 playerDir;
+    [HideInInspector] public bool isDead = false;
+
+    [HideInInspector] public Vector3 playerDir;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,13 +60,13 @@ public class EnemyAI : MonoBehaviour, IDamage
             healthBarFill.color = Color.green;
         }
         StartCoroutine(DisplayHPBar(0));
-
-        animator = GetComponent<Animator>();
+        ClassStart();
     }
 
     // Update is called once per frame
     void Update()
     {
+        ClassUpdateBegin();
         if (shootTimer < shootRate + 1f) { shootTimer += Time.deltaTime; }
         if (shieldTimer < shieldRegenTime + 1f) { shieldTimer += Time.deltaTime; }
         if (shieldTimer > shieldRegenTime && shield < shieldOrig) 
@@ -79,7 +77,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (playerInTrigger)
         {
-            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale && isDead)
+            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale && !isDead)
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
@@ -90,31 +88,26 @@ public class EnemyAI : MonoBehaviour, IDamage
                 shootPos.LookAt(lookAtPos);
 
                 if (shootTimer >= shootRate) { Shoot(); }
-            }
-        }
+            } 
+        } 
 
-            SetAnimLocomotion();
-        //if (isBoss && HP > 0)
-        //{
-        //    GameManager.instance.bossHPBar.gameObject.SetActive(true);
-        //    StartCoroutine(DisplayHPBar(0));
-        //}
+        ClassUpdateEnd();
     }
-
-    void SetAnimLocomotion()
-    {
-        float agentSpeedCurr = agent.velocity.magnitude;
-        float animSpeedCur = animator.GetFloat("Speed");
-
-        animator.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCurr, Time.deltaTime * animTransSpeed));
-    }
-
-
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) { playerInTrigger = true; }
+        if (other.CompareTag("Player")) { 
+            playerInTrigger = true;
+            return;
+        }
+
+        if (other.CompareTag("EnvDamage"))
+        {
+            Damage dmg = other.GetComponent<Damage>();
+            //int ranNum = Random.Range(0, dmg.safetyPos.length)
+            //agent.SetDestination(safetyPos[ranNum]);
+            //StartCoroutine(Wait(dmg.lifespan));
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -122,7 +115,15 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player")) { playerInTrigger = false; }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void ClassStart() { }
+    
+    public virtual void ClassUpdateBegin() { }
+
+    public virtual void ClassUpdateEnd() { }
+
+    public virtual void ClassDeath() { }
+
+    public virtual void TakeDamage(int damage)
     {
         if (isDead) {  return; }
 
@@ -143,7 +144,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
                 HUDManager.instance.bossHPBar.gameObject.SetActive(false);
             }
-            animator.SetTrigger("Dead");
+            ClassDeath();
             GameManager.instance.playerScript.addEXP(expValue);
         }
         else 
@@ -186,8 +187,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public virtual void Shoot()
     {
         shootTimer = 0;
-
-        animator.SetTrigger("Shoot");
+        CreateBullet();
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
         
         // SoundManager.instance.playEnemyShootSound(shootPos);
@@ -198,18 +198,13 @@ public class EnemyAI : MonoBehaviour, IDamage
         Instantiate(bullet, shootPos.position, shootPos.rotation);
     }
 
-    void FaceTarget()
+    public void FaceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * turnSpeed);
     }
 
-    public virtual void Movement(Vector3 playerDir)
-    {
-        agent.SetDestination(GameManager.instance.player.transform.position);
-        if (agent.remainingDistance <= agent.stoppingDistance) { FaceTarget(); }
-        
-    }
+    public virtual void Movement(Vector3 playerDir) { }
 
 
     IEnumerator DisplayHPBar(int amount)
@@ -244,19 +239,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void DestroyThisObject()
+    IEnumerator Wait(int time)
     {
-        StartCoroutine(DeathAnimation());
+        if (CanSeePlayer()) { yield return new WaitForSeconds(0); }
+        else { yield return new WaitForSeconds(time); }
     }
 
-    IEnumerator DeathAnimation()
-    {
-        isDead = true;
-        agent.SetDestination(transform.position);
-        playerInTrigger = false;
-        canSeePlayer = false;
-        
-        yield return new WaitForSeconds(destroyDelay);
-        Destroy(gameObject);
-    }
 }
