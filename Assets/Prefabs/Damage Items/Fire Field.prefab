@@ -55,6 +55,12 @@ MonoBehaviour:
   lifespan: 5
   turnSpeed: 0
   spawnCloud: 0
+  shrapnel: {fileID: 6893214932365383765, guid: 1452fbc0ea725d244ade31960b034f39, type: 3}
+  isExplosive: 1
+  explosionForce: 300
+  explosionRadius: 7
+  explosiveDamage: 15
+  shrapnelOffset: {x: 0, y: 0.5, z: 0}
   cloud: {fileID: 0}
 --- !u!54 &8936935424053726277
 Rigidbody:

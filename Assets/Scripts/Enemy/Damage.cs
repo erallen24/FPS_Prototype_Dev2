@@ -15,14 +15,38 @@ public class Damage : MonoBehaviour
     [SerializeField] int lifespan;
     [SerializeField] float turnSpeed;
     [SerializeField] bool spawnCloud = false;
+
+    [Header("EXPLOSION SETTINGS")]
+    [SerializeField] ParticleSystem shrapnel;
+    [SerializeField] bool isExplosive = false;
+    [SerializeField] int explosionForce;
+    [SerializeField] int explosionRadius;
+    [SerializeField] int explosiveDamage;
+    [SerializeField] Vector3 shrapnelOffset;
+
     public GameObject cloud;
 
     bool isDamaging;
     Vector3 playerDir;
 
+    private void Awake()
+    {
+   
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (isExplosive)
+        {
+            if (shrapnel != null)
+            {
+                Instantiate(shrapnel, transform.position + shrapnelOffset, Quaternion.identity);
+            }
+
+            Explode();
+        }
+
         if (lifespan > 0)
         {
             Destroy(gameObject, lifespan);
@@ -32,6 +56,11 @@ public class Damage : MonoBehaviour
                 rb.linearVelocity = transform.forward * speed;
             }
         }
+
+        
+        
+
+
     }
 
     // Update is called once per frame
@@ -88,5 +117,29 @@ public class Damage : MonoBehaviour
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
+
+    public void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        foreach (Collider collider in colliders)
+        {
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+
+            IDamage damagabale = collider.GetComponent<IDamage>();
+
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1f, ForceMode.Impulse); 
+            }
+
+            if (damagabale != null)
+            {
+                damagabale.TakeDamage(explosiveDamage);
+            }
+        }
+    }
+
+
 
 }
