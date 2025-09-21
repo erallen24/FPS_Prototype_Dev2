@@ -92,6 +92,7 @@ public class Soldier : EnemyAI
     IEnumerator DeathAnimation()
     {
         isDead = true;
+        agent.isStopped = true;
         //agent.SetDestination(transform.position);
 
         yield return new WaitForSeconds(destroyDelay);
