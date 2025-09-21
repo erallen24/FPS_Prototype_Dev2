@@ -24,8 +24,9 @@ public class Soldier : EnemyAI
 
     public override void ClassUpdateBegin()
     {
-        if(isDead) return;
         if (agent.remainingDistance < 0.01f) { roamTimer += Time.deltaTime; }
+
+
     }
 
     public override void ClassUpdateEnd()
@@ -92,6 +93,7 @@ public class Soldier : EnemyAI
     {
         isDead = true;
         agent.isStopped = true;
+        //agent.SetDestination(transform.position);
 
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
