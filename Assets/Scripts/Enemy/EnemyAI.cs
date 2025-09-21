@@ -66,6 +66,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if(isDead) { return; }  
+
         ClassUpdateBegin();
         if (shootTimer < shootRate + 1f) { shootTimer += Time.deltaTime; }
         if (shieldTimer < shieldRegenTime + 1f) { shieldTimer += Time.deltaTime; }
@@ -77,7 +79,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (playerInTrigger)
         {
-            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale && !isDead)
+            if (canSeePlayer = CanSeePlayer() && 0 != Time.timeScale)
             {
                 playerDir = GameManager.instance.player.transform.position - transform.position;
                 Movement(playerDir);
@@ -96,6 +98,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isDead) { return; }
+
         if (other.CompareTag("Player")) { 
             playerInTrigger = true;
             return;
@@ -138,12 +142,14 @@ public class EnemyAI : MonoBehaviour, IDamage
         StartCoroutine(DisplayHPBar(damage));
         if (HP <= 0)
         {
+            agent.SetDestination(transform.position);
             HUDManager.instance.updateGameGoal(-1);
             if (isBoss)
             {
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
                 HUDManager.instance.bossHPBar.gameObject.SetActive(false);
             }
+            
             ClassDeath();
             GameManager.instance.playerScript.addEXP(expValue);
         }
@@ -156,6 +162,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
+        if(isDead) { return false; }
 
         playerDir = GameManager.instance.player.transform.position - lookPos.position;
         angleToPlayer = Vector3.Angle(transform.forward, playerDir);
@@ -187,7 +194,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public virtual void Shoot()
     {
         shootTimer = 0;
-        CreateBullet();
+        //CreateBullet();
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
         
         // SoundManager.instance.playEnemyShootSound(shootPos);
