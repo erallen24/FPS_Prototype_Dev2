@@ -31,7 +31,7 @@ public class Soldier : EnemyAI
 
     public override void ClassUpdateEnd()
     {
-        if (!canSeePlayer) { CheckRoam(); }
+        if (!canSeePlayer && !isDead) { CheckRoam(); }
         SetAnimLocomotion();
     }
 
