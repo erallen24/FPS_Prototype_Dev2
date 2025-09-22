@@ -1,77 +1,127 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunManager : MonoBehaviour
 {
-    [SerializeField] int selectedWeapon = 0;
+    [SerializeField] private WeaponData WeaponData;
+    [SerializeField] TMP_Text playerAmmo;
+    [SerializeField] AudioClip reloadSound;
+    [SerializeField] public LayerMask ignoreLayer;
+
+    private float shootTimer;
+    public int currBulletsInMag;
+    private bool isReloading;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        SelectWeapon();
+        //currBulletsInMag = weaponData.magazineSize;
     }
 
     // Update is called once per frame
     void Update()
     {
-        int prevSelectedWeapon = selectedWeapon;
+        UpdateShoot();
+        HUDManager.instance.updatePlayerAmmo(currBulletsInMag, WeaponData.ammoMax);
 
-
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            if (selectedWeapon >= transform.childCount - 1) 
-                selectedWeapon = 0;
-            else
-                selectedWeapon++;
+            AttemptReload();
         }
-
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-            if (selectedWeapon <= 0)
-                selectedWeapon = transform.childCount - 1;
-            else
-                selectedWeapon--;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            selectedWeapon = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
-        {
-            selectedWeapon = 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
-        {
-            selectedWeapon = 2;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4) && transform.childCount >= 4)
-        {
-            selectedWeapon = 3;
-        }
-
-        if (prevSelectedWeapon != selectedWeapon)
-        {
-            SelectWeapon();
-        }
-
     }
 
-    void SelectWeapon()
+    private void UpdateShoot()
     {
-        int i = 0;
-        foreach (Transform weapon in transform)
+        shootTimer += Time.deltaTime;
+
+        if (Input.GetButton("Fire1") && CheckIfGunCanShoot() && shootTimer >= WeaponData.shootRate)
         {
-            if (i == selectedWeapon)
-                weapon.gameObject.SetActive(true);
-            else
-                weapon.gameObject.SetActive(false);
-            i++;
+            Shoot();
+
         }
+        else if (currBulletsInMag <= 0 && !isReloading)
+        {
+            AttemptReload();
+        }
+    }
+
+    private void Shoot()
+    {
+        // resetting the shoot timer //
+        shootTimer = 0;
+        currBulletsInMag--;
+        Recoil();
+        performShoot();
 
     }
 
+    private void performShoot()
+    {
+        // performing shoot raycast //
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, WeaponData.shootDistance, ~ignoreLayer))
+        {
+            // logging the collider the raycast hit //
+            Debug.Log(hit.collider.name);
+
+            // if the collider has the IDamage interface, we store it in 'target'
+            IDamage target = hit.collider.GetComponent<IDamage>();
+
+            // null check on the target. if target is not null, we call 'TakeDamage'
+            target?.TakeDamage(WeaponData.shootDamage);
+
+            if (WeaponData.impactEffect != null)
+            {
+                //ParticleSystem impactGO = Instantiate(WeaponData.impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                //Destroy(impactGO, 2f);
+                //The  Impact Effect is created in the WeaponData Scriptable Object as a particle System
+            }
+
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * WeaponData.impactForce);
+            }
+        }
+    }
+
+    private bool CheckIfGunCanShoot()
+    {
+        if (currBulletsInMag <= 0)
+            return false;
+
+        if (isReloading)
+            return false;
+
+        return true;
+    }
+
+    private IEnumerator ReloadSequence()
+    {
+        isReloading = true;
+
+        if (reloadSound != null)
+        {
+            AudioSource.PlayClipAtPoint(reloadSound, transform.position);
+        }
+
+        yield return new WaitForSeconds(WeaponData.reloadTime);
+        currBulletsInMag = WeaponData.ammoMax;
+        isReloading = false;
+    }
+
+    private void AttemptReload()
+    {
+        if (isReloading || currBulletsInMag >= WeaponData.ammoMax)
+            return;
+
+        StartCoroutine(ReloadSequence());
+    }
+
+    private void Recoil()
+    {
+        int recoil = WeaponData.recoil;
+    }
 
 }
