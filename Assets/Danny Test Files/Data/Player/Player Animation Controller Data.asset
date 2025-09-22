@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a255786fb2fe0b4982a1030515fe44d, type: 3}
   m_Name: Player Animation Controller Data
   m_EditorClassIdentifier: 
-  _lookIKDampTime: 0.25
-  _aimingIKWeightSpeed: 2.5
-  _upperOverrideLayerWeightSpeed: 5
-  _idleStanceCooldownTime: 0.75
-  _stanceSmoothTime: 0.25
-  _lookAngleSmoothTime: 0.142
-  _movementMagnitudeAccelerationSmoothing: 0.25
-  _movementMagnitudeDeccelerationSmoothing: 0.25
-  _lookIKClampWeight: 0.5
-  _defaultLookIKHeadWeight: 1
-  _defaultLookIKBodyWeight: 0
-  _aimingLookIKHeadWeight: 1
-  _aimingLookIKBodyWeight: 0.25
+  animatorMoveSmoothing: 0.05
+  animatorLookSmoothing: 0.1
+  animatorSprintWeightSmoothing: 0.1
+  idleBobbingFrequency: 1
+  idleBobbingAmplitude: 50
+  movingBobbingFrequency: 14
+  movingBobbingAmplitude: 100
+  swaySpeedMultiplier: {x: 10, y: 5, z: 4}
+  lookSwayRotationMultiplier: {x: -2.5, y: 2, z: -1}
+  lookSwayPositionMultiplier: {x: 3, y: 1.5, z: 10}
+  posePositionSpeed: 2.5
+  poseRotationSpeed: 4
+  defaultPosePosition: {x: 0.15, y: -0.175, z: 0.01}
+  defaultPoseRotation: {x: 0, y: 0, z: 0}
+  sprintPosePosition: {x: 0.3, y: -0.2, z: 0.1}
+  sprintPoseRotation: {x: 25, y: -55, z: 5}

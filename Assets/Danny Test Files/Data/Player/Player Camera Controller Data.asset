@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player Camera Controller Data
   m_EditorClassIdentifier: 
   cameraRotationClamp: {x: -80, y: 80}
-  cameraSensitivity: {x: 10, y: 10}
+  cameraSensitivity: {x: 4, y: 4}

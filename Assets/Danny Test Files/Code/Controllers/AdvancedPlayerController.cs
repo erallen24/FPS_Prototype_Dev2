@@ -15,7 +15,6 @@ public class AdvancedPlayerController : MonoBehaviour
 
     #region PROPERTY GETTERS
 
-    public CharacterController CharacterController => movementControllerSettings.controller;
     public float DefaultMovementSpeed => movementControllerSettings.data.defaultMovementSpeed;
     public float SprintMovementSpeed => movementControllerSettings.data.sprintMovementSpeed;
     public float GravityForce => movementControllerSettings.data.gravityForce;
@@ -34,7 +33,6 @@ public class AdvancedPlayerController : MonoBehaviour
 
     public Animator Animator => animationControllerSettings.animator;
     public Transform AnimatorLookAt => animationControllerSettings.animatorLookAtTransform;
-    public Transform MasterIK => animationControllerSettings.masterIKTransform;
     public Transform RightHandIK => animationControllerSettings.rightHandIKTransform;
     public Transform LeftHandIK => animationControllerSettings.leftHandIKTransform;
     public Transform LeftHandIKTarget => animationControllerSettings.leftHandIKTargetTransform;

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMovementSpeed: 5
   sprintMovementSpeed: 7
+  movementSpeedSmoothing: 1
   gravityForce: 16
   jumpForce: 7
   maxJumpCount: 2
-  groundCheckRadius: 0.45
-  groundCheckRadiusOffset: {x: 0, y: 0.45, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  groundCheckRadiusOffset: {x: 0, y: 0.45, z: 0}
+  groundCheckRadius: 0.45

@@ -339,6 +339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4034892a10372134aaf071f0c382ae4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AdvancedPlayerController
+  armSwayPivot: {fileID: 1713103925324887658}
+  armBobbingPivot: {fileID: 2239744414820287081}
+  armPositionPivot: {fileID: 0}
+  armRotationPivot: {fileID: 0}
   movementControllerSettings:
     data: {fileID: 11400000, guid: 6644022962572bc45a4b57c8fedf399d, type: 2}
     controller: {fileID: 4984441277558873893}
