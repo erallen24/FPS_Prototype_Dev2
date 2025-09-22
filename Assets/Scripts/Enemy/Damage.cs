@@ -17,13 +17,15 @@ public class Damage : MonoBehaviour
     [SerializeField] bool spawnCloud = false;
 
     [Header("EXPLOSION SETTINGS")]
+    [SerializeField] bool isExplosive;
     [SerializeField] ParticleSystem shrapnel;
-    [SerializeField] bool isExplosive = false;
+    [SerializeField] Vector3 shrapnelOffset;
     [SerializeField] int explosionForce;
     [SerializeField] int explosionRadius;
     [SerializeField] int explosiveDamage;
-    [SerializeField] Vector3 shrapnelOffset;
+    [SerializeField] int knockbackSpeed;
 
+   
     public GameObject cloud;
 
     bool isDamaging;
@@ -124,19 +126,30 @@ public class Damage : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Rigidbody rb = collider.GetComponent<Rigidbody>();
+            CharacterController player = collider.GetComponent<CharacterController>();
 
-            IDamage damagabale = collider.GetComponent<IDamage>();
+            if (player != null)
+            {
+                //player.Move(player.transform.position - transform.position * knockbackSpeed * Time.deltaTime);
+            }
+
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
 
             if (rb != null)
             {
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1f, ForceMode.Impulse); 
             }
 
+            IDamage damagabale = collider.GetComponent<IDamage>();
+
             if (damagabale != null)
             {
                 damagabale.TakeDamage(explosiveDamage);
             }
+
+            
+
+            
         }
     }
 
