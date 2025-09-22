@@ -66,15 +66,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.295448
+      value: 22.35
       objectReference: {fileID: 0}
     - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.23955
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 6845589680416999387, guid: 60310996e7d520045bdd257d6419debb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -112,6 +112,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4147149932465396712, guid: 60310996e7d520045bdd257d6419debb, type: 3}
       insertIndex: 1
       addedObject: {fileID: 2536182367357751626}
+    - targetCorrespondingSourceObject: {fileID: 4147149932465396712, guid: 60310996e7d520045bdd257d6419debb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7828732709051086337}
   m_SourcePrefab: {fileID: 100100000, guid: 60310996e7d520045bdd257d6419debb, type: 3}
 --- !u!4 &1215568973606690158 stripped
 Transform:
@@ -197,6 +200,33 @@ MonoBehaviour:
   animator: {fileID: 6343924636639979967}
   animTransSpeed: 7
   destroyDelay: 5
+--- !u!54 &-7828732709051086337
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106513660838285618}
+  serializedVersion: 5
+  m_Mass: 20
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!95 &6343924636639979967 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6447680593783874405, guid: 60310996e7d520045bdd257d6419debb, type: 3}

@@ -174,7 +174,6 @@ public class HUDManager : MonoBehaviour
 
     }
 
-
     public void LevelUp()
     {
         levelHUDFeedbackText.text = "Level Up!";

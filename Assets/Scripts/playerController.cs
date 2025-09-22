@@ -505,8 +505,10 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             HUDManager.instance.LevelUp();
             startingEXP = startingEXP - maxEXP;
+            maxEXP = maxEXP * 2;
         }
     }
+
     public void ApplyUpgradeNow(PickupData pickup, inventoryItem.ItemType itemType)
     {
 

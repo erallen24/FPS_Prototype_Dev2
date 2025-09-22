@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d4644c88091cc4b81a475bd0b27040, type: 3}
   m_Name: Player Movement Controller Data
   m_EditorClassIdentifier: 
-  defaultMovementSpeed: 4
+  defaultMovementSpeed: 5
   sprintMovementSpeed: 7
   gravityForce: 16
   jumpForce: 7
