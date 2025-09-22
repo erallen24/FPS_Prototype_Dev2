@@ -80806,6 +80806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6afbc2ca996e22438e4f6ac187e0516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
+  triggerCollider: {fileID: 7990059686216484140}
   autoSpawn: 0
   autoSpawnObjects: []
   autoSpawnCount: 5
@@ -80850,7 +80851,6 @@ MonoBehaviour:
   bossSpawnRate: 10
   bossesAtATime: 1
   spawnAtCompletionProgess: 1
-  triggerCollider: {fileID: 7990059686216484140}
 --- !u!65 &7990059686216484140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -146949,6 +146949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 460204748165793661}
   - {fileID: 5401360425460713525}
   - {fileID: 295885225933729949}
   - {fileID: 6085052814104745545}
@@ -146967,7 +146968,6 @@ Transform:
   - {fileID: 4972236334076328184}
   - {fileID: 811528444842127818}
   - {fileID: 2724146364536134912}
-  - {fileID: 460204748165793661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3936297263027934907
@@ -378768,21 +378768,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4861575686967474287}
     m_Modifications:
+    - target: {fileID: 988176364010732914, guid: 672bc26fa38f0fb488ce7ccd86e5fdb1, type: 3}
+      propertyPath: moduleData
+      value: 
+      objectReference: {fileID: 11400000, guid: be59f50870ae4404da6ffb5f34b61e24, type: 2}
     - target: {fileID: 1279380647489171751, guid: 672bc26fa38f0fb488ce7ccd86e5fdb1, type: 3}
       propertyPath: m_Name
       value: Minimap Module (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6313672844001887236, guid: 672bc26fa38f0fb488ce7ccd86e5fdb1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.31999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313672844001887236, guid: 672bc26fa38f0fb488ce7ccd86e5fdb1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.99
+      value: 50.199997
       objectReference: {fileID: 0}
     - target: {fileID: 6313672844001887236, guid: 672bc26fa38f0fb488ce7ccd86e5fdb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5049999
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 6313672844001887236, guid: 672bc26fa38f0fb488ce7ccd86e5fdb1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.33
+      value: 6.049999
       objectReference: {fileID: 0}
     - target: {fileID: 6313672844001887236, guid: 672bc26fa38f0fb488ce7ccd86e5fdb1, type: 3}
       propertyPath: m_LocalRotation.w

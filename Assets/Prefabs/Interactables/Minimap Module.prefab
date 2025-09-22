@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddc747bfb204604880bed607f3aecc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XRePickup
-  moduleData: {fileID: 11400000, guid: 5ff94fdf7b6baad4f82f41ff3fdead72, type: 2}
+  moduleData: {fileID: 11400000, guid: be59f50870ae4404da6ffb5f34b61e24, type: 2}
   rotateSpeed: 50
   pulseSpeed: 2
   pulseMagnitude: 0.1
