@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject player;
-    public AdvancedPlayerController playerScript;
+    //public AdvancedPlayerController playerScript;
+    public PlayerController playerScript;
     public GameObject playerSpawnPos;
     public GameObject checkpointPopup;
 
@@ -50,7 +51,8 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
-        playerScript = player.GetComponent<AdvancedPlayerController>();
+        // playerScript = player.GetComponent<AdvancedPlayerController>();
+        playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
 
         if (isPaused)
