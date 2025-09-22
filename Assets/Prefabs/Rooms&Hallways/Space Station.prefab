@@ -1827,6 +1827,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2500002, y: 5, z: 5.000001}
   m_Center: {x: -0.3750001, y: 0, z: 0.0000019073486}
+--- !u!1 &203399581577018326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4860918493973270031}
+  m_Layer: 0
+  m_Name: Boss Spawn Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4860918493973270031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203399581577018326}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8336095963191615415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225645913858884306
 GameObject:
   m_ObjectHideFlags: 0
@@ -80729,6 +80760,132 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &1714800713370618190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8336095963191615415}
+  - component: {fileID: 2531849152598536901}
+  - component: {fileID: 4763268296667839828}
+  - component: {fileID: 7990059686216484140}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8336095963191615415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714800713370618190}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4860918493973270031}
+  m_Father: {fileID: 6302077114943297030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2531849152598536901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714800713370618190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6afbc2ca996e22438e4f6ac187e0516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spawner
+  autoSpawn: 0
+  autoSpawnObjects: []
+  autoSpawnCount: 5
+  autoSpawnRate: 2
+  autoSpawnRadius: 10
+  mainGroup:
+    groupName: 
+    objects: []
+    count: 1
+    spawnRate: 100
+    spawnPositions: []
+    spawnedCount: 0
+  secondaryGroup:
+    groupName: 
+    objects: []
+    count: 1
+    spawnRate: 100
+    spawnPositions: []
+    spawnedCount: 0
+  tertiaryGroup:
+    groupName: 
+    objects: []
+    count: 1
+    spawnRate: 100
+    spawnPositions: []
+    spawnedCount: 0
+  quaternaryGroup:
+    groupName: 
+    objects: []
+    count: 1
+    spawnRate: 100
+    spawnPositions: []
+    spawnedCount: 0
+  isBossSpawner: 1
+  bossObjects: []
+  bossSpawnPoints: []
+  spawnAtCompletionProgess: 1
+--- !u!65 &4763268296667839828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714800713370618190}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 27, y: 3, z: 59}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7990059686216484140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714800713370618190}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1740069983905318833
 GameObject:
   m_ObjectHideFlags: 0
@@ -315908,8 +316065,6 @@ GameObject:
   - component: {fileID: 321244471912158654}
   - component: {fileID: 2963054497302997576}
   - component: {fileID: 8946918067942577824}
-  - component: {fileID: 3416548294877917285}
-  - component: {fileID: 2607355424343225704}
   m_Layer: 0
   m_Name: Spawner Plane
   m_TagString: Untagged
@@ -315929,7 +316084,8 @@ Transform:
   m_LocalPosition: {x: -8, y: 0, z: -26.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8336095963191615415}
   m_Father: {fileID: 1578584327950057471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &975138516431705462
@@ -316272,67 +316428,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 27, y: 0.01, z: 59}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &3416548294877917285
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8047017584228848301}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 262135
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 27, y: 1.94, z: 59}
-  m_Center: {x: 0, y: 0.67, z: 0}
---- !u!114 &2607355424343225704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8047017584228848301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6afbc2ca996e22438e4f6ac187e0516, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  autoSpawn: 0
-  autoSpawnObjects: []
-  autoSpawnCount: 5
-  spawnRate: 2
-  autoSpawnRadius: 5
-  mainGroup:
-    objects: []
-    count: 0
-    spawnRate: 0
-    spawnPos: []
-  secondaryGroup:
-    objects: []
-    count: 0
-    spawnRate: 0
-    spawnPos: []
-  tertiaryGroup:
-    objects: []
-    count: 0
-    spawnRate: 0
-    spawnPos: []
-  quaternaryGroup:
-    objects: []
-    count: 0
-    spawnRate: 0
-    spawnPos: []
-  bossObjects: []
-  bossSpawnPoints: []
-  isBossSpawner: 0
 --- !u!1 &8054893928335139314
 GameObject:
   m_ObjectHideFlags: 0
