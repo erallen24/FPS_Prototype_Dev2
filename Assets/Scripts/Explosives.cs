@@ -13,24 +13,9 @@ public class Explosives : MonoBehaviour, IDamage
 
     private int maxHP;
 
-   
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         maxHP = HP;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-     
-        if ( HP <= 0)
-        {
-            
-        }
     }
 
     public void TakeDamage(int damage)
@@ -42,8 +27,6 @@ public class Explosives : MonoBehaviour, IDamage
             StartCoroutine(Explode());
         }
     }
-
-
 
     IEnumerator Explode()
     {

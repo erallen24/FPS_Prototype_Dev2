@@ -138,6 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             shield -= damage;
         }
         else { HP -= damage; }
+        
         StartCoroutine(flash());
         StartCoroutine(DisplayHPBar(damage));
         if (HP <= 0)
