@@ -149,7 +149,6 @@ public class PlayerController : MonoBehaviour, IDamage
         SelectGun();
     }
 
-
     private void Initialize()
     {
         // setting the initial HP and stamina for bar processing //
@@ -368,8 +367,6 @@ public class PlayerController : MonoBehaviour, IDamage
         ammoCur = ammoMax;
         isReloading = false;
     }
-
-
 
     public void TakeDamage(int amount)
     {
