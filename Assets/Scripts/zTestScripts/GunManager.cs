@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GunManager : MonoBehaviour
 {
-    [SerializeField] GameObject gunModel;
+    //[SerializeField] GameObject gunModel;
     [SerializeField] private WeaponData WeaponData;
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] AudioClip reloadSound;
