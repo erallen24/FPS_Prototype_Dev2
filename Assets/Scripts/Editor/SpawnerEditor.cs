@@ -91,17 +91,8 @@ public class SpawnerEditor : Editor
             EditorGUILayout.PropertyField(spawnAtCompletionProgess);
         }
 
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Runtime Tools", EditorStyles.boldLabel);
-        if (GUILayout.Button("Spawn Now (Editor Test)"))
-        {
-            ((Spawner)target).SpawnNow();
-        }
-
 
         serializedObject.ApplyModifiedProperties();
-
-
 
     }
 
