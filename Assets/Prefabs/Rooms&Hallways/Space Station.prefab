@@ -80850,6 +80850,7 @@ MonoBehaviour:
   bossSpawnRate: 10
   bossesAtATime: 1
   spawnAtCompletionProgess: 1
+  triggerCollider: {fileID: 7990059686216484140}
 --- !u!65 &7990059686216484140
 BoxCollider:
   m_ObjectHideFlags: 0
