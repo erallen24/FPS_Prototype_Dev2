@@ -6,58 +6,37 @@ public class Explosives : MonoBehaviour, IDamage
 {
     [SerializeField] int HP;
     [SerializeField] GameObject DOTitem;
-    [SerializeField] int damageAmount;
     [SerializeField] ParticleSystem burnEffect;
+    [SerializeField] Vector3 burnOffset;
 
-    private Renderer objRenderer;
+    [SerializeField] int delay;
 
     private int maxHP;
 
-    private bool isBurning = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         maxHP = HP;
-        objRenderer = GetComponent<Renderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (!isBurning && HP < maxHP)
-        {
-            burnEffect.gameObject.SetActive(true);
-            StartCoroutine(Burn(damageAmount));
-        }
-        if ( HP <= 0)
-        {
-            Instantiate(DOTitem, new Vector3(transform.position.x, .01f, transform.position.z), Quaternion.identity);
-            Destroy(gameObject);
-        }
     }
 
     public void TakeDamage(int damage)
     {
         HP -= damage;
-
+        
+        if (HP < maxHP)
+        {
+            StartCoroutine(Explode());
+        }
     }
 
-  
-
-    IEnumerator Burn(int damage)
+    IEnumerator Explode()
     {
-        isBurning = true;
+        burnEffect.gameObject.SetActive(true);
 
-        while (HP > 0)
-        {
-            HP -= damage;
+        yield return new WaitForSeconds(delay);
 
-            yield return new WaitForSeconds(1f);
-        }
+        Instantiate(DOTitem, new Vector3(transform.position.x, .01f, transform.position.z), Quaternion.identity);
 
-        isBurning = false;
+        Destroy(gameObject);
     }
     
 }

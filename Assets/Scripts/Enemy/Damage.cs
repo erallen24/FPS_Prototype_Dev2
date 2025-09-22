@@ -15,14 +15,40 @@ public class Damage : MonoBehaviour
     [SerializeField] int lifespan;
     [SerializeField] float turnSpeed;
     [SerializeField] bool spawnCloud = false;
+
+    [Header("EXPLOSION SETTINGS")]
+    [SerializeField] bool isExplosive;
+    [SerializeField] ParticleSystem shrapnel;
+    [SerializeField] Vector3 shrapnelOffset;
+    [SerializeField] int explosionForce;
+    [SerializeField] int explosionRadius;
+    [SerializeField] int explosiveDamage;
+    [SerializeField] int knockbackSpeed;
+
+   
     public GameObject cloud;
 
     bool isDamaging;
     Vector3 playerDir;
 
+    private void Awake()
+    {
+   
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (isExplosive)
+        {
+            if (shrapnel != null)
+            {
+                Instantiate(shrapnel, transform.position + shrapnelOffset, Quaternion.identity);
+            }
+
+            Explode();
+        }
+
         if (lifespan > 0)
         {
             Destroy(gameObject, lifespan);
@@ -32,6 +58,11 @@ public class Damage : MonoBehaviour
                 rb.linearVelocity = transform.forward * speed;
             }
         }
+
+        
+        
+
+
     }
 
     // Update is called once per frame
@@ -88,5 +119,40 @@ public class Damage : MonoBehaviour
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
+
+    public void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        foreach (Collider collider in colliders)
+        {
+            CharacterController player = collider.GetComponent<CharacterController>();
+
+            if (player != null)
+            {
+                //player.Move(player.transform.position - transform.position * knockbackSpeed * Time.deltaTime);
+            }
+
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1f, ForceMode.Impulse); 
+            }
+
+            IDamage damagabale = collider.GetComponent<IDamage>();
+
+            if (damagabale != null)
+            {
+                damagabale.TakeDamage(explosiveDamage);
+            }
+
+            
+
+            
+        }
+    }
+
+
 
 }

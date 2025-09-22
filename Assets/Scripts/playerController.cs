@@ -149,7 +149,6 @@ public class PlayerController : MonoBehaviour, IDamage
         SelectGun();
     }
 
-
     private void Initialize()
     {
         // setting the initial HP and stamina for bar processing //
@@ -369,8 +368,6 @@ public class PlayerController : MonoBehaviour, IDamage
         isReloading = false;
     }
 
-
-
     public void TakeDamage(int amount)
     {
         HP -= amount;
@@ -505,8 +502,10 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             HUDManager.instance.LevelUp();
             startingEXP = startingEXP - maxEXP;
+            maxEXP = maxEXP * 2;
         }
     }
+
     public void ApplyUpgradeNow(PickupData pickup, inventoryItem.ItemType itemType)
     {
 

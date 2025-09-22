@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1254910773489353007}
   - component: {fileID: 4224102020782148393}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Minimap Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,6 +307,10 @@ MonoBehaviour:
   isBoss: 0
   dropItem: {fileID: 0}
   dropItemOffset: {x: 0, y: 0, z: 0}
+  shootTimer: 0
+  canSeePlayer: 0
+  isDead: 0
+  playerDir: {x: 0, y: 0, z: 0}
 --- !u!33 &1050119210769520895
 MeshFilter:
   m_ObjectHideFlags: 0
