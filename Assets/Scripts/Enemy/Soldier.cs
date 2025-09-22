@@ -11,6 +11,8 @@ public class Soldier : EnemyAI
     [SerializeField] int animTransSpeed;
     [SerializeField] int destroyDelay;
 
+    
+
     float roamTimer;
     Vector3 startPos;
     float origStop;
@@ -21,6 +23,16 @@ public class Soldier : EnemyAI
         origStop = agent.stoppingDistance;
         animator = GetComponent<Animator>();
     }
+    
+    public override void TakeDamage(int dmg)
+    {
+        if(!isDead)
+        {
+            base.TakeDamage(dmg);
+            animator.SetTrigger("Hit");
+        }
+    }
+
 
     public override void ClassUpdateBegin()
     {
