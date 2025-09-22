@@ -27,6 +27,11 @@ public class SpawnGroup
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Trigger Setup")]
+    [SerializeField] private BoxCollider triggerCollider;
+    public BoxCollider TriggerCollider => triggerCollider;
+
+
     [Header("Spawner Mode")]
     [Tooltip("Enable automatic spawning at runtime")]
     [SerializeField] private bool autoSpawn = false;
@@ -36,7 +41,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int autoSpawnRate = 2;
     [SerializeField] private float autoSpawnRadius = 5f;
 
-    [Header("Manual Spawn Groups")]
+    //[Header("Manual Spawn Groups")]
 
     [SerializeField] private SpawnGroup mainGroup;
     [SerializeField] private SpawnGroup secondaryGroup;
@@ -44,7 +49,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private SpawnGroup quaternaryGroup;
 
 
-    [Header("Boss Settings")]
+    //[Header("Boss Settings")]
     [SerializeField] private bool isBossSpawner = false;
     [SerializeField] private GameObject[] bossObjects;
     [SerializeField] private Transform[] bossSpawnPositions;
@@ -52,6 +57,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int bossesAtATime = 1;
     [Tooltip("Total spawns completed is normalized from (0–100%)")]
     [SerializeField][Range(0, 1f)] private float spawnAtCompletionProgess = 0.8f;
+
 
 
     private Dictionary<SpawnGroup, float> groupTimers = new();
@@ -65,7 +71,7 @@ public class Spawner : MonoBehaviour
 
 
     private bool bossSpawned = false;
-
+    private bool startSpawning = false;
     private void Start()
     {
         groupTimers[mainGroup] = 0;
@@ -87,8 +93,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-
-        SpawnNow();
+        if (startSpawning)
+            SpawnNow();
     }
 
     private void TrySpawnGroup(SpawnGroup group, float delta)
@@ -237,5 +243,26 @@ public class Spawner : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, autoSpawnRadius);
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (triggerCollider != null)
+        {
+            Gizmos.color = new Color(0, 1, 0, 0.3f);
+            Gizmos.matrix = triggerCollider.transform.localToWorldMatrix;
+            Gizmos.DrawCube(triggerCollider.center, triggerCollider.size);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(triggerCollider.center, triggerCollider.size);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            startSpawning = true;
+        }
     }
 }

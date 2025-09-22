@@ -1,3 +1,4 @@
+
 using UnityEditor;
 using UnityEngine;
 
@@ -5,6 +6,12 @@ using UnityEngine;
 
 public class SpawnerEditor : Editor
 {
+    private SerializedProperty triggerCollider;
+
+
+
+
+
     private SerializedProperty autoSpawnProp;
     private SerializedProperty autoSpawnObjects;
     private SerializedProperty autoSpawnCount;
@@ -27,6 +34,7 @@ public class SpawnerEditor : Editor
 
     private void OnEnable()
     {
+        triggerCollider = serializedObject.FindProperty("triggerCollider");
         autoSpawnProp = serializedObject.FindProperty("autoSpawn");
         autoSpawnObjects = serializedObject.FindProperty("autoSpawnObjects");
         autoSpawnCount = serializedObject.FindProperty("autoSpawnCount");
@@ -51,7 +59,9 @@ public class SpawnerEditor : Editor
     {
         serializedObject.Update();
 
+        EditorGUILayout.PropertyField(triggerCollider);
         EditorGUILayout.PropertyField(autoSpawnProp);
+
 
 
         if (autoSpawnProp.boolValue)
@@ -96,7 +106,28 @@ public class SpawnerEditor : Editor
             ((Spawner)target).SpawnNow();
         }
 
+        Spawner spawner = (Spawner)target;
+
+        if (spawner.TriggerCollider != null)
+        {
+            // Convert local center to world position
+            Transform triggerTransform = spawner.TriggerCollider.transform;
+            Vector3 worldCenter = triggerTransform.TransformPoint(spawner.TriggerCollider.center);
+
+            // Draw and move handle
+            EditorGUI.BeginChangeCheck();
+            Vector3 newWorldCenter = Handles.PositionHandle(worldCenter, Quaternion.identity);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(spawner.TriggerCollider, "Move Trigger Center");
+                spawner.TriggerCollider.center = triggerTransform.InverseTransformPoint(newWorldCenter);
+                EditorUtility.SetDirty(spawner.TriggerCollider);
+            }
+        }
         serializedObject.ApplyModifiedProperties();
+
+
+
     }
 
 
