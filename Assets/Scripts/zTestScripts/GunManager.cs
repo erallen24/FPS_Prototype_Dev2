@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class GunManager : MonoBehaviour
 {
+    [SerializeField] GameObject gunModel;
     [SerializeField] private WeaponData WeaponData;
     [SerializeField] TMP_Text playerAmmo;
     [SerializeField] AudioClip reloadSound;
     [SerializeField] public LayerMask ignoreLayer;
 
+    private AudioSource audioSource;
+    private int gunListPos;
     private float shootTimer;
-    public int currBulletsInMag;
+    //public int currBulletsInMag;
     private bool isReloading;
 
 
@@ -19,13 +22,14 @@ public class GunManager : MonoBehaviour
     void Awake()
     {
         //currBulletsInMag = weaponData.magazineSize;
+        WeaponData.ammoCur = WeaponData.ammoMax;
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateShoot();
-        HUDManager.instance.updatePlayerAmmo(currBulletsInMag, WeaponData.ammoMax);
+        HUDManager.instance.updatePlayerAmmo(WeaponData.ammoCur, WeaponData.ammoMax);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -42,7 +46,7 @@ public class GunManager : MonoBehaviour
             Shoot();
 
         }
-        else if (currBulletsInMag <= 0 && !isReloading)
+        else if (WeaponData.ammoCur <= 0 && !isReloading)
         {
             AttemptReload();
         }
@@ -52,7 +56,7 @@ public class GunManager : MonoBehaviour
     {
         // resetting the shoot timer //
         shootTimer = 0;
-        currBulletsInMag--;
+        WeaponData.ammoCur--;
         Recoil();
         performShoot();
 
@@ -88,13 +92,15 @@ public class GunManager : MonoBehaviour
 
     private bool CheckIfGunCanShoot()
     {
-        if (currBulletsInMag <= 0)
-            return false;
+        return WeaponData.ammoCur > 0 && !isReloading;
 
-        if (isReloading)
-            return false;
+        //if (WeaponData.ammoCur <= 0)
+        //    return false;
 
-        return true;
+        //if (isReloading)
+        //    return false;
+
+        //return true;
     }
 
     private IEnumerator ReloadSequence()
@@ -107,13 +113,13 @@ public class GunManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(WeaponData.reloadTime);
-        currBulletsInMag = WeaponData.ammoMax;
+        WeaponData.ammoCur = WeaponData.ammoMax;
         isReloading = false;
     }
 
     private void AttemptReload()
     {
-        if (isReloading || currBulletsInMag >= WeaponData.ammoMax)
+        if (isReloading || WeaponData.ammoCur >= WeaponData.ammoMax)
             return;
 
         StartCoroutine(ReloadSequence());
@@ -123,5 +129,47 @@ public class GunManager : MonoBehaviour
     {
         int recoil = WeaponData.recoil;
     }
+
+    //public void GetGunStats(WeaponData gunStat, inventoryItem gun)
+    //{
+    //    if (HasItem(gun))
+    //        return; // Player already has this gun, do not pick up again
+    //    gunList.Add(gunStat);
+    //    gunListPos = gunList.Count - 1;
+    //    AddItem(gun);
+
+    //    ChangeGun();
+    //}
+
+    //void ChangeGun()
+    //{
+    //    shootDamage = gunList[gunListPos].shootDamage;
+    //    shootDistance = gunList[gunListPos].shootDistance;
+    //    shootRate = gunList[gunListPos].shootRate;
+
+    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
+    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+    //    SoundManager.instance.soundSource.PlayOneShot(gunList[gunListPos].pickUpSound);
+    //    UpdatePlayerHealthBarUI();
+
+
+    //}
+
+    //void SelectGun()
+    //{
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+    //    {
+    //        gunListPos++;
+    //        ChangeGun();
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+    //    {
+    //        gunListPos--;
+    //        ChangeGun();
+    //    }
+
+    //}
+
 
 }
