@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuMain;
     [SerializeField] GameObject menuSettings;
     [SerializeField] GameObject menuInventory;
+    [SerializeField] GameObject menuSkillTree;
 
     [SerializeField] GameObject subMenuGameplay;
     [SerializeField] GameObject subMenuControls;
     [SerializeField] GameObject subMenuAudio;
     [SerializeField] GameObject subMenuInventory;
+    [SerializeField] GameObject subMenuSkillTree;
 
 
     // public GameObject playerRageScreen;
@@ -173,6 +176,24 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    public void openSkillTree()
+    {
+        if (menuActive != null && menuActive != menuSkillTree)
+        {
+            menuActive.SetActive(false);
+        }
+        if (subMenuActive != null && subMenuActive != subMenuSkillTree)
+        {
+            subMenuActive.SetActive(false);
+        }
+
+        menuActive = menuMain;
+        subMenuActive = menuSkillTree;
+
+        menuMain.SetActive(true);
+        subMenuActive.SetActive(true);
+        menuActive.SetActive(true);
+    }
 
     public void openControllerSettings()
     {
