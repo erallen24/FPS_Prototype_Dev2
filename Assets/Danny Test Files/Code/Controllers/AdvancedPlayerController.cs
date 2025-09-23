@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Player.Utilities;
 using UnityEngine;
 
-public class AdvancedPlayerController : MonoBehaviour
+public class AdvancedPlayerController : MonoBehaviour, IDamage
 {
     #region PRIVATE PROPERTIES
 
@@ -23,7 +23,7 @@ public class AdvancedPlayerController : MonoBehaviour
 
     [Header("Stamina SETTINGS")]
     [Space(10)]
-    [SerializeField][Range(0, 100)] private float Stamina;
+    [SerializeField][Range(0, 100)] private float stamina;
     [Space(10)]
 
     [Header("Stamina USAGE")]
@@ -79,6 +79,8 @@ public class AdvancedPlayerController : MonoBehaviour
 
     public float DefaultMovementSpeed => movementControllerSettings.data.defaultMovementSpeed;
     public float SprintMovementSpeed => movementControllerSettings.data.sprintMovementSpeed;
+    public float Stamina => stamina;
+    public float InitialStamina => initialStamina;
     public float GravityForce => movementControllerSettings.data.gravityForce;
     public int JumpForce => movementControllerSettings.data.jumpForce;
     public int MaxJumpCount => movementControllerSettings.data.maxJumpCount;
@@ -93,12 +95,6 @@ public class AdvancedPlayerController : MonoBehaviour
     public Transform CameraRig => cameraControllerSettings.cameraRigTransform;
     public Vector2 CameraRotationClamp => cameraControllerSettings.data.cameraRotationClamp;
     public Vector2 CameraSensitivity => cameraControllerSettings.data.cameraSensitivity * 100;
-
-    public Animator Animator => animationControllerSettings.animator;
-    public Transform AnimatorLookAt => animationControllerSettings.animatorLookAtTransform;
-    public Transform RightHandIK => animationControllerSettings.rightHandIKTransform;
-    public Transform LeftHandIK => animationControllerSettings.leftHandIKTransform;
-    public Transform LeftHandIKTarget => animationControllerSettings.leftHandIKTargetTransform;
 
     #endregion
 
@@ -163,20 +159,18 @@ public class AdvancedPlayerController : MonoBehaviour
     public void UpdatePlayerStaminaBarUI()
     {
         // updating the player stamina bar to show the current stamina at game start
-        HUDManager.instance.playerStaminaBar.fillAmount = (float)Stamina / initialStamina;
+        HUDManager.instance.playerStaminaBar.fillAmount = (float)stamina / initialStamina;
     }
     public void UpdateStamina()
     {
-        if (LocomotionState == PlayerLocomotionState.Sprinting && Stamina > 0)
+        if (LocomotionState == PlayerLocomotionState.Sprinting && stamina > 0)
         {
-            Stamina -= staminaUsage * Time.deltaTime;
+            stamina -= staminaUsage * Time.deltaTime;
         }
-
-        if (LocomotionState == PlayerLocomotionState.Default && Stamina < initialStamina)
+        else if (LocomotionState == PlayerLocomotionState.Default && stamina < initialStamina)
         {
-            Stamina += staminaRegen * Time.deltaTime;
+            stamina += staminaRegen * Time.deltaTime;
         }
-
     }
 
 
@@ -318,7 +312,7 @@ public class AdvancedPlayerController : MonoBehaviour
     {
         if (Input.GetButton("Interact"))
         {
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange, ~ignoreLayer))
+            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out RaycastHit hit, interactRange, ~ignoreLayer))
             {
                 // logging the collider the raycast hit //
                 Debug.Log(hit.collider.name);
@@ -401,7 +395,7 @@ public class AdvancedPlayerController : MonoBehaviour
 
         // setting the initial HP and stamina for bar processing //
         initialHP = HP;
-        initialStamina = Stamina;
+        initialStamina = stamina;
         maxEXP = 500;
 
         // Setting health bar to fill to the set amount at game start up
@@ -426,7 +420,7 @@ public class AdvancedPlayerController : MonoBehaviour
         HUDManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
         HUDManager.instance.updatePlayerEXP(startingEXP, maxEXP);
         HUDManager.instance.updateHealthValue(HP);
-        HUDManager.instance.updateStaminaValue((int)Stamina);
+        HUDManager.instance.updateStaminaValue((int)stamina);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
