@@ -71,6 +71,8 @@ namespace Player.Utilities
         [Space(10)]
         public Transform animatorLookAtTransform;
         [Space(10)]
+        public Transform masterIKTransform;
+        [Space(10)]
         public Transform handIKTransform;
         public Transform rightHandIKTransform;
         public Transform leftHandIKTransform;
@@ -82,6 +84,8 @@ namespace Player.Utilities
         [Space(10)]
         public Transform posePositionPivotTransform;
         public Transform poseRotationPivotTransform;
+        [Space(10)]
+        public Transform weaponRecoilPivotTransform;
     }
 
 

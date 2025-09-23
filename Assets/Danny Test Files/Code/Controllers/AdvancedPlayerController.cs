@@ -16,47 +16,44 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     [Space(20)]
     [Header("Health Properties")]
     [Space(10)]
-    [SerializeField][Range(5, 300)] private int HP;
+    [SerializeField, Range(5, 300)] private int HP;
     [Space(10)]
-    [SerializeField][Range(1, 10)] private int healthRegen;
+    [SerializeField, Range(1, 10)] private int healthRegen;
     [Space(20)]
 
     [Header("Stamina SETTINGS")]
     [Space(10)]
-    [SerializeField][Range(0, 100)] private float stamina;
+    [SerializeField, Range(0, 100)] private float stamina;
     [Space(10)]
 
     [Header("Stamina USAGE")]
     [Space(10)]
-    [SerializeField][Range(0, 10)] private float staminaUsage;
+    [SerializeField, Range(0, 10)] private float staminaUsage;
     [Space(10)]
 
     [Header("Stamina REGEN")]
     [Space(10)]
-    [SerializeField][Range(0, 10)] private float staminaRegen;
+    [SerializeField, Range(0, 10)] private float staminaRegen;
     [Space(10)]
 
     [Header("Starting EXP")]
     [Space(10)]
-    [SerializeField][Range(0, 499)] private int startingEXP;
+    [SerializeField, Range(0, 499)] private int startingEXP;
     [Space(10)]
 
     [Header("INTERACTION SETTINGS")]
-    [SerializeField][Range(0, 10)] private float interactRange;
+    [Space(10)]
+    [SerializeField] private LayerMask interactionIgnoreLayer;
+    [SerializeField, Range(0, 10)] private float interactRange;
 
     [Header("GUN SETTINGS")]
     [Space(10)]
-    [SerializeField] GameObject gunModel;
-    [SerializeField][UnityEngine.Range(0, 100)] private int shootDamage;
-    [SerializeField][UnityEngine.Range(0, 100)] private int shootDistance;
-    [SerializeField][UnityEngine.Range(0, 1)] private float shootRate;
-    [Space(5)]
-    [SerializeField] LayerMask ignoreLayer;
-    public int ammoCur = 5;
-    [SerializeField] int ammoMax = 30; // Maximum ammo capacity
+    [SerializeField] GunManager gunManager;
+    [Space(20)]
 
+    [Header("INVENTORY SETTINGS")]
+    [Space(10)]
     public List<inventoryItem> inventory = new List<inventoryItem>();
-    public List<WeaponData> gunList = new List<WeaponData>();
 
 
     private int initialHP;
@@ -96,6 +93,11 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     public Vector2 CameraRotationClamp => cameraControllerSettings.data.cameraRotationClamp;
     public Vector2 CameraSensitivity => cameraControllerSettings.data.cameraSensitivity * 100;
 
+    public Transform MasterIK => animationControllerSettings.masterIKTransform;
+    public Transform WeaponRecoilPivot => animationControllerSettings.weaponRecoilPivotTransform;
+
+    public GunManager GunManager => gunManager;
+
     #endregion
 
     #region CONTROLLERS
@@ -117,6 +119,8 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
         MovementController = new PlayerMovementController(this, movementControllerSettings);
         CameraController = new PlayerCameraController(this, cameraControllerSettings);
         AnimationController = new PlayerAnimationController(this, animationControllerSettings);
+
+        gunManager = GetComponent<GunManager>();    
     }
     private void UpdateControllers()
     {
@@ -191,97 +195,6 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     }
 
 
-    private void UpdateShoot()
-    {
-        shootTimer += Time.deltaTime;
-
-        if (Input.GetButton("Fire1") && CanShoot() && shootTimer >= shootRate)
-        {
-            Shoot();
-        }
-        else if (ammoCur <= 0 && !isReloading)
-        {
-            AttemptReload();
-        }
-    }
-    private bool CanShoot()
-    {
-        return ammoCur > 0 && !isReloading;
-    }
-    private void Shoot()
-    {
-        // resetting the shoot timer //
-        shootTimer = 0;
-        ammoCur--;
-
-        // performing shoot raycast //
-        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out RaycastHit hit, shootDistance, ~ignoreLayer))
-        {
-            // logging the collider the raycast hit //
-            Debug.Log(hit.collider.name);
-
-            // if the collider has the IDamage interface, we store it in 'target'
-            IDamage target = hit.collider.GetComponent<IDamage>();
-
-            // null check on the target. if target is not null, we call 'TakeDamage'
-            target?.TakeDamage(shootDamage);
-        }
-    }
-    private void AttemptReload()
-    {
-        if (isReloading || ammoCur >= ammoMax)
-            return;
-
-        StartCoroutine(ReloadSequence());
-    }
-    private IEnumerator ReloadSequence()
-    {
-        isReloading = true;
-
-        yield return new WaitForSeconds(0.5f);
-        ammoCur = ammoMax;
-        isReloading = false;
-    }
-    public void GetGunStats(WeaponData gunStat, inventoryItem gun)
-    {
-        if (HasItem(gun))
-            return; // Player already has this gun, do not pick up again
-        gunList.Add(gunStat);
-        gunListPos = gunList.Count - 1;
-        AddItem(gun);
-
-        ChangeGun();
-    }
-    void ChangeGun()
-    {
-        shootDamage = gunList[gunListPos].shootDamage;
-        shootDistance = gunList[gunListPos].shootDistance;
-        shootRate = gunList[gunListPos].shootRate;
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        SoundManager.instance.soundSource.PlayOneShot(gunList[gunListPos].pickUpSound);
-        UpdatePlayerHealthBarUI();
-
-
-    }
-    void SelectGun()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
-        {
-            gunListPos++;
-            ChangeGun();
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
-        {
-            gunListPos--;
-            ChangeGun();
-        }
-
-    }
-
-
     public void TakeDamage(int amount)
     {
         HP -= amount;
@@ -312,7 +225,7 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     {
         if (Input.GetButton("Interact"))
         {
-            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out RaycastHit hit, interactRange, ~ignoreLayer))
+            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out RaycastHit hit, interactRange, ~interactionIgnoreLayer))
             {
                 // logging the collider the raycast hit //
                 Debug.Log(hit.collider.name);
@@ -402,7 +315,6 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
         UpdatePlayerHealthBarUI();
         UpdatePlayerEXPBarUI();
 
-        ammoCur = ammoMax;
         InfoManager.instance.ShowMessage("ESCAPE!", "Use WASD to move, Shift to sprint, Space to jump, Ctrl to crouch, Left Click to shoot, R to reload, E to interact, Mouse Wheel to switch weapons.", Color.lightBlue, 10);
     }
 
@@ -410,29 +322,15 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     {
         UpdateControllers();
 
-        UpdateShoot();
         UpdateInteract();
         UpdateStamina();
         UpdatePlayerEXPBarUI();
         UpdatePlayerStaminaBarUI();
         UpdatePlayerHealthBarUI();
 
-        HUDManager.instance.updatePlayerAmmo(ammoCur, ammoMax);
         HUDManager.instance.updatePlayerEXP(startingEXP, maxEXP);
         HUDManager.instance.updateHealthValue(HP);
         HUDManager.instance.updateStaminaValue((int)stamina);
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            AttemptReload();
-        }
-
-        if (gunList.Count > 0)
-            HUDManager.instance.ActivateAmmoUI();
-        else
-            HUDManager.instance.DeactivateAmmoUI();
-
-        SelectGun();
     }
 
     private void LateUpdate()
