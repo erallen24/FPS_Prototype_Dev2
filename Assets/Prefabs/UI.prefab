@@ -127,7 +127,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 7237494589732645083}
+  highlightItem: {fileID: 8524214829341756537}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7419608176763067581
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1178,7 +1183,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 764648578157294955}
+  highlightItem: {fileID: 8594464324587253127}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4079353103140855174
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1973,7 +1983,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 4847029527331787981}
+  highlightItem: {fileID: 7289045968725537485}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4528136176456736100
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2412,7 +2427,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 5113208189869408811}
+  highlightItem: {fileID: 2955734988632163343}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &1489138530064070639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3733,7 +3753,7 @@ GameObject:
   - component: {fileID: 7677107439176860654}
   - component: {fileID: 6282169968980879748}
   m_Layer: 0
-  m_Name: InventorySlot (1)
+  m_Name: InventorySlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3775,7 +3795,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 2586717881056064981}
+  highlightItem: {fileID: 5939992251404030481}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7677107439176860654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4260,6 +4285,7 @@ RectTransform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3338521968276676163}
   - {fileID: 2812443525043977471}
   m_Father: {fileID: 8934716573739807462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4436,7 +4462,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 5862893884530282486}
+  highlightItem: {fileID: 7075131933611521121}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &1501641069269047310
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6646,7 +6677,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 4511798820850580567}
+  highlightItem: {fileID: 2579546031549394837}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &6324893518267629216
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6891,7 +6927,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 6892270243640873841}
+  highlightItem: {fileID: 4079094206316264680}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4231920896656133097
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7781,7 +7822,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 7621618324100849437}
+  highlightItem: {fileID: 6509449314678873405}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &747932102754786285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10666,7 +10712,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 4980535367940500804}
+  highlightItem: {fileID: 2203391157060495580}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &8699812179692951532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12486,7 +12537,7 @@ RectTransform:
   m_Father: {fileID: 998958500995130683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12933,7 +12984,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 7702997385915681291}
+  highlightItem: {fileID: 5956595243558878668}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &2747032074820580373
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14285,7 +14341,7 @@ GameObject:
   - component: {fileID: 1198632675050690436}
   - component: {fileID: 2702100695776832016}
   m_Layer: 0
-  m_Name: Foreground Image
+  m_Name: Item Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15759,7 +15815,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 3534640834868779880}
+  highlightItem: {fileID: 8846228093412533744}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &732850337469905919
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15928,7 +15989,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 7514443945400975300}
+  highlightItem: {fileID: 7263133647073878591}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7858439524151714955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16022,7 +16088,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 1316007027136097757}
+  highlightItem: {fileID: 1464042303887372194}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4035841907709786207
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17262,7 +17333,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 8711897951123659171}
+  highlightItem: {fileID: 2149631241739098360}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &3184541995154062399
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17313,7 +17389,7 @@ GameObject:
   - component: {fileID: 5743738609887353394}
   - component: {fileID: 2490412536195719360}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Item Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17335,7 +17411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -151}
+  m_AnchoredPosition: {x: 0, y: -194}
   m_SizeDelta: {x: 380, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5743738609887353394
@@ -18397,7 +18473,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 8080151116196504519}
+  highlightItem: {fileID: 5021501423083163086}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &952843769976121100
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18702,7 +18783,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 4292106232050311896}
+  highlightItem: {fileID: 2044809320616058386}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &2637066783013814496
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18962,7 +19048,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 542036378380997950}
+  highlightItem: {fileID: 6411943998961624628}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7699699382821059703
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19135,7 +19226,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 4995239353776065705}
+  highlightItem: {fileID: 7729747090040856592}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4878287423380101206
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19755,7 +19851,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 9202782302530200914}
+  highlightItem: {fileID: 960661891705929622}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &6196355108012314095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20891,7 +20992,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 7305239908511583082}
+  highlightItem: {fileID: 9210664390895528746}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &2087469794532502931
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21123,7 +21229,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 4283382548022108538}
+  highlightItem: {fileID: 7716405474078344679}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7400097600710729728
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21524,7 +21635,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 5247922845916963017}
+  highlightItem: {fileID: 6685391157528174633}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4016708079384887256
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22232,7 +22348,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 3341412682050856759}
+  highlightItem: {fileID: 4000197799607593625}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &6604122564570917519
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24271,7 +24392,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 1954586384395990121}
+  highlightItem: {fileID: 4617996588463111222}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &6700415829517798297
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24980,6 +25106,81 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 6e1b60f8fd019d349babba30a0d7d658, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5608242218856235776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3338521968276676163}
+  - component: {fileID: 6275444181279165594}
+  - component: {fileID: 8697442695804650846}
+  m_Layer: 0
+  m_Name: Foreground Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3338521968276676163
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608242218856235776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7861181183169961812}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 95, y: 108}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6275444181279165594
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608242218856235776}
+  m_CullTransparentMesh: 1
+--- !u!114 &8697442695804650846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608242218856235776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: df1a815e7aa982d45ab7ed5888e96a03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25770,7 +25971,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 870029584060096971}
+  highlightItem: {fileID: 5279995795171529545}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7217178812059213548
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26654,6 +26860,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7861181183169961812}
+  - {fileID: 760161638444903553}
   - {fileID: 5151022315104888020}
   m_Father: {fileID: 6647828658281703487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27223,7 +27430,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 2891883042201170707}
+  highlightItem: {fileID: 179171558050238318}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &2429350189971614993
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29954,7 +30166,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 7378201479934369592}
+  highlightItem: {fileID: 3861018864567440899}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &2057864190400008720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31443,6 +31660,142 @@ RectTransform:
   m_AnchoredPosition: {x: -593, y: 436}
   m_SizeDelta: {x: 858, y: 154}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6984600742034916037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 760161638444903553}
+  - component: {fileID: 2113631377962841103}
+  - component: {fileID: 4822458262836079557}
+  m_Layer: 0
+  m_Name: Item Name
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &760161638444903553
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984600742034916037}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8934716573739807462}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 98.25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2113631377962841103
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984600742034916037}
+  m_CullTransparentMesh: 1
+--- !u!114 &4822458262836079557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984600742034916037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Item Name
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7060795258651872618
 GameObject:
   m_ObjectHideFlags: 0
@@ -31498,7 +31851,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 5014021029753034011}
+  highlightItem: {fileID: 2169589291261882690}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4871673782233424893
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32269,7 +32627,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 8661322778477354678}
+  highlightItem: {fileID: 1511573712535958990}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7115960647407893645
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32574,7 +32937,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 4466019019700652761}
+  highlightItem: {fileID: 4070199119862025418}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &4031728821366131849
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33673,7 +34041,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 5420135519296222133}
+  highlightItem: {fileID: 8407898332156165675}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &2381577503951421205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34552,7 +34925,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 3764230624258120766}
+  highlightItem: {fileID: 8896668804086165158}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &6018028766387312925
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34722,7 +35100,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 7656288520859598539}
+  highlightItem: {fileID: 1083124595608702311}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7339315410096149951
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36230,7 +36613,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 158827154372430398}
+  highlightItem: {fileID: 6572560154179900837}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &7665501392848068238
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37569,7 +37957,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 2640215625938292978}
+  highlightItem: {fileID: 5606101822052553680}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &3543541689630541448
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38658,7 +39051,7 @@ RectTransform:
   m_Father: {fileID: 3014148638805196990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -39557,7 +39950,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 6761445516848342662}
+  highlightItem: {fileID: 9065941865890512508}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &6935171381505167079
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39992,7 +40390,12 @@ MonoBehaviour:
   itemName: 
   itemSprite: {fileID: 0}
   isFull: 0
-  itemImage: {fileID: 9139185093748511987}
+  highlightItem: {fileID: 1862830941298532799}
+  itemActive: 0
+  selectedItem: {fileID: 0}
+  itemDName: {fileID: 4822458262836079557}
+  itemDescription: {fileID: 2490412536195719360}
+  itemImage: {fileID: 2702100695776832016}
 --- !u!222 &6171410548790119184
 CanvasRenderer:
   m_ObjectHideFlags: 0
