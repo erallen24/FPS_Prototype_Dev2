@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8dd587fcbb0e647bf1200fe158c578, type: 3}
   m_Name: Handgun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  gunModel: {fileID: 6949219968297497114, guid: 55b1fd5f577255c4a8338b61385780ec, type: 3}
   model: {fileID: 6949219968297497114, guid: 55b1fd5f577255c4a8338b61385780ec, type: 3}
   pickUpSound: {fileID: 0}
   emptyClipSound: {fileID: 0}
@@ -22,9 +23,9 @@ MonoBehaviour:
   shootDamage: 5
   shootDistance: 10
   shootRate: 0.5
-  ammoCur: 0
+  ammoCur: 5
   ammoMax: 5
   reloadTime: 0.5
+  recoil: 0
   impactEffect: {fileID: 0}
   impactForce: 40
-  recoil: 0
