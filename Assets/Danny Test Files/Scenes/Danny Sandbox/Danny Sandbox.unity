@@ -1275,11 +1275,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1681149136173186479, guid: 9d37712ee8e2938419ccf28511a203df, type: 3}
       propertyPath: m_Name
-      value: Test_Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1681149136173186479, guid: 9d37712ee8e2938419ccf28511a203df, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Advanced Player
       objectReference: {fileID: 0}
     - target: {fileID: 1868110997717685543, guid: 9d37712ee8e2938419ccf28511a203df, type: 3}
       propertyPath: m_LocalPosition.x
