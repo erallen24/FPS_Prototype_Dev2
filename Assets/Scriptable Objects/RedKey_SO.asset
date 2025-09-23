@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdea5971d70ab345b215be2bbc75fbd, type: 3}
   m_Name: RedKey_SO
   m_EditorClassIdentifier: Assembly-CSharp::inventoryItem
+  staminaMod: 0
+  shieldMod: 0
+  armorMod: 0
+  EMPTimer: 0
+  stunTimer: 0
+  itemType: 9
   itemName: Red Door Key
   icon: {fileID: 0}
+  description: 

@@ -1,19 +1,21 @@
 using UnityEngine;
 using Player.Utilities;
+using Player.Data;
 
 public class PlayerMovementController
 {
     private readonly AdvancedPlayerController playerController;
     private readonly PlayerInputController inputController;
+    private readonly PlayerMovementControllerData movementControllerData;
     private readonly CharacterController characterController;
     private Vector3 playerVelocity;
     private int jumpCount;
-    private float movementSpeed;
 
     public PlayerMovementController(AdvancedPlayerController player, PlayerMovementControllerSettings settings)
     {
         playerController = player;
         inputController = player.InputController;
+        movementControllerData = settings.data;
         characterController = settings.controller;
     }
 
@@ -57,10 +59,7 @@ public class PlayerMovementController
 
     private void UpdatePlayerMovement()
     {
-        float targetMovementSpeed = playerController.LocomotionState == PlayerLocomotionState.Sprinting ? playerController.SprintMovementSpeed : playerController.DefaultMovementSpeed;
-        movementSpeed = Mathf.Lerp(movementSpeed, targetMovementSpeed, Time.deltaTime * 5f);
-
-        Vector3 movementVector = inputController.MovementDirection * movementSpeed;
+        Vector3 movementVector = inputController.MovementDirection * GetTargetMovementSpeed();
 
         characterController.Move(movementVector * Time.deltaTime);
     }
@@ -95,6 +94,10 @@ public class PlayerMovementController
 
             characterController.Move(playerVelocity * Time.deltaTime);
         }
+    }
+    private float GetTargetMovementSpeed()
+    {
+        return playerController.LocomotionState == PlayerLocomotionState.Sprinting ? playerController.SprintMovementSpeed : playerController.DefaultMovementSpeed;
     }
 
     private void DrawDebugGizmos()

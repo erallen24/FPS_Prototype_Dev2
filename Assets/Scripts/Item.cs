@@ -1,10 +1,17 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-public class XRePickup : MonoBehaviour, IInteractable
+public class Item : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string itemName;
+    [SerializeField] private Sprite itemSprite;
+    [SerializeField] inventoryItem item;
 
-    public XReModule moduleData; // Reference to the PickupData ScriptableObject
-    public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
+    private InventoryManager inventoryManager;
+
+
+   public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
     public float pulseMagnitude = 0.1f; // Magnitude of the pulsing effect
     private float pulseTimer = 0f; // Timer for pulsing effect
@@ -33,28 +40,7 @@ public class XRePickup : MonoBehaviour, IInteractable
         transform.localScale = initialScale * scaleFactor;
         transform.position = originalPosition + new Vector3(0, Mathf.Sin(pulseTimer) * pulseMagnitude, 0); // Adjust the Y position for pulsing effect
 
-
-    }
-
-    public void Interact()
-    {
-        HUDManager.instance.UpdateInteractPrompt("");
-        //Debug.Log("Should be picking up");
-        if (MinimapManager.instance.collectedModules.Contains(moduleData))
-        {
-            // Already collected this module
-            HUDManager.instance.ShowPromptTemporary(moduleData.name + " already collected.", 3);
-            return;
-        }
-
-        MinimapManager.instance.ActivateModule(moduleData);
-        Destroy(gameObject);
-
-
-
-
-
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,11 +48,24 @@ public class XRePickup : MonoBehaviour, IInteractable
 
         if (other.CompareTag("Player"))
         {
+            //IInteractable interactable = other.GetComponent<IInteractable>();
+
+            HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + item.itemName);
             HUDManager.instance.interactPromptText.color = Color.white;
-            HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + moduleData.name);
-
         }
-
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        HUDManager.instance.UpdateInteractPrompt("");
+    }
+
+    public void Interact()
+    {
+        Debug.Log("Should be picking up");
+        GameManager.instance.playerScript.AddItem(item);
+
+        Destroy(gameObject);
+        HUDManager.instance.UpdateInteractPrompt("");
+    }
 }

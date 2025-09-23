@@ -43,6 +43,11 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.openInventory();
     }
 
+    public void openSkillTree()
+    {
+        GameManager.instance.openSkillTree();
+    }
+
     public void openControllerSettings()
     {
         GameManager.instance.openControllerSettings();

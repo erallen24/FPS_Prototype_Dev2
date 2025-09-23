@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WeaponData : ScriptableObject
 {
+    //public GameObject gunModel;
     public GameObject model;
-    [SerializeField]
     public enum GunType { Handgun, Shotgun, AutoRifle, Submachinegun, SniperRifle }
-    public AudioClip pickUpSound;
 
+    public AudioClip pickUpSound;
     public AudioClip emptyClipSound;
     public AudioClip reloadSound;
     public AudioClip[] shootSounds;
@@ -21,11 +21,13 @@ public class WeaponData : ScriptableObject
     public int ammoCur;
     [Range(5, 50)] public int ammoMax; // Maximum ammo capacity
     public float reloadTime;
+    public int recoil;
+
     public ParticleSystem impactEffect;
     public float impactForce;
 
 
-    public int recoil;
+
 
 
 }
