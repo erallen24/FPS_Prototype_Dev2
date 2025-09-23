@@ -486,12 +486,12 @@ MonoBehaviour:
     poseRotationPivotTransform: {fileID: 5258885937448294615}
   HP: 100
   healthRegen: 1
-  Stamina: 25
+  stamina: 25
   staminaUsage: 10
   staminaRegen: 10
   startingEXP: 0
   interactRange: 5
-  gunModel: {fileID: 0}
+  gunModel: {fileID: 7119262202442218458}
   shootDamage: 1
   shootDistance: 25
   shootRate: 0.5
@@ -1251,7 +1251,7 @@ Transform:
   m_GameObject: {fileID: 3416598130014522596}
   serializedVersion: 2
   m_LocalRotation: {x: 0.030114073, y: -0.23093176, z: 0.92871106, w: 0.28854725}
-  m_LocalPosition: {x: -0.060399935, y: 0.00039999187, z: 0.2133}
+  m_LocalPosition: {x: -0.0519, y: 0.007, z: 0.2128}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2188,8 +2188,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7119262202442218458}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.70710677, y: -0.00000008940692, z: 0.00000009685749, w: 0.70710677}
-  m_LocalPosition: {x: -0, y: 0.079, z: 0.12}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2736,7 +2736,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8815d62613778b4794ef702ed3cbc30, type: 3}
   m_Name: Player Camera Controller Data
   m_EditorClassIdentifier: 
-  cameraRotationClamp: {x: -80, y: 80}
-  cameraSensitivity: {x: 4, y: 4}
+  cameraRotationClamp: {x: -90, y: 90}
+  cameraSensitivity: {x: 5, y: 5}

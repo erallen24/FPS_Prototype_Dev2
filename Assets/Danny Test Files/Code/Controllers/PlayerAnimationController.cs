@@ -44,11 +44,12 @@ public class PlayerAnimationController
     public void Update()
     {
         UpdateAnimator();
+        UpdateTargetBobbingValues(inputController.MoveInput, animationControllerSettings.data);
     }
     public void LateUpdate()
     {
         LateUpdateSway(animationControllerSettings.swayPivotTransform, inputController.MoveInput, inputController.LookInput, animationControllerSettings.data);
-        LateUpdateBobbing(animationControllerSettings.bobbingPivotTransform, inputController.MoveInput, animationControllerSettings.data);
+        LateUpdateBobbing(animationControllerSettings.bobbingPivotTransform, inputController.MoveInput);
         LateUpdatePose(animationControllerSettings.posePositionPivotTransform, animationControllerSettings.poseRotationPivotTransform, animationControllerSettings.data);
         LateUpdateHandIK(leftHandIKTarget);
     }
@@ -75,8 +76,21 @@ public class PlayerAnimationController
         animator.SetFloat("Look X Angle", animatorLookXAngle, animationControllerSettings.data.animatorLookSmoothing, Time.deltaTime);
         animator.SetFloat("Look Y Angle", lookX, animationControllerSettings.data.animatorLookSmoothing, Time.deltaTime);
 
-        float targetSprintingWeight = inputController.SprintHeld ? 1f : 0f;
+        float targetSprintingWeight = playerController.LocomotionState == PlayerLocomotionState.Sprinting ? 1f : 0f;
         animator.SetFloat("Sprinting Weight", targetSprintingWeight, animationControllerSettings.data.animatorSprintWeightSmoothing, Time.deltaTime);
+    }
+    private void UpdateTargetBobbingValues(Vector2 moveInput, PlayerAnimationControllerData data)
+    {
+        if (playerController.LocomotionState == PlayerLocomotionState.Sprinting)
+        {
+            targetBobbingFrequency = Mathf.Lerp(targetBobbingFrequency, data.sprintingBobbingFrequency, moveInput.magnitude * 100);
+            targetBobbingAmplitude = Mathf.Lerp(targetBobbingAmplitude, data.sprintingBobbingAmplitude, moveInput.magnitude);
+        }
+        else
+        {
+            targetBobbingFrequency = Mathf.Lerp(data.idleBobbingFrequency, data.movingBobbingFrequency, moveInput.magnitude * 100);
+            targetBobbingAmplitude = Mathf.Lerp(data.idleBobbingAmplitude, data.movingBobbingAmplitude, moveInput.magnitude);
+        }
     }
 
     private void LateUpdateSway(Transform swayPivot, Vector2 moveInput, Vector2 lookInput, PlayerAnimationControllerData data)
@@ -98,11 +112,8 @@ public class PlayerAnimationController
 
         swayPivot.localRotation = Quaternion.Euler(lookSwayRotation);
     }
-    private void LateUpdateBobbing(Transform bobbingPivot, Vector2 moveInput, PlayerAnimationControllerData data)
+    private void LateUpdateBobbing(Transform bobbingPivot, Vector2 moveInput)
     {
-        targetBobbingFrequency = Mathf.Lerp(data.idleBobbingFrequency, data.movingBobbingFrequency, moveInput.magnitude * 100);
-        targetBobbingAmplitude = Mathf.Lerp(data.idleBobbingAmplitude, data.movingBobbingAmplitude, moveInput.magnitude);
-
         if (playerController.GroundedState == PlayerGroundedState.Grounded)
         {
             targetBobbingPivotPosition.y = Mathf.Sin(Time.time * targetBobbingFrequency) * targetBobbingAmplitude / 7500;
