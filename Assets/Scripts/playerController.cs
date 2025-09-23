@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [SerializeField] CharacterController characterController;
     [SerializeField] CameraController cameraController;
+    [SerializeField] GunManager gunManager;
 
 
     [Header("HEALTH SETTINGS")]
@@ -107,6 +108,8 @@ public class PlayerController : MonoBehaviour, IDamage
     private bool isReloading;
     private AudioSource audioSource;
 
+
+
     public bool isFullyHealed => HP >= initialHP;
     public bool isLowHealth => HP <= initialHP * 0.3f;
 
@@ -114,7 +117,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Start()
     {
         Initialize();
-        ammoCur = ammoMax;
+        //ammoCur = ammoMax;
         InfoManager.instance.ShowMessage("ESCAPE!", "Use WASD to move, Shift to sprint, Space to jump, Ctrl to crouch, Left Click to shoot, R to reload, E to interact, Mouse Wheel to switch weapons.", Color.lightBlue, 10);
 
     }
@@ -180,7 +183,7 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateSprint();
         UpdateJump();
         UpdateGravity();
-        SelectGun();
+        //GunManager.SelectGun();
     }
 
     private void UpdateSprint()
@@ -348,6 +351,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             // null check on the target. if target is not null, we call 'TakeDamage'
             target?.TakeDamage(shootDamage);
+
         }
     }
 
@@ -443,7 +447,7 @@ public class PlayerController : MonoBehaviour, IDamage
         gunListPos = gunList.Count - 1;
         AddItem(gun);
 
-        ChangeGun();
+       ChangeGun();
     }
 
     void ChangeGun()

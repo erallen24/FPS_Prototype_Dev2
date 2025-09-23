@@ -10,14 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acdea5971d70ab345b215be2bbc75fbd, type: 3}
-  m_Name: BlueKey_SO
+  m_Name: Shotgun_Inventory
   m_EditorClassIdentifier: Assembly-CSharp::inventoryItem
-  staminaMod: 0
-  shieldMod: 0
-  armorMod: 0
-  EMPTimer: 0
-  stunTimer: 0
-  itemType: 9
-  itemName: Blue Door Key
+  itemType: 6
+  itemName: Shotgun
   icon: {fileID: 0}
-  description: 
