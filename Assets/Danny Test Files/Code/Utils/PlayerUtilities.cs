@@ -23,10 +23,13 @@ namespace Player.Utilities
     [System.Serializable]
     public struct PlayerMovementControllerSettings
     {
-        [Header("PROPERTIES")]
+        [Header("CONTROLLER DATA")]
         [Space(10)]
         public PlayerMovementControllerData data;
-        [Space(5)]
+        [Space(20)]
+
+        [Header("REFERENCES")]
+        [Space(10)]
         public CharacterController controller;
         [Space(20)]
 
@@ -40,33 +43,45 @@ namespace Player.Utilities
     [System.Serializable]
     public struct PlayerCameraControllerSettings
     {
-        [Header("PROPERTIES")]
+        [Header("CONTROLLER DATA")]
         [Space(10)]
         public PlayerCameraControllerData data;
-        [Space(5)]
+        [Space(20)]
+
+        [Header("REFERENCES")]
+        [Space(10)]
         public Camera camera;
         [Space(5)]
         public Transform cameraRigTransform;
+        [Space(5)]
+        public Transform cameraRigTargetTransform;
     }
 
     [System.Serializable]
     public struct PlayerAnimationControllerSettings
     {
-        [Header("PROPERTIES")]
+        [Header("CONTROLLER DATA")]
         [Space(10)]
         public PlayerAnimationControllerData data;
-        [Space(5)]
+        [Space(20)]
+
+        [Header("REFERENCES")]
+        [Space(10)]
         public Animator animator;
-        [Space(5)]
+        [Space(10)]
         public Transform animatorLookAtTransform;
-        [Space(5)]
-        public Transform masterIKTransform;
-        [Space(5)]
+        [Space(10)]
         public Transform handIKTransform;
         public Transform rightHandIKTransform;
         public Transform leftHandIKTransform;
         [Space(5)]
         public Transform leftHandIKTargetTransform;
+        [Space(10)]
+        public Transform bobbingPivotTransform;
+        public Transform swayPivotTransform;
+        [Space(10)]
+        public Transform posePositionPivotTransform;
+        public Transform poseRotationPivotTransform;
     }
 
 

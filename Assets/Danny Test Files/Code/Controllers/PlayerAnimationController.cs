@@ -1,3 +1,4 @@
+using Player.Data;
 using Player.Utilities;
 using UnityEngine;
 
@@ -5,17 +6,34 @@ public class PlayerAnimationController
 {
     private readonly AdvancedPlayerController playerController;
     private readonly PlayerInputController inputController;
+    private readonly PlayerAnimationControllerSettings animationControllerSettings;
     private readonly Animator animator;
     private readonly Transform rightHandIK;
     private readonly Transform leftHandIK;
     private readonly Transform leftHandIKTarget;
     private readonly Transform animatorLookAt;
+
     private float animatorLookXAngle;
+
+    private Vector3 lookSwayRotationInput;
+    private Vector3 lookSwayPositionInput;
+    private Vector3 lookSwayRotation;
+    private Vector3 lookSwayPosition;
+
+    private Vector3 targetBobbingPivotPosition;
+    private Vector3 targetBobbingPivotRotation;
+    private float targetBobbingFrequency;
+    private float targetBobbingAmplitude;
+
+    private Vector3 targetPosePosition;
+    private Vector3 targetPoseRotation;
 
     public PlayerAnimationController(AdvancedPlayerController player, PlayerAnimationControllerSettings settings)
     {
         playerController = player;
         inputController = player.InputController;
+
+        animationControllerSettings = settings;
         animator = settings.animator;
         rightHandIK = settings.rightHandIKTransform;
         leftHandIK = settings.leftHandIKTransform;
@@ -29,12 +47,15 @@ public class PlayerAnimationController
     }
     public void LateUpdate()
     {
-        LateUpdateHandIK();
+        LateUpdateSway(animationControllerSettings.swayPivotTransform, inputController.MoveInput, inputController.LookInput, animationControllerSettings.data);
+        LateUpdateBobbing(animationControllerSettings.bobbingPivotTransform, inputController.MoveInput, animationControllerSettings.data);
+        LateUpdatePose(animationControllerSettings.posePositionPivotTransform, animationControllerSettings.poseRotationPivotTransform, animationControllerSettings.data);
+        LateUpdateHandIK(leftHandIKTarget);
     }
     public void OnAnimatorIK()
     {
-        UpdateAnimatorLookIK();
-        UpdateAnimatorHandIK();
+        UpdateAnimatorLookIK(animatorLookAt);
+        UpdateAnimatorHandIK(animator, rightHandIK, leftHandIK);
     }
 
 
@@ -42,8 +63,8 @@ public class PlayerAnimationController
     {
         animator.SetBool("Grounded", playerController.GroundedState == PlayerGroundedState.Grounded);
 
-        animator.SetFloat("Movement X", inputController.MoveX, 0.05f, Time.deltaTime);
-        animator.SetFloat("Movement Y", inputController.MoveY, 0.05f, Time.deltaTime);
+        animator.SetFloat("Movement X", inputController.MoveX, animationControllerSettings.data.animatorMoveSmoothing, Time.deltaTime);
+        animator.SetFloat("Movement Y", inputController.MoveY, animationControllerSettings.data.animatorMoveSmoothing, Time.deltaTime);
 
         float lookX = inputController.LookX;
         float lookY = inputController.LookY * (playerController.CameraSensitivity.y / 2) * Time.deltaTime;
@@ -51,25 +72,80 @@ public class PlayerAnimationController
         animatorLookXAngle += lookY;
         animatorLookXAngle = Mathf.Clamp(animatorLookXAngle, playerController.CameraRotationClamp.x, playerController.CameraRotationClamp.y);
 
-        animator.SetFloat("Look X Angle", animatorLookXAngle, 0.1f, Time.deltaTime);
-        animator.SetFloat("Look Y Angle", lookX, 0.1f, Time.deltaTime);
+        animator.SetFloat("Look X Angle", animatorLookXAngle, animationControllerSettings.data.animatorLookSmoothing, Time.deltaTime);
+        animator.SetFloat("Look Y Angle", lookX, animationControllerSettings.data.animatorLookSmoothing, Time.deltaTime);
 
-        float sprintingWeight = inputController.SprintHeld ? 1f : 0f;
-        animator.SetFloat("Sprinting Weight", sprintingWeight, 0.1f, Time.deltaTime);
+        float targetSprintingWeight = inputController.SprintHeld ? 1f : 0f;
+        animator.SetFloat("Sprinting Weight", targetSprintingWeight, animationControllerSettings.data.animatorSprintWeightSmoothing, Time.deltaTime);
     }
 
-    private void LateUpdateHandIK()
+    private void LateUpdateSway(Transform swayPivot, Vector2 moveInput, Vector2 lookInput, PlayerAnimationControllerData data)
     {
-        leftHandIK.SetPositionAndRotation(leftHandIKTarget.position, leftHandIKTarget.rotation);
+        lookSwayRotationInput.x = Mathf.Lerp(lookSwayRotationInput.x, -lookInput.y, Time.deltaTime * data.swaySpeedMultiplier.x);
+        lookSwayRotationInput.y = Mathf.Lerp(lookSwayRotationInput.y, -lookInput.x, Time.deltaTime * data.swaySpeedMultiplier.y);
+        lookSwayRotationInput.z = Mathf.Lerp(lookSwayRotationInput.z, -lookInput.x, Time.deltaTime * data.swaySpeedMultiplier.z);
+
+        lookSwayPositionInput.x = Mathf.Lerp(lookSwayPositionInput.x, -lookInput.x + moveInput.x, Time.deltaTime * data.swaySpeedMultiplier.x);
+        lookSwayPositionInput.y = Mathf.Lerp(lookSwayPositionInput.y, -lookInput.y + moveInput.y, Time.deltaTime * data.swaySpeedMultiplier.y);
+
+        lookSwayRotation.x = (swayPivot.localRotation.x + data.lookSwayRotationMultiplier.x) * lookSwayRotationInput.x;
+        lookSwayRotation.y = (swayPivot.localRotation.y + data.lookSwayRotationMultiplier.y) * lookSwayRotationInput.y;
+        lookSwayRotation.z = (swayPivot.localRotation.z + data.lookSwayRotationMultiplier.z) * lookSwayRotationInput.z;
+
+        lookSwayPosition.x = swayPivot.localPosition.x + data.lookSwayPositionMultiplier.x * lookSwayPositionInput.x;
+        lookSwayPosition.y = swayPivot.localPosition.y + data.lookSwayPositionMultiplier.y * lookSwayPositionInput.y;
+        lookSwayPosition.z = swayPivot.localPosition.z;
+
+        swayPivot.localRotation = Quaternion.Euler(lookSwayRotation);
+    }
+    private void LateUpdateBobbing(Transform bobbingPivot, Vector2 moveInput, PlayerAnimationControllerData data)
+    {
+        targetBobbingFrequency = Mathf.Lerp(data.idleBobbingFrequency, data.movingBobbingFrequency, moveInput.magnitude * 100);
+        targetBobbingAmplitude = Mathf.Lerp(data.idleBobbingAmplitude, data.movingBobbingAmplitude, moveInput.magnitude);
+
+        if (playerController.GroundedState == PlayerGroundedState.Grounded)
+        {
+            targetBobbingPivotPosition.y = Mathf.Sin(Time.time * targetBobbingFrequency) * targetBobbingAmplitude / 7500;
+
+            targetBobbingPivotRotation.x = Mathf.Cos(Time.time * -targetBobbingFrequency) * targetBobbingAmplitude / 50;
+            targetBobbingPivotRotation.y = Mathf.Cos(Time.time * (targetBobbingFrequency / 2)) * -targetBobbingAmplitude / 50;
+        }
+        else
+        {
+            targetBobbingPivotPosition = Vector3.Lerp(targetBobbingPivotPosition, Vector3.zero, Time.deltaTime * 10f);
+            targetBobbingPivotRotation = Vector3.Lerp(targetBobbingPivotRotation, Vector3.zero, Time.deltaTime * 10f);
+        }
+
+        bobbingPivot.SetLocalPositionAndRotation(Vector3.Lerp(bobbingPivot.localPosition, targetBobbingPivotPosition, Time.deltaTime * 5f), Quaternion.Slerp(bobbingPivot.localRotation, Quaternion.Euler(targetBobbingPivotRotation), Time.deltaTime * 5f));
+    }
+    private void LateUpdatePose(Transform positionPivot, Transform rotationPivot, PlayerAnimationControllerData data)
+    {
+        if (playerController.LocomotionState == PlayerLocomotionState.Default)
+        {
+            targetPosePosition = data.defaultPosePosition;
+            targetPoseRotation = data.defaultPoseRotation;
+        }
+        else
+        {
+            targetPosePosition = data.sprintPosePosition;
+            targetPoseRotation = data.sprintPoseRotation;
+        }
+
+        positionPivot.localPosition = Vector3.Lerp(positionPivot.localPosition, targetPosePosition, Time.deltaTime * data.posePositionSpeed);
+        rotationPivot.localRotation = Quaternion.Lerp(rotationPivot.localRotation, Quaternion.Euler(targetPoseRotation), Time.deltaTime * data.poseRotationSpeed);
+    }
+    private void LateUpdateHandIK(Transform target)
+    {
+        leftHandIK.SetPositionAndRotation(target.position, target.rotation);
     }
 
 
-    private void UpdateAnimatorLookIK()
+    private void UpdateAnimatorLookIK(Transform lookAtTarget)
     {
         animator.SetLookAtWeight(1f, 0.1f, 1f);
-        animator.SetLookAtPosition(animatorLookAt.position);
+        animator.SetLookAtPosition(lookAtTarget.position);
     }
-    private void UpdateAnimatorHandIK()
+    private void UpdateAnimatorHandIK(Animator animator, Transform rightHandIK, Transform leftHandIK)
     {
         float rightWeight = animator.GetFloat("Right Hand IK Weight");
         float leftWeight = animator.GetFloat("Left Hand IK Weight");

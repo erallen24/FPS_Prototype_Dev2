@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [HideInInspector] public float shootTimer;
     bool playerInTrigger;
     float angleToPlayer;
-    
+
 
     int HPOrig;
     float shieldOrig;
@@ -66,15 +66,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(isDead) { return; }  
+        if (isDead) { return; }
 
         ClassUpdateBegin();
         if (shootTimer < shootRate + 1f) { shootTimer += Time.deltaTime; }
         if (shieldTimer < shieldRegenTime + 1f) { shieldTimer += Time.deltaTime; }
-        if (shieldTimer > shieldRegenTime && shield < shieldOrig) 
-        { 
+        if (shieldTimer > shieldRegenTime && shield < shieldOrig)
+        {
             shield += Time.deltaTime * shieldRegenRate;
-            if(shield > shieldOrig) { shield = shieldOrig; }
+            if (shield > shieldOrig) { shield = shieldOrig; }
         }
 
         if (playerInTrigger)
@@ -90,8 +90,8 @@ public class EnemyAI : MonoBehaviour, IDamage
                 shootPos.LookAt(lookAtPos);
 
                 if (shootTimer >= shootRate) { Shoot(); }
-            } 
-        } 
+            }
+        }
 
         ClassUpdateEnd();
     }
@@ -100,7 +100,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         if (isDead) { return; }
 
-        if (other.CompareTag("Player")) { 
+        if (other.CompareTag("Player"))
+        {
             playerInTrigger = true;
             return;
         }
@@ -120,7 +121,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
 
     public virtual void ClassStart() { }
-    
+
     public virtual void ClassUpdateBegin() { }
 
     public virtual void ClassUpdateEnd() { }
@@ -129,16 +130,17 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public virtual void TakeDamage(int damage)
     {
-        if (isDead) {  return; }
+        if (isDead) { return; }
 
         shieldTimer = 0;
         playerDir = GameManager.instance.player.transform.position - transform.position;
 
-        if (0 < shield) { 
+        if (0 < shield)
+        {
             shield -= damage;
         }
         else { HP -= damage; }
-        
+
         StartCoroutine(flash());
         StartCoroutine(DisplayHPBar(damage));
         if (HP <= 0)
@@ -150,11 +152,11 @@ public class EnemyAI : MonoBehaviour, IDamage
                 Instantiate(dropItem, transform.position + dropItemOffset, transform.rotation);
                 HUDManager.instance.bossHPBar.gameObject.SetActive(false);
             }
-            
+
             ClassDeath();
             GameManager.instance.playerScript.addEXP(expValue);
         }
-        else 
+        else
         {
             FaceTarget();
             agent.SetDestination(GameManager.instance.player.transform.position);
@@ -163,7 +165,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        if(isDead) { return false; }
+        if (isDead) { return false; }
 
         playerDir = GameManager.instance.player.transform.position - lookPos.position;
         angleToPlayer = Vector3.Angle(transform.forward, playerDir);
@@ -180,7 +182,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             }
         }
         //canSeePlayer = false;
-       
+
         return false;
     }
 
@@ -197,7 +199,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
         //CreateBullet();
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
-        
+
         // SoundManager.instance.playEnemyShootSound(shootPos);
     }
 
@@ -226,18 +228,19 @@ public class EnemyAI : MonoBehaviour, IDamage
             healthBar.gameObject.SetActive(true);
 
             if (0 < shield) { shieldBar.fillAmount = Mathf.Lerp(((float)shield + amount) / shieldOrig, (float)shield / shieldOrig, 1f); }
-            
-            else {
-            healthBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
-            // change color of health bar based on % of health left as a gradient from green to red
-            healthBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
+
+            else
+            {
+                healthBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);
+                // change color of health bar based on % of health left as a gradient from green to red
+                healthBarFill.color = Color.Lerp(Color.red, Color.green, (float)HP / HPOrig);
             }
 
 
             yield return new WaitForSeconds(1f);
             healthBar.gameObject.SetActive(false);
         }
-        else if (isBoss && MinimapManager.instance.collectedModules.Count > 0)
+        else if (isBoss)
         {
             HUDManager.instance.bossHPBar.gameObject.SetActive(true);
             HUDManager.instance.bossHPBarFill.fillAmount = Mathf.Lerp(((float)HP + amount) / HPOrig, (float)HP / HPOrig, 1f);

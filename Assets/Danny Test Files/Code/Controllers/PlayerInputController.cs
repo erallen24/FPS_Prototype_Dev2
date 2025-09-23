@@ -16,6 +16,9 @@ public class PlayerInputController
     public float MoveY => moveY;
     public float LookX => lookX;
     public float LookY => lookY;
+
+    public Vector2 MoveInput { get { return new Vector2(moveX, moveY); } }
+    public Vector2 LookInput { get { return new Vector2(lookX, lookY); } }
     public Vector3 MovementDirection => movementDirection.normalized;  
     public bool SprintHeld => sprintHeld;   
     public bool JumpPressed => jumpPressed;

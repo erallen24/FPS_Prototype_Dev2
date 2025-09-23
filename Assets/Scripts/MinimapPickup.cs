@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class XRePickup : MonoBehaviour, IInteractable
+public class MinimapPickup : MonoBehaviour, IInteractable
 {
 
-    public XReModule moduleData; // Reference to the PickupData ScriptableObject
+    public MinimapModule moduleData; // Reference to the PickupData ScriptableObject
     public float rotateSpeed = 50f; // Speed at which the pickup rotates for visibility
     public float pulseSpeed = 2f; // Speed of the pulsing effect
     public float pulseMagnitude = 0.1f; // Magnitude of the pulsing effect
@@ -39,22 +39,11 @@ public class XRePickup : MonoBehaviour, IInteractable
     public void Interact()
     {
         HUDManager.instance.UpdateInteractPrompt("");
-        //Debug.Log("Should be picking up");
-        if (MinimapManager.instance.collectedModules.Contains(moduleData))
-        {
-            // Already collected this module
-            HUDManager.instance.ShowPromptTemporary(moduleData.name + " already collected.", 3);
-            return;
-        }
+
 
         MinimapManager.instance.ActivateModule(moduleData);
+
         Destroy(gameObject);
-
-
-
-
-
-
     }
 
     private void OnTriggerEnter(Collider other)
