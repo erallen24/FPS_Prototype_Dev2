@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
 
 
 
-
     public bool isPaused;
 
     float timeScaleOrig;
