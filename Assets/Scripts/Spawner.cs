@@ -22,8 +22,9 @@ public class SpawnGroup
 
     [Tooltip("Spawn positions for this group")]
     public Transform[] spawnPositions;
-    [HideInInspector] public int spawnedCount = 0;
+    [HideInInspector] public int spawnedCount;
 }
+
 
 public class Spawner : MonoBehaviour
 {
@@ -32,10 +33,10 @@ public class Spawner : MonoBehaviour
     [Tooltip("Enable automatic spawning at runtime")]
     [SerializeField] private bool autoSpawn = false;
     [SerializeField] private GameObject[] autoSpawnObjects;
-    [SerializeField] private int autoSpawnCount = 5;
-    [SerializeField] private int autoSpawnObjAtATime = 2;
-    [SerializeField] private int autoSpawnRate = 2;
-    [SerializeField] private float autoSpawnRadius = 5f;
+    [SerializeField] private int autoSpawnCount;
+    [SerializeField] private int autoSpawnObjAtATime;
+    [SerializeField] private int autoSpawnRate;
+    [SerializeField] private float autoSpawnRadius;
 
     //[Header("Manual Spawn Groups")]
 
@@ -49,17 +50,17 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool isBossSpawner = false;
     [SerializeField] private GameObject[] bossObjects;
     [SerializeField] private Transform[] bossSpawnPositions;
-    [SerializeField][Range(0, 120f)] private float bossSpawnRate = 10f;
-    [SerializeField] private int bossesAtATime = 1;
+    [SerializeField][Range(0, 120f)] private float bossSpawnRate;
+    [SerializeField] private int bossesAtATime;
     [Tooltip("Total spawns completed is normalized from (0–100%)")]
-    [SerializeField][Range(0, 1f)] private float spawnAtCompletionProgess = 0.8f;
+    [SerializeField][Range(0, 1f)] private float spawnAtCompletionProgess;
 
 
 
     private Dictionary<SpawnGroup, float> groupTimers = new();
 
     private float autoSpawnTimer;
-    private int autoSpawnedCount;
+    private int autoSpawned;
 
 
     private float bossTimer;
@@ -78,7 +79,7 @@ public class Spawner : MonoBehaviour
         if (autoSpawn)
         {
             autoSpawnTimer = 0;
-            autoSpawnedCount = 0;
+            autoSpawned = 0;
         }
 
         if (isBossSpawner)
@@ -86,6 +87,7 @@ public class Spawner : MonoBehaviour
             bossSpawned = false;
             bossesSpawned = 0;
         }
+
         startSpawning = false;
     }
 
@@ -107,14 +109,14 @@ public class Spawner : MonoBehaviour
         }
 
         autoSpawnTimer += delta;
-        if (autoSpawnTimer >= autoSpawnRate && autoSpawnCount > autoSpawnedCount)
+        if (autoSpawnTimer >= autoSpawnRate && autoSpawnCount > autoSpawned)
         {
             autoSpawnTimer = 0f;
 
             SpawnAutoObjects();
         }
     }
-    private void TryFirstGroup(SpawnGroup group, float delta)
+    private void TrySpawnGroup(SpawnGroup group, float delta)
     {
         if (group == null || group.objects == null || group.spawnPositions == null ||
             group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
@@ -129,53 +131,6 @@ public class Spawner : MonoBehaviour
 
         }
     }
-    private void TrySecondGroup(SpawnGroup group, float delta)
-    {
-        if (group == null || group.objects == null || group.spawnPositions == null ||
-            group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
-            return;
-
-        groupTimers[group] += delta;
-        if (groupTimers[group] >= group.spawnRate && group.count > group.spawnedCount) // Check every second
-        {
-            groupTimers[group] = 0f;
-            SpawnGroupObjects(group);
-
-
-        }
-    }
-
-    private void TryThirdGroup(SpawnGroup group, float delta)
-    {
-        if (group == null || group.objects == null || group.spawnPositions == null ||
-            group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
-            return;
-
-        groupTimers[group] += delta;
-        if (groupTimers[group] >= group.spawnRate && group.count > group.spawnedCount) // Check every second
-        {
-            groupTimers[group] = 0f;
-            SpawnGroupObjects(group);
-
-
-        }
-    }
-    private void TryFourthGroup(SpawnGroup group, float delta)
-    {
-        if (group == null || group.objects == null || group.spawnPositions == null ||
-            group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
-            return;
-
-        groupTimers[group] += delta;
-        if (groupTimers[group] >= group.spawnRate && group.count > group.spawnedCount) // Check every second
-        {
-            groupTimers[group] = 0f;
-            SpawnGroupObjects(group);
-
-
-        }
-    }
-
 
 
     private void TryBoss(float delta)
@@ -204,16 +159,17 @@ public class Spawner : MonoBehaviour
         randomPos.y = transform.position.y; // Keep the same height as the spawner
         Instantiate(autoSpawnObjects[arrayPos], randomPos, Quaternion.identity);
 
-        autoSpawnedCount++;
+        autoSpawned++;
         HUDManager.instance.updateGameGoal(1);
 
     }
 
     private void SpawnGroupObjects(SpawnGroup group)
     {
-        int arrayPos = Random.Range(0, group.objects.Length);
+        int arrayPos = Random.Range(0, group.spawnPositions.Length);
+        int arrayObjPos = Random.Range(0, group.objects.Length);
 
-        Instantiate(group.objects[arrayPos], group.spawnPositions[arrayPos].position, group.spawnPositions[arrayPos].rotation);
+        Instantiate(group.objects[arrayObjPos], group.spawnPositions[arrayPos].position, group.spawnPositions[arrayPos].rotation);
         group.spawnedCount++;
         HUDManager.instance.updateGameGoal(1);
 
@@ -229,10 +185,10 @@ public class Spawner : MonoBehaviour
         }
         else if (!autoSpawn)
         {
-            TryFirstGroup(mainGroup, delta);
-            TrySecondGroup(secondaryGroup, delta);
-            TryThirdGroup(tertiaryGroup, delta);
-            TryFourthGroup(quaternaryGroup, delta);
+            TrySpawnGroup(mainGroup, delta);
+            TrySpawnGroup(secondaryGroup, delta);
+            TrySpawnGroup(tertiaryGroup, delta);
+            TrySpawnGroup(quaternaryGroup, delta);
         }
 
         if (isBossSpawner && !bossSpawned && GetOverallSpawnProgress() >= spawnAtCompletionProgess)
@@ -246,9 +202,10 @@ public class Spawner : MonoBehaviour
 
         if (bossObjects.Length > 1)
         {
-            int arrayPos = Random.Range(0, bossObjects.Length);
+            int arrayPos = Random.Range(0, bossSpawnPositions.Length);
+            int arrayObjPos = Random.Range(0, bossObjects.Length);
 
-            Instantiate(bossObjects[arrayPos], bossSpawnPositions[arrayPos].position, bossSpawnPositions[arrayPos].rotation);
+            Instantiate(bossObjects[arrayObjPos], bossSpawnPositions[arrayPos].position, bossSpawnPositions[arrayPos].rotation);
 
             bossesSpawned++;
             HUDManager.instance.updateGameGoal(1);

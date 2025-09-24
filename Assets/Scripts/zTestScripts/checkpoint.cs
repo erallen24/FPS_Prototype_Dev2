@@ -12,9 +12,9 @@ public class checkpoint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.instance.playerSpawnPos.transform.position != transform.position)
+        if (other.CompareTag("Player Spawn Pos"))
         {
-            GameManager.instance.playerSpawnPos.transform.position = transform.position;
+            GameManager.instance.player.transform.position = GameManager.instance.playerSpawnPos.transform.position;
             StartCoroutine(checkpFeedback());
         }
     }

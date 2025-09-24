@@ -22,7 +22,7 @@ MonoBehaviour:
   shootDamage: 4
   shootDistance: 50
   shootRate: 0.1
-  ammoCur: 50
+  ammoCur: 33
   ammoMax: 50
   reloadTime: 2
   impactEffect: {fileID: 0}
@@ -32,9 +32,9 @@ MonoBehaviour:
   recoilPlayRate: 1
   recoilPositionSpeed: 100
   recoilRotationSpeed: 100
-  recoilXRotationMultiplier: -10
-  recoilYRotationMultiplier: 2.5
-  recoilZRotationMultiplier: 5
+  recoilXRotationMultiplier: -15
+  recoilYRotationMultiplier: 5
+  recoilZRotationMultiplier: 20
   recoilXPositionMultiplier: 0
   recoilYPositionMultiplier: -0.0001
   recoilZPositionMultiplier: -0.1

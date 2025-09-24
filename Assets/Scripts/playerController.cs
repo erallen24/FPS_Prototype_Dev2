@@ -343,6 +343,8 @@ public class PlayerController : MonoBehaviour, IDamage
         // performing shoot raycast //
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, shootDistance, ~ignoreLayer))
         {
+            Instantiate(gunList[gunListPos].impactEffect, hit.point, Quaternion.identity);
+
             // logging the collider the raycast hit //
             Debug.Log(hit.collider.name);
 
