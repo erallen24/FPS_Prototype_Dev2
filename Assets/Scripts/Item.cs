@@ -7,6 +7,7 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemSprite;
     [SerializeField] inventoryItem item;
+    [TextArea(16, 10)][SerializeField] private string itemDescription;
 
     private InventoryManager inventoryManager;
 
@@ -22,15 +23,16 @@ public class Item : MonoBehaviour, IInteractable
     private Vector3 initialRotation;
     private Quaternion rotation;
 
-    private void Start()
+    void Start()
     {
         originalPosition = transform.position;
         initialScale = transform.localScale;
         initialRotation = transform.eulerAngles;
         rotation = Quaternion.Euler(initialRotation);
+        //inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
     }
 
-    private void Update()
+    void Update()
     {
         // Optional: Add any rotation or animation to the pickup object for visual effect
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime); // Rotate around the Y-axis
@@ -48,8 +50,6 @@ public class Item : MonoBehaviour, IInteractable
 
         if (other.CompareTag("Player"))
         {
-            //IInteractable interactable = other.GetComponent<IInteractable>();
-
             HUDManager.instance.UpdateInteractPrompt("Press 'E' to pick up " + item.itemName);
             HUDManager.instance.interactPromptText.color = Color.white;
         }
@@ -64,8 +64,10 @@ public class Item : MonoBehaviour, IInteractable
     {
         Debug.Log("Should be picking up");
         GameManager.instance.playerScript.AddItem(item);
-
+        //inventoryManager.addItem(itemName, itemSprite, itemDescription);
+        
         Destroy(gameObject);
-        HUDManager.instance.UpdateInteractPrompt("");
+        HUDManager.instance.UpdateInteractPrompt("");  
+         
     }
 }

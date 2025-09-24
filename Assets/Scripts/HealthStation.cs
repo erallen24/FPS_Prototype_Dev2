@@ -7,7 +7,10 @@ public class HealthStation : MonoBehaviour, IInteractable
 
     [SerializeField] Material activeMaterial;
     [SerializeField] int healAmount = 1;
-    private bool isHealing = false;
+    [SerializeField][Range(0, 2f)] private float coolDownTime = 1;
+    private bool isHealing;
+    private bool coolDownTimerActive = false;
+    private float coolDownTimer;
     private Material origMaterial;
     //private Color originalColor;
 
@@ -15,6 +18,8 @@ public class HealthStation : MonoBehaviour, IInteractable
     {
         origMaterial = objectRenderer.material;
         objectRenderer = GetComponent<Renderer>();
+        isHealing = false;
+
     }
 
 
@@ -29,30 +34,48 @@ public class HealthStation : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!GameManager.instance.playerScript.isFullyHealed)
-        {
-
-            isHealing = true;
-            StartCoroutine(HealOverTime());
-
-
-        }
-
         if (GameManager.instance.playerScript.isFullyHealed)
         {
             isHealing = false;
-            HUDManager.instance.UpdateInteractPrompt("Fully Healed!");
             HUDManager.instance.interactPromptText.color = Color.green;
+            HUDManager.instance.UpdateInteractPrompt("Fully Healed!");
+
             objectRenderer.material = origMaterial;
         }
+
+        if (!GameManager.instance.playerScript.isFullyHealed)
+        {
+            if (!isHealing && !coolDownTimerActive)
+            {
+                isHealing = true;
+                coolDownTimerActive = true;
+                if (GameManager.instance.playerScript.isFullyHealed)
+                {
+                    StartCoroutine(HealOverTime());
+                    StartCoroutine(CoolDownTimer());
+                }
+
+            }
+
+
+        }
+
+
     }
 
 
 
     private void OnTriggerExit(Collider other)
     {
-        HUDManager.instance.UpdateInteractPrompt("");
+        if (coolDownTimerActive)
+        {
+            HUDManager.instance.interactPromptText.color = Color.red;
+            HUDManager.instance.UpdateInteractPrompt("Health Station is cooling down. Return in " + coolDownTimer);
+
+        }
         HUDManager.instance.interactPromptText.color = Color.white;
+        HUDManager.instance.UpdateInteractPrompt("");
+
 
         isHealing = false;
 
@@ -68,5 +91,17 @@ public class HealthStation : MonoBehaviour, IInteractable
 
     }
 
+    private IEnumerator CoolDownTimer()
+    {
+
+        coolDownTimer = coolDownTime;
+        coolDownTime -= Time.deltaTime;
+        objectRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(coolDownTime);
+        coolDownTime = 0f;
+        coolDownTimerActive = false;
+        isHealing = false;
+        objectRenderer.material = origMaterial;
+    }
 
 }

@@ -11,6 +11,7 @@ public class PlayerInputController
     private Vector3 movementDirection;
     private bool sprintHeld;
     private bool jumpPressed;
+    private bool aimHeld;
 
     public float MoveX => moveX;
     public float MoveY => moveY;
@@ -22,6 +23,7 @@ public class PlayerInputController
     public Vector3 MovementDirection => movementDirection.normalized;  
     public bool SprintHeld => sprintHeld;   
     public bool JumpPressed => jumpPressed;
+    public bool AimHeld => aimHeld;
 
     public PlayerInputController(AdvancedPlayerController player)
     {
@@ -46,5 +48,7 @@ public class PlayerInputController
         sprintHeld = Input.GetButton("Sprint");
 
         jumpPressed = Input.GetButtonDown("Jump");
+
+        aimHeld = Input.GetButton("Aim");
     }
 }

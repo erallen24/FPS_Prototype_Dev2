@@ -10,6 +10,7 @@ public class PlayerMovementController
     private readonly CharacterController characterController;
     private Vector3 playerVelocity;
     private int jumpCount;
+    private bool canSprint;
 
     public PlayerMovementController(AdvancedPlayerController player, PlayerMovementControllerSettings settings)
     {
@@ -21,8 +22,11 @@ public class PlayerMovementController
 
     public void Update()
     {
+        UpdateCanSprint();
+
         UpdatePlayerGroundedState();
         UpdatePlayerLocomotionState();
+        UpdatePlayerAimingState();
 
         UpdatePlayerMovement();
         UpdatePlayerRotation();
@@ -47,13 +51,24 @@ public class PlayerMovementController
     }
     private void UpdatePlayerLocomotionState()
     {
-        if (inputController.SprintHeld && playerController.GroundedState == PlayerGroundedState.Grounded)
+        if (playerController.GroundedState == PlayerGroundedState.Grounded && inputController.SprintHeld && canSprint)
         {
             playerController.LocomotionState = PlayerLocomotionState.Sprinting;
         }
         else
         {
             playerController.LocomotionState = PlayerLocomotionState.Default;
+        }
+    }
+    private void UpdatePlayerAimingState()
+    {
+        if (inputController.AimHeld && playerController.GunManager.weaponList.Count > 0)
+        {
+            playerController.AimingState = PlayerAimingState.Active;
+        }
+        else
+        {
+            playerController.AimingState = PlayerAimingState.Inactive;
         }
     }
 
@@ -98,6 +113,18 @@ public class PlayerMovementController
     private float GetTargetMovementSpeed()
     {
         return playerController.LocomotionState == PlayerLocomotionState.Sprinting ? playerController.SprintMovementSpeed : playerController.DefaultMovementSpeed;
+    }
+    private void UpdateCanSprint()
+    {
+        if (playerController.Stamina >= playerController.InitialStamina && playerController.AimingState == PlayerAimingState.Inactive)
+        {
+            canSprint = true;
+        }
+        
+        if (playerController.Stamina < 1 || playerController.AimingState == PlayerAimingState.Active)
+        {
+            canSprint = false;
+        }
     }
 
     private void DrawDebugGizmos()
