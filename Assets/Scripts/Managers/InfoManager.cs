@@ -16,10 +16,10 @@ public class InfoManager : MonoBehaviour
     [SerializeField] Image[] icons;
     private Color iconColor;
 
-    [SerializeField] bool isShowing = false;
+    [SerializeField] bool isShowing;
     [SerializeField] float lerpDuration = 0.5f;
-    private float elapsed = 0f;
-    private float waitTime = 0f;
+    private float elapsed;
+    private float waitTime;
     private Vector3 labelOrigPos;
     private Vector3 labelHidPos;
     private Vector3 textBoxOrigPos;

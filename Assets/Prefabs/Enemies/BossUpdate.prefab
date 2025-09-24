@@ -48,9 +48,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3717355359772073755, guid: c258b31d065d16144a106948f5488f68, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717355359772073755, guid: c258b31d065d16144a106948f5488f68, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717355359772073755, guid: c258b31d065d16144a106948f5488f68, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717355359772073755, guid: c258b31d065d16144a106948f5488f68, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5334813249756133607, guid: c258b31d065d16144a106948f5488f68, type: 3}
       propertyPath: m_Name
-      value: Boss (1) Variant
+      value: BossUpdate
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7133550887881654212, guid: c258b31d065d16144a106948f5488f68, type: 3}

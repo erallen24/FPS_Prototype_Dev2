@@ -178,11 +178,11 @@ public class HUDManager : MonoBehaviour
 
     public void LevelUp()
     {
-        levelHUDFeedbackText.text = "Level Up!";
-        levelHUDFeedback.SetActive(true);
-        StartCoroutine(LevelUpRoutine());
-        playerLevel++;
-        levelHUDText.text = playerLevel.ToString();
+        //levelHUDFeedbackText.text = "Level Up!";
+        //levelHUDFeedback.SetActive(true);
+        //StartCoroutine(LevelUpRoutine());
+        //playerLevel++;
+        //levelHUDText.text = playerLevel.ToString();
     }
 
     IEnumerator LevelUpRoutine()
