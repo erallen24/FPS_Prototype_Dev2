@@ -93,8 +93,8 @@ public class Spawner : MonoBehaviour
     {
         if (startSpawning)
         {
-            float delta = Time.deltaTime;
-            SpawnNow(delta);
+
+            SpawnNow();
         }
     }
 
@@ -114,7 +114,53 @@ public class Spawner : MonoBehaviour
             SpawnAutoObjects();
         }
     }
-    private void TrySpawnGroup(SpawnGroup group, float delta)
+    private void TryFirstGroup(SpawnGroup group, float delta)
+    {
+        if (group == null || group.objects == null || group.spawnPositions == null ||
+            group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
+            return;
+
+        groupTimers[group] += delta;
+        if (groupTimers[group] >= group.spawnRate && group.count > group.spawnedCount) // Check every second
+        {
+            groupTimers[group] = 0f;
+            SpawnGroupObjects(group);
+
+
+        }
+    }
+    private void TrySecondGroup(SpawnGroup group, float delta)
+    {
+        if (group == null || group.objects == null || group.spawnPositions == null ||
+            group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
+            return;
+
+        groupTimers[group] += delta;
+        if (groupTimers[group] >= group.spawnRate && group.count > group.spawnedCount) // Check every second
+        {
+            groupTimers[group] = 0f;
+            SpawnGroupObjects(group);
+
+
+        }
+    }
+
+    private void TryThirdGroup(SpawnGroup group, float delta)
+    {
+        if (group == null || group.objects == null || group.spawnPositions == null ||
+            group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
+            return;
+
+        groupTimers[group] += delta;
+        if (groupTimers[group] >= group.spawnRate && group.count > group.spawnedCount) // Check every second
+        {
+            groupTimers[group] = 0f;
+            SpawnGroupObjects(group);
+
+
+        }
+    }
+    private void TryFourthGroup(SpawnGroup group, float delta)
     {
         if (group == null || group.objects == null || group.spawnPositions == null ||
             group.objects.Length == 0 || group.spawnPositions.Length == 0 || group.count <= 0)
@@ -173,9 +219,9 @@ public class Spawner : MonoBehaviour
 
     }
 
-    public void SpawnNow(float delta)
+    public void SpawnNow()
     {
-
+        float delta = Time.deltaTime;
 
         if (autoSpawn)
         {
@@ -183,10 +229,10 @@ public class Spawner : MonoBehaviour
         }
         else if (!autoSpawn)
         {
-            TrySpawnGroup(mainGroup, delta);
-            TrySpawnGroup(secondaryGroup, delta);
-            TrySpawnGroup(tertiaryGroup, delta);
-            TrySpawnGroup(quaternaryGroup, delta);
+            TryFirstGroup(mainGroup, delta);
+            TrySecondGroup(secondaryGroup, delta);
+            TryThirdGroup(tertiaryGroup, delta);
+            TryFourthGroup(quaternaryGroup, delta);
         }
 
         if (isBossSpawner && !bossSpawned && GetOverallSpawnProgress() >= spawnAtCompletionProgess)
