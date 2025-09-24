@@ -65,10 +65,12 @@ public class PlayerMovementController
         if (inputController.AimHeld && playerController.GunManager.weaponList.Count > 0)
         {
             playerController.AimingState = PlayerAimingState.Active;
+            HUDManager.instance.Reticle.SetActive(false);
         }
         else
         {
             playerController.AimingState = PlayerAimingState.Inactive;
+            HUDManager.instance.Reticle.SetActive(true);
         }
     }
 
