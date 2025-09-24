@@ -10,8 +10,6 @@ namespace Player.Data
         [Range(0, 10f)] public float defaultMovementSpeed;
         [Space(5)]
         [Range(0, 10f)] public float sprintMovementSpeed;
-        [Space(5)]
-        [Range(0, 10f)] public float aimMovementSpeed;
         [Space(10)]
         [Range(0, 100f)] public float movementSpeedSmoothing;
         [Space(20)]
