@@ -7,7 +7,7 @@ public class HealthStation : MonoBehaviour, IInteractable
 
     [SerializeField] Material activeMaterial;
     [SerializeField] int healAmount = 1;
-    private bool isHealing = false;
+    private bool isHealing;
     private Material origMaterial;
     //private Color originalColor;
 
@@ -15,6 +15,7 @@ public class HealthStation : MonoBehaviour, IInteractable
     {
         origMaterial = objectRenderer.material;
         objectRenderer = GetComponent<Renderer>();
+        isHealing = false;
     }
 
 

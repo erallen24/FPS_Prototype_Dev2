@@ -1057,11 +1057,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6845589680416999387}
-  - component: {fileID: 3394536368694108935}
+  - component: {fileID: 6306864844185184204}
   - component: {fileID: 9018555672938558459}
   - component: {fileID: 6447680593783874405}
   - component: {fileID: 502591449245250189}
   - component: {fileID: 1190764796440021755}
+  - component: {fileID: 4688996621894864240}
   m_Layer: 6
   m_Name: Soldier
   m_TagString: Enemy
@@ -1091,7 +1092,7 @@ Transform:
   - {fileID: 7772952803707106018}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3394536368694108935
+--- !u!114 &6306864844185184204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1100,9 +1101,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4147149932465396712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 262b183cf24793e479ec9b0c3a86333d, type: 3}
+  m_Script: {fileID: 11500000, guid: 78e007cac0080294e89fb86f666a280f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  m_EditorClassIdentifier: Assembly-CSharp::Soldier
   HP: 7
   shield: 10
   shieldRegenTime: 5
@@ -1111,8 +1112,8 @@ MonoBehaviour:
   turnSpeed: 20
   FOV: 90
   expValue: 25
-  HPDamageFlash: {r: 0.76729554, g: 0.07479912, b: 0.07479912, a: 1}
-  shieldDamageFlash: {r: 0.07112048, g: 0.63802487, b: 0.72955966, a: 0.6}
+  HPDamageFlash: {r: 0.76862746, g: 0.07450981, b: 0.07450981, a: 1}
+  shieldDamageFlash: {r: 0.07058824, g: 0.6392157, b: 0.7294118, a: 1}
   shootPos: {fileID: 1274086604976986036}
   bullet: {fileID: 7606571981220202077, guid: c9ab66404a6a38145b417dcae9284761, type: 3}
   agent: {fileID: 9018555672938558459}
@@ -1128,6 +1129,11 @@ MonoBehaviour:
   canSeePlayer: 0
   isDead: 0
   playerDir: {x: 0, y: 0, z: 0}
+  roamRate: 3
+  roamDist: 5
+  animator: {fileID: 6447680593783874405}
+  animTransSpeed: 7
+  destroyDelay: 5
 --- !u!195 &9018555672938558459
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1216,6 +1222,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &4688996621894864240
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147149932465396712}
+  serializedVersion: 5
+  m_Mass: 20
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &4285534997972961638
 GameObject:
   m_ObjectHideFlags: 0
