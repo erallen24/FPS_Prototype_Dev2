@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class InventoryManager : MonoBehaviour
 {
     public InventorySlot[] inventorySlot;
+    private PlayerController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,14 +18,18 @@ public class InventoryManager : MonoBehaviour
     {
         
     }
-
-    public void addItem(string name, Sprite sprite, string Description)
+    public inventoryItem getItem()
     {
+        return player.inventory[player.inventory.Count];
+    }
+    public void addItem(inventoryItem item)
+    {
+        item = getItem();
         for (int i = 0;  i < inventorySlot.Length; i++)
         {
             if (inventorySlot[i].isFull == false)
             {
-                inventorySlot[i].addItem(name, sprite, Description);
+                inventorySlot[i].addItem(item);
                 return;
             }
         }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using Unity.VisualScripting;
+using System;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
@@ -13,6 +15,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public GameObject highlightItem;
     public bool itemActive;
     private InventoryManager inventoryManager;
+    private PlayerController player;
     public Image selectedItem;
     public TMP_Text itemDName;
     public TMP_Text itemDescription;
@@ -22,14 +25,16 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
+        
+
     }
-    public void addItem(string name, Sprite sprite, string description)
+    public void addItem(inventoryItem item)
     {
-        itemName = name;
-        itemSprite = sprite;
-        itemDescription.text = description;
+        itemName = item.name;
+        //itemSprite = item.icon;
+        itemDescription.text = item.description;
         isFull = true;
-        itemImage.sprite = sprite;
+        //itemImage.sprite = item.icon;
     }
 
     public void OnPointerClick(PointerEventData eventData)
