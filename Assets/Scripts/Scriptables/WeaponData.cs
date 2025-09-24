@@ -24,6 +24,8 @@ public class WeaponData : ScriptableObject
 
     public ParticleSystem impactEffect;
     public float impactForce;
+    public ParticleSystem muzzleFlash;
+    public Transform muzzleFlashPosition;
 
     [Header("Aim Settings")]
     [Space(10)]

@@ -127,12 +127,7 @@ public class GunManager : MonoBehaviour
             // null check on the target. if target is not null, we call 'TakeDamage'
             target?.TakeDamage(currentWeaponData.shootDamage);
 
-            if (currentWeaponData.impactEffect != null)
-            {
-                //ParticleSystem impactGO = Instantiate(WeaponData.impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                //Destroy(impactGO, 2f);
-                //The  Impact Effect is created in the WeaponData Scriptable Object as a particle System
-            }
+            Instantiate(weaponList[weaponListIndex].impactEffect, hit.point, Quaternion.identity);
 
             if (hit.rigidbody != null)
             {
