@@ -10,58 +10,60 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac8dd587fcbb0e647bf1200fe158c578, type: 3}
-  m_Name: Shotgun
+  m_Name: Auto Rifle_1
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  model: {fileID: 4698201593948852689, guid: 185ce04d44da342739f0bef843698e6c, type: 3}
+  model: {fileID: 4675086562006422597, guid: 8edd64622ff6e9d4586a7880d871f6b4, type: 3}
   pickUpSound: {fileID: 8300000, guid: 6c1105ffc94662c4b8faa9193ec4e118, type: 3}
   emptyClipSound: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: 9e0e1c40f00512f4996d222576ec21aa, type: 3}
   shootSounds: []
-  shootVolume: 0.517
-  gunType: 1
-  shootDamage: 10
-  shootDistance: 5
-  shootRate: 0.5
-  ammoCur: 0
-  ammoMax: 5
+  shootVolume: 0.5
+  gunType: 2
+  shootDamage: 4
+  shootDistance: 50
+  shootRate: 0.1
+  ammoCur: 33
+  ammoMax: 50
   reloadTime: 2
-  impactEffect: {fileID: 0}
-  impactForce: 0
-  aimingPosePosition: {x: 0.0505, y: -0.109, z: 0.075}
+  impactEffect: {fileID: 4533284432361294390, guid: fa7461069685943488e26378ce8287be, type: 3}
+  impactForce: 5
+  muzzleFlash: {fileID: 0}
+  muzzleFlashPosition: {fileID: 0}
+  aimingPosePosition: {x: 0.061, y: -0.1485, z: 0.075}
   aimingPoseRotation: {x: 0, y: 0, z: 0}
   recoilPlayRate: 1
   recoilPositionSpeed: 100
   recoilRotationSpeed: 100
-  recoilXRotationMultiplier: -30
-  recoilYRotationMultiplier: 10
-  recoilZRotationMultiplier: 25
+  recoilXRotationMultiplier: -15
+  recoilYRotationMultiplier: 5
+  recoilZRotationMultiplier: 20
   recoilXPositionMultiplier: 0
-  recoilYPositionMultiplier: 0.01
-  recoilZPositionMultiplier: -0.5
+  recoilYPositionMultiplier: -0.0001
+  recoilZPositionMultiplier: -0.1
   recoilXRotationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 4.7381425
-      outSlope: 4.7381425
+      inSlope: 3.118164
+      outSlope: 3.118164
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.038870793
-      value: 0.18417536
-      inSlope: 2.8490005
-      outSlope: 2.8490005
+      time: 0.033269655
+      value: 0.103740245
+      inSlope: 2.9735398
+      outSlope: 2.9735398
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.9389663
-      outWeight: 0.059025366
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.26263526
-      value: -0.05377091
+      time: 0.24863242
+      value: -0.044399828
       inSlope: 0.58031005
       outSlope: 0.58031005
       tangentMode: 0
@@ -71,11 +73,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0.020981347
-      outSlope: 0.020981347
-      tangentMode: 0
+      inSlope: 0.05909202
+      outSlope: 0.05909202
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.049291532
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -351,23 +353,23 @@ MonoBehaviour:
       inWeight: 0.37289748
       outWeight: 0.05888686
     - serializedVersion: 3
-      time: 0.24197079
-      value: -0.0006431015
-      inSlope: 0.09430676
-      outSlope: 0.09430676
+      time: 0.2
+      value: 0.0075
+      inSlope: 0.037060816
+      outSlope: 0.037060816
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.6715329
+      inWeight: 0.33333334
       outWeight: 0.14841849
     - serializedVersion: 3
       time: 0.5
       value: 0
-      inSlope: -0.010962721
-      outSlope: -0.010962721
+      inSlope: -0.035167806
+      outSlope: -0.035167806
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.10948908
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0
