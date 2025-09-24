@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour
 
     private bool bossSpawned;
     private bool startSpawning;
-    private void Awake()
+    private void Start()
     {
         groupTimers[mainGroup] = 0;
         groupTimers[secondaryGroup] = 0;
