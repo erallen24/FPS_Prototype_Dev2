@@ -26,6 +26,7 @@ public class PlayerMovementController
 
         UpdatePlayerGroundedState();
         UpdatePlayerLocomotionState();
+        UpdatePlayerAimingState();
 
         UpdatePlayerMovement();
         UpdatePlayerRotation();
@@ -57,6 +58,17 @@ public class PlayerMovementController
         else
         {
             playerController.LocomotionState = PlayerLocomotionState.Default;
+        }
+    }
+    private void UpdatePlayerAimingState()
+    {
+        if (inputController.AimHeld && playerController.GunManager.weaponList.Count > 0)
+        {
+            playerController.AimingState = PlayerAimingState.Active;
+        }
+        else
+        {
+            playerController.AimingState = PlayerAimingState.Inactive;
         }
     }
 
@@ -104,12 +116,12 @@ public class PlayerMovementController
     }
     private void UpdateCanSprint()
     {
-        if (playerController.Stamina >= playerController.InitialStamina)
+        if (playerController.Stamina >= playerController.InitialStamina && playerController.AimingState == PlayerAimingState.Inactive)
         {
             canSprint = true;
         }
         
-        if (playerController.Stamina < 1)
+        if (playerController.Stamina < 1 || playerController.AimingState == PlayerAimingState.Active)
         {
             canSprint = false;
         }

@@ -7,7 +7,7 @@ namespace Player.Data
     {
         [Header("Movement Properties")]
         [Space(10)]
-        [Range(0f, 10f)] public float defaultMovementSpeed;
+        [Range(0, 10f)] public float defaultMovementSpeed;
         [Space(5)]
         [Range(0, 10f)] public float sprintMovementSpeed;
         [Space(10)]
