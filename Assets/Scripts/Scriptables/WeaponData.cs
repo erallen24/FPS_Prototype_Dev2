@@ -41,13 +41,13 @@ public class WeaponData : ScriptableObject
     [Range(0, 100f)] public float recoilPositionSpeed;
     [Range(0, 100f)] public float recoilRotationSpeed;
     [Space(5)]
-    [Range(-10f, 10f)] public float recoilXRotationMultiplier;
-    [Range(-10f, 10f)] public float recoilYRotationMultiplier;
-    [Range(-10f, 10f)] public float recoilZRotationMultiplier;
+    [Range(-50f, 50f)] public float recoilXRotationMultiplier;
+    [Range(-50f, 50f)] public float recoilYRotationMultiplier;
+    [Range(-50f, 50f)] public float recoilZRotationMultiplier;
     [Space(5)]
-    [Range(-10f, 10f)] public float recoilXPositionMultiplier;
-    [Range(-10f, 10f)] public float recoilYPositionMultiplier;
-    [Range(-10f, 10f)] public float recoilZPositionMultiplier;
+    [Range(-50f, 50f)] public float recoilXPositionMultiplier;
+    [Range(-50f, 50f)] public float recoilYPositionMultiplier;
+    [Range(-50f, 50f)] public float recoilZPositionMultiplier;
     [Space(20)]
 
     [Header("Recoil Curves")]
