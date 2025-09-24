@@ -25,6 +25,12 @@ public class WeaponData : ScriptableObject
     public ParticleSystem impactEffect;
     public float impactForce;
 
+    [Header("Aim Settings")]
+    [Space(10)]
+    public Vector3 aimingPosePosition;
+    public Vector3 aimingPoseRotation;
+    [Space(20)]
+
     [Space(20)]
     [Header("Recoil Multipliers")]
     [Space(10)]

@@ -38,6 +38,8 @@ namespace Player.Utilities
         public PlayerGroundedState groundedState;
         [Space(5)]
         public PlayerLocomotionState locomotionState;
+        [Space(5)]
+        public PlayerAimingState aimingState;
     }
 
     [System.Serializable]

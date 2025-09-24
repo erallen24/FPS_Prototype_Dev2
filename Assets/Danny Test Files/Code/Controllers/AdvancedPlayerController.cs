@@ -87,6 +87,7 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
 
     public PlayerGroundedState GroundedState { get { return movementControllerSettings.groundedState; } set { movementControllerSettings.groundedState = value; } }
     public PlayerLocomotionState LocomotionState { get { return movementControllerSettings.locomotionState; } set { movementControllerSettings.locomotionState = value; } }
+    public PlayerAimingState AimingState { get { return movementControllerSettings.aimingState; } set { movementControllerSettings.aimingState = value; } }
 
     public Camera PlayerCamera => cameraControllerSettings.camera;
     public Transform CameraRig => cameraControllerSettings.cameraRigTransform;

@@ -22,11 +22,13 @@ MonoBehaviour:
   shootDamage: 4
   shootDistance: 50
   shootRate: 0.1
-  ammoCur: 37
+  ammoCur: 50
   ammoMax: 50
   reloadTime: 2
   impactEffect: {fileID: 0}
   impactForce: 5
+  aimingPosePosition: {x: 0.061, y: -0.1485, z: 0.075}
+  aimingPoseRotation: {x: 0, y: 0, z: 0}
   recoilPlayRate: 1
   recoilPositionSpeed: 100
   recoilRotationSpeed: 100

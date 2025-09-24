@@ -13,9 +13,9 @@ public class GunManager : MonoBehaviour
     [Space(10)]
     [SerializeField] public LayerMask shootIgnoreLayer;
     [Space(10)]
-    public List<WeaponData> gunList = new List<WeaponData>();
+    public List<WeaponData> weaponList = new List<WeaponData>();
 
-    private int gunListPos;
+    private int weaponListIndex;
     private float shootTimer;
     private bool isReloading;
 
@@ -23,6 +23,8 @@ public class GunManager : MonoBehaviour
     private Vector3 targetRecoilPosition;
 
     private AdvancedPlayerController playerController;
+
+    public WeaponData CurrentWeaponData => currentWeaponData;
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class GunManager : MonoBehaviour
     private void Update()
     {
         UpdateShoot();
-        SelectGun();
+        SelectWeapon();
         UpdateCurrentWeaponAmmoUI();
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -46,38 +48,38 @@ public class GunManager : MonoBehaviour
     }
 
 
-    public void GetGunStats(WeaponData gunStat, inventoryItem gun)
+    public void GetWeaponStats(WeaponData weaponData, inventoryItem weapon)
     {
-        if (playerController.HasItem(gun)) { return; }
+        if (playerController.HasItem(weapon)) { return; }
 
-        gunList.Add(gunStat);
-        gunListPos = gunList.Count - 1;
+        weaponList.Add(weaponData);
+        weaponListIndex = weaponList.Count - 1;
 
-        playerController.AddItem(gun);
+        playerController.AddItem(weapon);
         HUDManager.instance.ActivateAmmoUI();
 
-        ChangeGun();
+        ChangeWeapon();
     }
-    private void ChangeGun()
+    private void ChangeWeapon()
     {
-        currentWeaponData = gunList[gunListPos];
+        currentWeaponData = weaponList[weaponListIndex];
 
-        weaponModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
-        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponList[weaponListIndex].model.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponList[weaponListIndex].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        SoundManager.instance.soundSource.PlayOneShot(gunList[gunListPos].pickUpSound);
+        SoundManager.instance.soundSource.PlayOneShot(weaponList[weaponListIndex].pickUpSound);
     }
-    private void SelectGun()
+    private void SelectWeapon()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && weaponListIndex < weaponList.Count - 1)
         {
-            gunListPos++;
-            ChangeGun();
+            weaponListIndex++;
+            ChangeWeapon();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && weaponListIndex > 0)
         {
-            gunListPos--;
-            ChangeGun();
+            weaponListIndex--;
+            ChangeWeapon();
         }
 
     }
@@ -85,20 +87,12 @@ public class GunManager : MonoBehaviour
     private bool CheckIfGunCanShoot()
     {
         return currentWeaponData.ammoCur > 0 && !isReloading;
-
-        //if (WeaponData.ammoCur <= 0)
-        //    return false;
-
-        //if (isReloading)
-        //    return false;
-
-        //return true;
     }
     private void UpdateShoot()
     {
         shootTimer += Time.deltaTime;
 
-        if (gunList.Count > 0)
+        if (weaponList.Count > 0)
         {
             if (Input.GetButton("Fire1") && CheckIfGunCanShoot() && shootTimer >= currentWeaponData.shootRate)
             {
@@ -162,7 +156,7 @@ public class GunManager : MonoBehaviour
     }
     public void AttemptReload()
     {
-        if (gunList.Count > 0)
+        if (weaponList.Count > 0)
         {
             if (isReloading || currentWeaponData.ammoCur >= currentWeaponData.ammoMax)
                 return;
@@ -173,7 +167,7 @@ public class GunManager : MonoBehaviour
 
     private void UpdateCurrentWeaponAmmoUI()
     {
-        if (gunList.Count > 0)
+        if (weaponList.Count > 0)
         {
             HUDManager.instance.updatePlayerAmmo(currentWeaponData.ammoCur, currentWeaponData.ammoMax);
         }
@@ -181,7 +175,7 @@ public class GunManager : MonoBehaviour
 
     private void LateUpdateRecoil(Transform recoilPivot, Transform masterIK)
     {
-        if (gunList.Count > 0)
+        if (weaponList.Count > 0)
         {
             float positionX = recoilPivot.localPosition.x + currentWeaponData.recoilXPositionCurve.Evaluate(shootTimer * currentWeaponData.recoilPlayRate) * targetRecoilPosition.x;
             float positionY = recoilPivot.localPosition.y + currentWeaponData.recoilYPositionCurve.Evaluate(shootTimer * currentWeaponData.recoilPlayRate) * targetRecoilPosition.y;
@@ -203,36 +197,4 @@ public class GunManager : MonoBehaviour
         targetRecoilRotation = new(currentWeaponData.recoilXRotationMultiplier, Random.Range(-currentWeaponData.recoilYRotationMultiplier, currentWeaponData.recoilYRotationMultiplier), Random.Range(-currentWeaponData.recoilZRotationMultiplier, currentWeaponData.recoilZRotationMultiplier));
         targetRecoilPosition = new(Random.Range(-currentWeaponData.recoilXPositionMultiplier, currentWeaponData.recoilXPositionMultiplier), currentWeaponData.recoilYPositionMultiplier, currentWeaponData.recoilZPositionMultiplier);
     }
-
-
-    //public void ChangeGun()
-    //{
-    //   WeaponData.shootDamage = gunList[gunListPos].shootDamage;
-    //    WeaponData.shootDistance = gunList[gunListPos].shootDistance;
-    //    WeaponData.shootRate = gunList[gunListPos].shootRate;
-
-    //    WeaponData.gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].model.GetComponent<MeshFilter>().sharedMesh;
-    //    WeaponData.gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
-
-    //    SoundManager.instance.soundSource.PlayOneShot(gunList[gunListPos].pickUpSound);
-
-
-    //}
-
-    //public void SelectGun()
-    //{
-    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
-    //    {
-    //        gunListPos++;
-    //        ChangeGun();
-    //    }
-    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
-    //    {
-    //        gunListPos--;
-    //        ChangeGun();
-    //    }
-
-    //}
-
-
 }

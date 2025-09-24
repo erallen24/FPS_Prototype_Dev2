@@ -92,6 +92,17 @@ public class PlayerAnimationController
             targetBobbingAmplitude = Mathf.Lerp(data.idleBobbingAmplitude, data.movingBobbingAmplitude, moveInput.magnitude);
         }
     }
+    private float GetTargetAimingMultiplier()
+    {
+        if (playerController.GunManager.weaponList.Count > 0)
+        {
+            return playerController.AimingState == PlayerAimingState.Active ? 0.25f : 1f;
+        }
+        else
+        {
+            return 1;
+        }
+    }
 
     private void LateUpdateSway(Transform swayPivot, Vector2 moveInput, Vector2 lookInput, PlayerAnimationControllerData data)
     {
@@ -99,16 +110,9 @@ public class PlayerAnimationController
         lookSwayRotationInput.y = Mathf.Lerp(lookSwayRotationInput.y, -lookInput.x, Time.deltaTime * data.swaySpeedMultiplier.y);
         lookSwayRotationInput.z = Mathf.Lerp(lookSwayRotationInput.z, -lookInput.x, Time.deltaTime * data.swaySpeedMultiplier.z);
 
-        lookSwayPositionInput.x = Mathf.Lerp(lookSwayPositionInput.x, -lookInput.x + moveInput.x, Time.deltaTime * data.swaySpeedMultiplier.x);
-        lookSwayPositionInput.y = Mathf.Lerp(lookSwayPositionInput.y, -lookInput.y + moveInput.y, Time.deltaTime * data.swaySpeedMultiplier.y);
-
-        lookSwayRotation.x = (swayPivot.localRotation.x + data.lookSwayRotationMultiplier.x) * lookSwayRotationInput.x;
-        lookSwayRotation.y = (swayPivot.localRotation.y + data.lookSwayRotationMultiplier.y) * lookSwayRotationInput.y;
-        lookSwayRotation.z = (swayPivot.localRotation.z + data.lookSwayRotationMultiplier.z) * lookSwayRotationInput.z;
-
-        lookSwayPosition.x = swayPivot.localPosition.x + data.lookSwayPositionMultiplier.x * lookSwayPositionInput.x;
-        lookSwayPosition.y = swayPivot.localPosition.y + data.lookSwayPositionMultiplier.y * lookSwayPositionInput.y;
-        lookSwayPosition.z = swayPivot.localPosition.z;
+        lookSwayRotation.x = (swayPivot.localRotation.x + data.lookSwayRotationMultiplier.x) * lookSwayRotationInput.x * GetTargetAimingMultiplier();
+        lookSwayRotation.y = (swayPivot.localRotation.y + data.lookSwayRotationMultiplier.y) * lookSwayRotationInput.y * GetTargetAimingMultiplier();
+        lookSwayRotation.z = (swayPivot.localRotation.z + data.lookSwayRotationMultiplier.z) * lookSwayRotationInput.z * GetTargetAimingMultiplier();
 
         swayPivot.localRotation = Quaternion.Euler(lookSwayRotation);
     }
@@ -116,10 +120,10 @@ public class PlayerAnimationController
     {
         if (playerController.GroundedState == PlayerGroundedState.Grounded)
         {
-            targetBobbingPivotPosition.y = Mathf.Sin(Time.time * targetBobbingFrequency) * targetBobbingAmplitude / 7500;
+            targetBobbingPivotPosition.y = Mathf.Sin(Time.time * targetBobbingFrequency) * targetBobbingAmplitude / 7500 * GetTargetAimingMultiplier();
 
-            targetBobbingPivotRotation.x = Mathf.Cos(Time.time * -targetBobbingFrequency) * targetBobbingAmplitude / 50;
-            targetBobbingPivotRotation.y = Mathf.Cos(Time.time * (targetBobbingFrequency / 2)) * -targetBobbingAmplitude / 50;
+            targetBobbingPivotRotation.x = Mathf.Cos(Time.time * -targetBobbingFrequency) * targetBobbingAmplitude / 50 * GetTargetAimingMultiplier();
+            targetBobbingPivotRotation.y = Mathf.Cos(Time.time * (targetBobbingFrequency / 2)) * -targetBobbingAmplitude / 50 * GetTargetAimingMultiplier();
         }
         else
         {
@@ -131,15 +135,26 @@ public class PlayerAnimationController
     }
     private void LateUpdatePose(Transform positionPivot, Transform rotationPivot, PlayerAnimationControllerData data)
     {
-        if (playerController.LocomotionState == PlayerLocomotionState.Default)
+        if (playerController.AimingState == PlayerAimingState.Active)
         {
-            targetPosePosition = data.defaultPosePosition;
-            targetPoseRotation = data.defaultPoseRotation;
+            if (playerController.GunManager.weaponList.Count > 0)
+            {
+                targetPosePosition = playerController.GunManager.CurrentWeaponData.aimingPosePosition;
+                targetPoseRotation = playerController.GunManager.CurrentWeaponData.aimingPoseRotation;
+            }
         }
         else
         {
-            targetPosePosition = data.sprintPosePosition;
-            targetPoseRotation = data.sprintPoseRotation;
+            if (playerController.LocomotionState == PlayerLocomotionState.Default)
+            {
+                targetPosePosition = data.defaultPosePosition;
+                targetPoseRotation = data.defaultPoseRotation;
+            }
+            else
+            {
+                targetPosePosition = data.sprintPosePosition;
+                targetPoseRotation = data.sprintPoseRotation;
+            }
         }
 
         positionPivot.localPosition = Vector3.Lerp(positionPivot.localPosition, targetPosePosition, Time.deltaTime * data.posePositionSpeed);
