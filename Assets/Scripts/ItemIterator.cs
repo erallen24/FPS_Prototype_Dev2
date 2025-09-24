@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ItemIterator : MonoBehaviour
 {
+    inventoryItem item;
+    InventoryManager inventoryManager;
+
     public int selectedItem = 0;
     public int selectedWeapon = 0;
 
@@ -33,22 +36,42 @@ public class ItemIterator : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            if (selectedItem == 0)
+            {
+                inventoryManager.useItem(item.itemName);
+            }
             selectedItem = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            if (selectedItem == 1)
+            {
+                inventoryManager.useItem(item.itemName);
+            }
             selectedItem = 1;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            if (selectedItem == 2)
+            {
+                inventoryManager.useItem(item.itemName);
+            }
             selectedItem = 2;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            if (selectedItem == 3)
+            {
+                inventoryManager.useItem(item.itemName);
+            }
             selectedItem = 3;
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
+            if (selectedItem == 4)
+            {
+                inventoryManager.useItem(item.itemName);
+            }
             selectedItem = 4;
         }
 

@@ -15,6 +15,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public GameObject highlightItem;
     public bool itemActive;
     private InventoryManager inventoryManager;
+    private ItemIterator itemBar;
     private PlayerController player;
     public Image selectedItem;
     public TMP_Text itemDName;
@@ -44,6 +45,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             inventoryManager.deselectSlots();
             highlightItem.SetActive(true);
             itemActive = true;
+        }
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            //add item to item bar
+
         }
     }
 }
