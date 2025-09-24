@@ -680,7 +680,7 @@ MonoBehaviour:
     groupName: Drones
     objects:
     - {fileID: 9158097827013172978, guid: e850e2ba850fc21479e828c60e06a11e, type: 3}
-    count: 10
+    count: 5
     spawnRate: 4
     spawnsPerInterval: 2
     spawnPositions:
@@ -716,7 +716,7 @@ MonoBehaviour:
   bossObjects:
   - {fileID: 180812050720167597, guid: 986073b6f7a8d744c8dfbab295a68796, type: 3}
   bossSpawnPositions:
-  - {fileID: 0}
+  - {fileID: 709757586483425772}
   bossSpawnRate: 5.8
   bossesAtATime: 1
   spawnAtCompletionProgess: 0.721

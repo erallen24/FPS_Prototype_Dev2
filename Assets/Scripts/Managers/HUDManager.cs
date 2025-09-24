@@ -9,7 +9,7 @@ public class HUDManager : MonoBehaviour
     public static HUDManager instance;
 
     [SerializeField] private GameObject hudCanvas;
-    [SerializeField] private GameObject retical;
+    [SerializeField] private GameObject reticle;
 
     [SerializeField] private GameObject playerUIBars;
 
@@ -56,6 +56,8 @@ public class HUDManager : MonoBehaviour
     public TMP_Text scoreMenuStat; // Score stat in the main/settings menu
     public TMP_Text killStats;
     public TMP_Text deathStats;
+
+    public GameObject Reticle => reticle;
 
 
     // List of XRE Modules collected
@@ -164,23 +166,23 @@ public class HUDManager : MonoBehaviour
     public void ActivateAmmoUI()
     {
         playerAmmoCanvas.SetActive(true);
-        retical.SetActive(true);
+        reticle.SetActive(true);
     }
 
     public void DeactivateAmmoUI()
     {
         playerAmmoCanvas.SetActive(false);
-        retical.SetActive(false);
+        reticle.SetActive(false);
 
     }
 
     public void LevelUp()
     {
-        levelHUDFeedbackText.text = "Level Up!";
-        levelHUDFeedback.SetActive(true);
-        StartCoroutine(LevelUpRoutine());
-        playerLevel++;
-        levelHUDText.text = playerLevel.ToString();
+        //levelHUDFeedbackText.text = "Level Up!";
+        //levelHUDFeedback.SetActive(true);
+        //StartCoroutine(LevelUpRoutine());
+        //playerLevel++;
+        //levelHUDText.text = playerLevel.ToString();
     }
 
     IEnumerator LevelUpRoutine()
