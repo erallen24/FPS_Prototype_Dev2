@@ -12,6 +12,7 @@ public class PlayerInputController
     private bool sprintHeld;
     private bool jumpPressed;
     private bool aimHeld;
+    private bool fireHeld;
 
     public float MoveX => moveX;
     public float MoveY => moveY;
@@ -24,6 +25,7 @@ public class PlayerInputController
     public bool SprintHeld => sprintHeld;   
     public bool JumpPressed => jumpPressed;
     public bool AimHeld => aimHeld;
+    public bool FireHeld => fireHeld;
 
     public PlayerInputController(AdvancedPlayerController player)
     {
@@ -50,5 +52,7 @@ public class PlayerInputController
         jumpPressed = Input.GetButtonDown("Jump");
 
         aimHeld = Input.GetButton("Aim");
+
+        fireHeld = Input.GetButton("Fire1");
     }
 }
