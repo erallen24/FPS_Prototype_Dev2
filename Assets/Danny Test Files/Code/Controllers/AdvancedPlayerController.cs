@@ -55,6 +55,12 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     [Space(10)]
     public List<inventoryItem> inventory = new List<inventoryItem>();
 
+    [Header("AUDIO SETTINGS")]
+    [Space(10)]
+    [SerializeField] AudioClip[] footSteps;
+    [SerializeField] AudioClip  gunFire;
+    
+
 
     private int initialHP;
     private float initialStamina;
@@ -136,7 +142,6 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
         AnimationController?.LateUpdate();
     }
 
-
     public void UpdatePlayerHealthBarUI()
     {
         // updating the player health bar fill to reflect the current HP //
@@ -144,20 +149,16 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     }
     public void FillPlayerHPBar(int healAmount)
     {
-
         HP += healAmount * healthRegen;
         UpdatePlayerHealthBarUI();
 
-
         // Lerp the health bar fill amount to the new HP value
-
 
         if (HP > initialHP)
         {
             HP = initialHP;
             UpdatePlayerHealthBarUI();
         }
-
     }
 
 
@@ -239,7 +240,6 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
 
             }
         }
-
     }
 
 
@@ -297,6 +297,14 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
 
 
         }
+    }
+
+    public void FootStep()
+    {
+        int arrayPos = Random.Range(0, footSteps.Length - 1);
+
+        AudioSource.PlayClipAtPoint(footSteps[arrayPos], transform.position);
+       
     }
 
     #endregion
