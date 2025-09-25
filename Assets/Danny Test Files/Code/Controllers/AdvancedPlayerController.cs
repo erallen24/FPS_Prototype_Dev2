@@ -13,6 +13,7 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     [Space(10)]
     [SerializeField] private PlayerAnimationControllerSettings animationControllerSettings;
 
+
     [Space(20)]
     [Header("Health Properties")]
     [Space(10)]
@@ -114,9 +115,11 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     public PlayerCameraController CameraController { get; private set; }
     public PlayerAnimationController AnimationController { get; private set; }
 
+
     #endregion
 
     #region METHODS
+
     private void InitializeControllers()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -307,6 +310,16 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
        
     }
 
+    public void spawnPlayer()
+    {
+        transform.position = GameManager.instance.playerSpawnPos.transform.position;
+
+        HP = initialHP;
+        UpdatePlayerHealthBarUI();
+        stamina = initialStamina;
+        UpdatePlayerStaminaBarUI();
+    }
+
     #endregion
 
     #region MONOBEHAVIOUR
@@ -320,6 +333,7 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
         initialStamina = stamina;
         maxEXP = 500;
 
+        //spawnPlayer();
         // Setting health bar to fill to the set amount at game start up
         UpdatePlayerHealthBarUI();
         UpdatePlayerEXPBarUI();
