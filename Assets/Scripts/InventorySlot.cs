@@ -19,9 +19,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     private PlayerController player;
     public Image selectedItem;
     public TMP_Text itemDName;
-    public TMP_Text itemDescription;
+    public string itemDescription;
+    public TMP_Text itemDescriptionText;
 
-    [SerializeField] private Image itemImage;
+    [SerializeField] public Image itemDImage;
+    [SerializeField] public Image itemImage;
 
     void Start()
     {
@@ -32,10 +34,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public void addItem(inventoryItem item)
     {
         itemName = item.name;
-        //itemSprite = item.icon;
-        itemDescription.text = item.description;
+        itemSprite = item.icon;
+        itemDescription = item.description;
         isFull = true;
-        //itemImage.sprite = item.icon;
+        itemDImage.sprite = item.icon;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -45,6 +47,9 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             inventoryManager.deselectSlots();
             highlightItem.SetActive(true);
             itemActive = true;
+            itemDName.text = itemName;
+            itemDescriptionText.text = itemDescription;
+            itemDImage.sprite = itemSprite;
         }
         if (eventData.button == PointerEventData.InputButton.Right)
         {

@@ -64,7 +64,7 @@ public class Item : MonoBehaviour, IInteractable
     {
         Debug.Log("Should be picking up");
         GameManager.instance.playerScript.AddItem(item);
-        //inventoryManager.addItem(itemName, itemSprite, itemDescription);
+        //inventoryManager.addItem(item);
         
         Destroy(gameObject);
         HUDManager.instance.UpdateInteractPrompt("");  

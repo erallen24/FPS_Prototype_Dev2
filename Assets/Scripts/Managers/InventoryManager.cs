@@ -19,10 +19,10 @@ public class InventoryManager : MonoBehaviour
     {
         
     }
-    //public inventoryItem getItem()
-    //{
-    //    return player.inventory[player.inventory.Count];
-    //}
+    public inventoryItem getItem()
+    {
+        return GameManager.instance.playerScript.inventory[GameManager.instance.playerScript.inventory.Count - 1];
+    }
 
     public void useItem(string itemName)
     {
@@ -36,7 +36,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void addItem(inventoryItem item)
     {
-        //item = getItem();
+        item = getItem();
         for (int i = 0;  i < inventorySlot.Length; i++)
         {
             if (inventorySlot[i].isFull == false)

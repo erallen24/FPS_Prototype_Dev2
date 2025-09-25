@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewInventoryItem", menuName = "InventoryItem")]
 public class inventoryItem : ScriptableObject
@@ -57,6 +58,6 @@ public class inventoryItem : ScriptableObject
 
     public ItemType itemType;
     public string itemName;
-    [SerializeField] Sprite icon;
+    [SerializeField]public Sprite icon;
     [TextArea(16, 10)] public string description;
 }

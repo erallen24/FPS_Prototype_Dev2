@@ -1,12 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemIterator : MonoBehaviour
 {
     inventoryItem item;
     InventoryManager inventoryManager;
+    InventorySlot slot;
 
     public int selectedItem = 0;
     public int selectedWeapon = 0;
+
+    public Sprite itemSprite;
+    public bool isFull;
+    [SerializeField] public Image itemImage;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,7 +45,7 @@ public class ItemIterator : MonoBehaviour
         {
             if (selectedItem == 0)
             {
-                inventoryManager.useItem(item.itemName);
+                useItem();
             }
             selectedItem = 0;
         }
@@ -46,7 +53,7 @@ public class ItemIterator : MonoBehaviour
         {
             if (selectedItem == 1)
             {
-                inventoryManager.useItem(item.itemName);
+                useItem();
             }
             selectedItem = 1;
         }
@@ -54,7 +61,7 @@ public class ItemIterator : MonoBehaviour
         {
             if (selectedItem == 2)
             {
-                inventoryManager.useItem(item.itemName);
+                useItem();
             }
             selectedItem = 2;
         }
@@ -62,7 +69,7 @@ public class ItemIterator : MonoBehaviour
         {
             if (selectedItem == 3)
             {
-                inventoryManager.useItem(item.itemName);
+                useItem();
             }
             selectedItem = 3;
         }
@@ -70,7 +77,7 @@ public class ItemIterator : MonoBehaviour
         {
             if (selectedItem == 4)
             {
-                inventoryManager.useItem(item.itemName);
+                useItem();
             }
             selectedItem = 4;
         }
@@ -111,4 +118,16 @@ public class ItemIterator : MonoBehaviour
         }
     }
 
+    public void useItem()
+    {
+        inventoryManager.useItem(item.itemName);
+        itemSprite = itemImage.sprite;
+        isFull = false;
+
+        slot.itemName = "";
+        slot.itemSprite = slot.itemDImage.sprite;
+        slot.itemDName.text = "";
+        slot.itemDescriptionText.text = "";
+        slot.isFull = false;
+    }
 }
