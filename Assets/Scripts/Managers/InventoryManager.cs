@@ -6,7 +6,6 @@ public class InventoryManager : MonoBehaviour
 {
     public InventorySlot[] inventorySlot;
     public inventoryItem[] inventoryItems;
-    private PlayerController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

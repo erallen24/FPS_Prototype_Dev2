@@ -16,7 +16,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public bool itemActive;
     private InventoryManager inventoryManager;
     private ItemIterator itemBar;
-    private PlayerController player;
     public Image selectedItem;
     public TMP_Text itemDName;
     public string itemDescription;
@@ -28,7 +27,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
-        
+        //itemBar = GameObject.Find("ItemIterator").GetComponent<ItemIterator>();
 
     }
     public void addItem(inventoryItem item)

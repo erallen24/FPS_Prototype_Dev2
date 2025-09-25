@@ -20,6 +20,9 @@ public class ItemIterator : MonoBehaviour
     {
         selectItem();
         selectWeapon();
+        //inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
+        //slot = GameObject.Find("InventorySlot").GetComponent<InventorySlot>();
+
     }
 
     // Update is called once per frame
