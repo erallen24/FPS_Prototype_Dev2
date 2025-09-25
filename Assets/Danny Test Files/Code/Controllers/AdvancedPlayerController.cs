@@ -13,6 +13,7 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     [Space(10)]
     [SerializeField] private PlayerAnimationControllerSettings animationControllerSettings;
 
+
     [Space(20)]
     [Header("Health Properties")]
     [Space(10)]
@@ -54,6 +55,12 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     [Header("INVENTORY SETTINGS")]
     [Space(10)]
     public List<inventoryItem> inventory = new List<inventoryItem>();
+
+    [Header("AUDIO SETTINGS")]
+    [Space(10)]
+    [SerializeField] AudioClip[] footSteps;
+    [SerializeField] AudioClip  gunFire;
+    
 
 
     private int initialHP;
@@ -108,9 +115,11 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     public PlayerCameraController CameraController { get; private set; }
     public PlayerAnimationController AnimationController { get; private set; }
 
+
     #endregion
 
     #region METHODS
+
     private void InitializeControllers()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -136,7 +145,6 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
         AnimationController?.LateUpdate();
     }
 
-
     public void UpdatePlayerHealthBarUI()
     {
         // updating the player health bar fill to reflect the current HP //
@@ -144,20 +152,16 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
     }
     public void FillPlayerHPBar(int healAmount)
     {
-
         HP += healAmount * healthRegen;
         UpdatePlayerHealthBarUI();
 
-
         // Lerp the health bar fill amount to the new HP value
-
 
         if (HP > initialHP)
         {
             HP = initialHP;
             UpdatePlayerHealthBarUI();
         }
-
     }
 
 
@@ -239,7 +243,6 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
 
             }
         }
-
     }
 
 
@@ -299,6 +302,24 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
         }
     }
 
+    public void FootStep()
+    {
+        int arrayPos = Random.Range(0, footSteps.Length - 1);
+
+        AudioSource.PlayClipAtPoint(footSteps[arrayPos], transform.position);
+       
+    }
+
+    public void spawnPlayer()
+    {
+        transform.position = GameManager.instance.playerSpawnPos.transform.position;
+
+        HP = initialHP;
+        UpdatePlayerHealthBarUI();
+        stamina = initialStamina;
+        UpdatePlayerStaminaBarUI();
+    }
+
     #endregion
 
     #region MONOBEHAVIOUR
@@ -312,6 +333,7 @@ public class AdvancedPlayerController : MonoBehaviour, IDamage
         initialStamina = stamina;
         maxEXP = 500;
 
+        //spawnPlayer();
         // Setting health bar to fill to the set amount at game start up
         UpdatePlayerHealthBarUI();
         UpdatePlayerEXPBarUI();
