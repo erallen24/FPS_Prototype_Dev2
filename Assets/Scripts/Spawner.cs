@@ -10,7 +10,7 @@ public class SpawnGroup
     [Tooltip("Prefabs to spawn from this group")]
     public GameObject[] objects;
 
-    [Tooltip("Number of objects to attempt spawning")]
+    [Tooltip("Number of objects to spawn")]
     public int count = 1;
 
     [Tooltip("Time Interval to spawn in seconds")]
