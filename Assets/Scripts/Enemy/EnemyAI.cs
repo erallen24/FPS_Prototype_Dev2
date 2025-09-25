@@ -154,6 +154,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             }
 
             ClassDeath();
+            if (gameObject != null) { Destroy(gameObject); }
             GameManager.instance.playerScript.addEXP(expValue);
         }
         else
@@ -197,10 +198,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     public virtual void Shoot()
     {
         shootTimer = 0;
-        //CreateBullet();
+        CreateBullet();
         //Quaternion shootRot = Quaternion.LookRotation(new Vector3(playerDir.x, shootPos.position.y, playerDir.z));
 
-        // SoundManager.instance.playEnemyShootSound(shootPos);
+        SoundManager.instance.playEnemyShootSound(shootPos);
     }
 
     public void CreateBullet()
