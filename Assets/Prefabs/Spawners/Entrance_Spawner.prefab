@@ -504,13 +504,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6225442654602454295}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.3426461, z: -0, w: 0.93946457}
-  m_LocalPosition: {x: 10.61, y: 0, z: -15.41}
+  m_LocalRotation: {x: -0, y: 0.65581536, z: -0, w: -0.7549214}
+  m_LocalPosition: {x: 24.259, y: 0, z: -14.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5315915474542758595}
-  m_LocalEulerAnglesHint: {x: 0, y: -40.076, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 278.037, z: 0}
 --- !u!1 &6484841196235794089
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7146112859064377844}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -23.880001, y: 0, z: -26.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -604,9 +604,9 @@ MonoBehaviour:
     groupName: Soldiers
     objects:
     - {fileID: 4147149932465396712, guid: 60310996e7d520045bdd257d6419debb, type: 3}
-    count: 5
+    count: 3
     spawnRate: 5
-    spawnsPerInterval: 1
+    spawnsPerInterval: 2
     spawnPositions:
     - {fileID: 1823428123897812264}
     - {fileID: 529139281562371152}
@@ -618,8 +618,8 @@ MonoBehaviour:
     groupName: Drones
     objects:
     - {fileID: 9158097827013172978, guid: e850e2ba850fc21479e828c60e06a11e, type: 3}
-    count: 5
-    spawnRate: 20
+    count: 2
+    spawnRate: 10
     spawnsPerInterval: 1
     spawnPositions:
     - {fileID: 5977872071961543417}
@@ -632,8 +632,8 @@ MonoBehaviour:
     groupName: Turrets
     objects:
     - {fileID: 6625255117049526444, guid: 75073d602676e69498ce0640ea3faf12, type: 3}
-    count: 3
-    spawnRate: 100
+    count: 2
+    spawnRate: 10
     spawnsPerInterval: 1
     spawnPositions:
     - {fileID: 7373004024330927558}
@@ -652,10 +652,10 @@ MonoBehaviour:
     spawnedCount: 0
   isBossSpawner: 1
   bossObjects:
-  - {fileID: 180812050720167597, guid: 986073b6f7a8d744c8dfbab295a68796, type: 3}
+  - {fileID: 8835253273296939168, guid: 2f403a4674a92e6409ba2a1794e69191, type: 3}
   bossSpawnPositions:
   - {fileID: 2204831809948858840}
-  bossSpawnRate: 0
+  bossSpawnRate: 1.6
   bossesAtATime: 1
   spawnAtCompletionProgess: 0.721
 --- !u!65 &1874131944253599126
