@@ -31,15 +31,13 @@ public class perkNode : MonoBehaviour
         currImage.sprite = purchasedNode;
         currImage.rectTransform.sizeDelta = new Vector2(200, 200);
 
-        if (nextImage != null && nextImage.sprite != purchasedNode)
+        if (nextImage.sprite != purchasedNode)
         {
             nextImage.sprite = availableNode;
         }
 
-        if (nextAcquireButton != null)
-        {
-            nextAcquireButton.SetActive(true);
-        }
+        nextAcquireButton.SetActive(true);
+
     }
 
 }
