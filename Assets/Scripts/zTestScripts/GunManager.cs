@@ -13,6 +13,7 @@ public class GunManager : MonoBehaviour
     [Space(10)]
     [SerializeField] public LayerMask shootIgnoreLayer;
     [Space(10)]
+    [SerializeField] AudioClip fireSound;
     public List<WeaponData> weaponList = new List<WeaponData>();
 
     private int weaponListIndex;
@@ -81,7 +82,6 @@ public class GunManager : MonoBehaviour
             weaponListIndex--;
             ChangeWeapon();
         }
-
     }
 
     private bool CheckIfGunCanShoot()
@@ -97,7 +97,7 @@ public class GunManager : MonoBehaviour
             if (Input.GetButton("Fire1") && CheckIfGunCanShoot() && shootTimer >= currentWeaponData.shootRate)
             {
                 Shoot();
-
+                AudioSource.PlayClipAtPoint(fireSound, transform.position);
             }
             else if (currentWeaponData.ammoCur <= 0 && !isReloading)
             {

@@ -11,7 +11,7 @@ public class Soldier : EnemyAI
     [SerializeField] int animTransSpeed;
     [SerializeField] int destroyDelay;
 
-    
+    [SerializeField] AudioClip[] footSteps;
 
     float roamTimer;
     Vector3 startPos;
@@ -111,5 +111,10 @@ public class Soldier : EnemyAI
         Destroy(gameObject);
     }
 
-    public void FootStep() { }
+    public void FootStep() 
+    {
+        int arrayPos = Random.Range(0, footSteps.Length - 1);
+
+        AudioSource.PlayClipAtPoint(footSteps[arrayPos], transform.position);
+    }
 }

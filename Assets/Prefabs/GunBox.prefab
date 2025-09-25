@@ -25923,7 +25923,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2094
+  m_VersionIndex: 2109
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -26083,10 +26083,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunBox
   pivotPoint: {fileID: 4943980122821004180}
-  gunToDrop: {fileID: 5644428181523386065, guid: fee7d29e96c49b946bfcd537680eda97, type: 3}
-  gunDropOffset: {x: 0, y: 1, z: 0}
   rotDir: {x: -90, y: 0, z: 0}
   rotSpeed: 50
+  itemsToDrop:
+  - {fileID: 4757067796693722718, guid: 83cd27f40b2b5ae4c9afc49e73987d2e, type: 3}
+  - {fileID: 8735015801303999603, guid: 8c27c9f39b2f6fc4e969f3cbd4f42fcc, type: 3}
+  - {fileID: 6079729649049702641, guid: 10faea0ae9083cb45aa3a1c17e35ac9c, type: 3}
+  - {fileID: 5644428181523386065, guid: fee7d29e96c49b946bfcd537680eda97, type: 3}
+  - {fileID: 5387248574857227402, guid: 9ee69f8ef2a82114fb93ebb983483f84, type: 3}
+  itemOffset: {x: 0, y: 0.5, z: 0}
 --- !u!65 &8200086352092009142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37120,7 +37125,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1564
+  m_VersionIndex: 1579
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
